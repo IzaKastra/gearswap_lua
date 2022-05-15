@@ -258,10 +258,10 @@ function get_sets()
     gear.Donar                         = { ranged="Donar Gun",}
 
     gear.Empy = {}
-    gear.Empy.head                     = {}
+    gear.Empy.head                     = { name="Hattori Zukin +1"}
     gear.Empy.body                     = { name="Hattori Ningi +1"}
     gear.Empy.hands                    = { name="Hattori Tekko +1"}
-    gear.Empy.legs                     = {}
+    gear.Empy.legs                     = { name="Hattori Hakama +1"}
     gear.Empy.feet                     = { name="Hattori Kyahan +1"}
 
     gear.Katana = {}
@@ -1245,7 +1245,7 @@ function precast(spell)
   elseif spell.name == "Provoke" or spell.name == "Animated Flourish" or spell.name == "Flash" then
     equip(set_combine(sets.precast.Provoke))
   elseif spell.type=="WeaponSkill" then
-    if distance > 5 then
+    if distance > 7 then
       send_command('@input /echo Target too far away.')
       cancel_spell()
     end
@@ -1401,8 +1401,8 @@ function aftercast(spell)
       -- If the spell is not interrupted, then set the current Utsusemi spell's priority.
       -- In other words: don't set a priority if the spell got interrupted for some reason.
       -- This current priority is compared to any future  Utsusemi being casted.
-      -- The higher priority loses and is removed to allow lower priority to take affect.
-      -- This way you avoid "Utsusemi: Ichi fails to take affect." when casting Ichi with Ni/San shadows up still.
+      -- The higher priority loses and is removed to allow lower priority to take effect.
+      -- This way you avoid "Utsusemi: Ichi fails to take effect." when casting Ichi with Ni/San shadows up still.
       if spell.name == 'Utsusemi: Ichi' then
         current_utsusemi = 1
       elseif spell.name == 'Utsusemi: Ni' then
