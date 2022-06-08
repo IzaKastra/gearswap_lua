@@ -12,7 +12,8 @@ function get_sets()
   CritTPFlag         = false
   MagicBurstFlag     = false
   UtsuEnmityFlag     = false
-
+  attack1            = 1800 -- Attack with "mid" buffs in TP set
+  attack2            = 3200 -- Attack with "high" buffs in TP set
 
 
   -- ! == alt
@@ -331,7 +332,7 @@ function get_sets()
     gear.Herc.feet.QA                  = { name="Herculean Boots", augments={'Accuracy+17','Pet: STR+1','Quadruple Attack +3','Accuracy+18 Attack+18','Mag. Acc.+3 "Mag.Atk.Bns."+3',}}
 
     gear.Relic = {}
-    gear.Relic.head                    = { name="Mochi. Hatsuburi +3", augments={'Increases elem. ninjutsu III damage',}}
+    gear.Relic.head                    = { name="Mochi. Hatsuburi +3", augments={'Enhances "Yonin" and "Innin" effect',}}
     gear.Relic.body                    = { name="Mochi. Chainmail +3", augments={'Enhances "Sange" effect',}}
     gear.Relic.hands                   = { name="Mochizuki Tekko +3", augments={'Enh. "Ninja Tool Expertise" effect',}}
     gear.Relic.legs                    = { name="Mochi. Hakama +3", augments={'Enhances "Mijin Gakure" effect',}}
@@ -644,23 +645,6 @@ function get_sets()
     back = gear.AmbuCape.STP,
   }
 
-  sets.Melee.Fullers = {
-    main={ name="Nagi", augments={'Path: A',}},
-    sub={ name="Tsuru", augments={'Path: A',}},
-    ammo="Date Shuriken",
-    head={ name="Nyame Helm", augments={'Path: B',}},
-    body={ name="Nyame Mail", augments={'Path: B',}},
-    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-    legs={ name="Nyame Flanchard", augments={'Path: B',}},
-    feet={ name="Nyame Sollerets", augments={'Path: B',}},
-    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
-    waist="Engraved Belt",
-    left_ear="Crep. Earring",
-    right_ear="Telos Earring",
-    left_ring="Ilabrat Ring",
-    right_ring="Regal Ring",
-    back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
-  }
   sets.Melee.Crit = {
     -- Gear: +57% Crit Rate
     -- Merit: +5% Crit Rate
@@ -722,6 +706,27 @@ function get_sets()
     right_ring="Epona's Ring",
     back = gear.AmbuCape.STP,
   }
+
+  -- sets.Melee.Hybrid = {
+  --   -- Hybrid Melee set
+  --   -- Assumes Sublime Sushi food & R15 Heishi + R20 Kunimitsu
+  --   -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
+  --   ammo="Seki Shuriken",
+  --   head="Malignance Chapeau",
+  --   body="Ken. Samue +1",
+  --   hands="Malignance Gloves",
+  --   legs="Malignance Tights",
+  --   feet="Ken. Sune-Ate +1",
+  --   neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+  --   waist="Engraved Belt",
+  --   left_ear="Cessance Earring",
+  --   right_ear="Telos Earring",
+  --   left_ring="Regal Ring",
+  --   right_ring="Ilabrat Ring",
+  --   back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+  --   back = gear.AmbuCape.STP,
+  -- }
+
   sets.Melee.SubtleBlow = {
     -- Subtle Blow Melee set
     -- Ninja get +27 Subtle Blow from traits; only 23 needed from gear.
@@ -799,9 +804,17 @@ function get_sets()
     legs = gear.Relic.legs,
   }
 
+
+
+
+
   sets.WeaponSkill = {}
-  sets.WeaponSkill_Cap = {}
-  sets.WeaponSkill["Blade: Ten"] = {
+  sets.WeaponSkill.LowAtk = {}
+  sets.WeaponSkill.MidAtk = {}
+  sets.WeaponSkill.HighAtk = {}
+
+
+  sets.WeaponSkill.LowAtk["Blade: Ten"] = {
     -- 30% STR, 30% DEX
     -- FTP = [4.5, 11.5, 15.5]
     ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
@@ -818,16 +831,34 @@ function get_sets()
     right_ring="Regal Ring",
     back = gear.AmbuCape.WSDstr,
   }
-  sets.WeaponSkill["Blade: Shun"] = {
+  sets.WeaponSkill.MidAtk["Blade: Ten"] = sets.WeaponSkill.LowAtk["Blade: Ten"]
+  sets.WeaponSkill.HighAtk["Blade: Ten"] = {
+    ammo="Crepuscular Pebble",
+    head = gear.AF.head,
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet="Nyame Sollerets",
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear = gear.Moonshade,
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Regal Ring",
+    back = gear.AmbuCape.WSDstr,
+  }
+
+
+  sets.WeaponSkill.LowAtk["Blade: Shun"] = {
     -- 73%/76%/79%/82%/85% DEX
     -- Attack *= [1.0, 2.0, 3.0]
     -- FTP = 1.0 Replicating
-    ammo="Aurgelmir Orb",
+    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
     head="Mpaca's Cap",
     body = gear.Adhemar.body.Attack,
     hands = gear.Relic.hands,
     legs={ name="Rao Haidate +1", augments={'STR+12','DEX+12','Attack+20',}},
-    feet = gear.Relic.feet,
+    feet="Nyame Sollerets",
     neck="Fotia Gorget",
     waist="Fotia Belt",
     left_ear = gear.Moonshade,
@@ -836,10 +867,30 @@ function get_sets()
     right_ring="Regal Ring",
     back = gear.AmbuCape.DAdex,
   }
-  sets.WeaponSkill["Blade: Metsu"] = {
+  sets.WeaponSkill.MidAtk["Blade: Shun"] = {
+    ammo="Crepuscular Pebble",
+    head="Ken. Jinpachi +1",
+    body="Malignance Tabard",
+    hands="Malignance Gloves",
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet="Ken. Sune-Ate +1",
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist="Fotia Belt",
+    left_ear = gear.Moonshade,
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Regal Ring",
+    back = gear.AmbuCape.DAdex,
+  }
+  sets.WeaponSkill.HighAtk["Blade: Shun"] = sets.WeaponSkill.MidAtk["Blade: Shun"]
+
+
+
+
+  sets.WeaponSkill.LowAtk["Blade: Metsu"] = {
     -- 80% DEX
     -- FTP = 5.0
-    ammo="Aurgelmir Orb",
+    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
     head="Nyame Helm",
     body="Nyame Mail",
     hands="Nyame Gauntlets",
@@ -847,18 +898,40 @@ function get_sets()
     feet="Nyame Sollerets",
     neck="Rep. Plat. Medal",
     waist="Sailfi Belt +1",
+    left_ear="Odr Earring",
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Regal Ring",
+    back = gear.AmbuCape.WSDdex,
+  }
+  sets.WeaponSkill.MidAtk["Blade: Metsu"] = set_combine(sets.WeaponSkill.LowAtk["Blade: Metsu"],{neck={ name="Ninja Nodowa +2", augments={'Path: A',}},})
+  sets.WeaponSkill.HighAtk["Blade: Metsu"] = {
+    -- 80% DEX
+    -- FTP = 5.0
+    ammo="Crepuscular Pebble",
+    head = gear.AF.head,
+    body="Malignance Tabard",
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist={ name="Kentarch Belt +1", augments={'Path: A',}},
     left_ear="Mache Earring +1",
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Gere Ring",
     right_ring="Regal Ring",
     back = gear.AmbuCape.WSDdex,
   }
-  sets.WeaponSkill["Blade: Hi"] = {
+
+
+
+
+  sets.WeaponSkill.LowAtk["Blade: Hi"] = {
     -- 80% AGI
     -- CritRate += [0.15, 0.20, 0.25]
     ammo="Yetshila +1",
     head="Blistering Sallet +1",
-    body="Nyame Mail",
+    body={ name="Nyame Mail", augments={'Path: B',}},
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
@@ -870,7 +943,26 @@ function get_sets()
     right_ring="Regal Ring",
     back = gear.AmbuCape.Crit,
   }
-  sets.WeaponSkill["Blade: Kamu"] = {
+  sets.WeaponSkill.MidAtk["Blade: Hi"] = set_combine(sets.WeaponSkill.LowAtk["Blade: Hi"],{head={ name="Nyame Helm", augments={'Path: B',}},})
+  sets.WeaponSkill.HighAtk["Blade: Hi"] = {
+    ammo="Yetshila +1",
+    head = gear.AF.head,
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear="Odr Earring",
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Regal Ring",
+    back = gear.AmbuCape.Crit,
+  }
+
+
+
+  sets.WeaponSkill.LowAtk["Blade: Kamu"] = {
     -- 60% STR, 60% INT
     -- FTP = 1.0
     -- Attack *= 2.25, EnemyDef *= 0.75
@@ -880,7 +972,7 @@ function get_sets()
     hands="Nyame Gauntlets",
     legs="Mpaca's Hose",
     feet="Nyame Sollerets",
-    neck="Ninja Nodowa +2",
+    neck="Fotia Gorget",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear="Brutal Earring",
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
@@ -888,24 +980,64 @@ function get_sets()
     right_ring="Epona's Ring",
     back = gear.AmbuCape.WSDstr,
   }
-  sets.WeaponSkill["Blade: Ku"] = {
+  sets.WeaponSkill.MidAtk["Blade: Kamu"] = {
+    ammo="Crepuscular Pebble",
+    head = gear.AF.head,
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear="Brutal Earring",
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Epona's Ring",
+    back = gear.AmbuCape.WSDstr
+  }
+  sets.WeaponSkill.HighAtk["Blade: Kamu"] = sets.WeaponSkill.MidAtk["Blade: Kamu"]
+
+
+
+
+  sets.WeaponSkill.LowAtk["Blade: Ku"] = {
     -- 30% STR, 30% DEX
     -- FTP = 1.25 replicating
     ammo="Seething Bomblet +1",
-    head="Blistering Sallet +1",
+    head="Mpaca's Cap",
     body = gear.Adhemar.body.Attack,
     hands = gear.Relic.hands,
     legs={ name="Rao Haidate +1", augments={'STR+12','DEX+12','Attack+20',}},
-    feet = gear.Relic.feet,
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Fotia Gorget",
     waist="Fotia Belt",
-    left_ear="Mache Earring +1",
+    left_ear="Brutal Earring",
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Gere Ring",
     right_ring="Regal Ring",
-    back = gear.AmbuCape.WSDstr,
+    back = gear.AmbuCape.DAdex,
   }
-  sets.WeaponSkill["Blade: Chi"] = {
+  sets.WeaponSkill.MidAtk["Blade: Ku"] = set_combine(sets.WeaponSkill.LowAtk["Blade: Ku"], {head="Nyame Helm",})
+  sets.WeaponSkill.HighAtk["Blade: Ku"] = {
+    ammo="Crepuscular Pebble",
+    head={ name="Blistering Sallet +1", augments={'Path: A',}},
+    body="Malignance Tabard",
+    hands="Malignance Gloves",
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist="Fotia Belt",
+    left_ear="Brutal Earring",
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Regal Ring",
+    back = gear.AmbuCape.DAdex,
+  }
+
+
+
+
+  sets.WeaponSkill.LowAtk["Blade: Chi"] = {
     -- 30% STR, 30% INT
     -- FTP = [0.5, 1.375, 2.25]
     -- Earth-based Hybrid
@@ -923,59 +1055,47 @@ function get_sets()
     right_ring="Epona's Ring",
     back = gear.AmbuCape.WSDstr,
   }
-  sets.WeaponSkill["Blade: To"] = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
-    head = gear.Relic.head,
-    body="Nyame Mail",
-    hands="Nyame Gauntlets",
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Fotia Gorget",
-    waist="Orpheus's Sash",
-    left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-    left_ring="Gere Ring",
-    right_ring="Epona's Ring",
-    back = gear.AmbuCape.WSDstr,
-  }
-  sets.WeaponSkill["Blade: Teki"] = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
-    head = gear.Relic.head,
-    body="Nyame Mail",
-    hands="Nyame Gauntlets",
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Fotia Gorget",
-    waist="Orpheus's Sash",
-    left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-    left_ring="Gere Ring",
-    right_ring="Epona's Ring",
-    back = gear.AmbuCape.WSDstr,
-  }
-  sets.WeaponSkill["Blade: Ei"] = {
+  sets.WeaponSkill.MidAtk["Blade: Chi"] = set_combine(sets.WeaponSkill.LowAtk["Blade: Chi"],{neck="Ninja Nodowa +2",})
+  sets.WeaponSkill.HighAtk["Blade: Chi"] = sets.WeaponSkill.LowAtk["Blade: Chi"]
+
+
+  sets.WeaponSkill.LowAtk["Blade: To"] = sets.WeaponSkill.LowAtk["Blade: Chi"]
+  sets.WeaponSkill.MidAtk["Blade: To"] = sets.WeaponSkill.MidAtk["Blade: Chi"]
+  sets.WeaponSkill.HighAtk["Blade: To"] = sets.WeaponSkill.HighAtk["Blade: Chi"]
+
+
+  sets.WeaponSkill.LowAtk["Blade: Teki"] = sets.WeaponSkill.LowAtk["Blade: Chi"]
+  sets.WeaponSkill.MidAtk["Blade: Teki"] = sets.WeaponSkill.MidAtk["Blade: Chi"]
+  sets.WeaponSkill.HighAtk["Blade: Teki"] = sets.WeaponSkill.HighAtk["Blade: Chi"]
+
+
+  sets.WeaponSkill.LowAtk["Blade: Ei"] = {
     ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
     head="Pixie Hairpin +1",
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Nyame Sollerets",
-    neck="Baetyl Pendant",
+    neck="Sibyl Scarf",
     waist="Orpheus's Sash",
     left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    right_ear = "Crematio Earring",
     left_ring="Gere Ring",
     right_ring="Archon Ring",
     back = gear.AmbuCape.WSDstr,
   }
-  sets.WeaponSkill["Aeolian Edge"] = {
+  sets.WeaponSkill.MidAtk["Blade: Ei"] = sets.WeaponSkill.LowAtk["Blade: Ei"]
+  sets.WeaponSkill.HighAtk["Blade: Ei"] = sets.WeaponSkill.LowAtk["Blade: Ei"]
+
+
+  sets.WeaponSkill.LowAtk["Aeolian Edge"] = {
     ammo="Pemphredo Tathlum",
     head = gear.Relic.head,
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Nyame Sollerets",
-    neck="Sanctity Necklace",
+    neck="Sibyl Scarf",
     waist="Orpheus's Sash",
     left_ear = gear.Moonshade,
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
@@ -983,7 +1103,10 @@ function get_sets()
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
   }
-  sets.WeaponSkill["Evisceration"] = {
+  sets.WeaponSkill.MidAtk["Aeolian Edge"] = sets.WeaponSkill.LowAtk["Aeolian Edge"]
+  sets.WeaponSkill.HighAtk["Aeolian Edge"] = sets.WeaponSkill.LowAtk["Aeolian Edge"]
+
+  sets.WeaponSkill.LowAtk["Evisceration"] = {
     -- 50% DEX
     -- CritRate += [0.1, 0.25, 0.50]
     -- FTP = 1.25 replicating
@@ -1001,14 +1124,18 @@ function get_sets()
     right_ring="Regal Ring",
     back = gear.AmbuCape.WSDdex,
   }
-  sets.WeaponSkill["Savage Blade"] = {
+  sets.WeaponSkill.MidAtk["Evisceration"] = set_combine(sets.WeaponSkill.MidAtk["Evisceration"], {neck="Ninja Nodowa +2", legs={ name="Mpaca's Hose", augments={'Path: A',}},})
+  sets.WeaponSkill.HighAtk["Evisceration"] = set_combine(sets.WeaponSkill.MidAtk["Evisceration"], {body="Malignance Tabard"})
+
+
+
+  sets.WeaponSkill.LowAtk["Savage Blade"] = {
     -- 50% STR, 50% MND
     -- FTP = [4.0, 10.25, 13.75]
     ammo="Seeth. Bomblet +1",
     head="Mpaca's Cap",
     body="Nyame Mail",
     hands="Nyame Gauntlets",
-    -- hands="Malignance Gloves",
     legs="Nyame Flanchard",
     feet = "Nyame Sollerets",
     neck="Rep. Plat. Medal",
@@ -1019,7 +1146,10 @@ function get_sets()
     right_ring="Regal Ring",
     back = gear.AmbuCape.WSDstr,
   }
-  sets.WeaponSkill["Tachi: Ageha"] = {
+  sets.WeaponSkill.MidAtk["Savage Blade"] = set_combine(sets.WeaponSkill.LowAtk["Savage Blade"],{head = gear.AF.head})
+  sets.WeaponSkill.HighAtk["Savage Blade"] = set_combine(sets.WeaponSkill.LowAtk["Savage Blade"],{ammo="Crepuscular Pebble",neck="Ninja Nodowa +2"})
+
+  sets.WeaponSkill.LowAtk["Tachi: Ageha"] = {
     ammo="Pemphredo Tathlum",
     head = gear.AF.head,
     body="Malignance Tabard",
@@ -1034,7 +1164,33 @@ function get_sets()
     right_ring="Sangoma Ring",
     back = gear.AmbuCape.Nuke,
   }
-  sets.WeaponSkill["Tachi: Kagero"] = {
+  sets.WeaponSkill.MidAtk["Tachi: Ageha"] = sets.WeaponSkill.LowAtk["Tachi: Ageha"]
+  sets.WeaponSkill.HighAtk["Tachi: Ageha"] = sets.WeaponSkill.LowAtk["Tachi: Ageha"]
+
+
+  sets.WeaponSkill.LowAtk["Tachi: Kagero"] = {
+    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
+    head="Nyame Helm",
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet="Nyame Sollerets",
+    neck="Fotia Gorget",
+    waist="Fotia Belt",
+    left_ear = gear.Moonshade,
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Gere Ring",
+    right_ring="Epona's Ring",
+    back = gear.AmbuCape.WSDstr,
+  }
+  sets.WeaponSkill.MidAtk["Tachi: Kagero"] = set_combine(sets.WeaponSkill.LowAtk["Tachi: Kagero"],{neck="Ninja Nodowa +2"})
+  sets.WeaponSkill.HighAtk["Tachi: Kagero"] = sets.WeaponSkill.MidAtk["Tachi: Kagero"]
+
+  sets.WeaponSkill.LowAtk["Tachi: Goten"] = sets.WeaponSkill.LowAtk["Tachi: Kagero"]
+  sets.WeaponSkill.MidAtk["Tachi: Goten"] = sets.WeaponSkill.MidAtk["Tachi: Kagero"]
+  sets.WeaponSkill.HighAtk["Tachi: Goten"] = sets.WeaponSkill.HighAtk["Tachi: Kagero"]
+
+  sets.WeaponSkill.LowAtk["Tachi: Jinpu"] = {
     ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
     head="Nyame Helm",
     body="Nyame Mail",
@@ -1049,51 +1205,14 @@ function get_sets()
     right_ring="Epona's Ring",
     back = gear.AmbuCape.WSDstr,
   }
-  sets.WeaponSkill["Tachi: Goten"] = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
-    head="Nyame Helm",
-    body="Nyame Mail",
-    hands="Nyame Gauntlets",
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Fotia Gorget",
-    waist="Orpheus's Sash",
-    left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-    left_ring="Gere Ring",
-    right_ring="Epona's Ring",
-    back = gear.AmbuCape.WSDstr,
-  }
-  sets.WeaponSkill["Tachi: Jinpu"] = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
-    head="Mpaca's Cap",
-    body="Nyame Mail",
-    hands="Nyame Gauntlets",
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Fotia Gorget",
-    waist="Orpheus's Sash",
-    left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-    left_ring="Gere Ring",
-    right_ring="Epona's Ring",
-    back = gear.AmbuCape.WSDstr,
-  }
-  sets.WeaponSkill["Tachi: Koki"] = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
-    head="Nyame Helm",
-    body="Nyame Mail",
-    hands="Nyame Gauntlets",
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Fotia Gorget",
-    waist="Orpheus's Sash",
-    left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-    left_ring="Gere Ring",
-    right_ring="Weather. Ring +1",
-    back = gear.AmbuCape.WSDstr,
-  }
+  sets.WeaponSkill.MidAtk["Tachi: Jinpu"] = set_combine(sets.WeaponSkill.LowAtk["Tachi: Jinpu"],{neck="Ninja Nodowa +2"})
+  sets.WeaponSkill.HighAtk["Tachi: Jinpu"] = sets.WeaponSkill.MidAtk["Tachi: Jinpu"]
+
+  sets.WeaponSkill.LowAtk["Tachi: Koki"] = set_combine(sets.WeaponSkill.LowAtk["Tachi: Goten"],{right_ring="Weather. Ring +1",})
+  sets.WeaponSkill.MidAtk["Tachi: Koki"] = set_combine(sets.WeaponSkill.MidAtk["Tachi: Goten"],{right_ring="Weather. Ring +1",})
+  sets.WeaponSkill.HighAtk["Tachi: Koki"] = set_combine(sets.WeaponSkill.HighAtk["Tachi: Goten"],{right_ring="Weather. Ring +1",})
+
+
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1109,7 +1228,7 @@ function get_sets()
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet = gear.Relic.feet,
-    neck="Baetyl Pendant",
+    neck="Sibyl Scarf",
     waist="Orpheus's Sash",
     left_ear="Friomisi Earring",
     right_ear="Crematio Earring",
@@ -1127,7 +1246,7 @@ function get_sets()
     right_ring="Mujin Band",
   }
   sets.midcast.MagicAccuracy = {
-    ranged="Ullr",
+    -- ranged="Ullr",
     head = gear.AF.head,
     body="Malignance Tabard",
     hands="Malignance Gloves",
@@ -1217,12 +1336,15 @@ end
 function precast(spell)
 
   attack = player.attack
-  if attack < 1500 then
-    AtkFlag = 0 -- Low attack TP sets (trusts)
-  elseif attack < 3000 then
-    AtkFlag = 1 -- Mid Attack TP set (normal buffs)
-  else
+  if attack > attack2 then
     AtkFlag = 2 -- Max Attack TP set (2h buffs, SV, crooked chaos, etc)
+    active_ws = sets.WeaponSkill.HighAtk
+  elseif attack > attack1 then
+    AtkFlag = 1 -- Mid Attack TP set (normal buffs)
+    active_ws = sets.WeaponSkill.MidAtk
+  else
+    AtkFlag = 0 -- Low attack TP sets (trusts)
+    active_ws = sets.WeaponSkill.LowAtk
   end
 
 
@@ -1233,12 +1355,12 @@ function precast(spell)
   weather_intensity = gearswap.res.weather[world.weather_id].intensity
 
 
-  if sets.WeaponSkill[spell.name] then
+  if active_ws[spell.name] then
     if distance > 7 then
       send_command('@input /echo Target too far away.')
       cancel_spell()
     end
-      equip(sets.WeaponSkill[spell.name])
+      equip(active_ws[spell.name])
   elseif Utsu:contains(spell.name) then
     equip(set_combine(sets.precast.FastCast, sets.precast.Utsusemi))
 
@@ -1249,7 +1371,7 @@ function precast(spell)
       send_command('@input /echo Target too far away.')
       cancel_spell()
     end
-    equip(sets.WeaponSkill["Blade: Ten"])
+    equip(active_ws["Blade: Ten"])
   elseif Waltz:contains(spell.name) then
     equip(sets.precast.Waltz)
   elseif spell.name == "Mijin Gakure" then
@@ -1335,9 +1457,9 @@ function midcast(spell)
       if world.weather_element == spell.element or world.day_element == spell.element then
         equip(gear.Obi)
       end
-      if spell.element == 'Lightning' then
-        equip({ranged="Donar Gun", ammo=empty})
-      end
+      -- if spell.element == 'Lightning' then
+      --   equip({ranged="Donar Gun", ammo=empty})
+      -- end
     elseif Enfeebles:contains(spell.name) then
       equip(set_combine(sets.midcast.SpellInterruption, sets.midcast.MagicAccuracy))
     elseif Enhancing:contains(spell.name) then
