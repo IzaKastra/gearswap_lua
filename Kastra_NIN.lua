@@ -12,9 +12,8 @@ function get_sets()
   CritTPFlag         = false
   MagicBurstFlag     = false
   UtsuEnmityFlag     = false
-  attack1            = 1800 -- Attack with "mid" buffs in TP set
-  attack2            = 3200 -- Attack with "high" buffs in TP set
-
+  attack1            = 2100 -- Attack with "mid" buffs in TP set
+  attack2            = 3500 -- Attack with "high" buffs in TP set
 
   -- ! == alt
   -- ^ == ctrl
