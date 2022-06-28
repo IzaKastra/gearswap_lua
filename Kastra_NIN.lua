@@ -304,7 +304,7 @@ function get_sets()
     gear.AmbuCape.DW                   = { name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}
     gear.AmbuCape.Crit                 = { name="Andartia's Mantle", augments={'AGI+20','Accuracy+20 Attack+20','AGI+10','Crit.hit rate+10',}}
     gear.AmbuCape.Evasion              = { name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}
-    gear.AmbuCape.Nuke                 = { name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}}
+    gear.AmbuCape.Nuke                 = { name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
     gear.AmbuCape.SIRD                 = { name="Andartia's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Evasion+10','Enmity+10','Spell interruption rate down-10%',}}
     gear.AmbuCape.STP                  = { name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}
     gear.AmbuCape.WSDdex               = { name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}}
@@ -426,6 +426,43 @@ function get_sets()
   sets.WeaponSet.NagiTsuru = {
     main="Nagi",
     sub="Tsuru",
+  }
+
+  sets.test = {
+    main="Yoshikiri",
+    sub=empty,
+    ranged=empty,
+    ammo=empty,
+    head="Hachiya Hatsu. +3",
+    body={ name="Mochi. Chainmail +3", augments={'Enhances "Sange" effect',}},
+    hands="Volte Bracers",
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet="Volte Boots",
+    neck="Incanter's Torque",
+    waist="Druid's Rope",
+    right_ear=empty,
+    left_ear=empty,
+    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    right_ring=empty,
+    back = gear.AmbuCape.FC,
+  }
+
+  sets.test2 = {
+    main={ name="Gleti's Knife", augments={'Path: A',}},
+    sub=empty,
+    ammo="Seki Shuriken",
+    head="Hachiya Hatsu. +3",
+    body={ name="Mochi. Chainmail +3", augments={'Enhances "Sange" effect',}},
+    hands="Volte Bracers",
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet="Volte Boots",
+    neck="Orunmila's Torque",
+    waist="Reiki Yotai",
+    left_ear="Crep. Earring",
+    right_ear="Digni. Earring",
+    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    right_ring="Crepuscular Ring",
+    back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
   }
 
   sets.Melee = {}
@@ -656,6 +693,7 @@ function get_sets()
     body="Ken. Samue +1", -- 9
     hands="Ken. Tekko +1", -- 5
     legs="Ken. Hakama +1", -- 7
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
     feet="Ken. Sune-Ate +1", -- 5
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}}, -- 0
     waist={ name="Kentarch Belt +1", augments={'Path: A',}}, -- 0 (Gerdr Belt +3% (+4%))
@@ -1098,7 +1136,7 @@ function get_sets()
     waist="Orpheus's Sash",
     left_ear = gear.Moonshade,
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
-    left_ring="Shiva Ring +1",
+    left_ring="Metamorph Ring +1",
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
   }
@@ -1231,17 +1269,19 @@ function get_sets()
     waist="Orpheus's Sash",
     left_ear="Friomisi Earring",
     right_ear="Crematio Earring",
-    left_ring="Shiva Ring +1",
+    left_ring="Metamorph Ring +1",
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.MagicBurst = {
     main="Gokotai",
     sub="Kunimitsu",
-    body={ name="Samnuha Coat", augments={'Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+5','"Dual Wield"+5',}},
+    body="Nyame Mail",
+    legs="Nyame Flanchard",
     feet = gear.Relic.feet,
+    neck="Warder's Charm +1",
     left_ear="Static Earring",
-    left_ring="Locus Ring",
+    left_ring="Metamorph Ring +1",
     right_ring="Mujin Band",
   }
   sets.midcast.MagicAccuracy = {
@@ -1284,7 +1324,6 @@ function get_sets()
   sets.midcast.Migawari = {
     ammo="Sapience Orb",
     head = gear.Herc.head.FC,
-    -- body={ name="Samnuha Coat", augments={'Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+5','"Dual Wield"+5',}},
     body="Dread Jupon",
     hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
     legs="Gyve Trousers",
@@ -1400,7 +1439,7 @@ function midcast(spell)
 
   if spell.name == "Sange" then
     equip(gear.Shuriken.Happo) -- Equip Shuriken as Sange is being used to prevent wasting Seki
-  elseif spell.skill == "Ninjutsu" then
+  elseif spell.skill == "Ninjutsu" or spell.skill == "Elemental Magic" then
     if spell.name == "Migawari: Ichi" then
       equip(set_combine(sets.status.Idle.DT, sets.precast.FastCast, sets.midcast.Migawari))
     elseif Utsu:contains(spell.name) then
@@ -1444,8 +1483,8 @@ function midcast(spell)
         end
       end
 
+    elseif Nukes:contains(spell.name) or spell.skill == "Elemental Magic" then
 
-    elseif Nukes:contains(spell.name) then
       equip(set_combine(sets.status.Idle.DT, sets.midcast.SpellInterruption, sets.midcast.MagicAccuracy, sets.midcast.Nuke))
       if MagicBurstFlag == true then
         equip(sets.midcast.MagicBurst)
