@@ -8,12 +8,15 @@ function get_sets()
 	MagicBurstFlag     = 0
 	MagicAccuracyFlag  = 0
 	TreasureHunterFlag = 0
+	OccultAcumenFlag   = 0
+
 
 	send_command('bind f9 gs c toggle Magic Burst')
 	send_command('bind f10 gs c toggle Magic Accuracy')
 	send_command('bind f11 gs c equip Criers')
 	send_command('bind f12 gs c Equip DT')
 	send_command('bind ^f9 gs c toggle Treasure Hunter')
+	send_command('bind ^f10 gs c toggle Occult Acumen')
 	send_command('bind ^f12 gs c Equip Idle')
 	function file_unload()
 		send_command('unbind f9')
@@ -37,6 +40,11 @@ function get_sets()
 			print('Magic Accuracy:.....OFF')
 		elseif MagicAccuracyFlag == 1 then
 			print('Magic Accuracy:.....ON')
+		end
+		if OccultAcumenFlag == 0 then
+			print('Occult Acumen:......OFF')
+		elseif OccultAcumenFlag == 1 then
+			print('Occult Acumen:.......ON')
 		end
 		if TreasureHunterFlag == 0 then
 			print('Treasure Hunter:....OFF')
@@ -66,6 +74,16 @@ function get_sets()
 			elseif MagicAccuracyFlag == 1 then
 				MagicAccuracyFlag = 0
 				send_command('@input /echo Magic Accuracy: OFF')
+			end
+			check_param()
+		end
+		if command == 'toggle Occult Acumen' then
+			if OccultAcumenFlag == 0 then
+				OccultAcumenFlag = 1
+				send_command('@input /echo Occult Acumen: ON')
+			elseif OccultAcumenFlag == 1 then
+				OccultAcumenFlag = 0
+				send_command('@input /echo Occult Acumen: OFF')
 			end
 			check_param()
 		end
@@ -321,7 +339,7 @@ function get_sets()
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
 	}
-	sets.midcast.Acumen = {
+	sets.midcast.OccultAcumen = {
 		-- 929 TP return on Thunder6
 		ammo="Seraphic Ampulla",
 		head="Mall. Chapeau +2",
@@ -477,6 +495,7 @@ function maps() -- For some reason this is required if you want to use List:cont
 	Storms         = S {"Sandstorm", "Windstorm", "Hailstorm", "Firestorm", "Rainstorm", "Thunderstorm", "Aurorastorm", "Voidstorm"}
 	Treasure       = S {"Dia", "Dia II", "Bio", "Bio II"}
 	Ancients       = S {"Quake", "Quake II", "Flood", "Flood II", "Tornado", "Tornado II", "Flare", "Flare II", "Freeze", "Freeze II", "Burst", "Burst II"}
+	OccultAcumen   = S {"Stoneja", "Waterja", "Aeroja", "Firaja", "Blizzaja", "Thundaja", "Aero VI", "Blizzard VI", "Thunder VI", "Thunder V", "Thundaga III"}
 	AoE            = S {"Stonega", "Stonega II", "Stonega III", "Stoneja",
 											"Waterga", "Waterga II", "Waterga III", "Waterja",
 											"Aeroga", "Aeroga II", "Aeroga III", "Aeroja",
@@ -539,7 +558,6 @@ function midcast(spell)
 				equip(sets.midcast.MagicBurst)
 			end
 			if AoE:contains(spell.name) then
-				-- equip({body=gear.AF.body, legs=gear.Empy.legs})
 				equip({body=gear.AF.body})
 			end
 			if DoTs:contains(spell.name) then
@@ -556,6 +574,15 @@ function midcast(spell)
 			equip(gear.Orpheus)
 		elseif world.weather_element == spell.element or world.day_element == spell.element then
 			equip(gear.Obi)
+		end
+
+		if OccultAcumenFlag == 1 then
+			if OccultAcumen:contains(spell.name) then
+				equip(sets.midcast.OccultAcumen)
+				if AoE:contains(spell.name) then
+					equip({body=gear.AF.body})
+				end
+			end
 		end
 
 	elseif spell.skill == "Dark Magic" then
