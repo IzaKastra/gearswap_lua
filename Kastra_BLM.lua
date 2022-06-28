@@ -261,7 +261,7 @@ function get_sets()
 		feet = gear.Merlinic.feet.FC,
 		neck="Orunmila's Torque",
 		waist="Embla Sash",
-		left_ear="Etiolation Earring",
+		left_ear="Loquac. Earring",
 		right_ear="Malignance Earring",
 		left_ring="Weather. Ring +1",
 		right_ring="Kishar Ring",
@@ -370,13 +370,12 @@ function get_sets()
 		back = gear.AmbuCape.Nuke,
 	}
 	sets.midcast.MagicBurst = {
-  -- +42% MB, +35% MBII (gear), +20% MBII (JP Category), +23% (MBII JP Gifts)
-  -- Total: +40% MB, +78% MBII
 		head="Ea Hat +1",
 		body="Ea Houppelande +1",
 		hands={ name="Agwu's Gages", augments={'Path: A',}},
 		legs="Ea Slops +1",
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+		-- feet = gear.Relic.feet,
 		right_ring="Mujin Band",
 	}
 	sets.midcast.DarkAffinity = {
@@ -574,6 +573,9 @@ function midcast(spell)
 			equip(gear.Orpheus)
 		elseif world.weather_element == spell.element or world.day_element == spell.element then
 			equip(gear.Obi)
+		end
+		if spell.element == "Earth" then
+			equip({neck="Quanpur Necklace"})
 		end
 
 		if OccultAcumenFlag == 1 then

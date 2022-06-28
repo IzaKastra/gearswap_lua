@@ -164,10 +164,10 @@ function get_sets()
 	gear.ReiveCape.Regen                = { name="Bookworm's Cape", augments={'INT+2','MND+2','"Regen" potency+9',}}
 
 	gear.Relic = {}
-	gear.Relic.head                     = { name="Peda. M.Board +3", augments={'Enh. "Altruism" and "Focalization"',}}  -- +2 is Magic Burst Damage II head
+	gear.Relic.head                     = { name="Peda. M.Board +3", augments={'Enh. "Altruism" and "Focalization"',}}
 	gear.Relic.body                     = { name="Peda. Gown +3", augments={'Enhances "Enlightenment" effect',}}
-	gear.Relic.hands                    = { name="Peda. Pants +1", augments={'Enhances "Tabula Rasa" effect',}}        -- Tabula Rasa +30s. +2 becomes Drain/Aspir and Nuking MagicAccuracy legs. +3 better than Amalric+1 legs.
-	gear.Relic.legs = {}
+	gear.Relic.hands                    = {}
+	gear.Relic.legs                    = { name="Peda. Pants +1", augments={'Enhances "Tabula Rasa" effect',}}        -- Tabula Rasa +30s. +2 becomes Drain/Aspir and Nuking MagicAccuracy legs. +3 better than Amalric+1 legs.
 	gear.Relic.feet                     = { name="Peda. Loafers +1", augments={'Enhances "Stormsurge" effect',}}        -- +12 stat to storm spells with 5/5 merits. Good nuking feet without Klima up when +3
 
 	gear.Telchine = {}
@@ -248,7 +248,7 @@ function get_sets()
 
 	sets.precast = {}
 	sets.precast.FastCast = {
-	-- 70% Fast Cast, 5% Quick Cast
+	-- 79% Fast Cast, 5% Quick Cast
 		ammo="Impatiens",
 		head = gear.Merlinic.head.FC,
 		body="Agwu's Robe",
@@ -256,24 +256,25 @@ function get_sets()
 		legs="Volte Brais",
 		feet = gear.Merlinic.feet.FC,
 		neck="Orunmila's Torque",
-		waist="Embla Sash",
-		left_ear="Etiolation Earring",
-		right_ear="Loquac. Earring",
+		waist="Witful Belt",
+		left_ear="Loquac. Earring",
+		right_ear="Malignance Earring",
 		left_ring="Weather. Ring +1",
 		right_ring="Kishar Ring",
+		gear.AmbuCape.FC,
 	}
 
 	sets.precast.Impact = {
-	-- 58% Fast Cast, 5% Quick Cast
 		ammo="Impatiens",
-		body="Twilight Cloak",
-		hands = gear.Merlinic.hands.FC,
-		legs={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}},
+		head="Empty",
+		body="Crepuscular Cloak",
+		hands={ name="Agwu's Gages", augments={'Path: A',}},
+		legs="Volte Brais",
 		feet = gear.Merlinic.feet.FC,
 		neck="Orunmila's Torque",
 		waist="Embla Sash",
-		left_ear="Etiolation Earring",
-		right_ear="Loquac. Earring",
+		left_ear="Loquac. Earring",
+		right_ear="Malignance Earring",
 		left_ring="Weather. Ring +1",
 		right_ring="Kishar Ring",
 	}
@@ -284,7 +285,7 @@ function get_sets()
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     head="Pixie Hairpin +1",
     body = gear.Amalric.body,
-    hands="Volte Bracers",
+		hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs = gear.Amalric.legs,
     feet = gear.Amalric.feet,
     neck="Sanctity Necklace",
@@ -320,8 +321,12 @@ function get_sets()
 	}
 	sets.midcast.Helix = {
 		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-  	neck={ name="Argute Stole +1", augments={'Path: A',}},
-		waist="Sacro Cord",
+    body="Agwu's Robe",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs="Agwu's Slops",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck={ name="Argute Stole +1", augments={'Path: A',}},
+    waist="Sacro Cord",
 		back = gear.ReiveCape.Helix,
 	}
 	sets.midcast.Nuke = {
@@ -344,18 +349,16 @@ function get_sets()
     right_ring="Metamorph Ring +1",
     back = gear.AmbuCape.Nuke,
 	}
-	sets.midcast.MagicAccuracy = {
-		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-	}
 	sets.midcast.MagicBurst = {
   -- +37% MB, +15% MBII (gear), +13% (MBII JP Gifts)
   -- Total: +37% MB, +28% MBII
 	  -- main="Akademos"
 		head = gear.Relic.head,
-		hands={ name="Agwu's Gages", augments={'Path: A',}},
-		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-		neck={ name="Argute Stole +1", augments={'Path: A',}},
+		body="Agwu's Robe",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs="Agwu's Slops",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck={ name="Argute Stole +1", augments={'Path: A',}},
 		right_ring="Mujin Band",
 	}
 	sets.midcast.DarkAffinity = {
@@ -369,19 +372,21 @@ function get_sets()
 	}
 
 	sets.midcast.Enfeeble = {
-	-- +79 Enfeebling Magic Skill
 		main="Daybreak",
-		sub="Ammurapi Shield",
-		head="Befouled Crown",
-		body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-		legs={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}},
-		feet={ name="Medium's Sabots", augments={'MP+45','MND+9','"Conserve MP"+5','"Cure" potency +4%',}},
-		neck="Incanter's Torque",
-		waist="Sacro Cord",
-		left_ear="Digni. Earring",
-		right_ear="Malignance Earring",
-		left_ring="Weather. Ring +1",
-		right_ring="Kishar Ring",
+    sub="Ammurapi Shield",
+    ammo="Pemphredo Tathlum",
+    head={ name="Peda. M.Board +3", augments={'Enh. "Altruism" and "Focalization"',}},
+    body="Agwu's Robe",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}},
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck={ name="Argute Stole +1", augments={'Path: A',}},
+    waist="Sacro Cord",
+    left_ear="Crep. Earring",
+    right_ear="Malignance Earring",
+    left_ring="Weather. Ring +1",
+    right_ring="Kishar Ring",
+		back = gear.AmbuCape.Nuke,
 	}
 
 	sets.midcast.EnhancingDuration = {
@@ -403,32 +408,40 @@ function get_sets()
 	}
 
 	sets.midcast.Impact = {
-		ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-		body="Twilight Cloak",
-    hands = gear.Amalric.hands,
-    legs = gear.Amalric.legs,
-    feet = gear.Amalric.feet,
+		-- Stack Magic Accuracy
+		main="Daybreak",
+    sub="Ammurapi Shield",
+    ammo="Pemphredo Tathlum",
+    body="Crepuscular Cloak",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs="Agwu's Slops",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck={ name="Argute Stole +1", augments={'Path: A',}},
     waist="Sacro Cord",
-    left_ear="Regal Earring",
+    left_ear="Crep. Earring",
     right_ear="Malignance Earring",
-    left_ring="Freke Ring",
+    left_ring="Weather. Ring +1",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back = gear.AmbuCape.Nuke,
 	}
 	sets.midcast.Aquaveil = {head = gear.Chironic.head}
 
 	sets.midcast.DrainAspir = {
-	-- +35 Dark Magic Skill
-	-- +44 Drain/Aspir potency
-		head="Pixie Hairpin +1",
-		body="Agwu's Robe",
-		hands = gear.Merlinic.hands.DrainAspir,
-		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-		neck="Erra Pendant",
-		waist="Fucho-no-Obi",
-		left_ring="Archon Ring",
-		right_ring="Evanescence Ring",
+		main="Daybreak",
+    sub="Ammurapi Shield",
+    ammo="Pemphredo Tathlum",
+    head="Pixie Hairpin +1",
+    body="Agwu's Robe",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs="Agwu's Slops",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck="Erra Pendant",
+    waist="Fucho-no-Obi",
+    left_ear="Regal Earring",
+    right_ear="Malignance Earring",
+    left_ring="Archon Ring",
+    right_ring="Evanescence Ring",
+		back = gear.AmbuCape.Nuke,
 	}
 	sets.midcast.Stoneskin = {
 		neck="Nodens Gorget",
@@ -448,7 +461,10 @@ function get_sets()
 		right_ring="Ephedra Ring",
 	}
 	sets.midcast.Treasure = {
+		ammo="Perfect Lucky Egg", -- +1
+		head="Wh. Rarab Cap +1",  -- +1
 		hands="Volte Bracers",  -- +1
+		legs = gear.Merlinic.legs.TH,  -- +2
 		feet="Volte Boots",  -- +1
 		waist="Chaac Belt",  -- +1
 	}
@@ -523,11 +539,7 @@ function midcast(spell)
 		if spell.name == "Impact" then
 			equip(sets.midcast.Impact)
 		else
-			if MagicAccuracyFlag == 1 then
-				equip(set_combine(sets.midcast.Nuke, sets.midcast.MagicAccuracy))
-			else
-				equip(sets.midcast.Nuke)
-			end
+			equip(sets.midcast.Nuke)
 			if MagicBurstFlag == 1 then
 				equip(sets.midcast.MagicBurst)
 			end
@@ -559,9 +571,9 @@ function midcast(spell)
 
 	elseif spell.skill == "Dark Magic" then
 		if DrainSpells:contains(spell.name) then
-			equip(set_combine(sets.midcast.Nuke, sets.midcast.MagicAccuracy, sets.midcast.DrainAspir))
+			equip(set_combine(sets.midcast.Nuke, sets.midcast.DrainAspir))
 		elseif spell.name == "Stun" then
-			equip(set_combine(sets.midcast.Nuke, sets.midcast.MagicAccuracy))
+			equip(sets.midcast.Nuke)
 		end
 
 		if spell.element == "Dark" then
@@ -591,11 +603,11 @@ function midcast(spell)
 		end
 
 	elseif spell.skill == "Enfeebling Magic" then
-		equip(set_combine(sets.midcast.Nuke, sets.midcast.MagicAccuracy, sets.midcast.Enfeeble))
+		equip(set_combine(sets.midcast.Nuke, sets.midcast.Enfeeble))
 		if INTfeeble:contains(spell.name) then
 			equip({legs = gear.Chironic.legs.INTfeeble})
 		elseif MNDfeeble:contains(spell.name) then
-			equip({legs = gear.Chironic.legs.INTfeeble})
+			equip({legs = gear.Chironic.legs.MNDfeeble})
 		end
 
 	elseif spell.skill == "Enhancing Magic" then
