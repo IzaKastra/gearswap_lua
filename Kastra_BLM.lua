@@ -269,7 +269,6 @@ function get_sets()
   }
 
   sets.precast.Impact = {
-  -- 58% Fast Cast, 5% Quick Cast
     ammo="Impatiens",
     head="Empty",
     body="Crepuscular Cloak",
