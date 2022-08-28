@@ -13,7 +13,7 @@ function get_sets()
   MagicBurstFlag     = false
   UtsuEnmityFlag     = false
   attack1            = 2200 -- Attack with "mid" buffs in TP set
-  attack2            = 3600 -- Attack with "high" buffs in TP set
+  attack2            = 4100 -- Attack with "high" buffs in TP set
 
   -- ! == alt
   -- ^ == ctrl
@@ -260,7 +260,7 @@ function get_sets()
     gear.Empy = {}
     gear.Empy.head                     = { name="Hattori Zukin +1"}
     gear.Empy.body                     = { name="Hattori Ningi +1"}
-    gear.Empy.hands                    = { name="Hattori Tekko +1"}
+    gear.Empy.hands                    = { name="Hattori Tekko +2"}
     gear.Empy.legs                     = { name="Hattori Hakama +1"}
     gear.Empy.feet                     = { name="Hattori Kyahan +1"}
 
@@ -322,9 +322,7 @@ function get_sets()
     gear.Herc.head.FC                  = { name="Herculean Helm", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+4',}}
 
     gear.Herc.hands = {}
-
     gear.Herc.body = {}
-
     gear.Herc.legs = {}
 
     gear.Herc.feet = {}
@@ -428,6 +426,7 @@ function get_sets()
     sub="Tsuru",
   }
 
+  -- Ninjutsu damage testing set.
   sets.test = {
     main="Yoshikiri",
     sub=empty,
@@ -447,21 +446,22 @@ function get_sets()
     back = gear.AmbuCape.FC,
   }
 
-  sets.test2 = {
-    main={ name="Gleti's Knife", augments={'Path: A',}},
-    sub=empty,
-    ammo="Seki Shuriken",
-    head="Hachiya Hatsu. +3",
+  -- Abyssea light building set. TP regain between pulls.
+  sets.DualWield = {
+    main="Gokotai",
+    sub={ name="Kunimitsu", augments={'Path: A',}},
+    ammo="Staunch Tathlum +1",
+    head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
     body={ name="Mochi. Chainmail +3", augments={'Enhances "Sange" effect',}},
-    hands="Volte Bracers",
-    legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet="Volte Boots",
-    neck="Orunmila's Torque",
+    hands="Malignance Gloves",
+    legs="Malignance Tights",
+    feet="Malignance Boots",
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist="Reiki Yotai",
-    left_ear="Crep. Earring",
-    right_ear="Digni. Earring",
-    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-    right_ring="Crepuscular Ring",
+    left_ear="Eabani Earring",
+    right_ear="Suppanomimi",
+    left_ring="Chirich Ring +1",
+    right_ring="Chirich Ring +1",
     back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
   }
 
@@ -744,25 +744,24 @@ function get_sets()
     back = gear.AmbuCape.STP,
   }
 
-  -- sets.Melee.Hybrid = {
-  --   -- Hybrid Melee set
-  --   -- Assumes Sublime Sushi food & R15 Heishi + R20 Kunimitsu
-  --   -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
-  --   ammo="Seki Shuriken",
-  --   head="Malignance Chapeau",
-  --   body="Ken. Samue +1",
-  --   hands="Malignance Gloves",
-  --   legs="Malignance Tights",
-  --   feet="Ken. Sune-Ate +1",
-  --   neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
-  --   waist="Engraved Belt",
-  --   left_ear="Cessance Earring",
-  --   right_ear="Telos Earring",
-  --   left_ring="Regal Ring",
-  --   right_ring="Ilabrat Ring",
-  --   back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
-  --   back = gear.AmbuCape.STP,
-  -- }
+  sets.Melee.Hybrid = {
+    -- Hybrid Melee set used for Kei solo to survive Dancing Fullers. Use Tsuru off-hand for more HP
+    -- Use Omelette Sandwich for even more HP.
+    -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
+    ammo="Seki Shuriken",
+    head="Malignance Chapeau",
+    body="Ken. Samue +1",
+    hands="Malignance Gloves",
+    legs="Ken. Hakama +1",
+    feet="Malignance Boots",
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist="Engraved Belt",
+    left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+    right_ear="Telos Earring",
+    left_ring="Regal Ring",
+    right_ring="Ilabrat Ring",
+    back = gear.AmbuCape.STP,
+  }
 
   sets.Melee.SubtleBlow = {
     -- Subtle Blow Melee set
@@ -838,7 +837,6 @@ function get_sets()
 
   sets.precast.Mijin = {
     main="Nagi",
-    legs = gear.Relic.legs,
   }
 
 
@@ -1267,8 +1265,8 @@ function get_sets()
     feet = gear.Relic.feet,
     neck="Sibyl Scarf",
     waist="Orpheus's Sash",
-    left_ear="Friomisi Earring",
-    right_ear="Crematio Earring",
+    left_ear="Crematio Earring",
+    right_ear="Friomisi Earring",
     left_ring="Metamorph Ring +1",
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
@@ -1277,10 +1275,11 @@ function get_sets()
     main="Gokotai",
     sub="Kunimitsu",
     body="Nyame Mail",
+    hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet = gear.Relic.feet,
     neck="Warder's Charm +1",
-    left_ear="Static Earring",
+    left_ear="Crematio Earring",
     left_ring="Metamorph Ring +1",
     right_ring="Mujin Band",
   }
@@ -1297,7 +1296,7 @@ function get_sets()
     left_ear="Crepuscular Earring",
     right_ear="Digni. Earring",
     left_ring="Weather. Ring +1",
-    right_ring="Sangoma Ring",
+    right_ring="Metamorph Ring +1",
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.Utsusemi = {
@@ -1322,6 +1321,7 @@ function get_sets()
     back = gear.AmbuCape.SIRD     -- -10%
   }
   sets.midcast.Migawari = {
+    -- Just stack fast cast for recast times.
     ammo="Sapience Orb",
     head = gear.Herc.head.FC,
     body="Dread Jupon",
@@ -1344,10 +1344,7 @@ end
 ----- SPELL/ABILITY LISTS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function maps() -- For some reason this is required if you want to use List:contains(spell.english). You have to have this "function maps()" and "end" lines surrounding your lists.
--- You also need the maps() line in your get_sets() function if you want these to work.
--- Otherwise you will get an error for all lines that use the "contains(spell.english)" function that says something along the lines of "attempt to index global 'TreasureHunter' (a Nil value)"
--- In addition to the above 3 lines, you'll also need to have the random S infront of your lists.
+function maps()
 
   Utsu           = S {"Utsusemi: Ichi", "Utsusemi: Ni", "Utsusemi: San"}
   Nukes          = S {"Katon: Ichi", "Katon: Ni", "Katon: San",
@@ -1491,6 +1488,8 @@ function midcast(spell)
       end
       if buffactive["Futae"] then
         equip(gear.Empy.hands)
+        if MagicBurstFlag == true then
+          equip({neck="Sibyl Scarf", left_ear="Static Earring",})
       end
       if world.weather_element == spell.element or world.day_element == spell.element then
         equip(gear.Obi)
@@ -1560,7 +1559,7 @@ function aftercast(spell)
     if not spell.interrupted then
       -- If the spell is not interrupted, then set the current Utsusemi spell's priority.
       -- In other words: don't set a priority if the spell got interrupted for some reason.
-      -- This current priority is compared to any future  Utsusemi being casted.
+      -- This current priority is compared to any future Utsusemi being casted.
       -- The higher priority loses and is removed to allow lower priority to take effect.
       -- This way you avoid "Utsusemi: Ichi fails to take effect." when casting Ichi with Ni/San shadows up still.
       if spell.name == 'Utsusemi: Ichi' then
@@ -1576,8 +1575,9 @@ function aftercast(spell)
     equip(gear.Shuriken.Happo)
   end
   if spell.name == "Sange" then
-    equip(gear.Shuriken.Happo) -- Equip Shuriken as Sange is being used to prevent wasting Seki
+    equip(gear.Shuriken.Happo) -- Equip Happo Shuriken as Sange is being used to prevent wasting Seki
   end
+  -- equip(sets.DualWield) -- uncomment when in abyssea farming lights
 end
 
 
@@ -1630,5 +1630,5 @@ function status_change(new,old)
   if buffactive['Sange'] then
     equip(gear.Shuriken.Happo)
   end
-
+  -- equip(sets.DualWield) -- uncomment when in abyssea farming lights
 end
