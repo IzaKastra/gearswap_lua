@@ -840,9 +840,6 @@ function get_sets()
   }
 
 
-
-
-
   sets.WeaponSkill = {}
   sets.WeaponSkill.LowAtk = {}
   sets.WeaponSkill.MidAtk = {}
@@ -1362,6 +1359,7 @@ function maps()
                       "Blade: Ku", "Blade: Kamu", "Blade: Yu", "Blade: Hi",
                       "Blade: Shun", "Blade: Metsu"}
   Waltz          = S {"Curing Waltz", "Curing Waltz II", "Curing Waltz III", "Divine Waltz"}
+
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1485,18 +1483,19 @@ function midcast(spell)
       equip(set_combine(sets.status.Idle.DT, sets.midcast.SpellInterruption, sets.midcast.MagicAccuracy, sets.midcast.Nuke))
       if MagicBurstFlag == true then
         equip(sets.midcast.MagicBurst)
+        if spell.element == 'Lightning' then
+          equip({ranged="Donar Gun", ammo=empty})
+        end
       end
-      if buffactive["Futae"] then
-        equip(gear.Empy.hands)
+      if not buffactive["Futae"] then
+        equip({hands = gear.Empy.hands})
         if MagicBurstFlag == true then
           equip({neck="Sibyl Scarf", left_ear="Static Earring",})
+        end
       end
       if world.weather_element == spell.element or world.day_element == spell.element then
         equip(gear.Obi)
       end
-      -- if spell.element == 'Lightning' then
-      --   equip({ranged="Donar Gun", ammo=empty})
-      -- end
     elseif Enfeebles:contains(spell.name) then
       equip(set_combine(sets.midcast.SpellInterruption, sets.midcast.MagicAccuracy))
     elseif Enhancing:contains(spell.name) then
