@@ -1487,7 +1487,7 @@ function midcast(spell)
           equip({ranged="Donar Gun", ammo=empty})
         end
       end
-      if not buffactive["Futae"] then
+      if buffactive["Futae"] then
         equip({hands = gear.Empy.hands})
         if MagicBurstFlag == true then
           equip({neck="Sibyl Scarf", left_ear="Static Earring",})
