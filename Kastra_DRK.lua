@@ -8,7 +8,6 @@ function get_sets()
 
   MagicBurstFlag     = 0
   TPFlag             = 0
-  HasteFlag          = 0
   -- ! == alt
   -- ^ == ctrl
   --
@@ -24,8 +23,8 @@ function get_sets()
 
   send_command('bind !f9 gs c Equip Apocalypse')
   send_command('bind !f10 gs c Equip Liberator')
-  send_command('bind !f11 gs c Equip Anguta')
-  send_command('bind !f12 gs c Free')
+  send_command('bind !f11 gs c Equip Redemption')
+  send_command('bind !f12 gs c Equip Anguta')
   function file_unload()
     send_command('unbind f9')
     send_command('unbind f10')
@@ -45,9 +44,11 @@ function get_sets()
     function check_param()
         print('-------------------------')
         if TPFlag == 0 then
-          print('TP Mode:............Default')
+          print('TP Mode:..........Default')
         elseif TPFlag == 1 then
-          print('TP Mode:............Hybrid')
+          print('TP Mode:...........Hybrid')
+        elseif TPFlag == 2 then
+          print('TP Mode:.......SubtleBlow')
         end
         print('-------------------------')
     end
@@ -57,6 +58,9 @@ function get_sets()
         TPFlag = 1
         send_command('@input /echo TP mode: Hybrid')
       elseif TPFlag == 1 then
+        TPFlag = 2
+        send_command('@input /echo TP mode: Subtle Blow')
+      elseif TPFlag == 2 then
         TPFlag = 0
         send_command('@input /echo TP mode: Default')
       end
@@ -74,6 +78,11 @@ function get_sets()
     if command == 'Equip Apocalypse' then
       equip({main = "Apocalypse", sub="Utu Grip"})
       send_command('@input /echo Apocalypse Equipped.')
+      -- send_command('@input /lockstyleset 11')
+    end
+    if command == 'Equip Redemption' then
+      equip({main = "Redemption", sub="Utu Grip"})
+      send_command('@input /echo Redemption Equipped.')
       -- send_command('@input /lockstyleset 11')
     end
     if command == 'Equip Liberator' then
@@ -109,15 +118,16 @@ function get_sets()
     gear.Carmine.feet                  = { name="Carmine Greaves"}
 
     gear.Empy = {}
-    gear.Empy.head                     = {}
-    gear.Empy.body                     = { name="Heath. Cuirass +1",}
-    gear.Empy.hands                    = { name="Heath. Gauntlets +1"}
-    gear.Empy.legs                     = { name="Heath. Flanchard +1"}
+    gear.Empy.head                     = { name="Heath. Burgeon. +2"}
+    gear.Empy.body                     = { name="Heath. Cuirass +2"}
+    gear.Empy.hands                    = { name="Heath. Gauntlets +2"}
+    gear.Empy.legs                     = { name="Heath. Flanchard +2"}
     gear.Empy.feet                     = {}
 
 
     gear.AmbuCape = {}
     gear.AmbuCape.TP                   = { name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}
+    gear.AmbuCape.TP_DA                = { name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}}
     gear.AmbuCape.WSDstr               = { name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
     gear.AmbuCape.WSDacc               = { name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%',}}
     gear.AmbuCape.FC                   = { name="Ankou's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+10','"Fast Cast"+10',}}
@@ -154,7 +164,7 @@ function get_sets()
   sets.status.Idle.DT = {
     ammo="Staunch Tathlum +1",
     head="Nyame Helm",
-    body="Nyame Mail",
+    body="Sakpata's Plate",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Nyame Sollerets",
@@ -177,25 +187,70 @@ function get_sets()
     feet="Sakpata's Leggings",
     neck="Abyssal Beads +1",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear="Schere Earring",
-    right_ear="Telos Earring",
+    left_ear="Telos Earring",
+    right_ear="Schere Earring",
     left_ring="Flamma Ring",
     right_ring="Niqmaddu Ring",
-    -- left_ring="Chirich Ring +1",
     back = gear.AmbuCape.TP,
   }
-  sets.status.Melee.AM3 = {
+  sets.status.Melee.Liberator_AM3 = {
     ammo="Coiste Bodhar",
     head="Flam. Zucchetto +2",
     body="Flamma Korazin +2",
+    body="Sakpata's Plate",
     hands="Sakpata's Gauntlets",
     legs={ name="Odyssean Cuisses", augments={'Accuracy+28','"Store TP"+5','AGI+8','Attack+7',}},
     feet="Flam. Gambieras +2",
     neck="Abyssal Beads +1",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear="Telos Earring",
+    right_ear="Dedition Earring",
+    left_ring="Flamma Ring",
+    right_ring="Niqmaddu Ring",
+    back = gear.AmbuCape.TP,
+  }
+  sets.status.Melee.Redemption_AM3 = {
+    ammo="Coiste Bodhar",
+    head="Sakpata's Helm",
+    body="Hjarrandi Breast.",
+    hands="Sakpata's Gauntlets",
+    legs="Sakpata's Cuisses",
+    feet="Sakpata's Leggings",
+    neck="Abyssal Beads +1",
+    waist="Ioskeha Belt +1",
+    left_ear="Telos Earring",
     right_ear="Schere Earring",
     left_ring="Flamma Ring",
+    right_ring="Niqmaddu Ring",
+    back = gear.AmbuCape.TP_DA,
+  }
+  sets.status.Melee.SubtleBlow = {
+    ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+    head={ name="Sakpata's Helm", augments={'Path: A',}},
+    body="Dagon Breast.",
+    hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
+    legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
+    feet={ name="Sakpata's Leggings", augments={'Path: A',}},
+    neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+    waist="Ioskeha Belt +1",
+    left_ear="Telos Earring",
+    right_ear={ name="Schere Earring", augments={'Path: A',}},
+    left_ring="Chirich Ring +1",
+    right_ring="Niqmaddu Ring",
+    back = gear.AmbuCape.TP,
+  }
+  sets.status.Melee.Hybrid = {
+    ammo="Coiste Bodhar",
+    head="Sakpata's Helm",
+    body="Sakpata's Plate",
+    hands="Sakpata's Gauntlets",
+    legs="Sakpata's Cuisses",
+    feet="Sakpata's Leggings",
+    neck="Abyssal Beads +1",
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear="Telos Earring",
+    right_ear="Schere Earring",
+    left_ring="Defending Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.TP,
   }
@@ -229,9 +284,21 @@ function get_sets()
     right_ring="Kishar Ring",
     back = gear.AmbuCape.FC,
 }
+  sets.precast.Impact = {
+    ammo="Sapience Orb",
+    body="Crepuscular Cloak",
+    hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
+    feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}},
+    neck="Orunmila's Torque",
+    left_ear="Malignance Earring",
+    right_ear="Loquac. Earring",
+    left_ring="Weather. Ring +1",
+    right_ring="Kishar Ring",
+    back = gear.AmbuCape.FC,
+  }
 
   sets.precast['Blood Weapon'] = {body = gear.Relic.body}
-  sets.precast.WeaponBash = {
+  sets.precast['Weapon Bash'] = {
     hands = gear.AF.hands,
   }
   sets.precast.Provoke = {
@@ -261,6 +328,21 @@ function get_sets()
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Ioskeha Belt +1",
     left_ear = gear.Moonshade,
+    right_ear="Thrud Earring",
+    left_ring="Regal Ring",
+    right_ring="Niqmaddu Ring",
+    back = gear.AmbuCape.WSDacc,
+  }
+  sets.WeaponSkill.Quietus = {
+    ammo="Knobkierrie",
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body = gear.AF.body,
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet="Rat. Sollerets +1",
+    neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
     right_ear="Thrud Earring",
     left_ring="Regal Ring",
     right_ring="Niqmaddu Ring",
@@ -322,7 +404,7 @@ function get_sets()
   sets.midcast = {}
 
   sets.midcast.Drains = {
-    ranged="Ullr",
+    -- ranged="Ullr",
     -- ammo="Pemphredo Tathlum",
     head="Pixie Hairpin +1",
     body={ name="Nyame Mail", augments={'Path: B',}},
@@ -348,10 +430,10 @@ function get_sets()
   }
   sets.midcast.MagicAccuracy = {
     ammo="Pemphredo Tathlum",
-    head="Flam. Zucchetto +2",
-    body="Flamma Korazin +2",
-    hands="Flam. Manopolas +2",
-    legs="Flamma Dirs +2",
+    head={ name="Sakpata's Helm", augments={'Path: A',}},
+    body = gear.Empy.body,
+    hands = gear.Empy.hands,
+    legs = gear.Empy.legs,
     feet="Rat. Sollerets +1",
     neck="Erra Pendant",
     waist="Eschan Stone",
@@ -365,7 +447,7 @@ function get_sets()
     -- stack Dread spikes+ and HP gear
     -- Ratri +1 and Moonlight cape/ring are best, but super expensive
     head = gear.Relic.head,
-    body="Heath. Cuirass +1",
+    body = gear.Empy.body,
     hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet="Rat. Sollerets +1",
@@ -401,12 +483,23 @@ function get_sets()
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
   }
-
+  sets.midcast.Impact = {
+      ammo="Pemphredo Tathlum",
+      body="Crepuscular Cloak",
+      hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
+      legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
+      feet={ name="Sakpata's Leggings", augments={'Path: A',}},
+      neck="Erra Pendant",
+      waist="Eschan Stone",
+      left_ear="Malignance Earring",
+      right_ear="Crep. Earring",
+      left_ring="Weather. Ring +1",
+      right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+      back="Chuparrosa Mantle",
+}
 
 
 end -- End of sets function
-
-
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -420,27 +513,18 @@ function precast(spell)
   distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
   weather_intensity = gearswap.res.weather[world.weather_id].intensity
 
-  if sets.WeaponSkill[spell.name] then
-      equip(sets.WeaponSkill[spell.name])
-  end
-  if spell.name == "Provoke" then
-    equip(sets.precast.Provoke)
-  elseif sets.precast[spell.name] then
-    equip(sets[spell.name])
-  end
-
-  if spell.type=="WeaponSkill" then
-    if sets.WeaponSkill[spell.name] then
+  if sets.precast[spell.name] then -- If there exists a set specific to the spell/ability being used.
+    equip(sets.precast[spell.name])
+  elseif spell.type=="WeaponSkill" then -- If using a weapon skill
+    if sets.WeaponSkill[spell.name] then -- If there exists a specific set for that weapon skill
       equip(sets.WeaponSkill[spell.name])
     else
-      equip(sets.WeaponSkill['Insurgency'])
+      equip(sets.WeaponSkill['Insurgency']) -- Default to Insurgency set.
     end
   elseif spell.name == "Holy Water" then
-    equip(set_combine(sets.status.Idle.DT,sets.items.HolyWater))
-  elseif spell.name == "Weapon Bash" then
-    equip(sets.precast.WeaponBash)
+    equip(set_combine(sets.status.Idle.DT,sets.items.HolyWater)) -- Specific Holy Water set.
   else
-    equip(sets.precast.FastCast)
+    equip(sets.precast.FastCast) -- Default Fast Cast set.
   end
 
 
@@ -454,53 +538,81 @@ end
 function midcast(spell)
 
 
-  if spell.name:contains("Absorb") then
-    equip(set_combine(sets.midcast.MagicAccuracy, sets.midcast.Absorbs))
-  end
-  if spell.name == "Absorb-Attri" then
-    equip(sets.midcast.MagicAccuracy)
-  end
-  if spell.name == "Absorb-TP" then
-    equip({hands = gear.Empy.hands})
-  elseif string.find(spell.name, "Drain") then
-    equip(sets.midcast.Drains)
-  elseif spell.name == "Dread Spikes" then
-    equip(sets.midcast['Dread Spikes'])
-    -- send_command("timers create Trials 840 down")
-  elseif spell.name == "Endark II" then
-    equip(sets.midcast.Endark)
-  end
-  if spell.skill == "Enfeebling Magic" then
-    equip(sets.midcast.MagicAccuracy)
-  end
-  if spell.skill == "Elemental Magic" then
-    equip(sets.midcast.Nuke)
-  end
   if spell.skill == "Dark Magic" then
-    equip({feet="Rat. Sollerets +1",})
-  end
-  if buffactive['Nether Void'] and spell.skill == "Dark Magic" then
-    equip({legs = gear.Empy.legs})
-  end
-  if buffactive['Dark Seal'] and spell.skill == "Dark Magic" then
-    equip({head = gear.Relic.head})
+    if spell.name:contains("Absorb") then
+      equip(set_combine(sets.midcast.MagicAccuracy, sets.midcast.Absorbs))
+      if spell.name == "Absorb-Attri" then
+        equip(sets.midcast.MagicAccuracy)
+      elseif spell.name == "Absorb-TP" then
+        equip({hands = gear.Empy.hands})
+      end
+
+    elseif string.find(spell.name, "Drain") then
+      equip(sets.midcast.Drains)
+    end
+
+    if buffactive['Dark Seal'] then
+      equip({head = gear.Relic.head})
+    end
+    if buffactive['Nether Void'] then
+      equip({legs = gear.Empy.legs})
+    end
+
+    if spell.name == "Dread Spikes" then
+      equip(sets.midcast['Dread Spikes'])
+    elseif spell.name == "Endark II" then
+      equip(sets.midcast.Endark)
+    end
+
+
+  elseif spell.skill == "Enfeebling Magic" then
+    equip(sets.midcast.MagicAccuracy)
+
+
+  elseif spell.skill == "Elemental Magic" then
+    if spell.name == "Impact" then
+      equip(sets.midcast.Impact)
+    else
+      equip(sets.midcast.Nuke)
+    end
   end
 end
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- AFTERCAST FUNCTION -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function aftercast(spell)
+
+  if not buffactive['Hasso'] and spell.name ~= "Hasso" then
+    print("Hasso not up!")
+  end
+
   if player.status == "Idle" then
     equip(sets.status.Idle.DT)
   elseif player.status == "Engaged" then
-    if TPFlag == 1 then
-      equip(sets.status.Melee.Standard)
-    elseif buffactive['Aftermath: Lv.3'] then
-      equip(sets.status.Melee.AM3)
-    else
-      equip(sets.status.Melee.Standard)
+    if TPFlag == 0 then
+      if buffactive['Aftermath: Lv.3'] then
+        if player.equipment.main=="Liberator" then
+          equip(sets.status.Melee.Liberator_AM3)
+        elseif player.equipment.main=="Redemption" then
+          equip(sets.status.Melee.Redemption_AM3)
+        else
+          equip(sets.status.Melee.Standard)
+        end
+
+      elseif buffactive['Aftermath: Lv.2'] then
+        if player.equipment.main=="Redemption" then
+          equip(sets.status.Melee.Redemption_AM3)
+        else
+          equip(sets.status.Melee.Standard)
+        end
+      else
+        equip(sets.status.Melee.Standard)
+      end
+    elseif TPFlag == 1 then
+      equip(sets.status.Melee.Hybrid)
+    elseif TPFlag == 2 then
+      equip(sets.status.Melee.SubtleBlow)
     end
   end
 end
@@ -510,12 +622,29 @@ function status_change(new,old)
   if new == "Idle" then
     equip(sets.status.Idle.DT)
   elseif player.status == "Engaged" then
-    if TPFlag == 1 then
-      equip(sets.status.Melee.Standard)
-    elseif buffactive['Aftermath: Lv.3'] then
-      equip(sets.status.Melee.AM3)
-    else
-      equip(sets.status.Melee.Standard)
+    if TPFlag == 0 then
+      if buffactive['Aftermath: Lv.3'] then
+        if player.equipment.main=="Liberator" then
+          equip(sets.status.Melee.Liberator_AM3)
+        elseif player.equipment.main=="Redemption" then
+          equip(sets.status.Melee.Redemption_AM3)
+        else
+          equip(sets.status.Melee.Standard)
+        end
+
+      elseif buffactive['Aftermath: Lv.2'] then
+        if player.equipment.main=="Redemption" then
+          equip(sets.status.Melee.Redemption_AM3)
+        else
+          equip(sets.status.Melee.Standard)
+        end
+      else
+        equip(sets.status.Melee.Standard)
+      end
+    elseif TPFlag == 1 then
+      equip(sets.status.Melee.Hybrid)
+    elseif TPFlag == 2 then
+      equip(sets.status.Melee.SubtleBlow)
     end
   elseif sets.status[new] then
     equip(sets.status[new])
