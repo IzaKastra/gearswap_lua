@@ -111,12 +111,12 @@ function get_sets()
 
   gear.Akademos                       = { name="Akademos", augments={'INT+15','"Mag.Atk.Bns."+15','Mag. Acc.+15',}}
 
-  gear.AF = {}
+  gear.AF = {} -- None of the SCH AF is worth the gil, especially with Empy+2/+3 providing so much Magic Accuracy
   gear.AF.head                        = {}
-  gear.AF.body                        = { name="Spaekona's Coat +3"}
+  gear.AF.body                        = {}
   gear.AF.hands                       = {}
   gear.AF.legs                        = {}
-  gear.AF.feet                        = { name="Spae. Sabots +3"}
+  gear.AF.feet                        = {}
 
   gear.Amalric = {}
   gear.Amalric.body                   = { name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
@@ -135,11 +135,11 @@ function get_sets()
   gear.Chironic.legs.INTfeeble       = { name="Chironic Hose", augments={'Mag. Acc.+22 "Mag.Atk.Bns."+22','"Fast Cast"+3','INT+8','Mag. Acc.+4',}}
 
   gear.Empy = {}
-  gear.Empy.head                      = {name="Arbatel Bonnet +1"}       -- Regen Potency +15%, Rapture+15, Ebullience+15%, EnhancingSkill+14
-  gear.Empy.body = {}
-  gear.Empy.hands                     = {name="Arbatel Bracers +1"}      -- Perpetuance +55%, Immanence +11% (Increase SC damage by 11%)
-  gear.Empy.legs = {}
-  gear.Empy.feet                      = {name="Arbatel Loafers +1"}      -- Klimaform +15. Damage +15% when weather matches spell with klimaform up
+  gear.Empy.head                      = {name="Arbatel Bonnet +2"}
+  gear.Empy.body                      = {name="Arbatel Gown +2",}
+  gear.Empy.hands                     = {name="Arbatel Bracers +2"}
+  gear.Empy.legs                      = {name="Arbatel Pants +2",}
+  gear.Empy.feet                      = {name="Arbatel Loafers +2"}
 
 
   gear.Merlinic = {}
@@ -167,8 +167,8 @@ function get_sets()
   gear.Relic.head                     = { name="Peda. M.Board +3", augments={'Enh. "Altruism" and "Focalization"',}}
   gear.Relic.body                     = { name="Peda. Gown +3", augments={'Enhances "Enlightenment" effect',}}
   gear.Relic.hands                    = {}
-  gear.Relic.legs                    = { name="Peda. Pants +1", augments={'Enhances "Tabula Rasa" effect',}}        -- Tabula Rasa +30s. +2 becomes Drain/Aspir and Nuking MagicAccuracy legs. +3 better than Amalric+1 legs.
-  gear.Relic.feet                     = { name="Peda. Loafers +1", augments={'Enhances "Stormsurge" effect',}}        -- +12 stat to storm spells with 5/5 merits. Good nuking feet without Klima up when +3
+  gear.Relic.legs                     = { name="Peda. Pants +1", augments={'Enhances "Tabula Rasa" effect',}}
+  gear.Relic.feet                     = { name="Peda. Loafers +1", augments={'Enhances "Stormsurge" effect',}}
 
   gear.Telchine = {}
   gear.Telchine.head                  = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
@@ -186,11 +186,11 @@ function get_sets()
   sets.status = {}
   sets.status.Idle = {}
   sets.status.Idle.DT = {
-    main="Akademos",
-    sub="Enki Strap",
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    sub="Ammurapi Shield",
     ammo="Staunch Tathlum +1",
     head="Volte Beret",
-    body="Nyame Mail",
+    body = gear.Empy.body,
     hands="Nyame Gauntlets",
     legs="Volte Brais",
     feet="Mallquis Clogs +2",
@@ -203,11 +203,11 @@ function get_sets()
     back = gear.AmbuCape.Nuke,
   }
   sets.status.Idle.Refresh = {
-    main="Akademos",
-    sub="Enki Strap",
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    sub="Ammurapi Shield",
     ammo="Homiliary",
     head="Volte Beret",
-    body="Jhakri Robe +2",
+    body = gear.Empy.body,
     hands="Nyame Gauntlets",
     legs="Volte Brais",
     feet="Mallquis Clogs +2",
@@ -226,8 +226,8 @@ function get_sets()
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Nyame Sollerets",
-    neck="Loricate Torque +1",
-    waist="Windbuffet Belt +1",
+    neck="Combatant's Torque",
+    waist="Witful Belt",
     left_ear="Telos Earring",
     right_ear="Mache Earring +1",
     left_ring="Chirich Ring +1",
@@ -295,7 +295,37 @@ function get_sets()
     left_ring="Sangoma Ring",
     right_ring="Etana Ring",
   }
+  sets.precast.Cataclysm = {
+    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
+    head="Pixie Hairpin +1",
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Sibyl Scarf",
+    waist="Orpheus's Sash",
+    left_ear="Regal Earring",
+    right_ear="Malignance Earring",
+    left_ring="Freke Ring",
+    right_ring="Archon Ring",
+    back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
+  }
 
+  sets.precast.EarthCrusher = {
+    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Sibyl Scarf",
+    waist="Orpheus's Sash",
+    left_ear="Regal Earring",
+    right_ear="Malignance Earring",
+    left_ring="Freke Ring",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
+  }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -317,9 +347,11 @@ function get_sets()
     left_ear="Regal Earring",
     right_ear="Mendi. Earring",
     left_ring="Sirona's Ring",
-    right_ring="Ephedra Ring",
+    right_ring="Haoma's Ring",
   }
   sets.midcast.Helix = {
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    sub="Ammurapi Shield",
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
@@ -330,17 +362,14 @@ function get_sets()
     back = gear.ReiveCape.Helix,
   }
   sets.midcast.Nuke = {
-    -- +227 Magic Accuracy
-    -- +35 Elemental Magic Skill
-    -- +326 Magic Attack Bonus
-    -- +40 Magic Damage
-    -- +260 INT
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    sub="Ammurapi Shield",
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     head = gear.Relic.head,
-    body = gear.Amalric.body,
-    hands = gear.Amalric.hands,
-    legs = gear.Amalric.legs,
-    feet = gear.Amalric.feet,
+    body="Agwu's Robe",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs="Agwu's Slops",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck={ name="Argute Stole +1", augments={'Path: A',}},
     waist="Sacro Cord",
     left_ear="Regal Earring",
@@ -352,7 +381,6 @@ function get_sets()
   sets.midcast.MagicBurst = {
   -- +37% MB, +15% MBII (gear), +13% (MBII JP Gifts)
   -- Total: +37% MB, +28% MBII
-    -- main="Akademos"
     head = gear.Relic.head,
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
@@ -372,7 +400,7 @@ function get_sets()
   }
 
   sets.midcast.Enfeeble = {
-    main="Daybreak",
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
     sub="Ammurapi Shield",
     ammo="Pemphredo Tathlum",
     head={ name="Peda. M.Board +3", augments={'Enh. "Altruism" and "Focalization"',}},
@@ -390,7 +418,7 @@ function get_sets()
   }
 
   sets.midcast.EnhancingDuration = {
-    sub="Ammurapi Shield",         -- +10%
+		main="Pedagogy Staff", -- +15%
     head = gear.Telchine.head,     -- +9%
     body = gear.Relic.body,        -- +12%
     hands = gear.Telchine.hands,   -- +8%
@@ -448,17 +476,19 @@ function get_sets()
     waist="Siegel Sash",
   }
   sets.midcast.Regen = {
-    main="Bolelabunga", -- +10% potency
-    body = gear.Telchine.body, -- +12s +10% duration
-    back = gear.ReiveCape.Regen, -- +9 potency
+		main="Pedagogy Staff",
+    head = gear.Empy.head,
+    body = gear.Telchine.body,
+    back = gear.ReiveCape.Regen,
   }
   sets.midcast.Cursna = {
   -- +93 Healing Magic Skill, +48 Cursna
     body = gear.Relic.body,
     feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-    neck="Incanter's Torque",
-    left_ring="Ephedra Ring",
-    right_ring="Ephedra Ring",
+    neck="Debilis Medallion",
+    left_ring="Haoma's Ring",
+    right_ring="Haoma's Ring",
+    back="Oretan. Cape +1",
   }
   sets.midcast.Treasure = {
     ammo="Perfect Lucky Egg", -- +1
@@ -519,12 +549,14 @@ function precast(spell)
     equip(sets.precast.FastCast)
   end
 
-  if spell.skill == "Weaponskill" then
-    if spell.name == "Myrkr" then
-      equip(sets.precast.Myrkr)
-    else
-      equip(sets.status.Melee)
-    end
+  if spell.name == "Myrkr" then
+    equip(sets.precast.Myrkr)
+  end
+  if spell.name == "Cataclysm" then
+    equip(sets.precast.Cataclysm)
+  end
+  if spell.name == "Earth Crusher" then
+    equip(sets.precast.EarthCrusher)
   end
 end
 
@@ -560,9 +592,9 @@ function midcast(spell)
     if buffactive['Ebullience'] then
       equip({head = gear.Empy.head})
     end
-    -- if buffactive['Klimaform'] then
-    --   equip({feet = gear.Empy.feet})
-    -- end
+    if buffactive['Klimaform'] and spell.element == world.weather_element then
+      equip({feet = gear.Empy.feet})
+    end
     if spell.element == "Dark" then
       equip(sets.midcast.DarkAffinity)
     elseif spell.element == "Light" then
@@ -655,7 +687,10 @@ function aftercast(spell)
     if buffactive["Sublimation: Activated"] then
       equip(sets.status.Sublimation)
     end
+  if player.status == "Engaged" then
+    equip(sets.status.Melee)
   end
+end
 end
 
 function status_change(new,old)
@@ -669,5 +704,8 @@ function status_change(new,old)
   end
   if buffactive["Sublimation: Activated"] then
     equip(sets.status.Sublimation)
+  if player.status == "Engaged" then
+    equip(sets.status.Melee)
   end
+end
 end
