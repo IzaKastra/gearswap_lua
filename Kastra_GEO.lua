@@ -350,6 +350,7 @@ function get_sets()
     head = gear.Empy.head,
     body = gear.Relic.body,
     hands = gear.AF.hands,
+    legs = gear.Relic.legs,
     feet = gear.Empy.feet,
     neck={ name="Bagua Charm +1", augments={'Path: A',}},
     left_ear="Gna Earring",
@@ -401,12 +402,21 @@ function get_sets()
     back = gear.AmbuCape.Nuke
   }
   sets.midcast.MagicBurst = {
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    sub="Ammurapi Shield",
+    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     head="Ea Hat +1",
-    body="Ea Houppelande +1",
+    body="Ea Houppe. +1",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Ea Slops +1",
-    neck="Mizu. Kubikazari",
-    left_ring="Mujin Band",
-    right_ring="Locus Ring",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck="Sibyl Scarf",
+    waist="Sacro Cord",
+    left_ear="Regal Earring",
+    right_ear="Malignance Earring",
+    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    right_ring="Freke Ring",
+    back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+20','Pet: "Regen"+10','Pet: Damage taken -5%',}},
   }
   sets.midcast.Enfeeble = {
   -- +76 Enfeebling Magic Skill

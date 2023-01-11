@@ -654,9 +654,9 @@ function midcast(spell)
     elseif Regens:contains(spell.name) then
       equip(sets.midcast.Regen)
     end
-    if Storms:contains(spell.name) then
-      equip({feet = gear.Relic.feet})
-    end
+    -- if Storms:contains(spell.name) then
+    --   equip({feet = gear.Relic.feet})
+    -- end
     if buffactive['Perpetuance'] then
       equip({hands = gear.Empy.hands})
     end

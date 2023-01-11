@@ -52,11 +52,11 @@ function get_sets()
   gear.AmbuCape.FC                   = { name="Alaunus's Cape", augments={'"Fast Cast"+10',}}
 
   gear.Empy = {}
-  gear.Empy.head                     = { name="Ebers Cap +1"}
-  gear.Empy.body                     = { name="Ebers Bliaut +1"}
-  gear.Empy.hands                    = { name="Ebers Mitts +1"}
-  gear.Empy.legs                     = { name="Ebers Pant. +1"}
-  gear.Empy.feet                     = { name="Ebers Duckbills +1"}
+  gear.Empy.head                     = { name="Ebers Cap +2"}
+  gear.Empy.body                     = { name="Ebers Bliaut +2"}
+  gear.Empy.hands                    = { name="Ebers Mitts +2"}
+  gear.Empy.legs                     = { name="Ebers Pant. +2"}
+  gear.Empy.feet                     = { name="Ebers Duckbills +2"}
 
   gear.Relic = {}
   gear.Relic.head                    = { name="Piety Cap +3", augments={'Enhances "Devotion" effect',}}
@@ -83,14 +83,14 @@ function get_sets()
     sub="Genmei Shield",
     ammo="Homiliary",
     head="Inyanga Tiara +2",
-    body="Inyanga Jubbah +2",
+    body = gear.Empy.body,
     hands="Inyanga Dastanas +2",
     legs="Volte Brais",
     feet="Inyan. Crackows +2",
     neck={ name="Loricate Torque +1", augments={'Path: A',}},
     waist="Carrier's Sash",
     left_ear="Etiolation Earring",
-    right_ear="Genmei Earring",
+    right_ear="Ebers Earring +1",
     left_ring="Defending Ring",
     right_ring="Shadow Ring",
     back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','Enmity-10','Damage taken-5%',}},
@@ -107,7 +107,7 @@ function get_sets()
     neck={ name="Loricate Torque +1", augments={'Path: A',}},
     waist="Carrier's Sash",
     left_ear="Etiolation Earring",
-    right_ear="Genmei Earring",
+    right_ear="Ebers Earring +1",
     left_ring="Defending Ring",
     right_ring="Shadow Ring",
     back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','Enmity-10','Damage taken-5%',}},
@@ -118,7 +118,7 @@ function get_sets()
     ammo="Hasty Pinion +1",
     head={ name="Nyame Helm", augments={'Path: B',}},
     body={ name="Nyame Mail", augments={'Path: B',}},
-    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    hands="Bunzi's Gloves",
     legs="Aya. Cosciales +2",
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Combatant's Torque",
@@ -140,7 +140,7 @@ function get_sets()
     waist="Windbuffet Belt +1",
     left_ear="Regal Earring",
     right_ear="Malignance Earring",
-    left_ring="Weatherspoon Ring",
+    left_ring="Weatherspoon Ring +1",
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.TP,
   }
@@ -286,19 +286,20 @@ function get_sets()
 
   sets.midcast = {}
   sets.midcast.Cures = {
-    -- +52% (+50%) Cure Potency, +4% Cure Potency II, +219 MND, +86 VIT, +62 Healing Skill, -46 Enmity
+    -- +50% Cure Potency, +6% Cure Potency II, +225 MND, +141 VIT, -45 Enmity, -45% PDT
     main={ name="Queller Rod", augments={'Healing magic skill +15','"Cure" potency +10%','"Cure" spellcasting time -7%',}},
-    sub="Sors Shield",
+    sub="Genmei Shield",
     ammo="Staunch Tathlum +1",
     head = gear.Empy.head,
     body = gear.Empy.body,
     hands = gear.AF.hands,
     legs = gear.Empy.legs,
-    feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
+    feet = gear.Relic.feet,
     neck="Cleric's Torque",
-    waist="Sacro Cord",
-    left_ear="Nourish. Earring +1",
-    right_ear="Glorious Earring",
+    waist="Emphatikos Rope",
+    left_ear="Glorious Earring",
+    -- left_ear="Nourish. Earring +1",
+    right_ear="Ebers Earring +1",
     left_ring="Defending Ring",
     right_ring="Lebeche Ring",
     back = gear.AmbuCape.Idle,
@@ -358,8 +359,8 @@ function get_sets()
     legs = gear.AF.legs,
     feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
     neck="Incanter's Torque",
-    left_ring="Ephedra Ring",
-    right_ring="Menelaus's Ring",
+    left_ring="Haoma's Ring",
+    right_ring="Haoma's Ring",
     back = gear.AmbuCape.Idle,
   }
   sets.midcast.EraseNa = {

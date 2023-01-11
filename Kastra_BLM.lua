@@ -285,7 +285,7 @@ function get_sets()
   }
   sets.precast.Manafont = {body = gear.Relic.body,}
 
-  sets.precast.Myrkr = {
+	sets.precast.Myrkr = {
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     head="Pixie Hairpin +1",
     body = gear.Amalric.body,
@@ -300,6 +300,22 @@ function get_sets()
     right_ring="Etana Ring",
     back = gear.AmbuCape.FC,
   }
+	sets.precast.Catacylsm = {
+		ammo="Pemphredo Tathlum",
+    head="Pixie Hairpin +1",
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Sibyl Scarf",
+    waist="Orpheus's Sash",
+    left_ear="Regal Earring",
+    right_ear="Malignance Earring",
+    left_ring="Archon Ring",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    back = gear.AmbuCape.Nuke,
+  }
+
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -379,7 +395,7 @@ function get_sets()
   }
   sets.midcast.DarkAffinity = {
     head="Pixie Hairpin +1",
-    right_ring="Archon Ring",
+    left_ring="Archon Ring",
   }
   sets.midcast.Burn = {
     head = gear.Relic.head,
@@ -662,6 +678,13 @@ end
 
 function status_change(new,old)
   deactivate_sublimation = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
+  if new == "Idle" then
+    if player.mpp < 80  then
+      equip(sets.status.Idle.Refresh)
+    else
+      equip(sets.status.Idle.DT)
+    end
+  end
   if new == "Idle" then
     if player.mpp < 80  then
       equip(sets.status.Idle.Refresh)
