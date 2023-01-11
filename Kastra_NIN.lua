@@ -258,11 +258,11 @@ function get_sets()
     gear.Donar                         = { ranged="Donar Gun",}
 
     gear.Empy = {}
-    gear.Empy.head                     = { name="Hattori Zukin +1"}
-    gear.Empy.body                     = { name="Hattori Ningi +1"}
+    gear.Empy.head                     = { name="Hattori Zukin +2"}
+    gear.Empy.body                     = { name="Hattori Ningi +2"}
     gear.Empy.hands                    = { name="Hattori Tekko +2"}
-    gear.Empy.legs                     = { name="Hattori Hakama +1"}
-    gear.Empy.feet                     = { name="Hattori Kyahan +1"}
+    gear.Empy.legs                     = { name="Hattori Hakama +2"}
+    gear.Empy.feet                     = { name="Hattori Kyahan +3"}
 
     gear.Katana = {}
     gear.Katana.Kanaria = {}
@@ -854,7 +854,7 @@ function get_sets()
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
+    feet = gear.Empy.feet,
     neck="Rep. Plat. Medal",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear = gear.Moonshade,
@@ -870,13 +870,13 @@ function get_sets()
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet="Nyame Sollerets",
+    feet = gear.Empy.feet,
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear = gear.Moonshade,
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Gere Ring",
-    right_ring="Regal Ring",
+    right_ring="Sroda Ring",
     back = gear.AmbuCape.WSDstr,
   }
 
@@ -890,7 +890,7 @@ function get_sets()
     body = gear.Adhemar.body.Attack,
     hands = gear.Relic.hands,
     legs={ name="Rao Haidate +1", augments={'STR+12','DEX+12','Attack+20',}},
-    feet="Nyame Sollerets",
+    feet = gear.Empy.feet,
     neck="Fotia Gorget",
     waist="Fotia Belt",
     left_ear = gear.Moonshade,
@@ -905,7 +905,7 @@ function get_sets()
     body="Malignance Tabard",
     hands="Malignance Gloves",
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet="Ken. Sune-Ate +1",
+    feet = gear.Empy.feet,
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist="Fotia Belt",
     left_ear = gear.Moonshade,
@@ -927,7 +927,7 @@ function get_sets()
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
+    feet = gear.Empy.feet,
     neck="Rep. Plat. Medal",
     waist="Sailfi Belt +1",
     left_ear="Odr Earring",
@@ -945,7 +945,7 @@ function get_sets()
     body="Malignance Tabard",
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    feet = gear.Empy.feet,
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist={ name="Kentarch Belt +1", augments={'Path: A',}},
     left_ear="Mache Earring +1",
@@ -966,7 +966,7 @@ function get_sets()
     body={ name="Nyame Mail", augments={'Path: B',}},
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
-    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    feet = gear.Empy.feet,
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear="Odr Earring",
@@ -982,7 +982,7 @@ function get_sets()
     body={ name="Nyame Mail", augments={'Path: B',}},
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    feet = gear.Empy.feet,
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear="Odr Earring",
@@ -1040,7 +1040,7 @@ function get_sets()
     body = gear.Adhemar.body.Attack,
     hands = gear.Relic.hands,
     legs={ name="Rao Haidate +1", augments={'STR+12','DEX+12','Attack+20',}},
-    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    feet = gear.Empy.feet,
     neck="Fotia Gorget",
     waist="Fotia Belt",
     left_ear="Brutal Earring",
@@ -1056,13 +1056,13 @@ function get_sets()
     body="Malignance Tabard",
     hands="Malignance Gloves",
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    feet = gear.Empy.feet,
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist="Fotia Belt",
     left_ear="Brutal Earring",
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Gere Ring",
-    right_ring="Regal Ring",
+    right_ring="Sroda Ring",
     back = gear.AmbuCape.DAdex,
   }
 
@@ -1088,7 +1088,7 @@ function get_sets()
     back = gear.AmbuCape.WSDstr,
   }
   sets.WeaponSkill.MidAtk["Blade: Chi"] = set_combine(sets.WeaponSkill.LowAtk["Blade: Chi"],{neck="Ninja Nodowa +2",})
-  sets.WeaponSkill.HighAtk["Blade: Chi"] = sets.WeaponSkill.LowAtk["Blade: Chi"]
+  sets.WeaponSkill.HighAtk["Blade: Chi"] = sets.WeaponSkill.MidAtk["Blade: Chi"]
 
 
   sets.WeaponSkill.LowAtk["Blade: To"] = sets.WeaponSkill.LowAtk["Blade: Chi"]
@@ -1119,6 +1119,23 @@ function get_sets()
   sets.WeaponSkill.MidAtk["Blade: Ei"] = sets.WeaponSkill.LowAtk["Blade: Ei"]
   sets.WeaponSkill.HighAtk["Blade: Ei"] = sets.WeaponSkill.LowAtk["Blade: Ei"]
 
+  sets.WeaponSkill.LowAtk["Blade: Yu"] = {
+    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
+    head = gear.Relic.head,
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet="Nyame Sollerets",
+    neck="Sibyl Scarf",
+    waist="Orpheus's Sash",
+    left_ear = "Crematio Earring",
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    left_ring="Shiva Ring +1",
+    right_ring="Regal Ring",
+    back = gear.AmbuCape.WSDdex,
+  }
+  sets.WeaponSkill.MidAtk["Blade: Yu"] = sets.WeaponSkill.LowAtk["Blade: Yu"]
+  sets.WeaponSkill.HighAtk["Blade: Yu"] = sets.WeaponSkill.LowAtk["Blade: Yu"]
 
   sets.WeaponSkill.LowAtk["Aeolian Edge"] = {
     ammo="Pemphredo Tathlum",
@@ -1169,17 +1186,17 @@ function get_sets()
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
-    feet = "Nyame Sollerets",
+    feet = gear.Empy.feet,
     neck="Rep. Plat. Medal",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear = gear.Moonshade,
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Gere Ring",
-    right_ring="Regal Ring",
+    right_ring="Sroda Ring",
     back = gear.AmbuCape.WSDstr,
   }
   sets.WeaponSkill.MidAtk["Savage Blade"] = set_combine(sets.WeaponSkill.LowAtk["Savage Blade"],{head = gear.AF.head})
-  sets.WeaponSkill.HighAtk["Savage Blade"] = set_combine(sets.WeaponSkill.LowAtk["Savage Blade"],{ammo="Crepuscular Pebble",neck="Ninja Nodowa +2"})
+  sets.WeaponSkill.HighAtk["Savage Blade"] = set_combine(sets.WeaponSkill.MidAtk["Savage Blade"],{ammo="Crepuscular Pebble",neck="Ninja Nodowa +2"})
 
   sets.WeaponSkill.LowAtk["Tachi: Ageha"] = {
     ammo="Pemphredo Tathlum",
