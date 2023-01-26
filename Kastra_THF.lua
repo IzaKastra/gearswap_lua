@@ -413,6 +413,24 @@ function get_sets()
         back="Reiki Cloak",
     }
 
+    sets.precast.Steal = {
+        -- +31 steal if all bis?
+        -- sub="Bartholomew's knife",
+        ammo="Barathrum",
+        -- head = gear.AF.hands2 -- Lower level AF head has steal+, but reforged versions do not
+        hands = gear.AF.hands,
+        -- hands="Thief's Kote",
+        -- legs = gear.Relic.legs2, -- Lower level relic legs has steal+, but reforged versions do not
+        feet = gear.AF.feet,
+        -- neck="Pentalagus Charm",
+        -- waist="Key Ring Belt",
+    }
+    sets.precast.Despoil = {
+        ammo="Barathrum",
+        legs = gear.Empy.legs,
+        feet = gear.Empy.feet,
+    }
+
     sets.WeaponSkill = {}
     sets.WeaponSkill.MidAtk = {}
     sets.WeaponSkill.HighAtk = {}
@@ -670,6 +688,12 @@ function precast(spell)
         equip({feet=gear.AF.feet})
     elseif spell.name == "Perfect Dodge" then
         equip({feet=gear.Relic.hands})
+    elseif spell.name == "Steal" then
+        equip(sets.precast.Steal)
+    elseif spell.name == "Despoil" then
+        equip(sets.precast.Despoil)
+    elseif spell.name=="Accomplice" or spell.name=="Collaborator" then
+        equip({head=gear.Empy.head,})
     else
         equip(sets.precast.FastCast)
     end
@@ -707,6 +731,9 @@ function aftercast(spell)
         elseif HasteFlag == 3 then
             equip(sets.Melee.HasteCap)
         end
+    end
+    if buffactive["Feint"] then
+        equip({legs = gear.Relic.legs})
     end
 
 end
