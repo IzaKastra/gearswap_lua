@@ -548,7 +548,7 @@ function precast(spell)
 
     if spell.name == "Immanence" then
 
-        if currentCharges > 0 and not buffactive["Immanence"] and not buffactivate["Tabula Rasa"] then -- The number of charges before using Immanence
+        if currentCharges > 0 and not buffactive["Immanence"] then -- The number of charges before using Immanence
             while stratsRecast > 33 do
                 stratsRecast = stratsRecast - 33
             end
