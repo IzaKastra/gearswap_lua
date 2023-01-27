@@ -260,7 +260,7 @@ function get_sets()
     gear.Empy = {}
     gear.Empy.head                     = { name="Hattori Zukin +2"}
     gear.Empy.body                     = { name="Hattori Ningi +2"}
-    gear.Empy.hands                    = { name="Hattori Tekko +2"}
+    gear.Empy.hands                    = { name="Hattori Tekko +3"}
     gear.Empy.legs                     = { name="Hattori Hakama +2"}
     gear.Empy.feet                     = { name="Hattori Kyahan +3"}
 
@@ -446,7 +446,7 @@ function get_sets()
     back = gear.AmbuCape.FC,
   }
 
-  -- Abyssea light building set. TP regain between pulls.
+  -- Abyssea light building set. TP regain between pulls. Ongo v25 KI1
   sets.DualWield = {
     main="Gokotai",
     sub={ name="Kunimitsu", augments={'Path: A',}},
@@ -456,12 +456,12 @@ function get_sets()
     hands="Malignance Gloves",
     legs="Malignance Tights",
     feet="Malignance Boots",
-    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    neck="Loricate Torque +1",
     waist="Reiki Yotai",
     left_ear="Eabani Earring",
     right_ear="Suppanomimi",
-    left_ring="Chirich Ring +1",
-    right_ring="Chirich Ring +1",
+    left_ring="Defending Ring",
+    right_ring="Shadow Ring",
     back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
   }
 
@@ -1281,18 +1281,21 @@ function get_sets()
     waist="Orpheus's Sash",
     left_ear="Crematio Earring",
     right_ear="Friomisi Earring",
-    left_ring="Metamorph Ring +1",
-    right_ring="Shiva Ring +1",
+    right_ring="Metamorph Ring +1",
+    left_ring="Shiva Ring +1",
+    -- left_ring="Weather. Ring +1",
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.MagicBurst = {
     main="Gokotai",
     sub="Kunimitsu",
+    head = gear.Relic.head,
     body="Nyame Mail",
-    hands="Nyame Gauntlets",
+    hands = gear.Empy.hands,
     legs="Nyame Flanchard",
     feet = gear.Relic.feet,
-    neck="Warder's Charm +1",
+    neck="Sibyl Scarf",
+    waist="Orpheus's Sash",
     left_ear="Crematio Earring",
     left_ring="Metamorph Ring +1",
     right_ring="Mujin Band",
@@ -1593,7 +1596,7 @@ function aftercast(spell)
   if spell.name == "Sange" then
     equip(gear.Shuriken.Happo) -- Equip Happo Shuriken as Sange is being used to prevent wasting Seki
   end
-  -- equip(sets.DualWield) -- uncomment when in abyssea farming lights
+--   equip(sets.DualWield) -- uncomment when in abyssea farming lights
 end
 
 
@@ -1646,5 +1649,5 @@ function status_change(new,old)
   if buffactive['Sange'] then
     equip(gear.Shuriken.Happo)
   end
-  -- equip(sets.DualWield) -- uncomment when in abyssea farming lights
+--   equip(sets.DualWield) -- uncomment when in abyssea farming lights
 end
