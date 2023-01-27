@@ -135,11 +135,11 @@ function get_sets()
   gear.Chironic.legs.INTfeeble       = { name="Chironic Hose", augments={'Mag. Acc.+22 "Mag.Atk.Bns."+22','"Fast Cast"+3','INT+8','Mag. Acc.+4',}}
 
   gear.Empy = {}
-  gear.Empy.head                      = {name="Arbatel Bonnet +2"}
-  gear.Empy.body                      = {name="Arbatel Gown +2",}
+  gear.Empy.head                      = {name="Arbatel Bonnet +3"}
+  gear.Empy.body                      = {name="Arbatel Gown +3",}
   gear.Empy.hands                     = {name="Arbatel Bracers +2"}
   gear.Empy.legs                      = {name="Arbatel Pants +2",}
-  gear.Empy.feet                      = {name="Arbatel Loafers +2"}
+  gear.Empy.feet                      = {name="Arbatel Loafers +3"}
 
 
   gear.Merlinic = {}
@@ -186,13 +186,13 @@ function get_sets()
   sets.status = {}
   sets.status.Idle = {}
   sets.status.Idle.DT = {
-    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    main="Daybreak",
     sub="Ammurapi Shield",
     ammo="Staunch Tathlum +1",
-    head="Volte Beret",
+    head = "Volte Beret",
     body = gear.Empy.body,
     hands="Nyame Gauntlets",
-    legs="Volte Brais",
+    legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
     neck="Loricate Torque +1",
     waist="Carrier's Sash",
@@ -203,7 +203,7 @@ function get_sets()
     back = gear.AmbuCape.Nuke,
   }
   sets.status.Idle.Refresh = {
-    main={ name="Bunzi's Rod", augments={'Path: A',}},
+    main="Daybreak",
     sub="Ammurapi Shield",
     ammo="Homiliary",
     head="Volte Beret",
@@ -385,9 +385,9 @@ function get_sets()
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Agwu's Slops",
-    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    feet = gear.Empy.feet,
     neck={ name="Argute Stole +1", augments={'Path: A',}},
-    right_ring="Mujin Band",
+    left_ring="Mujin Band",
   }
   sets.midcast.DarkAffinity = {
     head="Pixie Hairpin",
@@ -492,7 +492,7 @@ function get_sets()
   }
   sets.midcast.Treasure = {
     ammo="Perfect Lucky Egg", -- +1
-    head="Wh. Rarab Cap +1",  -- +1
+    head="Volte Cap",  -- +1
     hands="Volte Bracers",  -- +1
     legs = gear.Merlinic.legs.TH,  -- +2
     feet="Volte Boots",  -- +1
@@ -532,13 +532,44 @@ end
 ----- PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 function precast(spell)
+
+
+    local allRecasts = windower.ffxi.get_ability_recasts()
+    local stratsRecast = allRecasts[231]
+
+    local maxStrategems = math.floor((player.main_job_level + 10) / 20)
+
+    local fullRechargeTime = maxStrategems*33
+
+    local currentCharges = math.floor(maxStrategems - maxStrategems * stratsRecast / fullRechargeTime)
+    
+    -- print(currentCharges,maxStrategems, math.floor(stratsRecast), fullRechargeTime)
+
+    if spell.name == "Immanence" then
+
+        if currentCharges > 0 and not buffactive["Immanence"] and not buffactivate["Tabula Rasa"] then -- The number of charges before using Immanence
+            while stratsRecast > 33 do
+                stratsRecast = stratsRecast - 33
+            end
+            currentCharges = currentCharges - 1
+            -- print("Strategems: "..scount..". Recast: "..srecast.." seconds.")
+            -- send_command('@input /echo Strategems:'..currentCharges.."   Next:"..math.floor(stratsRecast).." seconds.")
+            send_command('@input /p [Strategems remaining:'..currentCharges.."]   [Next:"..math.floor(stratsRecast).." seconds]")
+            -- send_command('@input /p Strategems:'..scount.."   Next:"..srecast.." seconds.")
+        end
+    end
+    
+
+
+
+    
 
   self = windower.ffxi.get_mob_by_target('me')
   target = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_target('st') or self
   distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
   weather_intensity = gearswap.res.weather[world.weather_id].intensity
+
   if spell.name == "Impact" then
     equip(sets.precast[spell.name])
   elseif spell.name == "Tabula Rasa" then
@@ -575,6 +606,9 @@ function midcast(spell)
       if MagicBurstFlag == 1 then
         equip(sets.midcast.MagicBurst)
       end
+      if buffactive["Klimaform"] then
+        equip({feet=gear.Empy.feet})
+      end
     end
     if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
       equip(gear.Obi)
@@ -598,7 +632,9 @@ function midcast(spell)
     if spell.element == "Dark" then
       equip(sets.midcast.DarkAffinity)
     elseif spell.element == "Light" then
-      equip(sets.midcast.LightAffinity)
+        equip(sets.midcast.LightAffinity)
+    -- elseif spell.element == "Earth" then
+    --     equip({neck="Quanpur Necklace"})
     end
 
   elseif spell.skill == "Dark Magic" then
@@ -672,6 +708,7 @@ end
 
 
 function aftercast(spell)
+
   sublimation_up = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
   if player.status == 'Idle' then
     if player.mpp < 70 then
