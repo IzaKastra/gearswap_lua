@@ -381,25 +381,19 @@ function get_sets()
   sets.midcast.FreeNuke = {
     main="Daybreak",
     sub="Ammurapi Shield",
-    ammo="Pemphredo Tathlum",
+    ammo="Ghastly Tathlum +1",
     head = gear.Relic.head,
-    body = gear.Amalric.body,
-    hands = gear.Amalric.hands,
-    legs = gear.Amalric.legs,
-    feet = gear.Amalric.feet,
-    neck="Baetyl Pendant",
+    body="Agwu's Robe",
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs="Agwu's Slops",
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck="Sibyl Scarf",
     waist="Sacro Cord",
     left_ear="Regal Earring",
     right_ear="Malignance Earring",
     left_ring="Freke Ring",
-    right_ring="Shiva Ring +1",
+    right_ring="Metamorph Ring +1",
     back = gear.AmbuCape.Nuke,
-  }
-  sets.midcast.MagicAccuracy = {
-    legs = gear.Merlinic.legs.MagicAccuracy,
-    feet="Jhakri Pigaches +2",
-    neck="Baetyl Pendant",
-    back = gear.AmbuCape.Nuke
   }
   sets.midcast.MagicBurst = {
     main={ name="Bunzi's Rod", augments={'Path: A',}},
@@ -560,11 +554,7 @@ function midcast(spell)
 
 
   if spell.skill == "Elemental Magic" then
-    if MagicAccuracyFlag == 1 then
-      equip(set_combine(sets.midcast.FreeNuke, sets.midcast.FreeNukeAccuracy))
-    else
       equip(sets.midcast.FreeNuke)
-    end
     if MagicBurstFlag == 1 then
       equip(sets.midcast.MagicBurst)
     end
