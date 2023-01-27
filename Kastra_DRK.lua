@@ -7,7 +7,7 @@ function get_sets()
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   TPFlag             = 0
-  attack2            = 6000 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear
+  attack2            = 6000 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear)
   -- ! == alt
   -- ^ == ctrl
   --
@@ -120,8 +120,8 @@ function get_sets()
     gear.Empy = {}
     gear.Empy.head                     = { name="Heath. Bur. +3"}
     gear.Empy.body                     = { name="Heath. Cuirass +2"}
-    gear.Empy.hands                    = { name="Heath. Gauntlets +2"}
-    gear.Empy.legs                     = { name="Heath. Flanchard +2"}
+    gear.Empy.hands                    = { name="Heath. Gauntlets +3"}
+    gear.Empy.legs                     = { name="Heath. Flanchard +3"}
     gear.Empy.feet                     = { name="Heath. Sollerets +3"}
 
 
@@ -162,7 +162,7 @@ function get_sets()
   sets.status.Idle = {}
   sets.status.Idle.DT = {
     ammo="Staunch Tathlum +1",
-    head="Nyame Helm",
+    head={ name="Nyame Helm", augments={'Path: B',}},
     body="Sakpata's Plate",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
@@ -202,7 +202,7 @@ function get_sets()
     feet="Flam. Gambieras +2",
     neck="Abyssal Beads +1",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear="Telos Earring",
+    left_ear="Schere Earring",
     right_ear="Dedition Earring",
     left_ring="Flamma Ring",
     right_ring="Niqmaddu Ring",
@@ -267,31 +267,34 @@ function get_sets()
 
   sets.precast = {}
   sets.precast.FastCast = {
-    -- 75% Fast Cast
-    ammo="Sapience Orb",
-    head = gear.Carmine.head,
-    body="Sacro Breastplate",
-    hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-    legs="Eschite Cuisses",
-    feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}},
-    neck="Orunmila's Torque",
-    left_ear="Malignance Earring",
-    right_ear="Loquac. Earring",
-    left_ring="Weather. Ring +1",
-    right_ring="Kishar Ring",
-    back = gear.AmbuCape.FC,
+    -- 78% Fast Cast
+    ammo="Sapience Orb", -- 2%
+    head = gear.Carmine.head, -- 12%
+    body="Sacro Breastplate", -- 10%
+    hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8%
+    legs={ name="Odyssean Cuisses", augments={'Attack+24','"Fast Cast"+6',}}, -- 6% 
+    feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}}, -- 9%
+    neck="Orunmila's Torque", -- 5%
+    left_ear="Malignance Earring", -- 4%
+    right_ear="Loquac. Earring", -- 2%
+    left_ring="Weather. Ring +1", -- 6%
+    right_ring="Kishar Ring", -- 4%
+    back = gear.AmbuCape.FC, -- 10%
 }
   sets.precast.Impact = {
-    ammo="Sapience Orb",
+    -- 56% Fast Cast
+    ammo="Sapience Orb", -- 2%  
+    head=Empty,
     body="Crepuscular Cloak",
-    hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-    feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}},
-    neck="Orunmila's Torque",
-    left_ear="Malignance Earring",
-    right_ear="Loquac. Earring",
-    left_ring="Weather. Ring +1",
-    right_ring="Kishar Ring",
-    back = gear.AmbuCape.FC,
+    hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8%
+    legs={ name="Odyssean Cuisses", augments={'Attack+24','"Fast Cast"+6',}}, -- 6%
+    feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}}, -- 9%
+    neck="Orunmila's Torque", -- 5%
+    left_ear="Malignance Earring", -- 4%
+    right_ear="Loquac. Earring", -- 2%
+    left_ring="Weather. Ring +1", -- 6%
+    right_ring="Kishar Ring", -- 4%
+    back = gear.AmbuCape.FC, -- 10%
   }
 
   sets.precast['Blood Weapon'] = {body = gear.Relic.body}
@@ -346,7 +349,7 @@ function get_sets()
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
@@ -355,7 +358,7 @@ function get_sets()
 
 sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     ammo="Knobkierrie",
-    head={ name="Nyame Helm", augments={'Path: A',}},
+    head={ name="Nyame Helm", augments={'Path: B',}},
     body = gear.AF.body,
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs="Nyame Flanchard",
@@ -417,7 +420,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
 
   sets.WeaponSkill.MidAtk["Catastrophe"] = {
     ammo="Knobkierrie",
-    head={ name="Nyame Helm", augments={'Path: A',}},
+    head={ name="Nyame Helm", augments={'Path: B',}},
     body = gear.AF.body,
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -456,7 +459,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     neck="Fotia Gorget",
     waist="Fotia Belt",
     left_ear="Schere Earring",
-    right_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    right_ear = gear.Moonshade,
     left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
@@ -470,7 +473,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Fotia Belt",
-    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
@@ -486,7 +489,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck="Fotia Gorget",
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Regal Ring",
     right_ring="Niqmaddu Ring",
@@ -501,7 +504,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
@@ -517,7 +520,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck="Erra Pendant",
     waist="Eschan Stone",
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Crepuscular Earring",
     left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     right_ring="Weather. Ring +1",
@@ -535,7 +538,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Sibyl Scarf",
     waist="Orpheus's Sash",
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Friomisi Earring",
     left_ring="Archon Ring",
     right_ring="Shiva Ring +1",
@@ -579,7 +582,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Regal Ring",
@@ -594,7 +597,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Regal Ring",
@@ -610,7 +613,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Regal Ring",
@@ -625,7 +628,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    left_ear = gear.Moonshade,
     right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Regal Ring",
@@ -668,13 +671,13 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     body = gear.Empy.body,
     hands = gear.Empy.hands,
     legs = gear.Empy.legs,
-    feet="Rat. Sollerets +1",
+    feet = gear.Empy.feet,
     neck="Erra Pendant",
     waist="Eschan Stone",
     left_ear="Malignance Earring",
     right_ear="Crep. Earring",
     left_ring="Weather. Ring +1",
-    right_ring="Kishar Ring",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back = gear.ReiveCape,
   }
   sets.midcast['Dread Spikes'] = {
@@ -704,7 +707,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
   }
   sets.midcast.Nuke = {
     ammo="Ghastly Tathlum +1",
-    head="Nyame Helm",
+    head={ name="Nyame Helm", augments={'Path: B',}},
     body="Sacro Breastplate",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
@@ -718,20 +721,20 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.Impact = {
-      ammo="Pemphredo Tathlum",
-      body="Crepuscular Cloak",
-      hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
-      legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
-      feet = gear.Empy.feet,
-      neck="Erra Pendant",
-      waist="Eschan Stone",
-      left_ear="Malignance Earring",
-      right_ear="Crep. Earring",
-      left_ring="Weather. Ring +1",
-      right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-      back="Chuparrosa Mantle",
-}
-
+    ammo="Pemphredo Tathlum",
+    head=Empty, 
+    body="Crepuscular Cloak", 
+    hands = gear.Empy.hands,
+    legs = gear.Empy.legs,
+    feet = gear.Empy.feet,
+    neck="Erra Pendant",
+    waist="Eschan Stone",
+    left_ear="Malignance Earring",
+    right_ear="Crep. Earring",
+    left_ring="Weather. Ring +1",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    back="Chuparrosa Mantle",
+  }
 
 end -- End of sets function
 
@@ -773,7 +776,7 @@ function precast(spell)
     end
       
   elseif spell.type=="WeaponSkill" then
-    equip(sets.WeaponSkill["Cross Reaper"]) -- Default to the Cross Reaper set.
+    equip(sets.WeaponSkill.MidAtk["Cross Reaper"]) -- Default to the Cross Reaper set.
   elseif sets.precast[spell.name] then
     equip(sets.precast[spell.name])
   elseif spell.name == "Holy Water" then
@@ -799,7 +802,7 @@ function midcast(spell)
       if spell.name == "Absorb-Attri" then
         equip(sets.midcast.MagicAccuracy)
       elseif spell.name == "Absorb-TP" then
-        equip({hands = gear.Empy.hands})
+        equip({hands = gear.Empy.hands, feet = gear.Empy.feet,})
       end
 
     elseif string.find(spell.name, "Drain") then
@@ -852,9 +855,9 @@ end
 
 function aftercast(spell)
 
-  if not buffactive['Hasso'] and spell.name ~= "Hasso" then
-    print("Hasso not up!")
-  end
+--   if not buffactive['Hasso'] and spell.name ~= "Hasso" then
+--     print("Hasso not up!")
+--   end
 
   if player.status == "Idle" then
     equip(sets.status.Idle.DT)
