@@ -12,15 +12,19 @@ function get_sets()
 
 
   send_command('bind f9 gs c toggle Magic Burst')
-  send_command('bind f10 gs c toggle Magic Accuracy')
+  send_command('bind f10 gs c Free Space')
   send_command('bind f11 gs c equip Criers')
   send_command('bind f12 gs c Equip DT')
   send_command('bind ^f9 gs c toggle Treasure Hunter')
   send_command('bind ^f10 gs c toggle Occult Acumen')
   send_command('bind ^f12 gs c Equip Idle')
+  send_command('bind !f9 gs c Equip Bunzi')
+  send_command('bind !f10 gs c Equip Marin')
   function file_unload()
     send_command('unbind f9')
     send_command('unbind f10')
+    send_command('unbind !f9')
+    send_command('unbind !f10')
     send_command('unbind f11')
     send_command('unbind f12')
     send_command('unbind ^f11')
@@ -35,11 +39,6 @@ function get_sets()
       print('Magic Burst:........OFF')
     elseif MagicBurstFlag == 1 then
       print('Magic Burst:........ON')
-    end
-    if MagicAccuracyFlag == 0 then
-      print('Magic Accuracy:.....OFF')
-    elseif MagicAccuracyFlag == 1 then
-      print('Magic Accuracy:.....ON')
     end
     if OccultAcumenFlag == 0 then
       print('Occult Acumen:......OFF')
@@ -67,16 +66,6 @@ function get_sets()
       check_param()
     end
 
-    if command == 'toggle Magic Accuracy' then
-      if MagicAccuracyFlag == 0 then
-        MagicAccuracyFlag = 1
-        send_command('@input /echo Magic Accuracy: ON')
-      elseif MagicAccuracyFlag == 1 then
-        MagicAccuracyFlag = 0
-        send_command('@input /echo Magic Accuracy: OFF')
-      end
-      check_param()
-    end
     if command == 'toggle Occult Acumen' then
       if OccultAcumenFlag == 0 then
         OccultAcumenFlag = 1
@@ -99,10 +88,19 @@ function get_sets()
 
 
     if command == 'equip Criers' then
-      equip(gear.Criers)
-      send_command('@input /echo Crier\'s Gaiters Equipped.')
-    end
+        equip(gear.Criers)
+        send_command('@input /echo Crier\'s Gaiters Equipped.')
+      end
 
+    if command == 'Equip Bunzi' then
+      equip({main="Bunzi's Rod",sub="Ammurapi Shield"})
+      send_command('@input /echo Bunzi\'s Rod Equipped.')
+    end
+    if command == 'Equip Marin' then
+        equip({main="Marin Staff +1",sub="Enki Strap"})
+        send_command('@input /echo Marin Staff +1 equipped.')
+    end
+          
 
     if command == 'toggle Treasure Hunter' then
       if TreasureHunterFlag == 0 then
@@ -147,10 +145,10 @@ function get_sets()
 
   gear.Empy = {}
   gear.Empy.head                      = {}
-  gear.Empy.body                      = {}
+  gear.Empy.body                      = { name="Wicce Coat +3",}
   gear.Empy.hands                     = {}
-  gear.Empy.legs                      = { name="Wicce Chausses +1"}
-  gear.Empy.feet                      = { name="Wicce Sabots +1"}
+  gear.Empy.legs                      = { name="Wicce Chausses +2"}
+  gear.Empy.feet                      = { name="Wicce Sabots +2"}
 
   gear.Grio = {}
   gear.Grio.Death                    = { name="Grioavolr", augments={'Enfb.mag. skill +8','MP+96','Mag. Acc.+29','"Mag.Atk.Bns."+25',}}
@@ -213,7 +211,7 @@ function get_sets()
   sets.status.Idle.Refresh = {
     ammo="Staunch Tathlum +1",
     head="Volte Beret",
-    body="Jhakri Robe +2",
+    body = gear.Empy.body,
     hands="Volte Gloves",
     legs="Volte Brais",
     feet="Mallquis Clogs +2",
@@ -251,8 +249,7 @@ function get_sets()
 
   sets.precast = {}
   sets.precast.FastCast = {
-  -- 79% Fast Cast, 6% Quick Cast
-  -- Marin Staff +1 R15 is +3% FC
+  -- 83% Fast Cast, 6% Quick Cast
     ammo="Impatiens",
     head = gear.Merlinic.head.FC,
     body="Agwu's Robe",
@@ -301,7 +298,7 @@ function get_sets()
     back = gear.AmbuCape.FC,
   }
 	sets.precast.Catacylsm = {
-		ammo="Pemphredo Tathlum",
+	ammo="Pemphredo Tathlum",
     head="Pixie Hairpin +1",
     body={ name="Nyame Mail", augments={'Path: B',}},
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
@@ -339,19 +336,18 @@ function get_sets()
     right_ring="Ephedra Ring",
   }
   sets.midcast.Nuke = {
-    ammo="Pemphredo Tathlum",
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-    head = gear.Relic.head,
-    body = gear.Amalric.body,
-    hands = gear.Amalric.hands,
-    legs = gear.Amalric.legs,
-    feet = gear.Amalric.feet,
-    neck={ name="Src. Stole +1", augments={'Path: A',}},
+    head={ name="Arch. Petasos +3", augments={'Increases Ancient Magic damage and magic burst damage',}},
+    body={ name="Agwu's Robe", augments={'Path: A',}},
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs={ name="Agwu's Slops", augments={'Path: A',}},
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck="Sibyl Scarf",
     waist="Sacro Cord",
     left_ear="Regal Earring",
     right_ear="Malignance Earring",
-    left_ring="Freke Ring",
-    right_ring="Shiva Ring +1",
+    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    right_ring="Freke Ring",
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.OccultAcumen = {
@@ -385,13 +381,19 @@ function get_sets()
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.MagicBurst = {
+    ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     head="Ea Hat +1",
-    body="Ea Houppelande +1",
+    body = gear.Empy.body,
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Ea Slops +1",
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-    -- feet = gear.Relic.feet,
-    right_ring="Mujin Band",
+    neck="Sorcerer's Stole +1",
+    waist="Sacro Cord",
+    left_ear="Regal Earring",
+    right_ear="Malignance Earring",
+    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    right_ring="Freke Ring",
+    back = gear.AmbuCape.Nuke,
   }
   sets.midcast.DarkAffinity = {
     head="Pixie Hairpin +1",
@@ -400,7 +402,7 @@ function get_sets()
   sets.midcast.Burn = {
     head = gear.Relic.head,
     body = gear.Relic.body,
-    hands = gear.Relic.hands,
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Agwu's Slops",
     feet = gear.Relic.feet,
     neck={ name="Src. Stole +1", augments={'Path: A',}},
@@ -563,22 +565,16 @@ function midcast(spell)
     if spell.name == "Impact" then
       equip(sets.midcast.Impact)
     else
-      if MagicAccuracyFlag == 1 then
-        equip(set_combine(sets.midcast.Nuke, sets.midcast.MagicAccuracy))
-      else
-        equip(sets.midcast.Nuke)
-      end
       if MagicBurstFlag == 1 then
         equip(sets.midcast.MagicBurst)
+      else
+        equip(sets.midcast.Nuke)
       end
       if AoE:contains(spell.name) then
         equip({body=gear.AF.body})
       end
       if DoTs:contains(spell.name) then
         equip(sets.midcast.Burn)
-      end
-      if spell.name == "Comet" or spell.name == "Meteor" then
-        equip(sets.midcast.MagicAccuracy)
       end
     end
 
