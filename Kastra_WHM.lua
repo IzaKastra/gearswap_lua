@@ -2,17 +2,45 @@
 
 function get_sets()
 
+    TPFlag = "Default"
+
   maps() -- This line is also REQUIRED if you're going to use custom spell lists. See below for more information.
+  
+  send_command('bind f9 gs c cycle TP mode')
 
   send_command('bind f11 gs c equip Criers')
   send_command('bind f12 gs c Equip DT')
   send_command('bind ^f12 gs c Equip Refresh')
   function file_unload()
+    send_command('unbind f9')
     send_command('unbind f11')
     send_command('unbind f12')
     send_command('unbind ^f12')
   end
   function self_command(command)
+
+    function check_param()
+        print('-------------------------')
+        if TPFlag == "Accuracy" then
+          print('TP Mode:..........Default')
+        elseif TPFlag == "Default" then
+          print('TP Mode:.........Accuracy')
+        end
+        print('-------------------------')
+    end
+
+    if command == 'cycle TP mode' then
+        if TPFlag == "Default" then
+          TPFlag = "Accuracy"
+          send_command('@input /echo TP mode: Accuracy')
+        elseif TPFlag == "Accuracy" then
+          TPFlag = "Default"
+          send_command('@input /echo TP mode: Default')
+        end
+        check_param()
+      end
+  
+
     if command == 'Equip DT' then
       equip(sets.status.Idle.DT)
       send_command('@input /echo Damage Taken set equipped.')
@@ -48,7 +76,6 @@ function get_sets()
 
   gear.AmbuCape = {}
   gear.AmbuCape.Idle                 = { name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','Enmity-10','Damage taken-5%',}}
-  gear.AmbuCape.TP                   = { name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10',}}
   gear.AmbuCape.FC                   = { name="Alaunus's Cape", augments={'"Fast Cast"+10',}}
 
   gear.Empy = {}
@@ -112,37 +139,37 @@ function get_sets()
     right_ring="Shadow Ring",
     back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','Enmity-10','Damage taken-5%',}},
   }
-  sets.status.Engaged = {
-    main={ name="Mjollnir", augments={'Path: A',}},
-    sub={ name="Sindri", augments={'Accuracy+50','Attack+30','"Dbl.Atk."+5',}},
-    ammo="Hasty Pinion +1",
-    head={ name="Nyame Helm", augments={'Path: B',}},
-    body={ name="Nyame Mail", augments={'Path: B',}},
+
+  sets.status.Engaged = {}
+  sets.status.Engaged["Accuracy"] = {
+    ammo="Amar Cluster",
+    head={ name="Bunzi's Hat", augments={'Path: A',}},
+    body="Ayanmo Corazza +2",
     hands="Bunzi's Gloves",
     legs="Aya. Cosciales +2",
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Combatant's Torque",
     waist="Windbuffet Belt +1",
-    left_ear="Cessance Earring",
+    left_ear="Mache Earring +1",
     right_ear="Telos Earring",
     left_ring="Chirich Ring +1",
     right_ring="Chirich Ring +1",
     back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
   }
-  sets.status.Seraph = {
+  sets.status.Engaged["Default"] = {
     ammo="Amar Cluster",
-    head="Nyame Helm",
-    body="Nyame Mail",
-    hands="Nyame Gauntlets",
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Baetyl Pendant",
+    head={ name="Bunzi's Hat", augments={'Path: A',}},
+    body="Ayanmo Corazza +2",
+    hands="Bunzi's Gloves",
+    legs="Aya. Cosciales +2",
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Combatant's Torque",
     waist="Windbuffet Belt +1",
-    left_ear="Regal Earring",
-    right_ear="Malignance Earring",
-    left_ring="Weatherspoon Ring +1",
-    right_ring="Shiva Ring +1",
-    back = gear.AmbuCape.TP,
+    left_ear="Dedition Earring",
+    right_ear="Brutal Earring",
+    left_ring="Chirich Ring +1",
+    right_ring="Chirich Ring +1",
+    back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
   }
 
 
@@ -204,21 +231,6 @@ function get_sets()
   sets.precast.Impact ={
     body="Twilight Cloak"
   }
-  sets.precast["Hexa Strike"] = {
-    ammo="Hydrocera",
-    head = gear.Relic.head,
-    body = gear.Relic.body,
-    hands = gear.Relic.hands,
-    legs = gear.Relic.legs,
-    feet = gear.Relic.feet,
-    neck="Fotia Gorget",
-    waist="Fotia Belt",
-    left_ear = gear.Moonshade,
-    right_ear="Regal Earring",
-    left_ring="Apate Ring",
-    right_ring="Rajas Ring",
-    back = gear.AmbuCape.TP,
-  }
   sets.precast["Randgrith"] = {
     ammo="Amar Cluster",
     head={ name="Nyame Helm", augments={'Path: B',}},
@@ -226,58 +238,73 @@ function get_sets()
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
-    neck="Caro Necklace",
-    waist="Grunfeld Rope",
-    left_ear="Malignance Earring",
-    right_ear="Regal Earring",
-    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-    right_ring="Rufescent Ring",
+    neck="Rep. Plat. Medal",
+    waist="Prosilio Belt +1",
+    left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+    right_ear="Telos Earring",
+    left_ring="Rufescent Ring",
+    right_ring="Shukuyu Ring",
     back={ name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
   }
   sets.precast["Realmrazer"] = {
-    ammo="Hydrocera",
-    head = gear.Relic.head,
-    body = gear.Relic.body,
-    hands = gear.Relic.hands,
-    legs = gear.Relic.legs,
-    feet = gear.Relic.feet,
+    ammo="Oshasha's Treatise",
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands="Bunzi's Gloves",
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Fotia Gorget",
     waist="Fotia Belt",
-    left_ear = gear.Moonshade,
-    right_ear="Regal Earring",
-    left_ring="Apate Ring",
-    right_ring="Sirona's Ring",
-    back = gear.AmbuCape.TP,
+    left_ear="Mache Earring +1",
+    right_ear="Telos Earring",
+    left_ring="Rufescent Ring",
+    right_ring="Ilabrat Ring",
+    back={ name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
   }
   sets.precast["Black Halo"] = {
-    ammo="Amar Cluster",
+    ammo="Oshasha's Treatise",
     head={ name="Nyame Helm", augments={'Path: B',}},
     body={ name="Nyame Mail", augments={'Path: B',}},
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
-    neck="Caro Necklace",
-    waist="Grunfeld Rope",
-    left_ear = gear.Moonshade,
-    right_ear="Regal Earring",
-    left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-    right_ring="Rufescent Ring",
+    neck="Rep. Plat. Medal",
+    waist="Prosilio Belt +1",
+    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    right_ear="Telos Earring",
+    left_ring="Rufescent Ring",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back={ name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
   }
   sets.precast["Mystic Boon"] = {
-    ammo="Amar Cluster",
+    ammo="Oshasha's Treatise",
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Rep. Plat. Medal",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    right_ear="Regal Earring",
+    left_ring="Rufescent Ring",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    back={ name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
+  }
+  sets.precast["Seraph Strike"] = {
+    ammo="Oshasha's Treatise",
     head="Nyame Helm",
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Nyame Sollerets",
-    neck="Caro Necklace",
-    waist="Sacro Cord",
-    left_ear = gear.Moonshade,
-    right_ear="Regal Earring",
-    left_ring="Metamorph Ring +1",
-    right_ring="Rufescent Ring",
-    back = gear.AmbuCape.Idle,
+    neck="Baetyl Pendant",
+    waist="Windbuffet Belt +1",
+    left_ear="Moonshade Earring",
+    right_ear="Friomisi Earring",
+    left_ring="Weatherspoon Ring +1",
+    right_ring="Freke Earring",
+    back={ name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}},
   }
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -308,8 +335,8 @@ function get_sets()
     main="Daybreak",
     sub="Ammurapi Shield",
     ammo="Hydrocera",
-    head="Inyanga Tiara +2",
-    body = "Inyanga Jubbah +2",
+    head = gear.Empy.head,
+    body = gear.Empy.body,
     hands = gear.Relic.hands,
     legs={ name="Chironic Hose", augments={'Mag. Acc.+26','MND+10',}},
     feet = gear.AF.feet,
@@ -541,7 +568,7 @@ function aftercast(spell)
   if player.status == 'Idle'  then
     equip(sets.status.Idle.DT)
   elseif player.status == "Engaged" then
-    equip(sets.status.Engaged)
+    equip(sets.status.Engaged[TPFlag])
   end
   -- if buffactive["Sublimation: Activated"] then
   --   equip({waist="Embla Sash"})
@@ -556,7 +583,7 @@ function status_change(new,old)
       equip(sets.status.Idle.DT)
     end
   elseif new == "Engaged" then
-    equip(sets.status.Engaged)
+    equip(sets.status.Engaged[TPFlag])
   elseif sets.status[new] then
     equip(sets.status[new])
   end
