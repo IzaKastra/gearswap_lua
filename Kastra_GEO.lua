@@ -14,7 +14,7 @@ function get_sets()
   send_command('bind f11 gs c equip movement feet')
   send_command('bind f12 gs c Equip Pet DT')
   send_command('bind ^f12 gs c Equip DT')
-  send_command('bind !f12 gs c Equip DT')
+  send_command('bind ^f12 gs c Equip Refresh')
   function file_unload()
     send_command('unbind f9')
     send_command('unbind f10')
@@ -128,10 +128,10 @@ function get_sets()
   gear.AmbuCape.PetDT                = { name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+20','Pet: "Regen"+10','Pet: Damage taken -5%',}}
 
   gear.Empy = {}
-  gear.Empy.head                      = { name="Azimuth Hood +1"}
-  gear.Empy.body                      = { name="Azimuth Coat"}
+  gear.Empy.head                      = { name="Azimuth Hood +2"}
+  gear.Empy.body                      = { name="Azimuth Coat +1"}
   gear.Empy.hands                     = { name="Azimuth Gloves"}
-  gear.Empy.legs                      = { name="Azimuth Tights"}
+  gear.Empy.legs                      = { name="Azimuth Tights +1"}
   gear.Empy.feet                      = { name="Azimuth Gaiters +1"}
 
   gear.Merlinic = {}
@@ -162,11 +162,11 @@ function get_sets()
   gear.ReiveCape                     = { name="Lifestream Cape", augments={'Geomancy Skill +10','Indi. eff. dur. +18','Pet: Damage taken -2%','Damage taken-3%',}}
 
   gear.Telchine = {}
-  gear.Telchine.head                 = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
-  gear.Telchine.body                 = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
-  gear.Telchine.hands                = { name="Telchine Gloves", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.legs                 = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.feet                 = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.head                 = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.body                 = { name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.hands                = { name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}}
+  gear.Telchine.legs                 = { name="Telchine Braconi", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.feet                 = { name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -223,8 +223,8 @@ function get_sets()
     waist="Fucho-no-Obi",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
-    left_ring="Defending Ring",
-    right_ring="Shadow Ring",
+    left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+    right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
     back = gear.AmbuCape.PetDT,
   }
   sets.status.Melee = {
@@ -257,12 +257,12 @@ function get_sets()
 
   sets.precast = {}
   sets.precast.FastCast = {
-    -- 80% Fast Cast, 10% Quick Cast
+    -- 69% Fast Cast, 10% Quick Cast
     -- main="Idris",
     -- ammo="Impatiens",
     head={ name="Merlinic Hood", augments={'Mag. Acc.+9','"Fast Cast"+6',}},
     body="Agwu's Robe",
-    hands={ name="Merlinic Dastanas", augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','"Fast Cast"+5','DEX+3','Mag. Acc.+4','"Mag.Atk.Bns."+9',}},
+    hands="Agwu's Gages",
     legs = gear.AF.legs,
     feet={ name="Merlinic Crackows", augments={'"Fast Cast"+6','"Mag.Atk.Bns."+1',}},
     neck="Orunmila's Torque",
@@ -368,18 +368,17 @@ function get_sets()
     head={ name="Vanya Hood", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
     body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
     hands = gear.AF.hands,
-    legs={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}},
-    feet={ name="Merlinic Crackows", augments={'"Fast Cast"+6','"Mag.Atk.Bns."+1',}},
-    neck="Incanter's Torque",
+    feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
+    neck="Nodens gorget",
     waist="Sacro Cord",
     left_ear="Regal Earring",
     right_ear="Malignance Earring",
     left_ring="Sirona's Ring",
-    right_ring="Ephedra Ring",
+    right_ring="Metamorph Ring +1",
     back = gear.AmbuCape.PetDT,
   }
   sets.midcast.FreeNuke = {
-    main="Daybreak",
+    main={ name="Bunzi's Rod", augments={'Path: A',}},
     sub="Ammurapi Shield",
     ammo="Ghastly Tathlum +1",
     head = gear.Relic.head,
@@ -402,7 +401,7 @@ function get_sets()
     head="Ea Hat +1",
     body="Ea Houppe. +1",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
-    legs="Ea Slops +1",
+    legs="Agwu's Slops",
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck="Sibyl Scarf",
     waist="Sacro Cord",
@@ -619,6 +618,10 @@ function midcast(spell)
   end
   if spell.name == "Dispelga" then
     equip({main = "Daybreak"})
+  end
+
+  if buffactive["Entrust"] then
+    equip({main={ name="Gada", augments={'Indi. eff. dur. +10','Mag. Acc.+13','DMG:+3',}},})
   end
 end
 

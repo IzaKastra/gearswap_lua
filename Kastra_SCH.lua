@@ -137,7 +137,7 @@ function get_sets()
   gear.Empy = {}
   gear.Empy.head                      = {name="Arbatel Bonnet +3"}
   gear.Empy.body                      = {name="Arbatel Gown +3",}
-  gear.Empy.hands                     = {name="Arbatel Bracers +2"}
+  gear.Empy.hands                     = {name="Arbatel Bracers +3"}
   gear.Empy.legs                      = {name="Arbatel Pants +2",}
   gear.Empy.feet                      = {name="Arbatel Loafers +3"}
 
@@ -171,11 +171,11 @@ function get_sets()
   gear.Relic.feet                     = { name="Peda. Loafers +1", augments={'Enhances "Stormsurge" effect',}}
 
   gear.Telchine = {}
-  gear.Telchine.head                  = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
-  gear.Telchine.body                  = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
-  gear.Telchine.hands                 = { name="Telchine Gloves", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.legs                  = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.feet                  = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.head                  = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.body                  = { name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.hands                 = { name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}}
+  gear.Telchine.legs                  = { name="Telchine Braconi", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.feet                  = { name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -194,6 +194,7 @@ function get_sets()
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
+    feet="Nyame Sollerets",
     neck="Loricate Torque +1",
     waist="Carrier's Sash",
     left_ear="Etiolation Earring",
@@ -211,6 +212,7 @@ function get_sets()
     hands="Nyame Gauntlets",
     legs="Volte Brais",
     feet="Mallquis Clogs +2",
+    feet="Nyame Sollerets",
     neck="Loricate Torque +1",
     waist="Fucho-no-Obi",
     left_ear="Etiolation Earring",
@@ -432,7 +434,7 @@ function get_sets()
     body = gear.Relic.body,
     neck="Incanter's Torque",
     waist="Cascade Belt",
-    left_ear="Andoaa Earring",
+    left_ear="Mimir Earring",
   }
 
   sets.midcast.Impact = {
@@ -607,7 +609,9 @@ function midcast(spell)
         equip(sets.midcast.MagicBurst)
       end
       if buffactive["Klimaform"] then
-        equip({feet=gear.Empy.feet})
+        if (world.weather_element == spell.element and world.day_element == spell.element) then
+            equip({feet=gear.Empy.feet})
+        end
       end
     end
     if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then

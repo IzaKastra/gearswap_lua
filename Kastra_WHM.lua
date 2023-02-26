@@ -93,11 +93,11 @@ function get_sets()
   gear.Relic.feet                    = { name="Piety Duckbills +3", augments={'Enhances "Afflatus Solace" effect',}}
 
   gear.Telchine = {}
-  gear.Telchine.head                 = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
-  gear.Telchine.body                 = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
-  gear.Telchine.hands                = { name="Telchine Gloves", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.legs                 = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.feet                 = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.head                 = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.body                 = { name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.hands                = { name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}}
+  gear.Telchine.legs                 = { name="Telchine Braconi", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.feet                 = { name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ----- STATUS SETS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -118,8 +118,8 @@ function get_sets()
     waist="Carrier's Sash",
     left_ear="Etiolation Earring",
     right_ear="Ebers Earring +1",
-    left_ring="Defending Ring",
-    right_ring="Shadow Ring",
+    left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+    right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
     back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','Enmity-10','Damage taken-5%',}},
   }
   sets.status.Idle.DT = {
@@ -334,17 +334,17 @@ function get_sets()
   sets.midcast.Enfeeble = {
     main="Daybreak",
     sub="Ammurapi Shield",
-    ammo="Hydrocera",
+    ammo="Pemphredo Tathlum",
     head = gear.Empy.head,
     body = gear.Empy.body,
     hands = gear.Relic.hands,
     legs={ name="Chironic Hose", augments={'Mag. Acc.+26','MND+10',}},
     feet = gear.AF.feet,
-    neck="Incanter's Torque",
-    waist="Sacro Cord",
+    neck="Erra Pendant",
+    waist="Obstinate Sash",
     left_ear="Malignance Earring",
-    right_ear="Crep. Earring",
-    left_ring="Weather. Ring +1",
+    right_ear="Regal Earring",
+    left_ring="Stikini Ring +1",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back = gear.AmbuCape.Idle,
   }
@@ -375,7 +375,7 @@ function get_sets()
     legs = gear.Relic.legs,
     feet = gear.AF.feet,
     neck="Incanter's Torque",
-    left_ear="Andoaa Earring",
+    left_ear="Mimir Earring",
     back={ name="Mending Cape", augments={'Healing magic skill +2','Enha.mag. skill +10','Mag. Acc.+1',}},
   }
   sets.midcast.Cursna = {
@@ -455,7 +455,21 @@ function get_sets()
     neck="Incanter's Torque",
   }
   sets.midcast.Dispelga = {
-    main="Daybreak"
+    main="Daybreak",
+    sub="Ammurapi Shield",
+    ammo="Pemphredo Tathlum",
+    head = gear.Empy.head,
+    body = gear.Empy.body,
+    hands = gear.Relic.hands,
+    legs={ name="Chironic Hose", augments={'Mag. Acc.+26','MND+10',}},
+    feet = gear.AF.feet,
+    neck="Erra Pendant",
+    waist="Obstinate Sash",
+    left_ear="Malignance Earring",
+    right_ear="Regal Earring",
+    left_ring="Stikini Ring +1",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    back = gear.AmbuCape.Idle,
   }
   sets.midcast.Impact = {
     body="Twilight Cloak"

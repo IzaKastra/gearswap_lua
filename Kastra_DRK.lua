@@ -1,13 +1,13 @@
 include('organizer-lib')
 
 function get_sets()
-
+  maps()
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ----------- TOGGLES ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   TPFlag             = 0
-  attack2            = 6000 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear)
+  attack2            = 9999 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear)
   -- ! == alt
   -- ^ == ctrl
   --
@@ -119,7 +119,7 @@ function get_sets()
 
     gear.Empy = {}
     gear.Empy.head                     = { name="Heath. Bur. +3"}
-    gear.Empy.body                     = { name="Heath. Cuirass +2"}
+    gear.Empy.body                     = { name="Heath. Cuirass +3"}
     gear.Empy.hands                    = { name="Heath. Gauntlets +3"}
     gear.Empy.legs                     = { name="Heath. Flanchard +3"}
     gear.Empy.feet                     = { name="Heath. Sollerets +3"}
@@ -231,6 +231,7 @@ function get_sets()
     legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
     feet={ name="Sakpata's Leggings", augments={'Path: A',}},
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+    -- neck="Bathy Choker +1",
     waist="Ioskeha Belt +1",
     left_ear="Schere Earring",
     right_ear="Telos Earring",
@@ -370,7 +371,9 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     left_ring="Regal Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
-  }
+    -- feet="Sakpata's Leggings",
+    -- hands="Sakpata's Gauntlets",
+}
   sets.WeaponSkill.HighAtk["Cross Reaper"] = {
     ammo="Knobkierrie",
     head = gear.Empy.head,
@@ -401,6 +404,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
+    -- feet="Sakpata's Leggings",
+    -- hands="Sakpata's Gauntlets",
   }
   sets.WeaponSkill.HighAtk["Quietus"] = {
     ammo="Knobkierrie",
@@ -451,7 +456,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
 
   sets.WeaponSkill.MidAtk["Entropy"] = {
     ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-    head="Heath. Bur. +3",
+    head = gear.Empy.head,
     body={ name="Nyame Mail", augments={'Path: B',}},
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -463,6 +468,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
+    feet="Sakpata's Leggings",
+    hands="Sakpata's Gauntlets",
   }
   sets.WeaponSkill.HighAtk["Entropy"] = {
     ammo="Crepuscular Pebble",
@@ -635,6 +642,24 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     back = gear.AmbuCape.WSDstr,
   }
 
+
+  sets.WeaponSkill.MidAtk["Armor Break"] = {
+    ammo="Pemphredo Tathlum",
+    head = gear.Empy.head,
+    body = gear.Empy.body,
+    hands = gear.Empy.hands,
+    legs = gear.Empy.legs,
+    feet = gear.Empy.feet,
+    neck="Erra Pendant",
+    waist="Eschan Stone",
+    left_ear="Malignance Earring",
+    right_ear="Crep. Earring",
+    left_ring="Weather. Ring +1",
+    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    back="Chuparrosa Mantle",
+  }
+  sets.WeaponSkill.HighAtk["Armor Break"] = sets.WeaponSkill.MidAtk["Armor Break"]
+
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -677,7 +702,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     left_ear="Malignance Earring",
     right_ear="Crep. Earring",
     left_ring="Weather. Ring +1",
-    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    right_ring="Stikini Ring +1",
     back = gear.ReiveCape,
   }
   sets.midcast['Dread Spikes'] = {
@@ -741,7 +766,9 @@ end -- End of sets function
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+function maps()
+    elemental_ws = S {"Shadow of Death", "Infernal Scythe", "Dark Harvest"}
+end
 
 function precast(spell)
 
@@ -762,17 +789,19 @@ function precast(spell)
 
 
   if active_ws[spell.name] then
-    if distance > 7 then
-      send_command('@input /echo Target too far away.')
-      cancel_spell()
-    end
+    -- if distance > 7 then
+    --   send_command('@input /echo Target too far away.')
+    --   cancel_spell()
+    -- end
     equip(active_ws[spell.name])
-    if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
-      equip(gear.Obi)
-    elseif distance < 7 then
-      equip(gear.Orpheus)
-    elseif world.weather_element == spell.element or world.day_element == spell.element then
-      equip(gear.Obi)
+    if elemental_ws:contains(spell.name) then
+        if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
+        equip(gear.Obi)
+        elseif distance < 7 then
+        equip(gear.Orpheus)
+        elseif world.weather_element == spell.element or world.day_element == spell.element then
+        equip(gear.Obi)
+        end
     end
       
   elseif spell.type=="WeaponSkill" then
@@ -798,22 +827,20 @@ function midcast(spell)
 
   if spell.skill == "Dark Magic" then
     if spell.name:contains("Absorb") then
-      equip(set_combine(sets.midcast.MagicAccuracy, sets.midcast.Absorbs))
-      if spell.name == "Absorb-Attri" then
+      if spell.name == "Absorb-TP" or spell.name=="Absorb-Attri" then
         equip(sets.midcast.MagicAccuracy)
-      elseif spell.name == "Absorb-TP" then
-        equip({hands = gear.Empy.hands, feet = gear.Empy.feet,})
       end
-
     elseif string.find(spell.name, "Drain") then
-      equip(sets.midcast.Drains)
-      if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
-        equip(gear.Obi)
-      elseif distance < 7 then
-        equip(gear.Orpheus)
-      elseif world.weather_element == spell.element or world.day_element == spell.element then
-        equip(gear.Obi)
-      end  
+        equip(sets.midcast.Drains)
+        if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
+          equip(gear.Obi)
+        elseif distance < 7 then
+          equip(gear.Orpheus)
+        elseif world.weather_element == spell.element or world.day_element == spell.element then
+          equip(gear.Obi)
+        end  
+    else
+      equip(set_combine(sets.midcast.MagicAccuracy, sets.midcast.Absorbs))
     end
 
     if buffactive['Dark Seal'] then

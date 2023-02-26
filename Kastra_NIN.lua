@@ -306,7 +306,7 @@ function get_sets()
     gear.AmbuCape.Evasion              = { name="Andartia's Mantle", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','Evasion+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}
     gear.AmbuCape.Nuke                 = { name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
     gear.AmbuCape.SIRD                 = { name="Andartia's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Evasion+10','Enmity+10','Spell interruption rate down-10%',}}
-    gear.AmbuCape.STP                  = { name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}
+    gear.AmbuCape.STP                  = { name="Andartia's Mantle", augments={'AGI+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}
     gear.AmbuCape.WSDdex               = { name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}}
     gear.AmbuCape.WSDstr               = { name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 
@@ -689,16 +689,18 @@ function get_sets()
     -- dDEX: +0-15% Crit Rate
     -- sub={ name="Gleti's Knife", augments={'Path: A',}}, -- 5
     ammo="Date Shuriken", -- 1
-    head={ name="Blistering Sallet +1", augments={'Path: A',}}, -- 10
+    head = gear.Adhemar.head.Accuracy,
+    -- head={ name="Blistering Sallet +1", augments={'Path: A',}}, -- 10
     body="Ken. Samue +1", -- 9
-    hands="Ken. Tekko +1", -- 5
+    hands = gear.Adhemar.hands.Attack,
+    -- hands="Ken. Tekko +1", -- 5
     legs="Ken. Hakama +1", -- 7
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
     feet="Ken. Sune-Ate +1", -- 5
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}}, -- 0
     waist={ name="Kentarch Belt +1", augments={'Path: A',}}, -- 0 (Gerdr Belt +3% (+4%))
     left_ear="Odr Earring", -- 5
-    right_ear="Telos Earring", -- 0
+    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
     left_ring="Gere Ring", -- 0
     right_ring="Epona's Ring", -- 0
     back={ name="Andartia's Mantle", augments={'AGI+20','Accuracy+20 Attack+20','AGI+10','Crit.hit rate+10',}}, -- 10
@@ -744,24 +746,24 @@ function get_sets()
     back = gear.AmbuCape.STP,
   }
 
-  sets.Melee.Hybrid = {
-    -- Hybrid Melee set used for Kei solo to survive Dancing Fullers. Use Tsuru off-hand for more HP
-    -- Use Omelette Sandwich for even more HP.
-    -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
-    ammo="Seki Shuriken",
-    head="Malignance Chapeau",
-    body="Ken. Samue +1",
-    hands="Malignance Gloves",
-    legs="Ken. Hakama +1",
-    feet="Malignance Boots",
-    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
-    waist="Engraved Belt",
-    left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-    right_ear="Telos Earring",
-    left_ring="Regal Ring",
-    right_ring="Ilabrat Ring",
-    back = gear.AmbuCape.STP,
-  }
+--   sets.Melee.Hybrid = {
+--     -- Hybrid Melee set used for Kei solo to survive Dancing Fullers. Use Tsuru off-hand for more HP
+--     -- Use Omelette Sandwich for even more HP.
+--     -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
+--     ammo="Seki Shuriken",
+--     head="Malignance Chapeau",
+--     body="Ken. Samue +1",
+--     hands="Malignance Gloves",
+--     legs="Ken. Hakama +1",
+--     feet="Malignance Boots",
+--     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+--     waist="Engraved Belt",
+--     left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+--     right_ear="Telos Earring",
+--     left_ring="Regal Ring",
+--     right_ring="Ilabrat Ring",
+--     back = gear.AmbuCape.STP,
+--   }
 
   sets.Melee.SubtleBlow = {
     -- Subtle Blow Melee set
@@ -770,7 +772,7 @@ function get_sets()
     head = gear.Adhemar.head.Accuracy,  -- +8
     body="Kendatsuba Samue +1", -- +12
     hands="Malignance Gloves",
-    legs="Malignance Tights",
+    legs="Mpaca's Hose",
     feet="Malignance Boots",
     neck="Ninja Nodowa +2",
     waist="Windbuffet Belt +1",
@@ -1151,6 +1153,10 @@ function get_sets()
     left_ring="Metamorph Ring +1",
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
+    head="Volte Cap",
+    feet="Volte Boots",
+    hands="Volte Bracers",
+    ammo="Perfect Lucky Egg",
   }
   sets.WeaponSkill.MidAtk["Aeolian Edge"] = sets.WeaponSkill.LowAtk["Aeolian Edge"]
   sets.WeaponSkill.HighAtk["Aeolian Edge"] = sets.WeaponSkill.LowAtk["Aeolian Edge"]
