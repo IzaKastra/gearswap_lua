@@ -349,20 +349,35 @@ function get_sets()
         back = gear.AmbuCape.DW,
     }
     sets.Melee.HasteCap = {
-        ammo="Coiste Bodhar",
-        head = gear.Adhemar.head.Accuracy,
-        body = gear.AF.body,
-        hands = gear.Adhemar.hands.Attack,
+        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+        head="Malignance Chapeau",
+        body="Malignance Tabard",
+        hands="Malignance Gloves",
         legs="Malignance Tights",
-        feet = gear.Relic.feet,
+        feet="Malignance Boots",
         neck={ name="Asn. Gorget +1", augments={'Path: A',}},
         waist="Reiki Yotai",
         left_ear="Dedition Earring",
-        right_ear="Sherida Earring",
-        left_ring="Gere Ring",
-        right_ring="Epona's Ring",
-        back = gear.AmbuCape.STP,
+        right_ear="Sanare Earring",
+        left_ring="Defending Ring",
+        right_ring="Gere Ring",
+        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},    
     }
+    -- sets.Melee.HasteCap = {
+    --     ammo="Coiste Bodhar",
+    --     head = gear.Adhemar.head.Accuracy,
+    --     body = gear.AF.body,
+    --     hands = gear.Adhemar.hands.Attack,
+    --     legs="Malignance Tights",
+    --     feet = gear.Relic.feet,
+    --     neck={ name="Asn. Gorget +1", augments={'Path: A',}},
+    --     waist="Reiki Yotai",
+    --     left_ear="Dedition Earring",
+    --     right_ear="Sherida Earring",
+    --     left_ring="Gere Ring",
+    --     right_ring="Epona's Ring",
+    --     back = gear.AmbuCape.STP,
+    -- }
 
     sets.status.Accuracy = {
         ammo="Coiste Bodhar",
@@ -417,12 +432,12 @@ function get_sets()
         -- +31 steal if all bis?
         -- sub="Bartholomew's knife",
         ammo="Barathrum",
-        -- head = gear.AF.hands2 -- Lower level AF head has steal+, but reforged versions do not
+        head = gear.AF.hands2, -- Lower level AF head has steal+, but reforged versions do not
         hands = gear.AF.hands,
         -- hands="Thief's Kote",
         -- legs = gear.Relic.legs2, -- Lower level relic legs has steal+, but reforged versions do not
         feet = gear.AF.feet,
-        -- neck="Pentalagus Charm",
+        neck="Pentalagus Charm",
         -- waist="Key Ring Belt",
     }
     sets.precast.Despoil = {
