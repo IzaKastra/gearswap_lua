@@ -82,8 +82,8 @@ function get_sets()
   gear.Empy.head                     = { name="Ebers Cap +2"}
   gear.Empy.body                     = { name="Ebers Bliaut +2"}
   gear.Empy.hands                    = { name="Ebers Mitts +2"}
-  gear.Empy.legs                     = { name="Ebers Pant. +2"}
-  gear.Empy.feet                     = { name="Ebers Duckbills +2"}
+  gear.Empy.legs                     = { name="Ebers Pant. +3"}
+  gear.Empy.feet                     = { name="Ebers Duckbills +3"}
 
   gear.Relic = {}
   gear.Relic.head                    = { name="Piety Cap +3", augments={'Enhances "Devotion" effect',}}
@@ -145,29 +145,31 @@ function get_sets()
     ammo="Amar Cluster",
     head={ name="Bunzi's Hat", augments={'Path: A',}},
     body="Ayanmo Corazza +2",
-    hands="Bunzi's Gloves",
-    legs="Aya. Cosciales +2",
+    hands={ name="Bunzi's Gloves", augments={'Path: A',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Combatant's Torque",
     waist="Windbuffet Belt +1",
-    left_ear="Mache Earring +1",
-    right_ear="Telos Earring",
-    left_ring="Chirich Ring +1",
+    left_ear="Telos Earring ",
+    right_ear="Cessance Earring",
+    left_ring="Lehko's Ring",
     right_ring="Chirich Ring +1",
-    back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+    back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
   }
   sets.status.Engaged["Default"] = {
+    main="Maxentius",
+    sub="Sindri",
     ammo="Amar Cluster",
     head={ name="Bunzi's Hat", augments={'Path: A',}},
     body="Ayanmo Corazza +2",
-    hands="Bunzi's Gloves",
-    legs="Aya. Cosciales +2",
+    hands={ name="Bunzi's Gloves", augments={'Path: A',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Combatant's Torque",
     waist="Windbuffet Belt +1",
     left_ear="Dedition Earring",
-    right_ear="Brutal Earring",
-    left_ring="Chirich Ring +1",
+    right_ear="Cessance Earring",
+    left_ring="Lehko's Ring",
     right_ring="Chirich Ring +1",
     back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
   }
@@ -350,6 +352,7 @@ function get_sets()
   }
   sets.midcast.Enhancing = {
     main="Beneficus",
+    sub="Ammurapi Shield",         -- +10%
     head="Befouled Crown",
     body = gear.Telchine.body,
     hands="Inyan. Dastanas +2",
@@ -369,6 +372,7 @@ function get_sets()
   }
   sets.midcast.Barspell = {
     main="Beneficus",
+    sub="Ammurapi Shield",         -- +10%
     head = gear.Empy.head,
     body = gear.Empy.body,
     hands="Inyan. Dastanas +2",
@@ -417,6 +421,7 @@ function get_sets()
   }
   sets.midcast.Aquaveil = {
     main="Vadose Rod",
+    sub="Ammurapi Shield",
     head="Chironic Hat",
     hands="Regal Cuffs",
     legs="Shedir Seraweels",
