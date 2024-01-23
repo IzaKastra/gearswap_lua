@@ -20,10 +20,11 @@ function get_sets()
     send_command('bind ^f11 gs c Free3')
     send_command('bind ^f12 gs c Equip Refresh')
 
-    send_command('bind !f9 gs c Equip Naegling')
-    send_command('bind !f10 gs c Equip Excalibur')
-    send_command('bind !f11 gs c Equip Crocea')
-    send_command('bind !f12 gs c Equip Tauret')
+    -- send_command('bind !f11 gs c Equip Crocea')
+
+    send_command('bind !^f9 gs c Equip Naegling')
+    send_command('bind !^f10 gs c Equip Excalibur')
+    send_command('bind !^f11 gs c Equip Mandau')
 
     send_command('bind !^f12 gs c toggle WeaponLock')
 
@@ -40,6 +41,10 @@ function get_sets()
         send_command('unbind !f10')
         send_command('unbind !f11')
         send_command('unbind !f12')
+        send_command('unbind !^f9')
+        send_command('unbind !^f10')
+        send_command('unbind !^f11')
+        send_command('unbind !^f12')
     end
 
 
@@ -101,18 +106,19 @@ function self_command(command)
         send_command('@input /echo Carmine Cuisses +1 Equipped.')
     end
 
-    if command == 'Equip Tauret' then
+    if command == 'Equip Mandau' then
         if WeaponLock == 1 then
             enable("main","sub","ranged")
         end
-        equip({main="Tauret",})
-        if player.sub_job=="NIN" then
-            equip({sub="Thibron"})
+        equip({main="Mandau",})
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
+            equip({sub="Gleti's Knife"})
         end
         if WeaponLock == 1 then
             disable("main","sub","ranged")
         end
-        send_command('@input /echo Tauret equipped.')
+        send_command('@input /echo Mandau equipped.')
+        send_command('@input /lockstyleset 37')
     end
 
     if command == 'Equip Naegling' then
@@ -120,13 +126,14 @@ function self_command(command)
             enable("main","sub","ranged")
         end
         equip({main="Naegling"})
-        if player.sub_job=="NIN" then
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
             equip({sub="Thibron"})
         end
         if WeaponLock == 1 then
             disable("main","sub","ranged")
         end
         send_command('@input /echo Naegling equipped.')
+        send_command('@input /lockstyleset 39')
     end
 
     if command == 'Equip Crocea' then
@@ -134,8 +141,8 @@ function self_command(command)
             enable("main","sub","ranged")
         end
         equip({main="Crocea Mors"})
-        if player.sub_job=="NIN" then
-            equip({sub="Ternion Dagger +1"})
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
+            equip({sub="Crepuscular Knife"})
         end
         if WeaponLock == 1 then
             disable("main","sub","ranged")
@@ -148,13 +155,14 @@ function self_command(command)
             enable("main","sub","ranged")
         end
         equip({main="Excalibur"})
-        if player.sub_job=="NIN" then
-            equip({sub="Ternion Dagger +1"})
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
+            equip({sub="Crepuscular Knife"})
         end
         if WeaponLock == 1 then
             disable("main","sub","ranged")
         end
         send_command('@input /echo Excalibur equipped.')
+        send_command('@input /lockstyleset 40')
     end
 
 
@@ -194,10 +202,10 @@ end
     gear.Amalric.feet.Nuke             = { name="Amalric Nails +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
 
     gear.AmbuCape = {}
-    gear.AmbuCape.MND                  = { name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20',}}
-    gear.AmbuCape.INT                  = { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10',}}
+    gear.AmbuCape.MND                  = { name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10',}}
+    gear.AmbuCape.INT                  = { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10',}}
     gear.AmbuCape.DW                   = { name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}
-    gear.AmbuCape.WSD                  = { name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+5','Weapon skill damage +10%',}}
+    gear.AmbuCape.WSD                  = { name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 
     gear.Chironic = {}
 
@@ -227,7 +235,7 @@ end
     gear.Relic.body                    = { name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}}
     gear.Relic.hands                   = { name="Viti. Gloves +3", augments={'Enhancing Magic duration',}}
     gear.Relic.legs                    = {}
-    gear.Relic.feet                    = { name="Vitiation Boots +3", augments={'Enhances "Paralyze II" effect',}}
+    gear.Relic.feet                    = { name="Vitiation Boots +3", augments={'Immunobreak Chance',}}
 
     gear.Telchine = {}
     gear.Telchine.head                 = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
@@ -257,7 +265,7 @@ end
         waist="Carrier's Sash",
         left_ear="Etiolation Earring",
         right_ear="Sanare Earring",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        left_ring="Defending Ring",
         right_ring="Shadow Ring",
         back="Shadow Mantle",
     }
@@ -289,8 +297,25 @@ end
         waist="Reiki Yotai",
         left_ear="Suppanomimi",
         right_ear="Eabani Earring",
-        left_ring="Petrov Ring",
-        right_ring="Chirich Ring +1",
+        ring1="Hetairoi Ring",
+        ring2="Lehko's ring",
+        back = gear.AmbuCape.DW,
+    }
+
+    sets.status.Melee = {
+        ranged=Empty,
+        ammo="Coiste Bodhar",
+        head="Bunzi's Hat",
+        body="Malignance Tabard",
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck="Combatant's Torque",
+        waist="Windbuffet Belt +1",
+        ear1="Dedition Earring",
+        ear2="Sherida Earring",
+        ring1="Chirich Ring +1",
+        ring2="Lehko's ring",
         back = gear.AmbuCape.DW,
     }
 
@@ -302,7 +327,7 @@ end
 
     sets.precast = {}
     sets.precast.FastCast = {
-    -- 72% Fast Cast, 7% Quick Cast
+        -- 102% Fast Cast, 7% Quick Cast
         main="Crocea Mors",
         sub='Sacro Bulwark',
         ammo="Impatiens",
@@ -317,8 +342,11 @@ end
         right_ear="Loquac. Earring",
         left_ring="Weather. Ring +1",
         right_ring="Lebeche Ring",
+        back = gear.AmbuCape.MND,
     }
     sets.precast.Impact = {
+        main="Crocea Mors",
+        sub='Sacro Bulwark',
         ammo="Impatiens",
         head="Empty",
         body="Crepuscular Cloak",
@@ -331,6 +359,7 @@ end
         right_ear="Malignance Earring",
         left_ring="Weather. Ring +1",
         right_ring="Kishar Ring",
+        back = gear.AmbuCape.MND,
       }
 
     sets.precast.Enhancing = {waist="Siegel Sash",}
@@ -445,7 +474,37 @@ end
         right_ring="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
-    sets.WeaponSkill["Sanguine Blade"] = {
+    sets.WeaponSkill["Mercy Stroke"] = {
+        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+        head={ name="Nyame Helm", augments={'Path: B',}},
+        body={ name="Nyame Mail", augments={'Path: B',}},
+        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
+        feet = gear.Empy.feet,
+        neck="Rep. Plat. Medal",
+        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+        right_ear="Sherida Earring",
+        left_ring="Sroda Ring",
+        right_ring="Shukuyu Ring",
+        back = gear.AmbuCape.WSD,
+    }
+    -- sets.WeaponSkill["Mercy Stroke"] = {
+    --     ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+    --     head={ name="Nyame Helm", augments={'Path: B',}},
+    --     body={ name="Nyame Mail", augments={'Path: B',}},
+    --     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    --     legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    --     feet = gear.Empy.feet,
+    --     neck="Rep. Plat. Medal",
+    --     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    --     left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+    --     right_ear="Sherida Earring", -- +5 SB2
+    --     ring_ring="Chirich Ring +1", -- +10 SB
+    --     left_ring="Chirich Ring +1", -- +10 SB
+    --     back = gear.AmbuCape.WSD,
+    -- }    
+sets.WeaponSkill["Sanguine Blade"] = {
         ammo="Oshasha's Treatise",
         head="Pixie Hairpin +1",
         body={ name="Nyame Mail", augments={'Path: B',}},
@@ -522,7 +581,7 @@ end
     sets.midcast = {}
 
     sets.midcast.INTfeeble = {
-        main="Crocea Mors",
+        main="Bunzi's Rod",
         sub="Ammurapi Shield",
         ammo="Regal Gem",
         head = gear.Relic.head,
@@ -530,7 +589,7 @@ end
         hands = gear.Empy.hands,
         legs = gear.Chironic.legs.INTfeeble,
         feet = gear.Relic.feet,
-        neck={ name="Dls. Torque +1", augments={'Path: A',}},
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Snotra Earring",
         right_ear="Malignance Earring",
@@ -539,7 +598,7 @@ end
         back = gear.AmbuCape.INT,
     }
     sets.midcast.MNDfeeble = {
-        main="Daybreak",
+        main="Bunzi's Rod",
         sub="Ammurapi Shield",
         ammo="Regal Gem",
         head = gear.Relic.head,
@@ -547,7 +606,7 @@ end
         hands = gear.Empy.hands,
         legs = gear.Chironic.legs.MNDfeeble,
         feet = gear.Relic.feet,
-        neck={ name="Dls. Torque +1", augments={'Path: A',}},
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Snotra Earring",
         right_ear="Malignance Earring",
@@ -556,7 +615,7 @@ end
         back = gear.AmbuCape.MND,
     }
     sets.midcast.Frazzle2 = {
-        main={ name="Crocea Mors", augments={'Path: C',}},
+        main="Bunzi's Rod",
         sub="Ammurapi Shield",
         range="Ullr",
         head = gear.Relic.head,
@@ -564,7 +623,7 @@ end
         hands = gear.Empy.hands,
         legs = gear.Empy.legs,
         feet = gear.Relic.feet,
-        neck={ name="Dls. Torque +1", augments={'Path: A',}},
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist={ name="Obstin. Sash", augments={'Path: A',}},
         left_ear="Malignance Earring",
         right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
@@ -573,7 +632,7 @@ end
         back = gear.AmbuCape.INT,
     }
     sets.midcast.Impact = {
-        main="Crocea Mors",
+        main="Bunzi's Rod",
         sub="Ammurapi Shield",
         ranged="Ullr",
         head="Empty",
@@ -581,10 +640,10 @@ end
         hands = gear.Empy.hands,
         legs = gear.Empy.legs,
         feet = gear.Empy.feet,
-        neck={ name="Duelist's Torque +2", augments={'Path: A',}},
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
-        left_ear="Crep. Earring",
-        right_ear="Malignance Earring",
+        left_ear="Malignance Earring",
+        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
         left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
         right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back = gear.AmbuCape.INT,
@@ -597,7 +656,7 @@ end
         hands = gear.AF.hands,
         legs = gear.Empy.legs,
         feet = gear.Empy.feet,
-        neck="Duelist's Torque +2",
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Embla Sash",
         left_ear="Mimir Earring",
         right_ear="Lethargy Earring +1",
@@ -613,7 +672,7 @@ end
         hands = gear.AF.hands,
         legs = gear.Telchine.legs,
         feet = gear.Empy.feet,
-        neck={ name="Dls. Torque +1", augments={'Path: A',}},
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Embla Sash",
         left_ear="Mimir Earring",
         right_ear="Leth. Earring +1",
@@ -731,7 +790,7 @@ function maps()
     EraseNas       = S {"Paralyna", "Stona", "Poisona", "Blindna", "Viruna", "Silena", "Cursna", "Erase"}
     Gains          = S {"Gain-STR", "Gain-DEX", "Gain-VIT", "Gain-AGI", "Gain-INT", "Gain-MND", "Gain_CHR"}
     MNDfeeble      = S {"Addle", "Addle II", "Inundation", "Paralyze", "Paralyze II", "Silence", "Slow", "Slow II"}
-    INTfeeble      = S {"Bind", "Blind", "Blind II", "Distract", "Distract II", "Distract III", "Frazzle", "Frazzle II", "Frazzle III", "Gravity", "Gravity II", "Sleep", "Sleep II", "Poison", "Poison II", "Break", "Dispel"}
+    INTfeeble      = S {"Bind", "Blind", "Blind II", "Distract", "Distract II", "Distract III", "Frazzle", "Frazzle II", "Frazzle III", "Gravity", "Gravity II", "Sleep", "Sleep II", "Poison", "Poison II", "Break", "Dispel", "Sleepga", "Sleepga II"}
     EnhSkill       = S {"Temper", "Temper II","Phalanx","Phalanx II",
                         "Gain-STR", "Gain-DEX", "Gain-VIT", "Gain-AGI", "Gain-INT", "Gain-MND", "Gain_CHR",
                         "Enstone", "Enstone II", "Enwater", "Enwater II", "Enaero", "Enaero II", "Enfire", "Enfire II", "Enblizzard", "Enblizzard II", "Enthunder", "Enthunder II",
@@ -757,10 +816,10 @@ function precast(spell)
     elseif spell.skill == "Enhancing Magic" then
         equip(set_combine(sets.precast.FastCast, sets.precast.Enhancing))
     elseif spell.skill == "Elemental Magic" then
+        equip(sets.precast.FastCast)
         if spell.name == "Impact" then
             equip(sets.precast.Impact)
         end
-        equip(sets.precast.FastCast)
     else
         equip(sets.precast.FastCast)
     end
@@ -824,7 +883,7 @@ function midcast(spell)
         end
     end
 
-    if spell.name == "Dia" then
+    if spell.name == "Dia" or spell.name == "Sleepga II" then
         equip(sets.midcast.Treasure)
     end
 
