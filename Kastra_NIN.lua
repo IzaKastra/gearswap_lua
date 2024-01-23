@@ -211,27 +211,27 @@ function get_sets()
     if command == 'Kannagi' then
       equip({main="Kannagi", sub="Gleti's Knife"})
       send_command('@input /echo Kannagi equipped.')
-      -- send_command('@input /lockstyleset 14')
+    --   send_command('@input /lockstyleset 13')
     end
     if command == 'Tauret' then
       equip(sets.WeaponSet.Tauret)
       send_command('@input /echo Tauret equipped.')
-      --send_command('@input /lockstyleset 14')
+    --   send_command('@input /lockstyleset 13')
     end
     if command == 'Heishi' then
       equip(sets.WeaponSet.Heishi)
       send_command('@input /echo Heishi equipped.')
-      --send_command('@input /lockstyleset 13')
+    --   send_command('@input /lockstyleset 13')
     end
     if command == 'Naegling' then
       equip(sets.WeaponSet.Naegling)
       send_command('@input /echo Naegling + Hitaki equipped.')
-      -- send_command('@input /lockstyleset 15')
+    --   send_command('@input /lockstyleset 14')
     end
     if command == 'Kikoku' then
       equip(sets.WeaponSet.Kikoku)
       send_command('@input /echo Kikoku equipped.')
-      --send_command('@input /lockstyleset 13')
+    --   send_command('@input /lockstyleset 13')
     end
 
     if command == 'Equip Movement' then
@@ -261,7 +261,7 @@ function get_sets()
     gear.Empy.head                     = { name="Hattori Zukin +2"}
     gear.Empy.body                     = { name="Hattori Ningi +2"}
     gear.Empy.hands                    = { name="Hattori Tekko +3"}
-    gear.Empy.legs                     = { name="Hattori Hakama +2"}
+    gear.Empy.legs                     = { name="Hattori Hakama +3"}
     gear.Empy.feet                     = { name="Hattori Kyahan +3"}
 
     gear.Katana = {}
@@ -404,6 +404,7 @@ function get_sets()
   sets.WeaponSet.Heishi = {
     main="Heishi Shorinken",
     sub={ name="Kunimitsu", augments={'Path: A',}},
+    -- sub="Crepuscular Knife"
   }
   sets.WeaponSet.Naegling = {
     main="Naegling",
@@ -411,19 +412,16 @@ function get_sets()
   }
   sets.WeaponSet.Kikoku = {
     main="Kikoku",
-    sub={ name="Kunimitsu", augments={'Path: A',}},
+    -- sub={ name="Kunimitsu", augments={'Path: A',}},
+    sub="Crepuscular Knife"
   }
-  sets.WeaponSet.KannagiQA = {
+  sets.WeaponSet.Kannagi = {
     main="Kannagi",
-    sub={ name="Kunimitsu", augments={'Path: A',}},
+    sub={ name="Gleti's Knife", augments={'Path: A',}},
   }
   sets.WeaponSet.Tauret = {
     main="Tauret",
-    sub="Gleti's Knife",
-  }
-  sets.WeaponSet.NagiTsuru = {
-    main="Nagi",
-    sub="Tsuru",
+    sub={ name="Gleti's Knife", augments={'Path: A',}},
   }
 
   -- Ninjutsu damage testing set.
@@ -545,7 +543,7 @@ function get_sets()
     ammo="Seki Shuriken",
     head = gear.Ryuo.head.STP,
     body = gear.Relic.body,
-    hands = gear.Adhemar.hands.Attack,
+    hands="Malignance Gloves",
     legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
     feet="Malignance Boots",
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
@@ -553,13 +551,29 @@ function get_sets()
     left_ear="Suppanomimi",
     right_ear="Dedition Earring",
     left_ring="Gere Ring",
-    right_ring="Chirich Ring +1",
+    right_ring="Epona's Ring",
     back = gear.AmbuCape.DW,
   }
   sets.Melee.LowAccuracy.Haste15 = {
     -- Low accuracy vs 1200 evasion (vs Omen and Dynamis Wave 1 Fodder.)
     -- Assumes Grape Daifuku food & R15 Heishi + R20 Kunimitsu
     -- Haste=15% (Ulmia/Joachim Victory March, or a Haste1)
+    ammo="Seki Shuriken",
+    head = gear.Ryuo.head.STP,
+    body = gear.Relic.body,
+    hands = gear.Adhemar.hands.Attack,
+    legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
+    feet="Malignance Boots",
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist="Reiki Yotai",
+    left_ear="Suppanomimi",
+    right_ear="Telos Earring",
+    left_ring="Gere Ring",
+    right_ring="Epona's Ring",
+    back = gear.AmbuCape.STP
+  }
+  sets.Melee.LowAccuracy.Haste30 = {
+    -- Low accuracy vs 1200 evasion (vs Omen and Dynamis Wave 1 Fodder.)
     ammo="Seki Shuriken",
     head = gear.Ryuo.head.STP,
     body = gear.Adhemar.body.Attack,
@@ -571,34 +585,17 @@ function get_sets()
     left_ear="Dedition Earring",
     right_ear="Telos Earring",
     left_ring="Gere Ring",
-    right_ring="Petrov Ring",
-    back = gear.AmbuCape.DW
-  }
-  sets.Melee.LowAccuracy.Haste30 = {
-    -- Low accuracy vs 1200 evasion (vs Omen and Dynamis Wave 1 Fodder.)
-    -- Assumes Grape Daifuku food & R15 Heishi + R20 Kunimitsu
-    ammo="Seki Shuriken",
-    head = gear.Ryuo.head.STP,
-    body={ name="Tatena. Harama. +1", augments={'Path: A',}},
-    hands = gear.Adhemar.hands.Attack,
-    legs="Malignance Tights",
-    feet="Malignance Boots",
-    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
-    waist="Reiki Yotai",
-    left_ear="Eabani Earring",
-    right_ear="Dedition Earring",
-    left_ring="Gere Ring",
     right_ring="Epona's Ring",
     back = gear.AmbuCape.STP
   }
   sets.Melee.LowAccuracy.HasteCap = {
     -- Low accuracy vs 1200 evasion (vs Omen and Dynamis Wave 1 Fodder.)
-    -- Assumes Grape Daifuku food & R15 Heishi + R20 Kunimitsu
     ammo="Seki Shuriken",
     head="Malignance Chapeau",
     body={ name="Tatena. Harama. +1", augments={'Path: A',}},
     hands="Malignance Gloves",
     legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
+    -- feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
     feet="Malignance Boots",
     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
@@ -666,15 +663,16 @@ function get_sets()
   sets.Melee.MidAccuracy.HasteCap = {
     -- Mid accuracy vs 1350 evasion (vs Kei solo)
     -- Assumes Sublime Sushi food & R15 Heishi + R20 Kunimitsu
-    ammo="Date Shuriken",
-    head="Malignance Chapeau", -- Ryuo Somen +1 A is better, but I have path C
-    body="Malignance Tabard",
+    ammo="Seki Shuriken",
+    head="Malignance Chapeau",
+    body={ name="Tatena. Harama. +1", augments={'Path: A',}},
     hands="Malignance Gloves",
-    legs="Malignance Tights",
+    legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
+    -- feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
     feet="Malignance Boots",
-    neck="Ninja Nodowa +2",
-    waist="Kentarch Belt +1",
-    left_ear="Brutal Earring",
+    neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    left_ear="Dedition Earring",
     right_ear="Telos Earring",
     left_ring="Gere Ring",
     right_ring="Epona's Ring",
@@ -712,14 +710,14 @@ function get_sets()
     -- Assuming you have a BRD using HM+VM+Madrigal+Minuet5 since you're likely fighting end-game content.
     -- Assuming that the buffs received are Rolls+7, Songs+7, HM+4, and no JA boosts to your buffs. With buffed madrigals you may swap to the MidAccuracy sets.
     ammo="Date Shuriken",
-    head="Kendatsuba Jinpachi +1",
-    body="Kendatsuba Samue +1",
+    head="Malignance Chapeau",
+    body={ name="Mpaca's Doublet", augments={'Path: A',}},
     hands="Malignance Gloves",
-    legs="Malignance Tights",
-    feet="Malignance Boots",
+    legs={ name="Mpaca's Hose", augments={'Path: A',}},
+    feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
     neck="Ninja Nodowa +2",
     waist="Windbuffet Belt +1",
-    left_ear="Cessance Earring",
+    left_ear="Dedition Earring",
     right_ear="Telos Earring",
     left_ring="Gere Ring",
     right_ring="Epona's Ring",
@@ -730,20 +728,19 @@ function get_sets()
     -- Hybrid Melee set
     -- Assumes Sublime Sushi food & R15 Heishi + R20 Kunimitsu
     -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
-    ammo="Date Shuriken",
-    head="Malignance Chapeau",
-    body="Malignance Tabard",
-    hands="Malignance Gloves",
-    legs="Malignance Tights",
-    feet="Malignance Boots",
-    neck="Ninja Nodowa +2",
-    waist="Windbuffet Belt +1",
-    waist="Engraved Belt",
-    left_ear="Cessance Earring",
-    right_ear="Telos Earring",
-    left_ring="Gere Ring",
-    right_ring="Epona's Ring",
-    back = gear.AmbuCape.STP,
+        ammo="Seki Shuriken",
+        head="Malignance Chapeau",
+        body="Mpaca's Doublet",
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck="Ninja Nodowa +2",
+        waist="Windbuffet Belt +1",
+        ear1="Dedition Earring",
+        ear2="Telos Earring",
+        ring1="Defending Ring",
+        ring2="Lehko's ring",
+        back = gear.AmbuCape.STP,
   }
 
 --   sets.Melee.Hybrid = {
@@ -752,17 +749,21 @@ function get_sets()
 --     -- Engraved Belt is part of this set to counter Kei's slow spikes during wind mode
 --     ammo="Seki Shuriken",
 --     head="Malignance Chapeau",
---     body="Ken. Samue +1",
+--     body={ name="Mpaca's Doublet", augments={'Path: A',}},
 --     hands="Malignance Gloves",
---     legs="Ken. Hakama +1",
+--     legs="Hattori Hakama +3",
 --     feet="Malignance Boots",
 --     neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
---     waist="Engraved Belt",
---     left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
+--     -- waist="Plat. Mog. Belt",
+--     waist={ name="Kentarch Belt +1", augments={'Path: A',}},
+--     -- left_ear="Breeze Earring",
+--     left_ear="Cessance Earring",
 --     right_ear="Telos Earring",
---     left_ring="Regal Ring",
+--     -- left_ring="Regal Ring",
+--     -- right_ring="Ilabrat Ring",
+--     left_ring="Defending Ring",
 --     right_ring="Ilabrat Ring",
---     back = gear.AmbuCape.STP,
+--     back={ name="Andartia's Mantle", augments={'AGI+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
 --   }
 
   sets.Melee.SubtleBlow = {
@@ -1153,10 +1154,6 @@ function get_sets()
     left_ring="Metamorph Ring +1",
     right_ring="Shiva Ring +1",
     back = gear.AmbuCape.Nuke,
-    head="Volte Cap",
-    feet="Volte Boots",
-    hands="Volte Bracers",
-    ammo="Perfect Lucky Egg",
   }
   sets.WeaponSkill.MidAtk["Aeolian Edge"] = sets.WeaponSkill.LowAtk["Aeolian Edge"]
   sets.WeaponSkill.HighAtk["Aeolian Edge"] = sets.WeaponSkill.LowAtk["Aeolian Edge"]
@@ -1291,6 +1288,10 @@ function get_sets()
     left_ring="Shiva Ring +1",
     -- left_ring="Weather. Ring +1",
     back = gear.AmbuCape.Nuke,
+    -- waist="Chaac Belt", -- Abyssea 1shotting fodder with TH4
+    -- head="Volte Cap",
+    -- ammo="Perfect Lucky Egg",
+    -- hands="Volte Bracers",
   }
   sets.midcast.MagicBurst = {
     main="Gokotai",
@@ -1385,6 +1386,7 @@ function maps()
                       "Blade: Ku", "Blade: Kamu", "Blade: Yu", "Blade: Hi",
                       "Blade: Shun", "Blade: Metsu"}
   Waltz          = S {"Curing Waltz", "Curing Waltz II", "Curing Waltz III", "Divine Waltz"}
+  proc_ws = S {"Shadow of Death", "Raiden Thrust", "Freezebite", "Tachi: Jinpu", "Tachi: Koki", "Earth Crusher", "Sunburst", "Red Lotus Blade", "Seraph Blade", "Cyclone", "Energy Drain", "Seraph Strike"}
 
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1420,6 +1422,7 @@ function precast(spell)
       cancel_spell()
     end
       equip(active_ws[spell.name])
+    --   equip({back="Sacro Mantle",neck="Warder's Charm +1",})
   elseif Utsu:contains(spell.name) then
     equip(set_combine(sets.precast.FastCast, sets.precast.Utsusemi))
 
@@ -1448,7 +1451,13 @@ function precast(spell)
     equip(sets.precast.FastCast)
   end
 
+  if proc_ws:contains(spell.name) then
+    equip(sets.midcast.MagicAccuracy)
+  end
 
+  if UtsuEnmityFlag==true and spell.name == "Aeolian Edge" then
+    equip({head="Volte Cap",feet="Volte Boots",hands="Volte Bracers",ammo="Perfect Lucky Egg",})
+  end
 end
 
 
@@ -1530,6 +1539,11 @@ function midcast(spell)
       equip(set_combine(sets.midcast.MagicAccuracy,sets.precast.Provoke))
     end
   end
+
+    -- Abyssea TH tagging NMs
+--   if spell.name == "Hojo: Ni" then
+--     equip(sets.Treasure)
+--   end
 
 end
 
