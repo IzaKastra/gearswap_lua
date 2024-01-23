@@ -356,6 +356,7 @@ function get_sets()
     sub="Ammurapi Shield",
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     body="Agwu's Robe",
+    body = gear.Empy.body,
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Agwu's Slops",
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
@@ -367,7 +368,7 @@ function get_sets()
     main={ name="Bunzi's Rod", augments={'Path: A',}},
     sub="Ammurapi Shield",
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-    head = gear.Relic.head,
+    head = gear.Empy.head,
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Agwu's Slops",
@@ -392,7 +393,7 @@ function get_sets()
     left_ring="Mujin Band",
   }
   sets.midcast.DarkAffinity = {
-    head="Pixie Hairpin",
+    head="Pixie Hairpin +1",
     right_ring="Archon Ring",
   }
   sets.midcast.LightAffinity = {
@@ -537,30 +538,30 @@ end
 function precast(spell)
 
 
-    local allRecasts = windower.ffxi.get_ability_recasts()
-    local stratsRecast = allRecasts[231]
+    -- local allRecasts = windower.ffxi.get_ability_recasts()
+    -- local stratsRecast = allRecasts[231]
 
-    local maxStrategems = math.floor((player.main_job_level + 10) / 20)
+    -- local maxStrategems = math.floor((player.main_job_level + 10) / 20)
 
-    local fullRechargeTime = maxStrategems*33
+    -- local fullRechargeTime = maxStrategems*33
 
-    local currentCharges = math.floor(maxStrategems - maxStrategems * stratsRecast / fullRechargeTime)
+    -- local currentCharges = math.floor(maxStrategems - maxStrategems * stratsRecast / fullRechargeTime)
     
-    -- print(currentCharges,maxStrategems, math.floor(stratsRecast), fullRechargeTime)
+    -- -- print(currentCharges,maxStrategems, math.floor(stratsRecast), fullRechargeTime)
 
-    if spell.name == "Immanence" then
+    -- if spell.name == "Immanence" then
 
-        if currentCharges > 0 and not buffactive["Immanence"] then -- The number of charges before using Immanence
-            while stratsRecast > 33 do
-                stratsRecast = stratsRecast - 33
-            end
-            currentCharges = currentCharges - 1
-            -- print("Strategems: "..scount..". Recast: "..srecast.." seconds.")
-            -- send_command('@input /echo Strategems:'..currentCharges.."   Next:"..math.floor(stratsRecast).." seconds.")
-            send_command('@input /p [Strategems remaining:'..currentCharges.."]   [Next:"..math.floor(stratsRecast).." seconds]")
-            -- send_command('@input /p Strategems:'..scount.."   Next:"..srecast.." seconds.")
-        end
-    end
+    --     if currentCharges > 0 and not buffactive["Immanence"] then -- The number of charges before using Immanence
+    --         while stratsRecast > 33 do
+    --             stratsRecast = stratsRecast - 33
+    --         end
+    --         currentCharges = currentCharges - 1
+    --         -- print("Strategems: "..scount..". Recast: "..srecast.." seconds.")
+    --         -- send_command('@input /echo Strategems:'..currentCharges.."   Next:"..math.floor(stratsRecast).." seconds.")
+    --         -- send_command('@input /p [Strategems remaining:'..currentCharges.."]   [Next:"..math.floor(stratsRecast).." seconds]")
+    --         -- send_command('@input /p Strategems:'..scount.."   Next:"..srecast.." seconds.")
+    --     end
+    -- end
     
 
 
@@ -728,10 +729,12 @@ function aftercast(spell)
     if buffactive["Sublimation: Activated"] then
       equip(sets.status.Sublimation)
     end
-  if player.status == "Engaged" then
-    equip(sets.status.Melee)
+--   if player.status == "Engaged" then
+--     equip(sets.status.Melee)
+--   end
+  else
+    equip(sets.status.Idle.DT)
   end
-end
 end
 
 function status_change(new,old)
@@ -745,8 +748,10 @@ function status_change(new,old)
   end
   if buffactive["Sublimation: Activated"] then
     equip(sets.status.Sublimation)
-  if player.status == "Engaged" then
-    equip(sets.status.Melee)
+--   if player.status == "Engaged" then
+--     equip(sets.status.Melee)
+--   end
+  else
+    equip(sets.status.Idle.DT)
   end
-end
 end
