@@ -17,7 +17,7 @@ function get_sets()
   send_command('bind f12 gs c Equip DT')
 
   send_command('bind ^f9 gs c Equip Treasure Hunter')
-  send_command('bind ^f11 gs c Free')
+  send_command('bind ^f11 gs c Equip Caladbolg')
   send_command('bind ^f12 gs c Free')
   send_command('bind ^f10 gs c Free')
 
@@ -95,7 +95,12 @@ function get_sets()
       send_command('@input /echo Anguta Equipped.')
       -- send_command('@input /lockstyleset 11')
     end
-
+    if command == 'Equip Caladbolg' then
+        equip({main = "Caladbolg", sub="Utu Grip"})
+        send_command('@input /echo Caladbolg Equipped.')
+        -- send_command('@input /lockstyleset 11')
+      end
+  
     if command == 'Equip Movement' then
       equip(gear.Carmine.legs)
       send_command('@input /echo Carmine Cuisses +1 equipped.')
@@ -129,13 +134,14 @@ function get_sets()
     gear.AmbuCape.STP                   = { name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}
     gear.AmbuCape.DAstr                 = { name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Damage taken-5%',}}
     gear.AmbuCape.WSDstr                = { name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%',}}
+    gear.AmbuCape.WSDvit                = { name="Ankou's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%',}}
     gear.AmbuCape.FC                    = { name="Ankou's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+10','"Fast Cast"+10',}}
-
+  
     gear.AF = {}
     gear.AF.head                       = {}
     gear.AF.body                       = { name="Ignominy Cuirass +3"}
     gear.AF.hands                      = { name="Ig. Gauntlets +2"}
-    gear.AF.legs                       = {}
+    gear.AF.legs                       = { name="Ig. Flanchard +3",}
     gear.AF.feet                       = {}
 
     gear.ReiveCape                     = { name="Niht Mantle", augments={'Attack+5','Dark magic skill +10','"Drain" and "Aspir" potency +25',}}
@@ -179,48 +185,47 @@ function get_sets()
   sets.status.Melee = {}
   sets.status.Melee.Standard = {
     ammo="Coiste Bodhar",
-    head="Sakpata's Helm",
-    body="Sakpata's Plate",
+    head="Flam. Zucchetto +2",
+    body="Hjarrandi Breast.",
     hands="Sakpata's Gauntlets",
-    legs="Sakpata's Cuisses",
-    feet="Sakpata's Leggings",
+    legs="Ig. Flanchard +3",
+    feet="Flam. Gambieras +2",
     neck="Abyssal Beads +1",
-    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear="Schere Earring",
-    right_ear="Telos Earring",
-    left_ring="Flamma Ring",
-    right_ring="Niqmaddu Ring",
+    waist="Ioskeha Belt +1",
+    ear1="Dedition Earring",
+    ear2="Schere Earring",
+    ring1="Lehko's ring",
+    ring2="Niqmaddu Ring",
     back = gear.AmbuCape.STP,
   }
   sets.status.Melee.Liberator_AM3 = {
     ammo="Coiste Bodhar",
     head="Flam. Zucchetto +2",
-    body="Flamma Korazin +2",
     body="Hjarrandi Breast.",
     hands="Sakpata's Gauntlets",
-    legs={ name="Odyssean Cuisses", augments={'Accuracy+28','"Store TP"+5','AGI+8','Attack+7',}},
+    legs="Flamma Dirs +2",
     feet="Flam. Gambieras +2",
     neck="Abyssal Beads +1",
-    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear="Schere Earring",
-    right_ear="Dedition Earring",
-    left_ring="Flamma Ring",
-    right_ring="Niqmaddu Ring",
+    waist="Sailfi Belt +1",
+    ear1="Dedition Earring",
+    ear2="Schere Earring",
+    ring1="Lehko's ring",
+    ring2="Niqmaddu Ring",
     back = gear.AmbuCape.STP,
   }
   sets.status.Melee.Redemption_AM3 = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
+    ammo="Yetshila +1",
     head="Sakpata's Helm",
-    body="Hjarrandi Breast.",
+    body="Sakpata's Plate",
     hands="Sakpata's Gauntlets",
-    legs="Sakpata's Cuisses",
+    legs="Ig. Flanchard +3",
     feet="Sakpata's Leggings",
     neck="Abyssal Beads +1",
-    waist="Ioskeha Belt +1",
-    left_ear="Schere Earring",
-    right_ear="Brutal Earring",
-    left_ring="Flamma Ring",
-    right_ring="Niqmaddu Ring",
+    waist="Sailfi Belt +1",
+    ear1="Brutal Earring",
+    ear2="Schere Earring",
+    ring1="Lehko's ring",
+    ring2="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
   }
   sets.status.Melee.SubtleBlow = {
@@ -241,18 +246,18 @@ function get_sets()
   }
   sets.status.Melee.Hybrid = {
     ammo="Coiste Bodhar",
-    head="Sakpata's Helm",
+    head="Hjarrandi Helm",
     body="Sakpata's Plate",
     hands="Sakpata's Gauntlets",
     legs="Sakpata's Cuisses",
-    feet="Sakpata's Leggings",
+    feet="Flam. Gambieras +2",
     neck="Abyssal Beads +1",
-    waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear="Schere Earring",
-    right_ear="Telos Earring",
-    left_ring="Defending Ring",
-    right_ring="Niqmaddu Ring",
-    back = gear.AmbuCape.STP,
+    waist="Ioskeha Belt +1",
+    ear1="Brutal Earring",
+    ear2="Schere Earring",
+    ring1="Lehko's ring",
+    ring2="Moonlight Ring",
+    back = gear.AmbuCape.DAstr,
   }
 
   sets.Treasure = {
@@ -291,6 +296,7 @@ function get_sets()
     legs={ name="Odyssean Cuisses", augments={'Attack+24','"Fast Cast"+6',}}, -- 6%
     feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}}, -- 9%
     neck="Orunmila's Torque", -- 5%
+    waist="Plat. Mog. Belt",
     left_ear="Malignance Earring", -- 4%
     right_ear="Loquac. Earring", -- 2%
     left_ring="Weather. Ring +1", -- 6%
@@ -325,6 +331,39 @@ function get_sets()
     sets.WeaponSkill.MidAtk = {} -- Assumed not capped attack
     sets.WeaponSkill.HighAtk = {} -- Assumed capped attack (6000+ attack in TP set)
     
+
+    sets.WeaponSkill.MidAtk["Torcleaver"] = {
+        ammo="Knobkierrie",
+        head={ name="Nyame Helm", augments={'Path: B',}},
+        body={ name="Nyame Mail", augments={'Path: B',}},
+        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
+        feet = gear.Empy.feet,
+        neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        right_ear="Thrud Earring",
+        left_ring="Regal Ring",
+        right_ring="Niqmaddu Ring",
+        back = gear.AmbuCape.WSDvit,
+      }
+      sets.WeaponSkill.HighAtk["Torcleaver"] = {
+        ammo="Knobkierrie",
+        head = gear.Empy.head,
+        body={ name="Nyame Mail", augments={'Path: B',}},
+        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+        legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
+        feet = gear.Empy.feet,
+        neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+        waist="Fotia Belt",
+        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Weapon skill damage +2%',}},
+        left_ring="Sroda Ring",
+        right_ring="Niqmaddu Ring",
+        back = gear.AmbuCape.WSDvit,
+    }
+    
+
     sets.WeaponSkill.MidAtk["Insurgency"] = {
     ammo="Knobkierrie",
     head = gear.Empy.head,
@@ -336,7 +375,7 @@ function get_sets()
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear = gear.Moonshade,
-    right_ear="Thrud Earring",
+    right_ear="Heath. Earring +1",
     left_ring="Regal Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
@@ -351,7 +390,7 @@ function get_sets()
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear = gear.Moonshade,
-    right_ear="Thrud Earring",
+    right_ear="Heath. Earring +1",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
@@ -384,7 +423,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
     left_ear = gear.Moonshade,
-    right_ear="Thrud Earring",
+    right_ear="Heath. Earring +1",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -399,8 +438,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Fotia Belt",
-    left_ear="Schere Earring",
-    right_ear="Thrud Earring",
+    left_ear="Thrud Earring",
+    right_ear="Schere Earring",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -416,8 +455,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Fotia Belt",
-    left_ear="Schere Earring",
-    right_ear="Thrud Earring",
+    left_ear="Thrud Earring",
+    right_ear="Heath. Earring +1",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -432,8 +471,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    left_ear="Schere Earring",
-    right_ear="Thrud Earring",
+    left_ear="Thrud Earring",
+    right_ear="Heath. Earring +1",
     left_ring="Regal Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -447,8 +486,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Fotia Belt",
-    left_ear="Lugra Earring +1",
-    right_ear="Thrud Earring",
+    left_ear="Thrud Earring",
+    right_ear="Heath. Earring +1",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -463,8 +502,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
     neck="Fotia Gorget",
     waist="Fotia Belt",
-    left_ear="Schere Earring",
-    right_ear = gear.Moonshade,
+    left_ear = gear.Moonshade,
+    right_ear="Schere Earring",
     left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
@@ -481,7 +520,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Fotia Belt",
     left_ear = gear.Moonshade,
-    right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
+    right_ear="Heath. Earring +1",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.DAstr,
@@ -569,8 +608,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet = gear.Empy.feet,
     neck="Fotia Gorget",
     waist="Fotia Belt",
-    left_ear="Schere Earring",
-    right_ear="Thrud Earring",
+    left_ear="Thrud Earring",
+    right_ear="Schere Earring",
     left_ring="Regal Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -714,10 +753,11 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet="Rat. Sollerets +1",
     neck="Sanctity Necklace",
+    waist="Plat. Mog. Belt",
     left_ear="Etiolation Earring",
     right_ear="Odnowa Earring +1",
-    left_ring="Regal Ring",
-    right_ring="Eihwaz Ring",
+    left_ring="Moonlight Ring",
+    right_ring="Moonlight Ring",
     back='Reiki Cloak',
   }
   sets.midcast.Endark = {
@@ -746,20 +786,20 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.Impact = {
-    ammo="Pemphredo Tathlum",
-    head=Empty, 
-    body="Crepuscular Cloak", 
-    hands = gear.Empy.hands,
-    legs = gear.Empy.legs,
-    feet = gear.Empy.feet,
-    neck="Erra Pendant",
-    waist="Eschan Stone",
-    left_ear="Malignance Earring",
-    right_ear="Crep. Earring",
-    left_ring="Weather. Ring +1",
-    right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-    back="Chuparrosa Mantle",
-  }
+    ranged=Empty,
+    head=Empty,
+    body="Crepuscular Cloak",
+    hands="Sakpata's Gauntlets",
+    legs={ name="Odyssean Cuisses", augments={'Accuracy+28','"Store TP"+5','AGI+8','Attack+7',}},
+    feet="Heath. Sollerets +3",
+    neck="Vim Torque +1",
+    waist="Oneiros Rope",
+    left_ear="Crep. Earring",
+    right_ear="Dedition Earring",
+    left_ring="Chirich Ring +1",
+    right_ring="Lehko's ring",
+    back="Ankou's Mantle",
+      }
 
 end -- End of sets function
 
@@ -893,13 +933,13 @@ function aftercast(spell)
       if buffactive['Aftermath: Lv.3'] then
         if player.equipment.main=="Liberator" then
           equip(sets.status.Melee.Liberator_AM3)
-        elseif player.equipment.main=="Redemption" then
+        elseif player.equipment.main=="Redemption" or player.equipment.main=="Caladbolg" then
           equip(sets.status.Melee.Redemption_AM3)
         else
           equip(sets.status.Melee.Standard)
         end
       elseif buffactive['Aftermath: Lv.2'] or buffactive["Aftermath: Lv1"] then
-        if player.equipment.main=="Redemption" then
+        if player.equipment.main=="Redemption" or player.equipment.main=="Caladbolg" then
           equip(sets.status.Melee.Redemption_AM3)
         else
           equip(sets.status.Melee.Standard)
@@ -924,14 +964,14 @@ function status_change(new,old)
       if buffactive['Aftermath: Lv.3'] then
         if player.equipment.main=="Liberator" then
           equip(sets.status.Melee.Liberator_AM3)
-        elseif player.equipment.main=="Redemption" then
+        elseif player.equipment.main=="Redemption" or player.equipment.main=="Caladbolg" then
           equip(sets.status.Melee.Redemption_AM3)
         else
           equip(sets.status.Melee.Standard)
         end
 
       elseif buffactive['Aftermath: Lv.2'] or buffactive['Aftermath: Lv.1'] then
-        if player.equipment.main=="Redemption" then
+        if player.equipment.main=="Redemption" or player.equipment.main=="Caladbolg" then
           equip(sets.status.Melee.Redemption_AM3)
         else
           equip(sets.status.Melee.Standard)
