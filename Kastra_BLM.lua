@@ -172,7 +172,7 @@ function get_sets()
 
 
   gear.Relic = {}
-  gear.Relic.head                    = { name="Arch. Petasos +3", augments={'Increases Ancient Magic II damage',}}
+  gear.Relic.head                    = { name="Arch. Petasos +3", augments={'Increases Ancient Magic damage and magic burst damage',}}
   gear.Relic.body                    = { name="Arch. Coat +3", augments={'Enhances "Manafont" effect',}}
   gear.Relic.hands                   = { name="Arch. Gloves +3", augments={'Increases Elemental Magic accuracy',}}
   gear.Relic.legs                    = { name="Arch. Tonban +3", augments={'Increases Elemental Magic debuff time and potency',}}
@@ -269,7 +269,7 @@ function get_sets()
     ammo="Impatiens",
     head="Empty",
     body="Crepuscular Cloak",
-    hands = gear.Merlinic.hands.FC,
+    hands="Volte Gloves",
     legs="Volte Brais",
     feet = gear.Merlinic.feet.FC,
     neck="Orunmila's Torque",
@@ -297,7 +297,7 @@ function get_sets()
     right_ring="Etana Ring",
     back = gear.AmbuCape.FC,
   }
-	sets.precast.Catacylsm = {
+	sets.precast.Cataclysm = {
 	ammo="Pemphredo Tathlum",
     head="Pixie Hairpin +1",
     body={ name="Nyame Mail", augments={'Path: B',}},
@@ -337,7 +337,7 @@ function get_sets()
   }
   sets.midcast.Nuke = {
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-    head={ name="Arch. Petasos +3", augments={'Increases Ancient Magic damage and magic burst damage',}},
+    head = gear.Relic.head,
     body={ name="Agwu's Robe", augments={'Path: A',}},
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs={ name="Agwu's Slops", augments={'Path: A',}},
@@ -419,7 +419,7 @@ function get_sets()
     head = gear.Relic.head,
     body = gear.AF.body,
     hands={ name="Agwu's Gages", augments={'Path: A',}},
-    legs = gear.Relic.legs,
+    legs={ name="Agwu's Slops", augments={'Path: A',}},
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck={ name="Src. Stole +1", augments={'Path: A',}},
     waist="Sacro Cord",
@@ -458,8 +458,8 @@ function get_sets()
   sets.midcast.Impact = {
     ammo="Pemphredo Tathlum",
     body="Crepuscular Cloak",
-    hands = gear.Relic.hands,
-    legs = gear.Relic.legs,
+    legs={ name="Agwu's Gages", augments={'Path: A',}},
+    legs={ name="Agwu's Slops", augments={'Path: A',}},
     feet = gear.Relic.feet,
     neck={ name="Src. Stole +1", augments={'Path: A',}},
     waist="Sacro Cord",
