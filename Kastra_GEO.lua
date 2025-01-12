@@ -288,6 +288,21 @@ function get_sets()
     left_ring="Metamorph Ring +1",
     right_ring="Rufescent Ring",
   }
+  sets.precast['Judgment'] = {
+    ammo="Amar Cluster",
+    head={ name="Nyame Helm", augments={'Path: B',}},
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Clotharius Torque",
+    waist="Grunfeld Rope",
+    left_ear="Mache Earring +1",
+    right_ear="Telos Earring",
+    left_ring="Chirich Ring +1",
+    right_ring="Chirich Ring +1",
+    back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+20','Pet: "Regen"+10','Pet: Damage taken -5%',}},
+  }
   sets.precast["Aeolian Edge"] = {
     ammo="Pemphredo Tathlum",
     head = gear.Relic.head,
@@ -359,6 +374,22 @@ function get_sets()
   sets.midcast.Indi_Duration = {
     legs = gear.Relic.legs,
     feet = gear.Empy.feet,
+  }
+
+  sets.midcast.AbsorbTP = {
+    range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
+    head={ name="Bagua Galero +3", augments={'Enhances "Primeval Zeal" effect',}},
+    body={ name="Bagua Tunic +3", augments={'Enhances "Bolster" effect',}},
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
+    legs={ name="Agwu's Slops", augments={'Path: A',}},
+    feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+    neck="Erra Pendant",
+    waist="Cornelia's Belt",
+    left_ear="Malignance Earring",
+    right_ear={ name="Azimuth Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+13','Damage taken-4%',}},
+    left_ring="Weather. Ring +1",
+    right_ring="Kishar Ring",
+    back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Pet: Damage taken -5%',}},
   }
 
   sets.midcast.Cures = {
@@ -623,6 +654,11 @@ function midcast(spell)
   if buffactive["Entrust"] then
     equip({main={ name="Gada", augments={'Indi. eff. dur. +10','Mag. Acc.+13','DMG:+3',}},})
   end
+
+  if spell.name == "Absorb-TP" then
+    equip(sets.midcast.AbsorbTP)
+  end
+
 end
 
 
