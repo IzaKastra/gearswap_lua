@@ -186,8 +186,10 @@ function get_sets()
   sets.status = {}
   sets.status.Idle = {}
   sets.status.Idle.DT = {
-    main="Daybreak",
-    sub="Ammurapi Shield",
+    main="Malignance Pole",
+    sub="Khonsu",
+    -- main="Daybreak",
+    -- sub="Genmei Shield",
     ammo="Staunch Tathlum +1",
     head = "Volte Beret",
     body = gear.Empy.body,
@@ -195,31 +197,32 @@ function get_sets()
     legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
     feet="Nyame Sollerets",
-    neck="Loricate Torque +1",
+    neck="Warder's Charm +1",
     waist="Carrier's Sash",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
-    left_ring="Defending Ring",
+    left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
     right_ring="Shadow Ring",
-    back = gear.AmbuCape.Nuke,
+    back="Shadow Mantle",
   }
   sets.status.Idle.Refresh = {
-    main="Daybreak",
-    sub="Ammurapi Shield",
+    main="Malignance Pole",
+    sub="Khonsu",
+    -- main="Daybreak",
+    -- sub="Genmei Shield",
     ammo="Homiliary",
     head="Volte Beret",
     body = gear.Empy.body,
-    hands="Nyame Gauntlets",
+    hands="Volte Gloves",
     legs="Volte Brais",
-    feet="Mallquis Clogs +2",
-    feet="Nyame Sollerets",
-    neck="Loricate Torque +1",
+    feet="Volte Gaiters",
+    neck="Warder's Charm +1",
     waist="Fucho-no-Obi",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
-    left_ring="Defending Ring",
-    right_ring="Shadow Ring",
-    back = gear.AmbuCape.Nuke,
+    left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+    right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+    back="Shadow Mantle",
   }
   sets.status.Melee = {
     ammo="Staunch Tathlum +1",
@@ -406,18 +409,18 @@ function get_sets()
     main={ name="Bunzi's Rod", augments={'Path: A',}},
     sub="Ammurapi Shield",
     ammo="Pemphredo Tathlum",
-    head={ name="Peda. M.Board +3", augments={'Enh. "Altruism" and "Focalization"',}},
+    head = gear.Empy.head,
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
-    legs={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}},
+    legs={ name="Chironic Hose", augments={'Mag. Acc.+22 "Mag.Atk.Bns."+22','"Fast Cast"+3','INT+8','Mag. Acc.+4',}},
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-    neck={ name="Argute Stole +1", augments={'Path: A',}},
+    neck="Null loop",
     waist="Sacro Cord",
     left_ear="Crep. Earring",
     right_ear="Malignance Earring",
     left_ring="Weather. Ring +1",
     right_ring="Kishar Ring",
-    back = gear.AmbuCape.Nuke,
+    back="Null Shawl",
   }
 
   sets.midcast.EnhancingDuration = {
@@ -497,7 +500,6 @@ function get_sets()
     ammo="Perfect Lucky Egg", -- +1
     head="Volte Cap",  -- +1
     hands="Volte Bracers",  -- +1
-    legs = gear.Merlinic.legs.TH,  -- +2
     feet="Volte Boots",  -- +1
     waist="Chaac Belt",  -- +1
   }
@@ -703,10 +705,8 @@ function midcast(spell)
     end
   end
 
-  if TreasureHunterFlag == 1 then
-    if Treasure:contains(spell.name) then
+  if Treasure:contains(spell.name) then
       equip(sets.midcast.Treasure)
-    end
   end
 
 end
@@ -716,7 +716,7 @@ function aftercast(spell)
 
   sublimation_up = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
   if player.status == 'Idle' then
-    if player.mpp < 70 then
+    if player.mpp < 30 then
       equip(sets.status.Idle.Refresh)
     else
       equip(sets.status.Idle.DT)
@@ -740,7 +740,7 @@ end
 function status_change(new,old)
   deactivate_sublimation = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
   if new == "Idle" then
-    if player.mpp < 70  then
+    if player.mpp < 30  then
       equip(sets.status.Idle.Refresh)
     else
       equip(sets.status.Idle.DT)
