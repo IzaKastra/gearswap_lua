@@ -413,6 +413,7 @@ function get_sets()
     hands="Volte Bracers",
     feet="Volte Boots",
     waist="Chaac Belt",
+    ammo="Perfect Lucky Egg"
   }
   sets.midcast.Stoneskin = {
     neck="Nodens Gorget",
