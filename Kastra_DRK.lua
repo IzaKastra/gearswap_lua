@@ -7,7 +7,7 @@ function get_sets()
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   TPFlag             = 0
-  attack2            = 9999 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear)
+  attack2            = 6500 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear)
   -- ! == alt
   -- ^ == ctrl
   --
@@ -190,7 +190,8 @@ function get_sets()
     hands="Sakpata's Gauntlets",
     legs="Ig. Flanchard +3",
     feet="Flam. Gambieras +2",
-    neck="Abyssal Beads +1",
+    -- neck="Abyssal Beads +1",
+    neck = "Vim Torque +1",
     waist="Ioskeha Belt +1",
     ear1="Dedition Earring",
     ear2="Schere Earring",
@@ -251,7 +252,7 @@ function get_sets()
     hands="Sakpata's Gauntlets",
     legs="Sakpata's Cuisses",
     feet="Flam. Gambieras +2",
-    neck="Abyssal Beads +1",
+    neck = "Vim Torque +1",
     waist="Ioskeha Belt +1",
     ear1="Brutal Earring",
     ear2="Schere Earring",
@@ -708,26 +709,24 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
 
   sets.midcast.Drains = {
     -- ranged="Ullr",
-    -- ammo="Pemphredo Tathlum",
+    ammo="Pemphredo Tathlum",
     head="Pixie Hairpin +1",
     body={ name="Nyame Mail", augments={'Path: B',}},
     hands = gear.Relic.hands,
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet="Rat. Sollerets +1",
-    neck="Erra Pendant",
-    waist="Eschan Stone",
+    neck="Null Loop",
+    waist="Null Belt",
     left_ear="Hirudinea Earring",
-    right_ear="Static Earring",
+    right_ear="Crematio Earring",
     left_ring="Evanescence Ring",
     right_ring="Archon Ring",
     back = gear.ReiveCape,
   }
   sets.midcast.Absorbs = {
-    hands="Pavor Gauntlets", -- +10% Potency
     feet="Rat. Sollerets +1", -- +25% Duration
-    neck="Erra Pendant", -- +5% Potency
+    left_ring="Stikini Ring +1",
     right_ring="Kishar Ring", -- +10% Duration
-    back="Chuparrosa Mantle", -- +20s and +10% Potency
   }
   sets.midcast.MagicAccuracy = {
     ammo="Pemphredo Tathlum",
@@ -736,28 +735,27 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     hands = gear.Empy.hands,
     legs = gear.Empy.legs,
     feet = gear.Empy.feet,
-    neck="Erra Pendant",
-    waist="Eschan Stone",
+    neck="Null Loop",
+    waist="Null Belt",
     left_ear="Malignance Earring",
     right_ear="Crep. Earring",
     left_ring="Weather. Ring +1",
     right_ring="Stikini Ring +1",
-    back = gear.ReiveCape,
+    back="Null Shawl",
   }
   sets.midcast['Dread Spikes'] = {
     -- stack Dread spikes+ and HP gear
-    -- Ratri +1 and Moonlight cape/ring are best, but super expensive
-    head = gear.Relic.head,
+    head="Hjarrandi Helm",
     body = gear.Empy.body,
     hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet="Rat. Sollerets +1",
-    neck="Sanctity Necklace",
+    neck={ name="Unmoving Collar +1", augments={'Path: A',}},
     waist="Plat. Mog. Belt",
-    left_ear="Etiolation Earring",
+    left_ear="Tuisto Earring",
     right_ear="Odnowa Earring +1",
-    left_ring="Moonlight Ring",
-    right_ring="Moonlight Ring",
+    left_ring={name="Moonlight Ring",bag="wardrobe",priority=1},
+    right_ring={name="Moonlight Ring",bag="wardrobe2",priority=2},
     back='Reiki Cloak',
   }
   sets.midcast.Endark = {
@@ -766,7 +764,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     legs = gear.Empy.legs,
     feet="Rat. Sollerets +1",
     neck="Erra Pendant",
-    left_ring="Evanescence Ring",
+    left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+    right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
     back = gear.ReiveCape,
 
   }
@@ -776,7 +775,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     body="Sacro Breastplate",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
+    feet = gear.Empy.feet,
     neck="Sibyl Scarf",
     waist="Eschan Stone",
     left_ear="Friomisi Earring",
@@ -798,8 +797,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     right_ear="Dedition Earring",
     left_ring="Chirich Ring +1",
     right_ring="Lehko's ring",
-    back="Ankou's Mantle",
-      }
+    back = gear.AmbuCape.STP,
+    }
 
 end -- End of sets function
 
@@ -869,6 +868,8 @@ function midcast(spell)
     if spell.name:contains("Absorb") then
       if spell.name == "Absorb-TP" or spell.name=="Absorb-Attri" then
         equip(sets.midcast.MagicAccuracy)
+      else
+        equip(set_combine(sets.midcast.MagicAccuracy, sets.midcast.Absorbs))
       end
     elseif string.find(spell.name, "Drain") then
         equip(sets.midcast.Drains)
@@ -879,8 +880,8 @@ function midcast(spell)
         elseif world.weather_element == spell.element or world.day_element == spell.element then
           equip(gear.Obi)
         end  
-    else
-      equip(set_combine(sets.midcast.MagicAccuracy, sets.midcast.Absorbs))
+    elseif spell.name == "Stun" then
+        equip(sets.midcast.MagicAccuracy)
     end
 
     if buffactive['Dark Seal'] then
