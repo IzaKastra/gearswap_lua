@@ -412,8 +412,8 @@ function get_sets()
   }
   sets.WeaponSet.Kikoku = {
     main="Kikoku",
-    -- sub={ name="Kunimitsu", augments={'Path: A',}},
-    sub="Crepuscular Knife"
+    sub={ name="Kunimitsu", augments={'Path: A',}},
+    -- sub="Crepuscular Knife"
   }
   sets.WeaponSet.Kannagi = {
     main="Kannagi",
@@ -691,11 +691,13 @@ function get_sets()
     -- head={ name="Blistering Sallet +1", augments={'Path: A',}}, -- 10
     body="Ken. Samue +1", -- 9
     hands = gear.Adhemar.hands.Attack,
+    neck="Ninja Nodowa +2",
     -- hands="Ken. Tekko +1", -- 5
     legs="Ken. Hakama +1", -- 7
     legs={ name="Mpaca's Hose", augments={'Path: A',}},
-    feet="Ken. Sune-Ate +1", -- 5
-    neck={ name="Ninja Nodowa +2", augments={'Path: A',}}, -- 0
+    -- feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
+    feet = gear.Herc.feet.QA,
+
     waist={ name="Kentarch Belt +1", augments={'Path: A',}}, -- 0 (Gerdr Belt +3% (+4%))
     left_ear="Odr Earring", -- 5
     right_ear={ name="Lugra Earring +1", augments={'Path: A',}},
@@ -1321,7 +1323,7 @@ function get_sets()
     right_ear="Digni. Earring",
     left_ring="Weather. Ring +1",
     right_ring="Metamorph Ring +1",
-    back = gear.AmbuCape.Nuke,
+    back="Null Shawl",
   }
   sets.midcast.Utsusemi = {
     feet = gear.Empy.feet,
@@ -1451,9 +1453,9 @@ function precast(spell)
     equip(sets.precast.FastCast)
   end
 
-  if proc_ws:contains(spell.name) then
-    equip(sets.midcast.MagicAccuracy)
-  end
+--   if proc_ws:contains(spell.name) then
+--     equip(sets.midcast.MagicAccuracy)
+--   end
 
   if UtsuEnmityFlag==true and spell.name == "Aeolian Edge" then
     equip({head="Volte Cap",feet="Volte Boots",hands="Volte Bracers",ammo="Perfect Lucky Egg",})
