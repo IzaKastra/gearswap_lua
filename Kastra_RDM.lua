@@ -118,7 +118,7 @@ function self_command(command)
             disable("main","sub","ranged")
         end
         send_command('@input /echo Mandau equipped.')
-        send_command('@input /lockstyleset 37')
+        -- send_command('@input /lockstyleset 37')
     end
 
     if command == 'Equip Naegling' then
@@ -133,7 +133,7 @@ function self_command(command)
             disable("main","sub","ranged")
         end
         send_command('@input /echo Naegling equipped.')
-        send_command('@input /lockstyleset 39')
+        -- send_command('@input /lockstyleset 39')
     end
 
     if command == 'Equip Crocea' then
@@ -162,7 +162,7 @@ function self_command(command)
             disable("main","sub","ranged")
         end
         send_command('@input /echo Excalibur equipped.')
-        send_command('@input /lockstyleset 40')
+        -- send_command('@input /lockstyleset 40')
     end
 
 
@@ -302,22 +302,22 @@ end
         back = gear.AmbuCape.DW,
     }
 
-    sets.status.Melee = {
-        ranged=Empty,
-        ammo="Coiste Bodhar",
-        head="Bunzi's Hat",
-        body="Malignance Tabard",
-        hands="Malignance Gloves",
-        legs="Malignance Tights",
-        feet="Malignance Boots",
-        neck="Combatant's Torque",
-        waist="Windbuffet Belt +1",
-        ear1="Dedition Earring",
-        ear2="Sherida Earring",
-        ring1="Chirich Ring +1",
-        ring2="Lehko's ring",
-        back = gear.AmbuCape.DW,
-    }
+    -- sets.status.Melee = {
+    --     ranged="Empty",
+    --     ammo="Coiste Bodhar",
+    --     head="Bunzi's Hat",
+    --     body="Malignance Tabard",
+    --     hands="Malignance Gloves",
+    --     legs="Malignance Tights",
+    --     feet="Malignance Boots",
+    --     neck="Combatant's Torque",
+    --     waist="Windbuffet Belt +1",
+    --     ear1="Dedition Earring",
+    --     ear2="Sherida Earring",
+    --     ring1="Chirich Ring +1",
+    --     ring2="Lehko's ring",
+    --     back = gear.AmbuCape.DW,
+    -- }
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -618,18 +618,19 @@ sets.WeaponSkill["Sanguine Blade"] = {
         main="Bunzi's Rod",
         sub="Ammurapi Shield",
         range="Ullr",
+        ammo="Empty",
         head = gear.Relic.head,
         body = gear.Empy.body,
         hands = gear.Empy.hands,
         legs = gear.Empy.legs,
         feet = gear.Relic.feet,
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
-        waist={ name="Obstin. Sash", augments={'Path: A',}},
+        waist="Null Belt",
         left_ear="Malignance Earring",
         right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
         left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
         right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
-        back = gear.AmbuCape.INT,
+        back="Null Shawl",
     }
     sets.midcast.Impact = {
         main="Bunzi's Rod",
@@ -848,7 +849,7 @@ function midcast(spell)
             equip(sets.midcast.MNDfeeble)
         elseif INTfeeble:contains(spell.english) then
             equip(sets.midcast.INTfeeble)
-            if spell.name == "Frazzle II" then
+            if spell.name == "Frazzle II" or spell.name == "Frazzle" then
                 equip(sets.midcast.Frazzle2)
             end
         end
@@ -883,7 +884,7 @@ function midcast(spell)
         end
     end
 
-    if spell.name == "Dia" or spell.name == "Sleepga II" then
+    if spell.name == "Dia III" or spell.name == "Sleepga II" then
         equip(sets.midcast.Treasure)
     end
 
