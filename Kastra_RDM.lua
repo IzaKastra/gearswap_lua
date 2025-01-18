@@ -262,7 +262,7 @@ end
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
         neck="Warder's Charm +1",
-        waist="Carrier's Sash",
+        waist="Null Belt",
         left_ear="Etiolation Earring",
         right_ear="Sanare Earring",
         left_ring="Defending Ring",
