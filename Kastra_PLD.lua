@@ -113,7 +113,6 @@ end
 	sets.status.Idle = {}
 	sets.status.Idle.DT = {
         main="Burtgang",
-        sub="Aegis",
         ammo="Staunch Tathlum +1",
         head = gear.Empy.head,
         body={ name="Sakpata's Plate", augments={'Path: A',}},
@@ -164,13 +163,11 @@ end
     -- Divine Magic (Enlight)
     -- Cursna
 
-    sets.SIRD = { -- 122% SIRD. Need 102%
+    sets.SIRD = { -- 101% SIRD. Need 102%
         --merits: 10%
-        main="Burtgang",
-        sub="Aegis",
         ammo="Staunch Tathlum +1", -- 11%
         head={ name="Souv. Schaller +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, -- 20%
-        body="Chev. Cuirass +3", -- 20%
+        -- body="Chev. Cuirass +3", -- 20%
         hands="Chev. Gauntlets +3",
         legs={ name="Founder's Hose", augments={'MND+8','Mag. Acc.+14','Attack+13','Breath dmg. taken -3%',}}, -- 30%
         feet="Chev. Sabatons +3",
@@ -189,7 +186,6 @@ end
         -- caps at +200
         -- Can add +30 with upgrades, but lose HP
         main="Burtgang", -- +18
-        sub="Aegis",
         ammo="Sapience Orb", -- +2
         head={ name="Loess Barbuta +1", augments={'Path: A',}}, -- + ~22
         body = gear.Empy.body, -- +16, +4 more from escha body
@@ -242,7 +238,7 @@ end
         legs={ name="Odyssean Cuisses", augments={'Attack+24','"Fast Cast"+6',}}, -- 6% FC
         feet = gear.Empy.feet, -- 13% FC
         neck="Orunmila's Torque", -- 5% FC
-        waist="Plat. Mog. Belt",
+        waist={name="Plat. Mog. Belt", priority=1},
         left_ear="Etiolation Earring", -- 1% FC (+50 HP in exchange for 1% FC less than Loquacious)
         right_ring="Weather. Ring +1", -- 6% FC, 4% QC
         back = gear.AmbuCape.FastCast, -- 10% FC
@@ -288,12 +284,13 @@ end
 
 	sets.midcast = {}
     sets.midcast.Phalanx = {
-        -- Phalanx +21
+        -- Phalanx +26
         main="Sakpata's Sword", -- +5
+        head={ name="Odyssean Helm", augments={'"Snapshot"+3','Weapon Skill Acc.+12','Phalanx +3','Mag. Acc.+19 "Mag.Atk.Bns."+19',}}, -- +3
         hands={ name="Souv. Handschuhs", augments={'HP+80','Enmity+7','Potency of "Cure" effect received +10%',}}, -- +4
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}}, -- +5
         feet={ name="Souveran Schuhs", augments={'HP+80','Enmity+7','Potency of "Cure" effect received +10%',}}, -- +4
-        back={ name="Weard Mantle", augments={'VIT+2','Enmity+2','Phalanx +3',}}, -- +3
+        back={ name="Weard Mantle", augments={'VIT+5','Phalanx +5',}}, -- +5
     }
     
 
@@ -354,7 +351,11 @@ function midcast(spell)
         
 
     if SIRDFlag then -- Prioritize Spell Interruption Rate over everything else if the flag is set to True.
-        equip(sets.SIRD)
+        if Healing_Spells:contains(spell.name) then
+            equip(set_combine(sets.Healing, sets.SIRD))
+        else
+            equip(sets.SIRD)
+        end
     end
 
 end
