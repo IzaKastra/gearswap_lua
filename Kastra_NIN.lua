@@ -188,17 +188,17 @@ function get_sets()
 
 
         if command == "Heishi" then
-            equip({main="Heishi Shorinken"})
+            equip({main="Heishi Shorinken", sub="Kunimitsu"})
             send_command("@input /echo Heishi equipped.")
         end
 
         if command == "Kikoku" then
-            equip({main="Kikoku"})
+            equip({main="Kikoku", sub="Kunimitsu"})
             send_command("@input /echo Kikoku equipped.")
         end
 
         if command == "Kannagi" then
-            equip({main="Kannagi"})
+            equip({main="Kannagi", sub="Gleti's Knife"})
             send_command("@input /echo Kannagi equipped.")
         end
 
@@ -208,8 +208,8 @@ function get_sets()
         end
 
         
-        if command == "Equip Nagi" then
-            equip({main="Nagi"})
+        if command == "Nagi" then
+            equip({main="Nagi", sub="Tsuru"})
             send_command("@input /echo Nagi + Tsuru equipped.")
         end
 
