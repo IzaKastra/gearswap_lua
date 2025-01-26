@@ -7,7 +7,7 @@ function get_sets()
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   TPFlag             = 0
-  attack2            = 6500 -- Attack with "high" buffs in TP set. Scythe has very high pdif (4.5 without crit, 5.5 with crit before gear)
+  attack2            = 6000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set is higher than this value
   -- ! == alt
   -- ^ == ctrl
   --
@@ -168,13 +168,13 @@ function get_sets()
   sets.status.Idle = {}
   sets.status.Idle.DT = {
     ammo="Staunch Tathlum +1",
-    head={ name="Nyame Helm", augments={'Path: B',}},
+    head="Null Masque",
     body="Sakpata's Plate",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Nyame Sollerets",
     neck="Warder's Charm +1",
-    waist="Carrier's Sash",
+    waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Sanare Earring",
     left_ring="Defending Ring",
@@ -190,8 +190,8 @@ function get_sets()
     hands="Sakpata's Gauntlets",
     legs="Ig. Flanchard +3",
     feet="Flam. Gambieras +2",
-    -- neck="Abyssal Beads +1",
-    neck = "Vim Torque +1",
+    neck="Abyssal Beads +1",
+    -- neck = "Vim Torque +1",
     waist="Ioskeha Belt +1",
     ear1="Dedition Earring",
     ear2="Schere Earring",
@@ -214,6 +214,27 @@ function get_sets()
     ring2="Niqmaddu Ring",
     back = gear.AmbuCape.STP,
   }
+  sets.status.Melee.Caladbolg_AM3 = {
+
+    main="Caladbolg",
+    sub="Utu Grip",
+    ranged=Empty,
+    ammo="Coiste Bodhar",
+    head="Sakpata's Helm",
+    body="Sakpata's Plate",
+    hands="Sakpata's Gauntlets",
+    legs="Sakpata's Cuisses",
+    feet="Sakpata's Leggings",
+    neck="Abyssal Beads +1",
+    waist="Sailfi Belt +1",
+    ear1="Brutal Earring",
+    ear2="Schere Earring",
+    ring1="Niqmaddu Ring",
+    ring2="Lehko's ring",
+    back = gear.AmbuCape.STP,
+  }
+
+  
   sets.status.Melee.Redemption_AM3 = {
     ammo="Yetshila +1",
     head="Sakpata's Helm",
@@ -230,7 +251,7 @@ function get_sets()
     back = gear.AmbuCape.DAstr,
   }
   sets.status.Melee.SubtleBlow = {
-    ammo={ name="Seeth. Bomblet +1", augments={'Path: A',}},
+    ammo="Coiste Bodhar",
     head={ name="Sakpata's Helm", augments={'Path: A',}},
     body="Dagon Breast.",
     hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
@@ -252,13 +273,13 @@ function get_sets()
     hands="Sakpata's Gauntlets",
     legs="Sakpata's Cuisses",
     feet="Flam. Gambieras +2",
-    neck = "Vim Torque +1",
+    neck={ name="Abyssal Beads +1", augments={'Path: A',}},
     waist="Ioskeha Belt +1",
     ear1="Brutal Earring",
     ear2="Schere Earring",
     ring1="Lehko's ring",
-    ring2="Moonlight Ring",
-    back = gear.AmbuCape.DAstr,
+    ring2="Niqmaddu Ring",
+    back = gear.AmbuCape.STP,
   }
 
   sets.Treasure = {
@@ -335,17 +356,17 @@ function get_sets()
 
     sets.WeaponSkill.MidAtk["Torcleaver"] = {
         ammo="Knobkierrie",
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
         feet = gear.Empy.feet,
-        neck={ name="Abyssal Beads +1", augments={'Path: A',}},
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Thrud Earring",
-        left_ring="Regal Ring",
-        right_ring="Niqmaddu Ring",
+        neck="Abyssal Beads +1",
+        waist="Sailfi Belt +1",
+        ear1="Moonshade Earring",
+        ear2="Thrud Earring",
+        ring1="Regal Ring",
+        ring2="Niqmaddu Ring",
         back = gear.AmbuCape.WSDvit,
       }
       sets.WeaponSkill.HighAtk["Torcleaver"] = {
@@ -565,8 +586,8 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     hands = gear.Empy.hands,
     legs = gear.Empy.legs,
     feet = gear.Empy.feet,
-    neck="Erra Pendant",
-    waist="Eschan Stone",
+    neck="Null Loop",
+    waist="Null Belt",
     left_ear = gear.Moonshade,
     right_ear="Crepuscular Earring",
     left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
@@ -690,13 +711,13 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     hands = gear.Empy.hands,
     legs = gear.Empy.legs,
     feet = gear.Empy.feet,
-    neck="Erra Pendant",
-    waist="Eschan Stone",
+    neck="Null Loop",
+    waist="Null Belt",
     left_ear="Malignance Earring",
     right_ear="Crep. Earring",
     left_ring="Weather. Ring +1",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-    back="Chuparrosa Mantle",
+    back="Null Shawl",
   }
   sets.WeaponSkill.HighAtk["Armor Break"] = sets.WeaponSkill.MidAtk["Armor Break"]
 
@@ -728,6 +749,23 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     left_ring="Stikini Ring +1",
     right_ring="Kishar Ring", -- +10% Duration
   }
+
+--   sets.midcast.AbsorbTP = {
+--     ammo="Pemphredo Tathlum",
+--     head={ name="Sakpata's Helm", augments={'Path: A',}},
+--     body="Sacro Breastplate",
+--     hands="Heath. Gauntlets +3",
+--     legs="Heath. Flanchard +3",
+--     feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}},
+--     neck="Null Loop",
+--     waist="Null Belt",
+--     left_ear="Malignance Earring",
+--     right_ear="Crep. Earring",
+--     left_ring="Weather. Ring +1",
+--     right_ring="Stikini Ring +1",
+--     back="Null Shawl",
+--   }
+
   sets.midcast.MagicAccuracy = {
     ammo="Pemphredo Tathlum",
     head = gear.Empy.head,
@@ -777,7 +815,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     legs="Nyame Flanchard",
     feet = gear.Empy.feet,
     neck="Sibyl Scarf",
-    waist="Eschan Stone",
+    waist="Null Belt",
     left_ear="Friomisi Earring",
     right_ear="Malignance Earring",
     left_ring="Metamorph Ring +1",
@@ -785,6 +823,7 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     back = gear.AmbuCape.Nuke,
   }
   sets.midcast.Impact = {
+    -- Stack Store TP for a "Quick" AM3. Remember to remove Hasso for cast times.
     ranged=Empty,
     head=Empty,
     body="Crepuscular Cloak",
@@ -934,8 +973,10 @@ function aftercast(spell)
       if buffactive['Aftermath: Lv.3'] then
         if player.equipment.main=="Liberator" then
           equip(sets.status.Melee.Liberator_AM3)
-        elseif player.equipment.main=="Redemption" or player.equipment.main=="Caladbolg" then
-          equip(sets.status.Melee.Redemption_AM3)
+        elseif player.equipment.main=="Redemption" then
+            equip(sets.status.Melee.Redemption_AM3)
+        elseif player.equipment.main=="Caladbolg" then
+            equip(sets.status.Melee.Redemption_AM3)
         else
           equip(sets.status.Melee.Standard)
         end
