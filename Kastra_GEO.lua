@@ -295,13 +295,13 @@ function get_sets()
     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet={ name="Nyame Sollerets", augments={'Path: B',}},
-    neck="Clotharius Torque",
+    neck="Null Loop",
     waist="Grunfeld Rope",
-    left_ear="Mache Earring +1",
+    left_ear="Moonshade Earring",
     right_ear="Telos Earring",
     left_ring="Chirich Ring +1",
     right_ring="Chirich Ring +1",
-    back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','HP+20','Pet: "Regen"+10','Pet: Damage taken -5%',}},
+    back="Null Shawl",
   }
   sets.precast["Aeolian Edge"] = {
     ammo="Pemphredo Tathlum",
@@ -378,18 +378,18 @@ function get_sets()
 
   sets.midcast.AbsorbTP = {
     range={ name="Dunna", augments={'MP+20','Mag. Acc.+10','"Fast Cast"+3',}},
-    head={ name="Bagua Galero +3", augments={'Enhances "Primeval Zeal" effect',}},
-    body={ name="Bagua Tunic +3", augments={'Enhances "Bolster" effect',}},
+    head={ name="Agwu's Cap", augments={'Path: A',}},
+    body={ name="Agwu's Robe", augments={'Path: A',}},
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs={ name="Agwu's Slops", augments={'Path: A',}},
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-    neck="Erra Pendant",
+    neck="Null Loop",
     waist="Cornelia's Belt",
     left_ear="Malignance Earring",
     right_ear={ name="Azimuth Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+13','Damage taken-4%',}},
     left_ring="Weather. Ring +1",
     right_ring="Kishar Ring",
-    back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Pet: Damage taken -5%',}},
+    back="Null Shawl",
   }
 
   sets.midcast.Cures = {
@@ -412,7 +412,7 @@ function get_sets()
     main={ name="Bunzi's Rod", augments={'Path: A',}},
     sub="Ammurapi Shield",
     ammo="Ghastly Tathlum +1",
-    head = gear.Relic.head,
+    head={ name="Agwu's Cap", augments={'Path: A',}},
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Agwu's Slops",
