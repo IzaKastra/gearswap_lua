@@ -189,17 +189,10 @@ end
     gear.AF.feet                       = {}
 
     gear.Amalric = {}
-    gear.Amalric.body = {}
-    gear.Amalric.body.Nuke             = { name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-
-    gear.Amalric.hands = {}
-    gear.Amalric.hands.Nuke            = { name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-
-    gear.Amalric.legs = {}
-    gear.Amalric.legs.Nuke             = { name="Amalric Slops +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-
-    gear.Amalric.feet ={}
-    gear.Amalric.feet.Nuke             = { name="Amalric Nails +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.body                  = { name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.hands                 = { name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.legs                  = { name="Amalric Slops +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.feet                  = { name="Amalric Nails +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
 
     gear.AmbuCape = {}
     gear.AmbuCape.MND                  = { name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10',}}
@@ -302,22 +295,22 @@ end
         back = gear.AmbuCape.DW,
     }
 
-    -- sets.status.Melee = {
-    --     ranged="Empty",
-    --     ammo="Coiste Bodhar",
-    --     head="Bunzi's Hat",
-    --     body="Malignance Tabard",
-    --     hands="Malignance Gloves",
-    --     legs="Malignance Tights",
-    --     feet="Malignance Boots",
-    --     neck="Combatant's Torque",
-    --     waist="Windbuffet Belt +1",
-    --     ear1="Dedition Earring",
-    --     ear2="Sherida Earring",
-    --     ring1="Chirich Ring +1",
-    --     ring2="Lehko's ring",
-    --     back = gear.AmbuCape.DW,
-    -- }
+    sets.status.Melee = {
+        ranged="Empty",
+        ammo="Coiste Bodhar",
+        head="Bunzi's Hat",
+        body="Malignance Tabard",
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck="Combatant's Torque",
+        waist="Windbuffet Belt +1",
+        ear1="Dedition Earring",
+        ear2="Sherida Earring",
+        ring1="Chirich Ring +1",
+        ring2="Lehko's ring",
+        back = gear.AmbuCape.DW,
+    }
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -327,7 +320,6 @@ end
 
     sets.precast = {}
     sets.precast.FastCast = {
-        -- 102% Fast Cast, 7% Quick Cast
         main="Crocea Mors",
         sub='Sacro Bulwark',
         ammo="Impatiens",
@@ -338,8 +330,8 @@ end
         feet = gear.Merlinic.feet.FC,
         neck="Orunmila's Torque",
         waist="Embla Sash",
-        left_ear="Etiolation Earring",
-        right_ear="Loquac. Earring",
+        left_ear="Loquac. Earring",
+        right_ear="Lethargy Earring +1",
         left_ring="Weather. Ring +1",
         right_ring="Lebeche Ring",
         back = gear.AmbuCape.MND,
@@ -347,6 +339,7 @@ end
     sets.precast.Impact = {
         main="Crocea Mors",
         sub='Sacro Bulwark',
+        ranged="Empty",
         ammo="Impatiens",
         head="Empty",
         body="Crepuscular Cloak",
@@ -356,7 +349,7 @@ end
         neck="Orunmila's Torque",
         waist="Embla Sash",
         left_ear="Loquac. Earring",
-        right_ear="Malignance Earring",
+        right_ear="Lethargy Earring +1",
         left_ring="Weather. Ring +1",
         right_ring="Kishar Ring",
         back = gear.AmbuCape.MND,
@@ -642,7 +635,7 @@ sets.WeaponSkill["Sanguine Blade"] = {
         legs = gear.Empy.legs,
         feet = gear.Empy.feet,
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
-        waist="Obstin. Sash",
+        waist="Null Belt",
         left_ear="Malignance Earring",
         right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
         left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
@@ -751,7 +744,7 @@ sets.WeaponSkill["Sanguine Blade"] = {
     }
 
     sets.midcast.Treasure = {
-    -- +4 Treasure Hunter
+    -- +5 Treasure Hunter (caps at +4)
         ammo="Perfect Lucky Egg",
         head="Volte Cap",
         hands="Volte Bracers",  
@@ -759,6 +752,25 @@ sets.WeaponSkill["Sanguine Blade"] = {
         feet="Volte Boots",
     }
 
+    sets.midcast.AbsorbTP = {
+        -- +42% Gear +38% Trait = 80% Fast Cast
+        -- +29% Gear Haste
+        sub="Ammurapi Shield",
+        ammo="Regal Gem",
+        head = gear.AF.head,
+        body = gear.Empy.body,
+        hands = gear.Empy.hands,
+        legs = gear.Empy.legs,
+        feet = gear.Empy.feet,
+        neck="Null Loop",
+        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+        left_ear="Malignance Earring",
+        right_ear="Lethargy Earring +1",
+        left_ring="Weather. Ring +1",
+        right_ring="Stikini Ring +1",
+        back = gear.AmbuCape.FastCast,
+        }
+    
     sets.midcast.Cures = {
         -- +58% Cure Potency, -25 Enmity
         main="Daybreak",
@@ -882,9 +894,15 @@ function midcast(spell)
         if spell.name == "Impact" then
             equip(sets.midcast.Impact)
         end
+    
+    elseif spell.skill == "Dark Magic" then
+        if spell.name == "Absorb-TP" then
+            equip(sets.midcast.AbsorbTP)
+        end
+
     end
 
-    if spell.name == "Dia III" or spell.name == "Sleepga II" then
+    if spell.name == "Dia II" or spell.name == "Sleepga II" then
         equip(sets.midcast.Treasure)
     end
 
