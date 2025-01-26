@@ -377,7 +377,6 @@ function get_sets()
         hands="Malignance Gloves",
         legs="Malignance Tights",
         feet="Malignance Boots",
-        neck="Loricate Torque +1",
         waist="Reiki Yotai",
         ear1="Eabani Earring",
         ear2="Suppanomimi",
@@ -1334,7 +1333,7 @@ function aftercast(spell)
         equip({ammo="Happo Shuriken",})
     end
 
---   equip(sets.Regain) -- uncomment when in abyssea farming lights
+--   equip(set_combine(sets.status.Idle.DT, sets.Regain)) -- uncomment when in abyssea farming lights
 
 end
 
