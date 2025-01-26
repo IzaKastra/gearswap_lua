@@ -186,10 +186,10 @@ function get_sets()
   sets.status = {}
   sets.status.Idle = {}
   sets.status.Idle.DT = {
-    main="Malignance Pole",
-    sub="Khonsu",
-    -- main="Daybreak",
-    -- sub="Genmei Shield",
+    -- main="Malignance Pole",
+    -- sub="Khonsu",
+    main="Daybreak",
+    sub="Genmei Shield",
     ammo="Staunch Tathlum +1",
     head = "Null Masque",
     body = gear.Empy.body,
@@ -198,7 +198,7 @@ function get_sets()
     feet="Mallquis Clogs +2",
     feet="Nyame Sollerets",
     neck="Warder's Charm +1",
-    waist="Carrier's Sash",
+    waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
     left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
@@ -206,10 +206,10 @@ function get_sets()
     back="Shadow Mantle",
   }
   sets.status.Idle.Refresh = {
-    main="Malignance Pole",
-    sub="Khonsu",
-    -- main="Daybreak",
-    -- sub="Genmei Shield",
+    -- main="Malignance Pole",
+    -- sub="Khonsu",
+    main="Daybreak",
+    sub="Genmei Shield",
     ammo="Homiliary",
     head="Null Masque",
     body = gear.Empy.body,
@@ -217,7 +217,7 @@ function get_sets()
     legs="Volte Brais",
     feet="Volte Gaiters",
     neck="Warder's Charm +1",
-    waist="Fucho-no-Obi",
+    waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
     left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
