@@ -199,7 +199,7 @@ end
         back=gear.AmbuCape.Idle,
     }
 
-    sets.status.Engaged = {
+    sets.Melee = {
         ranged=Empty,
         ammo="Amar Cluster",
         head="Bunzi's Hat",
@@ -207,13 +207,13 @@ end
         hands="Bunzi's Gloves",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
-        neck="Lissome Necklace",
+        neck="Combatant's Torque",
         waist="Windbuffet Belt +1",
-        ear1="Brutal Earring",
+        ear1="Cessance Earring",
         ear2="Telos Earring",
         ring1="Chirich Ring +1",
         ring2="Lehko's ring",
-        back=gear.AmbuCape.TP,
+        back="Null Shawl",
     }
 
 
@@ -634,7 +634,7 @@ function aftercast(spell)
             equip({waist="Embla Sash"})
         end
         elseif player.status == "Engaged" then
-        equip(sets.status.Engaged)
+        equip(sets.Melee)
     end
 end
 
@@ -645,6 +645,6 @@ function status_change(new,old)
             equip({waist="Embla Sash"})
         end
         elseif player.status == "Engaged" then
-        equip(sets.status.Engaged)
+        equip(sets.Melee)
     end
 end
