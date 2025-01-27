@@ -175,10 +175,10 @@ end
         feet="Nyame Sollerets",
         neck="Warder's Charm +1",
         waist="Null Belt",
-        left_ear="Etiolation Earring",
-        right_ear="Ebers Earring +1",
-        left_ring="Defending Ring",
-        right_ring="Shadow Ring",
+        ear1="Etiolation Earring",
+        ear2="Ebers Earring +1",
+        ring1="Defending Ring",
+        ring2="Shadow Ring",
         back=gear.AmbuCape.Idle,
     }
     sets.status.Idle.Refresh = {
@@ -192,10 +192,10 @@ end
         feet="Inyan. Crackows +2",
         neck={ name="Loricate Torque +1", augments={'Path: A',}},
         waist="Null Belt",
-        left_ear="Etiolation Earring",
-        right_ear="Ebers Earring +1",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        ear1="Etiolation Earring",
+        ear2="Ebers Earring +1",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back=gear.AmbuCape.Idle,
     }
 
@@ -211,7 +211,7 @@ end
         waist="Windbuffet Belt +1",
         ear1="Cessance Earring",
         ear2="Telos Earring",
-        ring1="Chirich Ring +1",
+        ring1={name="Chirich Ring +1",bag="wardrobe",priority=1},
         ring2="Lehko's ring",
         back="Null Shawl",
     }
@@ -266,7 +266,7 @@ end
         ear1="Brutal Earring",
         ear2="Telos Earring",
         ring1="Shukuyu Ring",
-        ring2="Chirich Ring +1",
+        ring2={name="Chirich Ring +1",bag="wardrobe2",priority=1},
         back=gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Realmrazer"] = {
@@ -467,10 +467,10 @@ end
         feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
         neck="Incanter's Torque",
         waist="Cornelia's Belt",
-        left_ear="Malignance Earring",
-        right_ear={ name="Ebers Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Damage taken-5%',}},
-        left_ring="Haoma's Ring",
-        right_ring="Haoma's Ring",
+        ear1="Malignance Earring",
+        ear2={ name="Ebers Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Damage taken-5%',}},
+        ring1="Haoma's Ring",
+        ring2="Haoma's Ring",
         back = gear.AmbuCape.FC,
     }
 
@@ -514,10 +514,10 @@ end
         feet={ name="Nyame Sollerets", augments={'Path: B',}},
         neck="Null Loop",
         waist="Sacro Cord",
-        left_ear="Malignance Earring",
-        right_ear="Regal Earring",
-        left_ring="Freke Ring",
-        right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+        ear1="Malignance Earring",
+        ear2="Regal Earring",
+        ring1="Freke Ring",
+        ring2={ name="Metamor. Ring +1", augments={'Path: A',}},
         back = gear.AmbuCape.Idle,
     }
 
