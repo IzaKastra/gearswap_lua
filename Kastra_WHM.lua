@@ -59,6 +59,8 @@ function self_command(command)
         equip({main="Mjollnir"})
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
             equip({sub="Sindri"})
+        else
+            equip({sub="Genmei Shield"})
         end
         if WeaponLock == 1 then
             disable("main", "sub", "ranged")
@@ -73,6 +75,8 @@ function self_command(command)
         equip({main="Maxentius"})
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
             equip({sub="Sindri"})
+        else
+            equip({sub="Genmei Shield"})
         end
         if WeaponLock == 1 then
             disable("main", "sub", "ranged")
@@ -87,6 +91,8 @@ function self_command(command)
         equip({main="Yagrush"})
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
             equip({sub="Sindri"})
+        else
+            equip({sub="Genmei Shield"})
         end
         if WeaponLock == 1 then
             disable("main", "sub", "ranged")
