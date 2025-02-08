@@ -3,9 +3,9 @@ function get_sets()
     maps()
 
     attack2 = 4000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set (or idle set if WSing from idle) is higher than this value
-    in_abyssea = false -- Set this to "true" when in abyssea. This enables the following changes to the code logic:
+    in_abyssea = world.area:contains("Abyssea")
                         -- The idle set uses Dual Wield to build TP through Regain with Gokotai when running between camps
-                        -- The idle set automatically equips movement+ feet depending on the time of day
+                        -- The idle set automatically equips movement+ feet in the idle set depending on the time of day
                         -- Proc weapon skill sets use the magic_accuracy set to reduce damage dealt
                         -- The engaged TP set is built for multi-attack and store TP, while including treasure hunter 4
                         -- Ninjutsu nuking sets include Treasure Hunter 4 while still allowing spells to 1-shot enemies for easy pop farming
@@ -1122,6 +1122,7 @@ function precast(spell)
     end
 
     self = windower.ffxi.get_mob_by_target("me")
+
     target = windower.ffxi.get_mob_by_target("t") or windower.ffxi.get_mob_by_target("st") or self
     distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
     weather_intensity = gearswap.res.weather[world.weather_id].intensity
