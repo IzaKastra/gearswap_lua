@@ -3,6 +3,9 @@ function get_sets()
     maps()
 
     attack2 = 4000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set (or idle set if WSing from idle) is higher than this value
+
+
+    -- Changes to code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable:
     in_abyssea = world.area:contains("Abyssea") -- See https://docs.windower.net/addons/gearswap/reference/
                         -- The idle set uses Dual Wield to build TP through Regain with Gokotai when running between camps
                         -- The idle set automatically equips movement+ feet in the idle set depending on the time of day
