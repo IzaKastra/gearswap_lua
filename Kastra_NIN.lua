@@ -917,7 +917,7 @@ function get_sets()
         ring1="Dingir Ring",
         ring2="Shiva Ring +1",
         back = gear.AmbuCape.Nuke,
-}
+    }
     sets.WeaponSkill.HighAtk["Blade: Yu"] = sets.WeaponSkill.MidAtk["Blade: Yu"]
 
     sets.WeaponSkill.MidAtk["Aeolian Edge"] = {
