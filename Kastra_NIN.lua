@@ -2,7 +2,13 @@ function get_sets()
 
     maps()
 
-    attack2            = 4000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set (or idle set if WSing from idle) is higher than this value
+    attack2 = 4000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set (or idle set if WSing from idle) is higher than this value
+    in_abyssea = false -- Set this to "true" when in abyssea. This enables the following changes to the code logic:
+                        -- The idle set uses Dual Wield to build TP through Regain with Gokotai when running between camps
+                        -- The idle set automatically equips movement+ feet depending on the time of day
+                        -- Proc weapon skill sets use the magic_accuracy set to reduce damage dealt
+                        -- The engaged TP set is built for multi-attack and store TP, while including treasure hunter 4
+                        -- Ninjutsu nuking sets include Treasure Hunter 4 while still allowing spells to 1-shot enemies for easy pop farming
 
 
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -37,7 +43,7 @@ function get_sets()
     send_command("bind !f12 gs c Naegling")
 
     -- Ctrl+Alt+F# commands
-    send_command("bind ^!f9 gs c Free spot")
+    send_command("bind ^!f9 gs c Hachimonji")
     send_command("bind ^!f10 gs c Free spot")
     send_command("bind ^!f11 gs c Toggle UtsuEnmity")
     send_command("bind ^!f12 gs c toggle toggle HybridTP")
@@ -189,28 +195,33 @@ function get_sets()
 
         if command == "Heishi" then
             equip({main="Heishi Shorinken", sub="Kunimitsu"})
-            send_command("@input /echo Heishi equipped.")
+            send_command("@input /echo Heishi & Kunimitsu equipped.")
         end
 
         if command == "Kikoku" then
             equip({main="Kikoku", sub="Kunimitsu"})
-            send_command("@input /echo Kikoku equipped.")
+            send_command("@input /echo Kikoku & Kunimitsu equipped.")
         end
 
         if command == "Kannagi" then
             equip({main="Kannagi", sub="Gleti's Knife"})
-            send_command("@input /echo Kannagi equipped.")
+            send_command("@input /echo Kannagi & Gleti's Knife equipped.")
         end
 
         if command == "Naegling" then
             equip({main="Naegling", sub="Hitaki"})
-            send_command("@input /echo Naegling + Hitaki equipped.")
+            send_command("@input /echo Naegling & Hitaki equipped.")
         end
 
         
         if command == "Nagi" then
             equip({main="Nagi", sub="Tsuru"})
-            send_command("@input /echo Nagi + Tsuru equipped.")
+            send_command("@input /echo Nagi & Tsuru equipped.")
+        end
+
+        if command == "Hachimonji" then
+            equip({main="Hachimonji"})
+            send_command("@input /echo Hachimonji equipped.")
         end
 
 
@@ -317,7 +328,7 @@ function get_sets()
         -- +4 Treasure Hunter cap.
         ammo="Perfect Lucky Egg",
         head="Volte Cap",
-        feet="Volte Boots",
+        -- feet="Volte Boots",
         hands="Volte Bracers",
         waist="Chaac Belt",
     }
@@ -346,31 +357,23 @@ function get_sets()
         back="Shadow Mantle",
     }
 
---   sets.status.Idle.Eva = { -- Out of date: TODO
---     -- 1369 Evasion without food or buffs @ML26 NIN
---     -- Salt Ramen provides +90 Evasion. https://www.bg-wiki.com/ffxi/Salt_Ramen
---     -- Yonin presumably provides +50~70 Evasion
---     main="Raicho +1",
---     sub={ name="Tsuru", augments={'Path: A',}},
---     ammo="Yamarang",
---     head="Null Masque",
---     body="Malignance Tabard",
---     hands="Shigure Tekko +1",
---     legs="Malignance Tights",
---     feet="Malignance Boots",
---     neck="Bathy Choker +1",
---     waist="Svelt. Gouriz +1",
---     ear1="Infused Earring",
---     ear2="Eabani Earring",
---     ring1="Defending Ring",
---     ring2="Vengeful Ring",
---     back="Null Shawl",
---   }
+    sets.AbysseaTP = {
+        ammo="Per. Lucky Egg",
+        head="Volte Cap",
+        body="Malignance Tabard",
+        hands="Volte Bracers",
+        legs="Samnuha Tights",
+        feet="Tatena. Sune. +1",
+        neck="Ninja Nodowa +2",
+        waist="Chaac Belt",
+        ear1="Brutal Earring",
+        ear2="Dedition Earring",
+        ring1="Gere Ring",
+        ring2="Lehko's Ring",
+        back="Null Shawl",
+    }
 
-    -- Abyssea light building set. TP regain between pulls. Ongo v25
     sets.Regain = {
-        main="Gokotai",
-        sub={ name="Kunimitsu", augments={'Path: A',}},
         ammo="Staunch Tathlum +1",
         head = gear.Ryuo.head.STP,
         body = gear.Relic.body,
@@ -1025,6 +1028,7 @@ function get_sets()
     sets.midcast.MagicBurst = {
         main="Gokotai",
         sub="Kunimitsu",
+        ammo="Ghastly Tathlum +1",
         head = gear.Relic.head,
         body="Nyame Mail",
         hands = gear.Empyrean.hands,
@@ -1125,8 +1129,8 @@ function precast(spell)
     -- Cancel weapon skill if enemy is further than 7 yalms away to prevent losing TP. This value should be larger for "large" model enemies such as Fafnir.
     if active_ws[spell.name] then
         if distance > 7 then
-        send_command("@input /echo Target too far away.")
-        cancel_spell()
+            send_command("@input /echo Target too far away.")
+            cancel_spell()
         end
     equip(active_ws[spell.name])
 
@@ -1138,8 +1142,8 @@ function precast(spell)
 
     elseif spell.type=="WeaponSkill" then
         if distance > 7 then
-        send_command("@input /echo Target too far away.")
-        cancel_spell()
+            send_command("@input /echo Target too far away.")
+            cancel_spell()
         end
         equip(active_ws["Blade: Ten"]) -- Default to Blade: Ten weapon skill sets if no set is defined for selected WS.
 
@@ -1164,9 +1168,13 @@ function precast(spell)
 
     end
 
---   if proc_ws:contains(spell.name) then -- TODO: Require conditional for player to be in Abyssea
---     equip(sets.midcast.MagicAccuracy)
---   end
+    if proc_ws:contains(spell.name) and in_abyssea then
+        equip(sets.midcast.MagicAccuracy)
+    end
+
+    if in_abyssea then
+        equip(sets.Treasure)
+    end
 
     if UtsuEnmityFlag==true and spell.name == "Aeolian Edge" then
         equip(sets.Treasure)
@@ -1249,6 +1257,10 @@ function midcast(spell)
                 equip({waist="Hachirin-no-Obi"})
             end
 
+            if in_abyssea then
+                equip(sets.Treasure)
+            end
+
         elseif Enfeebles:contains(spell.name) then
             equip(sets.midcast.MagicAccuracy)
 
@@ -1274,8 +1286,19 @@ end
 function aftercast(spell)
 
     if player.status == "Idle" then
+         
         equip(sets.status.Idle.DT)
-        
+
+        if in_abyssea then
+            equip(set_combine(sets.status.Idle.DT, sets.Regain))
+            if world.time/60. > 17 or world.time/60. < 7 then
+                equip({feet = gear.Artifact.feet})
+            else
+                equip({feet="Danzo Sune-Ate"})
+            end
+        end
+
+
     elseif player.status == "Engaged" then
 
         if HybridTPFlag then
@@ -1309,7 +1332,9 @@ function aftercast(spell)
         elseif AccFlag == 3 then
             equip(sets.Melee.HighAccuracy)
         end
-
+        if in_abyssea then
+            equip(sets.AbysseaTP) -- uncomment when in abyssea farming lights
+        end
     end
 
     if Utsu:contains(spell.name) then
@@ -1333,7 +1358,6 @@ function aftercast(spell)
         equip({ammo="Happo Shuriken",})
     end
 
---   equip(set_combine(sets.status.Idle.DT, sets.Regain)) -- uncomment when in abyssea farming lights
 
 end
 
@@ -1342,6 +1366,15 @@ function status_change(new,old)
 
     if new == "Idle" then
         equip(sets.status.Idle.DT)
+
+        if in_abyssea then
+            equip(set_combine(sets.status.Idle.DT, sets.Regain))
+            if world.time/60. > 17 or world.time/60. < 7 then
+                equip({feet = gear.Artifact.feet})
+            else
+                equip({feet="Danzo Sune-Ate"})
+            end
+        end
 
     elseif new == "Engaged" then
 
@@ -1377,6 +1410,10 @@ function status_change(new,old)
             equip(sets.Melee.HighAccuracy)
         end
 
+        if in_abyssea then
+            equip(sets.AbysseaTP) -- uncomment when in abyssea farming lights
+        end
+    
     elseif sets.status[new] then
         equip(sets.status[new])
     end
@@ -1384,5 +1421,4 @@ function status_change(new,old)
     if buffactive["Sange"] then
         equip({ammo="Happo Shuriken",})
     end
---   equip(sets.Regain) -- uncomment when in abyssea farming lights
 end
