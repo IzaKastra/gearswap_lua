@@ -3,17 +3,7 @@ function get_sets()
     maps()
 
     attack2 = 4000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set (or idle set if WSing from idle) is higher than this value
-
-
-    -- Changes to code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable:
-    in_abyssea = world.area:contains("Abyssea") -- See https://docs.windower.net/addons/gearswap/reference/
-                        -- The idle set uses Dual Wield to build TP through Regain with Gokotai when running between camps
-                        -- The idle set automatically equips movement+ feet in the idle set depending on the time of day
-                        -- Proc weapon skill sets use the magic_accuracy set to reduce damage dealt
-                        -- The engaged TP set is built for multi-attack and store TP, while including treasure hunter 4
-                        -- Ninjutsu nuking sets include Treasure Hunter 4 while still allowing spells to 1-shot enemies for easy pop farming
-
-
+    
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1113,6 +1103,9 @@ end
 
 
 function precast(spell)
+    
+    -- Changes to code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable:
+    in_abyssea = world.zone:contains("Abyssea") -- See https://docs.windower.net/addons/gearswap/reference/
 
     -- Determine which WS sets to use based on your attack in your TP set (or idle set if WSing unengaged).
     attack = player.attack
