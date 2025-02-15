@@ -1104,16 +1104,16 @@ end
 
 function precast(spell)
     
-    -- Changes to code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable:
+    -- Changes to code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable.
     in_abyssea = world.zone:contains("Abyssea") -- See https://docs.windower.net/addons/gearswap/reference/
+    -- in_abyssea = false
+
 
     -- Determine which WS sets to use based on your attack in your TP set (or idle set if WSing unengaged).
     attack = player.attack
     if attack > attack2 then
-        AtkFlag = 2
         active_ws = sets.WeaponSkill.HighAtk
     else
-        AtkFlag = 1
         active_ws = sets.WeaponSkill.MidAtk
     end
 
