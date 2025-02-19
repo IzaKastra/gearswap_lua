@@ -459,6 +459,7 @@ end
 
     sets.midcast.Cursna = {
         -- 33% Fast Cast, 29% Haste, +75 Cursna, +122 Healing Skill
+        main="Yagrush",
         ammo="Sapience Orb",
         head="Ebers Cap +2",
         body="Ebers Bliaut +2",
