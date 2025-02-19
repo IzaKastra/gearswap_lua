@@ -17,14 +17,18 @@ function get_sets()
   send_command('bind f12 gs c Equip DT')
 
   send_command('bind ^f9 gs c Equip Treasure Hunter')
-  send_command('bind ^f11 gs c Equip Caladbolg')
-  send_command('bind ^f12 gs c Free')
   send_command('bind ^f10 gs c Free')
+  send_command('bind ^f11 gs c Equip Caladbolg')
+  send_command('bind ^f12 gs c Equip Foenaria')
 
   send_command('bind !f9 gs c Equip Apocalypse')
   send_command('bind !f10 gs c Equip Liberator')
   send_command('bind !f11 gs c Equip Redemption')
   send_command('bind !f12 gs c Equip Anguta')
+
+  send_command('bind ^!f12 gs c Equip Refresh')
+
+
   function file_unload()
     send_command('unbind f9')
     send_command('unbind f10')
@@ -38,6 +42,7 @@ function get_sets()
     send_command('unbind !f10')
     send_command('unbind !f11')
     send_command('unbind !f12')
+    send_command('unbind ^!f12')
 
   end
   function self_command(command)
@@ -72,10 +77,14 @@ function get_sets()
     end
 
     if command == 'Equip DT' then
-      equip(sets.status.Idle.DT)
-      send_command('@input /echo Damage Taken set equipped.')
-    end
-    if command == 'Equip Apocalypse' then
+        equip(sets.status.Idle.DT)
+        send_command('@input /echo Damage Taken set equipped.')
+      end
+      if command == 'Equip Refresh' then
+        equip(sets.status.Refresh)
+        send_command('@input /echo Refresh equipped.')
+      end
+        if command == 'Equip Apocalypse' then
       equip({main = "Apocalypse", sub="Utu Grip"})
       send_command('@input /echo Apocalypse Equipped.')
       -- send_command('@input /lockstyleset 11')
@@ -98,6 +107,11 @@ function get_sets()
     if command == 'Equip Caladbolg' then
         equip({main = "Caladbolg", sub="Utu Grip"})
         send_command('@input /echo Caladbolg Equipped.')
+        -- send_command('@input /lockstyleset 11')
+      end
+      if command == 'Equip Foenaria' then
+        equip({main = "Foenaria", sub="Utu Grip"})
+        send_command('@input /echo Foenaria Equipped.')
         -- send_command('@input /lockstyleset 11')
       end
   
@@ -182,6 +196,12 @@ function get_sets()
     back="Shadow Mantle"
   }
 
+    sets.status.Refresh = {
+        neck="Bale Choker",
+        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+    }
+
   sets.status.Melee = {}
   sets.status.Melee.Standard = {
     ammo="Coiste Bodhar",
@@ -215,7 +235,6 @@ function get_sets()
     back = gear.AmbuCape.STP,
   }
   sets.status.Melee.Caladbolg_AM3 = {
-
     main="Caladbolg",
     sub="Utu Grip",
     ranged=Empty,
@@ -236,7 +255,7 @@ function get_sets()
 
   
   sets.status.Melee.Redemption_AM3 = {
-    ammo="Yetshila +1",
+    ammo="Coiste Bodhar",
     head="Sakpata's Helm",
     body="Sakpata's Plate",
     hands="Sakpata's Gauntlets",
@@ -515,6 +534,37 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     back = gear.AmbuCape.WSDstr,
   }
 
+  sets.WeaponSkill.MidAtk["Origin"] = {
+    ammo="Knobkierrie",
+    head="Nyame Helm",
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet="Heath. Sollerets +3",
+    neck="Abyssal Beads +2",
+    waist="Sailfi Belt +1",
+    ear1="Moonshade Earring",
+    ear2="Thrud Earring",
+    ring1="Niqmaddu Ring",
+    ring2="Regal Ring",
+    back = gear.AmbuCape.WSDstr,
+  }
+  sets.WeaponSkill.HighAtk["Origin"] = {
+    ammo="Knobkierrie",
+    head = gear.Empy.head,
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet="Heath. Sollerets +3",
+    neck="Abyssal Beads +2",
+    waist="Sailfi Belt +1",
+    ear1="Moonshade Earring",
+    ear2="Heath. Earring +1",
+    ring1="Sroda Ring",
+    ring2="Niqmaddu Ring",
+    back = gear.AmbuCape.WSDstr,
+  }
+
   sets.WeaponSkill.MidAtk["Entropy"] = {
     ammo={ name="Coiste Bodhar", augments={'Path: A',}},
     head = gear.Empy.head,
@@ -738,10 +788,10 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     feet="Rat. Sollerets +1",
     neck="Null Loop",
     waist="Null Belt",
-    left_ear="Hirudinea Earring",
-    right_ear="Crematio Earring",
-    left_ring="Evanescence Ring",
-    right_ring="Archon Ring",
+    ear1="Hirudinea Earring",
+    ear2="Malignance Earring",
+    ring1="Evanescence Ring",
+    ring2="Archon Ring",
     back = gear.ReiveCape,
   }
   sets.midcast.Absorbs = {
