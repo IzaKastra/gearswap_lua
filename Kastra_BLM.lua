@@ -195,15 +195,15 @@ function get_sets()
   sets.status.Idle = {}
   sets.status.Idle.DT = {
     ammo="Staunch Tathlum +1",
-    head="Volte Beret",
+    head="Null Masque",
     body="Nyame Mail",
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
-    neck="Loricate Torque +1",
-    waist="Carrier's Sash",
+    neck="Warder's Charm +1",
+    waist="Null Belts",
     left_ear="Etiolation Earring",
-    right_ear="Lugalbanda Earring",
+    right_ear="Sanare Earring",
     left_ring="Defending Ring",
     right_ring="Shadow Ring",
     back = gear.AmbuCape.Nuke,
@@ -219,8 +219,8 @@ function get_sets()
     waist="Fucho-no-Obi",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
-    left_ring="Defending Ring",
-    right_ring="Shadow Ring",
+    left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
+    right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
     back = gear.AmbuCape.Nuke,
   }
   sets.status.Melee = {
@@ -293,8 +293,8 @@ function get_sets()
     waist="Fucho-no-Obi",
     left_ear="Etiolation Earring",
     right_ear="Evans Earring",
-    left_ring="Sangoma Ring",
-    right_ring="Etana Ring",
+    left_ring="Metamorph Ring +1",
+    right_ring="Lebeche Ring",
     back = gear.AmbuCape.FC,
   }
 	sets.precast.Cataclysm = {
@@ -337,12 +337,12 @@ function get_sets()
   }
   sets.midcast.Nuke = {
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-    head = gear.Relic.head,
+    head="Agwu's Cap",
     body={ name="Agwu's Robe", augments={'Path: A',}},
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs={ name="Agwu's Slops", augments={'Path: A',}},
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-    neck="Sibyl Scarf",
+    neck="Sorcerer's Stole +1",
     waist="Sacro Cord",
     left_ear="Regal Earring",
     right_ear="Malignance Earring",
@@ -458,7 +458,7 @@ function get_sets()
   sets.midcast.Impact = {
     ammo="Pemphredo Tathlum",
     body="Crepuscular Cloak",
-    legs={ name="Agwu's Gages", augments={'Path: A',}},
+    hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs={ name="Agwu's Slops", augments={'Path: A',}},
     feet = gear.Relic.feet,
     neck={ name="Src. Stole +1", augments={'Path: A',}},
@@ -654,18 +654,18 @@ function aftercast(spell)
   sublimation_up = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
   if player.status == 'Idle' then
     if player.mpp < 80 then
-      equip(sets.status.Idle.Refresh)
+        equip(sets.status.Idle.DT)
     else
       equip(sets.status.Idle.DT)
     end
-    if spell.name == "Sublimation" then
-      if not sublimation_up then
-        equip(sets.status.Sublimation)
-      end
-    end
-    if buffactive["Sublimation: Activated"] then
-      equip(sets.status.Sublimation)
-    end
+    -- if spell.name == "Sublimation" then
+    --   if not sublimation_up then
+    --     equip(sets.status.Sublimation)
+    --   end
+    -- end
+    -- if buffactive["Sublimation: Activated"] then
+    --   equip(sets.status.Sublimation)
+    -- end
     if spell.name == "Mana Wall" or buffactive["Mana Wall"] then
       equip({feet = gear.Empy.feet})
     end
@@ -675,22 +675,22 @@ end
 function status_change(new,old)
   deactivate_sublimation = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
   if new == "Idle" then
-    if player.mpp < 80  then
-      equip(sets.status.Idle.Refresh)
+    if player.mpp < 50  then
+        equip(sets.status.Idle.DT)
     else
       equip(sets.status.Idle.DT)
     end
   end
   if new == "Idle" then
-    if player.mpp < 80  then
+    if player.mpp < 50  then
       equip(sets.status.Idle.Refresh)
     else
       equip(sets.status.Idle.DT)
     end
   end
-  if buffactive["Sublimation: Activated"] then
-    equip(sets.status.Sublimation)
-  end
+--   if buffactive["Sublimation: Activated"] then
+--     equip(sets.status.Sublimation)
+--   end
   if buffactive["Mana Wall"] then
     equip({feet = gear.Empy.feet})
   end
