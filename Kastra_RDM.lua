@@ -1,5 +1,5 @@
 include('organizer-lib')
-enable("main","sub","ranged")
+enable("main", "sub", "ranged")
 
 function get_sets()
 
@@ -248,6 +248,7 @@ end
     sets.status.Idle.DT = {
         main="Excalibur",
         sub='Sacro Bulwark',
+        -- ranged="Ullr",
         ammo="Staunch Tathlum +1",
         head = gear.Relic.head,
         body = gear.Empy.body,
@@ -265,6 +266,7 @@ end
     sets.status.Idle.Refresh = {
         main="Daybreak",
         sub='Sacro Bulwark',
+        -- ranged="Ullr",
         ammo="Homiliary",
         head = gear.Relic.head,
         body = gear.Empy.body,
@@ -295,22 +297,22 @@ end
         back = gear.AmbuCape.DW,
     }
 
-    sets.status.Melee = {
-        ranged="Empty",
-        ammo="Coiste Bodhar",
-        head="Bunzi's Hat",
-        body="Malignance Tabard",
-        hands="Malignance Gloves",
-        legs="Malignance Tights",
-        feet="Malignance Boots",
-        neck="Combatant's Torque",
-        waist="Windbuffet Belt +1",
-        ear1="Dedition Earring",
-        ear2="Sherida Earring",
-        ring1="Chirich Ring +1",
-        ring2="Lehko's ring",
-        back = gear.AmbuCape.DW,
-    }
+    -- sets.status.Melee = {
+    --     ranged="Empty",
+    --     ammo="Coiste Bodhar",
+    --     head="Bunzi's Hat",
+    --     body="Malignance Tabard",
+    --     hands="Malignance Gloves",
+    --     legs="Malignance Tights",
+    --     feet="Malignance Boots",
+    --     neck="Combatant's Torque",
+    --     waist="Windbuffet Belt +1",
+    --     ear1="Dedition Earring",
+    --     ear2="Sherida Earring",
+    --     ring1="Chirich Ring +1",
+    --     ring2="Lehko's ring",
+    --     back = gear.AmbuCape.DW,
+    -- }
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
