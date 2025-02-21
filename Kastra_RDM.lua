@@ -281,7 +281,7 @@ end
         right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back="Shadow Mantle",
     }
-    sets.status.Melee = {
+    sets.status.MeleeDW = {
         ammo={ name="Coiste Bodhar", augments={'Path: A',}},
         head={ name="Bunzi's Hat", augments={'Path: A',}},
         body="Malignance Tabard",
@@ -297,22 +297,22 @@ end
         back = gear.AmbuCape.DW,
     }
 
-    -- sets.status.Melee = {
-    --     ranged="Empty",
-    --     ammo="Coiste Bodhar",
-    --     head="Bunzi's Hat",
-    --     body="Malignance Tabard",
-    --     hands="Malignance Gloves",
-    --     legs="Malignance Tights",
-    --     feet="Malignance Boots",
-    --     neck="Combatant's Torque",
-    --     waist="Windbuffet Belt +1",
-    --     ear1="Dedition Earring",
-    --     ear2="Sherida Earring",
-    --     ring1="Chirich Ring +1",
-    --     ring2="Lehko's ring",
-    --     back = gear.AmbuCape.DW,
-    -- }
+    sets.status.Melee = {
+        ranged="Empty",
+        ammo="Coiste Bodhar",
+        head="Bunzi's Hat",
+        body="Malignance Tabard",
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck="Combatant's Torque",
+        waist="Windbuffet Belt +1",
+        ear1="Dedition Earring",
+        ear2="Sherida Earring",
+        ring1="Chirich Ring +1",
+        ring2="Lehko's ring",
+        back = gear.AmbuCape.DW,
+    }
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -918,7 +918,11 @@ function aftercast(spell)
             equip(sets.status.Idle.DT)
         end
     elseif player.status == "Engaged" then
-        equip(sets.status.Melee)
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
+            equip(sets.status.Melee)
+        else
+            equip(sets.status.MeleeDW)
+        end
     end
 end
 
@@ -930,7 +934,11 @@ function status_change(new,old)
             equip(sets.status.Idle.DT)
         end
     elseif new == "Engaged" then
-        equip(sets.status.Melee)
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
+            equip(sets.status.Melee)
+        else
+            equip(sets.status.MeleeDW)
+        end
     elseif sets.status[new] then
         equip(sets.status[new])
     end
