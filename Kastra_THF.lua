@@ -316,7 +316,7 @@ function get_sets()
         ear2="Eabani Earring",
         ring1="Lehko's ring",
         ring2="Gere Ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},    
+        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
     }
     sets.Melee.Haste15 = { -- Same as Haste0 set. Need more dual wield
         ammo="Crepuscular Pebble",
@@ -361,7 +361,7 @@ function get_sets()
         ear2="Skulk. Earring +1",
         ring1="Gere Ring",
         ring2="Lehko's ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},    
+        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
     }
     -- sets.Melee.HasteCap = {
     --     ammo="Coiste Bodhar",
@@ -481,37 +481,37 @@ function get_sets()
     }
 
 
-    sets.WeaponSkill.HighAttack.SneakAttack["Rudra's Storm"] = {
-        ammo="Yetshila +1",
-        head = gear.Empy.head,
-        body = gear.Empy.body,
-        hands="Nyame Gauntlets",
-        legs="Gleti's Breeches",
-        feet="Nyame Sollerets",
-        neck="Asn. Gorget +1",
-        waist="Kentarch Belt +1",
-        ear1="Moonshade Earring",
-        ear2="Odr Earring",
-        ring1="Regal Ring",
-        ring2="Lehko's ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
-    }
-    sets.WeaponSkill.HighAttack.TrickAttack["Rudra's Storm"] = {
-        ammo="Yetshila +1",
-        head = gear.Empy.head,
-        -- body = gear.Empy.body,
-        body="Nyame Mail",
-        hands="Nyame Gauntlets",
-        legs="Gleti's Breeches",
-        feet="Nyame Sollerets",
-        neck="Asn. Gorget +1",
-        waist="Kentarch Belt +1",
-        ear1="Moonshade Earring",
-        ear2="Odr Earring",
-        ring1="Regal Ring",
-        ring2="Lehko's ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
-    }
+    -- sets.WeaponSkill.HighAtk.SneakAttack["Rudra's Storm"] = {
+    --     ammo="Yetshila +1",
+    --     head = gear.Empy.head,
+    --     body = gear.Empy.body,
+    --     hands="Nyame Gauntlets",
+    --     legs="Gleti's Breeches",
+    --     feet="Nyame Sollerets",
+    --     neck="Asn. Gorget +1",
+    --     waist="Kentarch Belt +1",
+    --     ear1="Moonshade Earring",
+    --     ear2="Odr Earring",
+    --     ring1="Regal Ring",
+    --     ring2="Lehko's ring",
+    --     back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
+    -- }
+    -- sets.WeaponSkill.HighAtk.TrickAttack["Rudra's Storm"] = {
+    --     ammo="Yetshila +1",
+    --     head = gear.Empy.head,
+    --     -- body = gear.Empy.body,
+    --     body="Nyame Mail",
+    --     hands="Nyame Gauntlets",
+    --     legs="Gleti's Breeches",
+    --     feet="Nyame Sollerets",
+    --     neck="Asn. Gorget +1",
+    --     waist="Kentarch Belt +1",
+    --     ear1="Moonshade Earring",
+    --     ear2="Odr Earring",
+    --     ring1="Regal Ring",
+    --     ring2="Lehko's ring",
+    --     back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
+    -- }
 
 
 
@@ -521,7 +521,8 @@ function get_sets()
         body={ name="Nyame Mail", augments={'Path: B',}},
         hands={ name="Nyame Gauntlets", augments={'Path: B',}},
         legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
+        -- feet={ name="Nyame Sollerets", augments={'Path: B',}},
+        feet = gear.Empy.feet,
         neck="Sibyl Scarf",
         waist="Orpheus's Sash",
         left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
