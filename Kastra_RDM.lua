@@ -919,9 +919,9 @@ function aftercast(spell)
         end
     elseif player.status == "Engaged" then
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
-            equip(sets.status.Melee)
-        else
             equip(sets.status.MeleeDW)
+        else
+            equip(sets.status.Melee)
         end
     end
 end
@@ -935,9 +935,9 @@ function status_change(new,old)
         end
     elseif new == "Engaged" then
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
-            equip(sets.status.Melee)
-        else
             equip(sets.status.MeleeDW)
+        else
+            equip(sets.status.Melee)
         end
     elseif sets.status[new] then
         equip(sets.status[new])
