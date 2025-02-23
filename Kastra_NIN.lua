@@ -1104,7 +1104,7 @@ end
 
 function precast(spell)
     
-    -- Changes to code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable.
+    -- Changes the code logic for efficient Empyrean farming in Abyssea. Set to "false" to disable.
     in_abyssea = world.zone:contains("Abyssea") -- See https://docs.windower.net/addons/gearswap/reference/
     -- in_abyssea = false
 
@@ -1173,7 +1173,7 @@ function precast(spell)
         equip(sets.Treasure)
     end
 
-    if UtsuEnmityFlag==true and spell.name == "Aeolian Edge" then
+    if (world.zone:contains("Abyssea")) or (world.zone:contains("Henge")) and spell.name == "Aeolian Edge" then
         equip(sets.Treasure)
     end
 end
@@ -1330,7 +1330,7 @@ function aftercast(spell)
             equip(sets.Melee.HighAccuracy)
         end
         if in_abyssea then
-            equip(sets.AbysseaTP) -- uncomment when in abyssea farming lights
+            equip(sets.AbysseaTP)
         end
     end
 
@@ -1408,7 +1408,7 @@ function status_change(new,old)
         end
 
         if in_abyssea then
-            equip(sets.AbysseaTP) -- uncomment when in abyssea farming lights
+            equip(sets.AbysseaTP)
         end
     
     elseif sets.status[new] then
