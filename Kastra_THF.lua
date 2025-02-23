@@ -2,10 +2,9 @@ include('organizer-lib')
 
 function get_sets()
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ----------- TOGGLES ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    attack2 = 4000 -- This LUA will equip "high buff" WS sets if the attack value of your TP set (or idle set if WSing from idle) is higher than this value
 
+    THFlag = 0
     TPFlag = 0
     HasteFlag = 3
 
@@ -17,7 +16,7 @@ function get_sets()
     send_command('bind !f9 gs c Twashtar')
     send_command('bind !f10 gs c Aeneas')
     send_command('bind !f11 gs c Mandau')
-    send_command('bind !f12 gs c Malevolence')
+    send_command('bind !f12 gs c TauretAE')
 
 
 
@@ -61,7 +60,7 @@ function get_sets()
 
         if command == 'Equip Treasure Hunter' then
             equip(sets.Treasure)
-            send_command('@input /echo Treasure Hunter +8 Equipped')
+            send_command('@input /echo Treasure Hunter +5 Equipped')
         end
 
 
@@ -109,38 +108,27 @@ function get_sets()
             send_command('@input /echo Evasion set equipped.')
         end
 
-
         if command == 'Equip Movement' then
-            equip({feet = gear.Jute})
+            equip({feet="Jute Boots +1"})
             send_command('@input /echo Jute Boots +1 equipped.')
         end
 
-        if command == 'Naegling' then
-            equip({main="Naegling",sub="Ternion Dagger +1"})
-            send_command('@input /echo Naegling + Ternion equipped.')
-            -- send_command('@input /lockstyleset 15')
+        if command == 'Mandau' then
+            equip({main="Mandau", sub="Crepuscular Knife"})
         end
 
-        if command == 'Gleti' then
-            equip({main="Aeneas",sub="Gleti's Knife"})
-            send_command("@input /echo Gleti's Knife equipped.")
-            -- send_command('@input /lockstyleset 15')
+        if command == 'Aeneas' then
+            equip({main="Aeneas", sub="Crepuscular Knife"})
         end
 
-        if command == 'Ternion' then
-            equip({main="Aeneas",sub="Ternion Dagger +1"})
-            send_command("@input /echo Ternion Dagger +1 equipped.")
-            -- send_command('@input /lockstyleset 15')
+        if command == 'Twashtar' then
+            equip({main="Twashtar", sub="Centovente"})
         end
 
-        if command == 'Malevolence' then
-            equip({main="Aeneas",sub="Malevolence"})
-            send_command("@input /echo Malevolence equipped.")
-            -- send_command('@input /lockstyleset 15')
+        if command == 'TauretAE' then
+            equip({main="Tauret",sub="Malevolence"})
+            send_command("@input /echo Tauret+Malevolence equipped.")
         end
-
-
-
 
     end
 
@@ -150,51 +138,50 @@ function get_sets()
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     gear = {}
-    gear.Moonshade                     = { name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}}
-    gear.Jute                          = { name="Jute Boots +1"}
 
     gear.Adhemar = {}
     gear.Adhemar.head = {}
-    gear.Adhemar.head.Accuracy         = { name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}}
-
+    gear.Adhemar.head.Accuracy = { name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}}
+    gear.Adhemar.head.Attack   = { name="Adhemar Bonnet +1", augments={'STR+12','DEX+12','Attack+20',}}
     gear.Adhemar.body = {}
-    gear.Adhemar.body.Attack           = { name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}}
-
+    gear.Adhemar.body.Accuracy = { name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}
+    gear.Adhemar.body.Attack   = { name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}}
     gear.Adhemar.hands = {}
-    gear.Adhemar.hands.Accuracy        = { name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}}
-    gear.Adhemar.hands.Attack          = { name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}}
+    gear.Adhemar.hands.Accuracy = { name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}}
+    gear.Adhemar.hands.Attack   = { name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}}
 
     gear.AmbuCape = {}
-    gear.AmbuCape.TP                   = { name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Store TP"+10','Damage taken-5%',}}
-    gear.AmbuCape.WSD                  = { name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
+    gear.AmbuCape.STP    = { name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}}
+    gear.AmbuCape.WSDdex = { name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}}
 
-    gear.AF = {}
-    gear.AF.head                       = { name="Pill. Bonnet +2",}
-    gear.AF.body                       = { name="Pillager's Vest +3",}
-    gear.AF.hands                      = { name="Pill. Armlets +1",}
-    gear.AF.legs                       = { name="Pill. Culottes +2",}
-    gear.AF.feet                       = { name="Pillager's Poulaines",}
+    gear.Artifact = {}
+    gear.Artifact.head  = { name="Pill. Bonnet +2",}
+    gear.Artifact.body  = { name="Pillager's Vest +3",}
+    gear.Artifact.hands = { name="Pill. Armlets +1",}
+    gear.Artifact.legs  = { name="Pill. Culottes +2",}
+    gear.Artifact.feet  = { name="Pillager's Poulaines",}
 
-    gear.Empy = {}
-    gear.Empy.head                     = { name="Skulker's Bonnet +3"}
-    gear.Empy.body                     = { name="Skulker's Vest +3"}
-    gear.Empy.hands                    = { name="Skulker's Armlets +1"}
-    gear.Empy.legs                     = { name="Skulk. Culottes +1"}
-    gear.Empy.feet                     = { name="Skulk. Poulaines +3" }
+    gear.Relic = {}
+    gear.Relic.head  = {}
+    gear.Relic.body  = { name="Plunderer's Vest +1", augments={'Enhances "Ambush" effect',}}
+    gear.Relic.hands = { name="Plun. Armlets +1", augments={'Enhances "Perfect Dodge" effect',}}
+    gear.Relic.legs  = { name="Plun. Culottes +1", augments={'Enhances "Feint" effect',}}
+    gear.Relic.feet  = { name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}}
+
+
+    gear.Empyrean = {}
+    gear.Empyrean.head  = { name="Skulker's Bonnet +3"}
+    gear.Empyrean.body  = { name="Skulker's Vest +3"}
+    gear.Empyrean.hands = { name="Skulker's Armlets +1"}
+    gear.Empyrean.legs  = { name="Skulk. Culottes +1"}
+    gear.Empyrean.feet  = { name="Skulk. Poulaines +3" }
+
 
     gear.Herc = {}
     gear.Herc.head = {}
-    gear.Herc.head.FC                  = { name="Herculean Helm", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+4',}}
-
+    gear.Herc.head.FC = { name="Herculean Helm", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+4',}}
     gear.Herc.feet = {}
-    gear.Herc.feet.QA                  = { name="Herculean Boots", augments={'Accuracy+17','Pet: STR+1','Quadruple Attack +3','Accuracy+18 Attack+18','Mag. Acc.+3 "Mag.Atk.Bns."+3',}}
-
-    gear.Relic = {}
-    gear.Relic.head                    = {}
-    gear.Relic.body                    = { name="Plunderer's Vest +1", augments={'Enhances "Ambush" effect',}}
-    gear.Relic.hands                   = { name="Plun. Armlets +1", augments={'Enhances "Perfect Dodge" effect',}}
-    gear.Relic.legs                    = { name="Plun. Culottes +1", augments={'Enhances "Feint" effect',}}
-    gear.Relic.feet                    = { name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}}
+    gear.Herc.feet.QA = { name="Herculean Boots", augments={'Accuracy+17','Pet: STR+1','Quadruple Attack +3','Accuracy+18 Attack+18','Mag. Acc.+3 "Mag.Atk.Bns."+3',}}
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ----- STATUS SETS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -219,138 +206,26 @@ function get_sets()
         back="Shadow Mantle",
       }
       sets.status.Idle.Eva = {
-        main={ name="Acrontica", augments={'Path: A',}},
-        sub="Ternion Dagger +1",
         ammo="Yamarang",
-        head="Malignance Chapeau",
-        body="Malignance Tabard",
-        hands="Malignance Gloves",
-        legs="Malignance Tights",
-        feet="Malignance Boots",
+        head="Null Masque",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Bathy Choker +1",
         waist="Svelt. Gouriz +1",
         left_ear="Infused Earring",
         right_ear="Eabani Earring",
         left_ring="Defending Ring",
         right_ring="Vengeful Ring",
-        back = gear.AmbuCape.Evasion,
+        back="Shadow Mantle",
       }
     
-    -- sets.Melee = {}
-    -- sets.Melee.Haste0 = {
-    --     sub="Gleti's Knife",
-    --     ammo="Coiste Bodhar",
-    --     head = gear.Empy.head,
-    --     body = gear.Adhemar.body.Attack,
-    --     hands="Floral Gauntlets",
-    --     legs="Malignance Tights",
-    --     feet="Malignance Boots",
-    --     neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-    --     waist="Reiki Yotai",
-    --     left_ear="Suppanomimi",
-    --     right_ear="Eabani Earring",
-    --     left_ring="Chirich Ring +1",
-    --     right_ring="Chirich Ring +1",
-    --     back = gear.AmbuCape.DW,
-    -- }
-    -- sets.Melee.Haste15 = { -- Same as Haste0 set. Need more dual wield
-    --     sub="Gleti's Knife",
-    --     ammo="Coiste Bodhar",
-    --     head = gear.Empy.head,
-    --     body = gear.Adhemar.body.Attack,
-    --     hands="Floral Gauntlets",
-    --     legs="Malignance Tights",
-    --     feet="Malignance Boots",
-    --     neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-    --     waist="Reiki Yotai",
-    --     left_ear="Suppanomimi",
-    --     right_ear="Eabani Earring",
-    --     left_ring="Chirich Ring +1",
-    --     right_ring="Chirich Ring +1",
-    --     back = gear.AmbuCape.DW,
-    -- }
-    -- sets.Melee.Haste30 = {
-    --     sub="Ternion Dagger +1",
-    --     ammo="Coiste Bodhar",
-    --     head = gear.Empy.head,
-    --     body = gear.Adhemar.body.Attack,
-    --     hands = gear.Adhemar.hands.Attack,
-    --     legs="Malignance Tights",
-    --     feet="Malignance Boots",
-    --     neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-    --     waist="Reiki Yotai",
-    --     left_ear="Dedition Earring",
-    --     right_ear="Telos Earring",
-    --     left_ring="Gere Ring",
-    --     right_ring="Chirich Ring +1",
-    --     back = gear.AmbuCape.DW,
-    -- }
-    -- sets.Melee.HasteCap = {
-    --     ammo="Coiste Bodhar",
-    --     head = gear.Empy.head,
-    --     body = gear.AF.body,
-    --     hands = gear.Adhemar.hands.Attack,
-    --     legs="Malignance Tights",
-    --     feet="Malignance Boots",
-    --     neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-    --     waist="Reiki Yotai",
-    --     left_ear="Dedition Earring",
-    --     right_ear="Sherida Earring",
-    --     left_ring="Gere Ring",
-    --     right_ring="Epona's Ring",
-    --     back = gear.AmbuCape.STP,
-    -- }
-
-
     sets.Melee = {}
-    sets.Melee.Haste0 = {
-        ammo="Coiste Bodhar",
-        head="Skulker's Bonnet +3",
-        body="Adhemar Jacket +1",
-        hands="Floral Gauntlets",
-        legs="Samnuha Tights",
-        feet="Malignance Boots",
-        neck="Asn. Gorget +1",
-        waist="Reiki Yotai",
-        ear1="Suppanomimi",
-        ear2="Eabani Earring",
-        ring1="Lehko's ring",
-        ring2="Gere Ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-    }
-    sets.Melee.Haste15 = { -- Same as Haste0 set. Need more dual wield
-        ammo="Crepuscular Pebble",
-        head="Malignance Chapeau",
-        body="Adhemar Jacket +1",
-        hands="Floral Gauntlets",
-        legs="Gleti's Breeches",
-        feet="Malignance Boots",
-        neck="Asn. Gorget +2",
-        waist="Reiki Yotai",
-        ear1="Suppanomimi",
-        ear2="Eabani Earring",
-        ring1="Gere Ring",
-        ring2="Lehko's ring",
-        back = gear.AmbuCape.DW,
-    }
-    sets.Melee.Haste30 = {
-        ammo="Coiste Bodhar",
-        head="Malignance Chapeau",
-        body="Adhemar Jacket +1",
-        hands="Malignance Gloves",
-        legs="Gleti's Breeches",
-        feet="Malignance Boots",
-        neck="Asn. Gorget +2",
-        waist="Reiki Yotai",
-        ear1="Sherida Earring",
-        ear2="Skulk. Earring +1",
-        ring1="Gere Ring",
-        ring2="Lehko's ring",
-        back = gear.AmbuCape.DW,
-    }
+
     sets.Melee.HasteCap = {
         ammo="Coiste Bodhar",
-        head = gear.Empy.head,  
+        head = gear.Empyrean.head,  
         body="Malignance Tabard",
         hands="Malignance Gloves",
         legs="Gleti's Breeches",
@@ -361,90 +236,88 @@ function get_sets()
         ear2="Skulk. Earring +1",
         ring1="Gere Ring",
         ring2="Lehko's ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-    }
-    -- sets.Melee.HasteCap = {
-    --     ammo="Coiste Bodhar",
-    --     head = gear.Adhemar.head.Accuracy,
-    --     body = gear.AF.body,
-    --     hands = gear.Adhemar.hands.Attack,
-    --     legs="Malignance Tights",
-    --     feet = gear.Relic.feet,
-    --     neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-    --     waist="Reiki Yotai",
-    --     left_ear="Dedition Earring",
-    --     right_ear="Sherida Earring",
-    --     left_ring="Gere Ring",
-    --     right_ring="Epona's Ring",
-    --     back = gear.AmbuCape.STP,
-    -- }
-
-    sets.status.Accuracy = {
-        ammo="Coiste Bodhar",
-        head="Malignance Chapeau",
-        body = gear.AF.body,
-        hands = gear.Adhemar.hands.Attack,
-        legs="Malignance Tights",
-        feet="Malignance Boots",
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-        waist="Reiki Yotai",
-        left_ear="Dedition Earring",
-        right_ear="Sherida Earring",
-        left_ring="Gere Ring",
-        right_ring="Epona's Ring",
-        back = gear.AmbuCape.STP,
+        back = gear.AmbuCape.STP
     }
 
     sets.Treasure = {
-        hands = gear.Relic.hands,
-        feet = gear.Empy.feet,
+        -- hands = gear.Relic.hands,
+        feet = gear.Empyrean.feet,
     }
+
+
+
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ----- PRECAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    sets.precast = {}
-    sets.precast.FastCast = {
-        ammo="Impatiens",
-        head = gear.Herc.head.FC,
-        body="Dread Jupon",
-        hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-        neck="Orunmila's Torque",
-        left_ear="Etiolation Earring",
-        right_ear="Loquac. Earring",
-        left_ring="Weather. Ring",
-        right_ring="Lebeche Ring",
+    sets.FastCast = {
+        -- 43% FC, 8% QC
+        ammo="Impatiens", -- 0%
+        head = gear.Herc.head.FC, -- 11%
+        body="Dread Jupon", -- 7%
+        hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8%
+        neck="Orunmila's Torque", -- 5%
+        left_ear="Etiolation Earring", -- 1%
+        right_ear="Loquac. Earring", -- 3%
+        left_ring="Weather. Ring +1", -- 6%
+        right_ring="Lebeche Ring", -- 2%
     }
 
-    sets.precast.Provoke = {
-        body="Emet Harness +1",
-        hands="Kurys Gloves",
-        neck="Unmoving Collar +1",
-        left_ear="Trux Earring",
-        right_ear="Cryptic Earring",
-        left_ring="Petrov Ring",
-        right_ring="Begrudging Ring",
-        back="Reiki Cloak",
+    sets.Enmity = {
+        -- +66 Enmity
+        ammo="Sapience Orb", -- +2
+        head="Versa Celata", -- +5
+        body="Emet Harness +1",  -- +10
+        hands="Kurys Gloves",  -- +9
+        legs="Zoar Subligar +1", -- +6
+        neck="Unmoving Collar +1", -- +10
+        ear1="Trux Earring",  -- +5
+        ear2="Cryptic Earring",  -- +4
+        ring1="Petrov Ring",  -- +4
+        ring2="Eihwaz Ring",  -- +5
+        back="Reiki Cloak", -- +6
     }
 
-    sets.precast.Steal = {
-        -- +31 steal if all bis?
+    sets.Steal = { -- Is a maximized Steal+ set really worth the inventory space?
+        feet = gear.Artifact.feet,
+
         -- sub="Bartholomew's knife",
-        ammo="Barathrum",
-        head = gear.AF.hands2, -- Lower level AF head has steal+, but reforged versions do not
-        hands = gear.AF.hands,
+        -- ammo="Barathrum",
+        -- head = gear.Artifact.head2, -- Lower level Artifact head has Steal+, but the reforged version does not
+        -- hands = gear.Artifact.hands,
         -- hands="Thief's Kote",
-        -- legs = gear.Relic.legs2, -- Lower level relic legs has steal+, but reforged versions do not
-        feet = gear.AF.feet,
-        neck="Pentalagus Charm",
+        -- legs = gear.Relic.legs2, -- Lower level Relic legs have Steal+, but reforged version does not
+        -- neck="Pentalagus Charm",
         -- waist="Key Ring Belt",
     }
-    sets.precast.Despoil = {
-        ammo="Barathrum",
-        legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
+
+    sets.Despoil = {
+        feet = gear.Empyrean.feet,
+        -- ammo="Barathrum",
+        -- legs = gear.Empyrean.legs,
     }
+
+
+    sets.RangedAccuracy = {
+        -- Max Ranged Accuracy for Gashing/Sleep Bolts
+        main="Twashtar",
+        sub="Gleti's Knife",
+        range="Exalted C.bow +1",
+        ammo="Gashing Bolt",
+        head="Malignance Chapeau",
+        body="Malignance Tabard",
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck="Null Loop",
+        waist="Null Belt",
+        left_ear="Telos Earring",
+        right_ear="Crep. Earring",
+        left_ring="Dingir Ring",
+        right_ring="Ilabrat Ring",
+        back="Null Shawl",
+    }
+
 
     sets.WeaponSkill = {}
     sets.WeaponSkill.MidAtk = {}
@@ -452,7 +325,7 @@ function get_sets()
     sets.WeaponSkill.MidAtk["Rudra's Storm"] = {
         ammo="Coiste Bodhar",
         head="Nyame Helm",
-        body = gear.Empy.body,
+        body = gear.Empyrean.body,
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
@@ -462,12 +335,12 @@ function get_sets()
         ear2="Odr Earring",
         ring1="Regal Ring",
         ring2="Ilabrat Ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
+        back = gear.AmbuCape.WSDdex,
     }
     sets.WeaponSkill.HighAtk["Rudra's Storm"] = {
         ammo="Crepuscular Pebble",
-        head = gear.Empy.head,
-        body = gear.Empy.body,
+        head = gear.Empyrean.head,
+        body = gear.Empyrean.body,
         hands="Gleti's Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
@@ -477,55 +350,20 @@ function get_sets()
         ear2="Odr Earring",
         ring1="Regal Ring",
         ring2="Ilabrat Ring",
-        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
+        back = gear.AmbuCape.WSDdex,
     }
 
 
-    -- sets.WeaponSkill.HighAtk.SneakAttack["Rudra's Storm"] = {
-    --     ammo="Yetshila +1",
-    --     head = gear.Empy.head,
-    --     body = gear.Empy.body,
-    --     hands="Nyame Gauntlets",
-    --     legs="Gleti's Breeches",
-    --     feet="Nyame Sollerets",
-    --     neck="Asn. Gorget +1",
-    --     waist="Kentarch Belt +1",
-    --     ear1="Moonshade Earring",
-    --     ear2="Odr Earring",
-    --     ring1="Regal Ring",
-    --     ring2="Lehko's ring",
-    --     back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
-    -- }
-    -- sets.WeaponSkill.HighAtk.TrickAttack["Rudra's Storm"] = {
-    --     ammo="Yetshila +1",
-    --     head = gear.Empy.head,
-    --     -- body = gear.Empy.body,
-    --     body="Nyame Mail",
-    --     hands="Nyame Gauntlets",
-    --     legs="Gleti's Breeches",
-    --     feet="Nyame Sollerets",
-    --     neck="Asn. Gorget +1",
-    --     waist="Kentarch Belt +1",
-    --     ear1="Moonshade Earring",
-    --     ear2="Odr Earring",
-    --     ring1="Regal Ring",
-    --     ring2="Lehko's ring",
-    --     back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
-    -- }
-
-
-
     sets.WeaponSkill.MidAtk["Aeolian Edge"] = {
-        ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        -- feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        ammo="Ghastly Tathlum +1",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Sibyl Scarf",
         waist="Orpheus's Sash",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        left_ear="Moonshade Earring",
         right_ear="Friomisi Earring",
         left_ring="Dingir Ring",
         right_ring="Shiva Ring +1",
@@ -537,15 +375,15 @@ function get_sets()
 
 
     sets.WeaponSkill.MidAtk["Shark Bite"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Asn. Gorget +1",
+        waist="Sailfi Belt +1",
+        left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Regal Ring",
         right_ring="Ilabrat Ring",
@@ -553,14 +391,14 @@ function get_sets()
     }
     sets.WeaponSkill.HighAtk["Shark Bite"] = {
         ammo="Crepuscular Pebble",
-        head = gear.AF.head,
+        head = gear.Artifact.head,
         body="Gleti's Cuirass",
         hands="Gleti's Gauntlets",
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Asn. Gorget +1",
+        waist="Sailfi Belt +1",
+        left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Regal Ring",
         right_ring="Ilabrat Ring",
@@ -568,15 +406,15 @@ function get_sets()
     }
 
     sets.WeaponSkill.MidAtk["Mandalic Stab"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-        waist={ name="Kentarch Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Asn. Gorget +1",
+        waist="Kentarch Belt +1",
+        left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Gere Ring",
         right_ring="Regal Ring",
@@ -584,14 +422,14 @@ function get_sets()
     }
     sets.WeaponSkill.HighAtk["Mandalic Stab"] = {
         ammo="Crepuscular Pebble",
-        head={ name="Nyame Helm", augments={'Path: B',}},
+        head="Nyame Helm",
         body="Gleti's Cuirass",
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Gleti's Breeches", augments={'Path: A',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-        waist={ name="Kentarch Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        hands="Nyame Gauntlets",
+        legs="Gleti's Breeches",
+        feet="Nyame Sollerets",
+        neck="Asn. Gorget +1",
+        waist="Kentarch Belt +1",
+        left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Gere Ring",
         right_ring="Regal Ring",
@@ -599,46 +437,46 @@ function get_sets()
     }
 
     sets.WeaponSkill.MidAtk["Shadowstitch"] = {
-    ammo="Staunch Tathlum +1",
-    head={ name="Taeon Chapeau", augments={'Evasion+25','Spell interruption rate down -10%','HP+49',}},
-    body={ name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}},
-    hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-    legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
-    feet={ name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}},
-    neck="Null Loop",
-    waist="Reiki Yotai",
-    left_ear="Dedition Earring",
-    right_ear="Telos Earring",
-    left_ring="Defending Ring",
-    right_ring="Lehko's Ring",
-    back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
-        }
+        ammo="Staunch Tathlum +1",
+        head={ name="Taeon Chapeau", augments={'Evasion+25','Spell interruption rate down -10%','HP+49',}},
+        body={ name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}},
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
+        feet={ name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}},
+        neck="Null Loop",
+        waist="Reiki Yotai",
+        left_ear="Dedition Earring",
+        right_ear="Telos Earring",
+        left_ring="Defending Ring",
+        right_ring="Lehko's Ring",
+        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+    }
     sets.WeaponSkill.HighAtk["Shadowstitch"] = {
-    ammo="Staunch Tathlum +1",
-    head={ name="Taeon Chapeau", augments={'Evasion+25','Spell interruption rate down -10%','HP+49',}},
-    body={ name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}},
-    hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
-    legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
-    feet={ name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}},
-    neck="Null Loop",
-    waist="Reiki Yotai",
-    left_ear="Dedition Earring",
-    right_ear="Telos Earring",
-    left_ring="Defending Ring",
-    right_ring="Lehko's Ring",
-    back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+        ammo="Staunch Tathlum +1",
+        head={ name="Taeon Chapeau", augments={'Evasion+25','Spell interruption rate down -10%','HP+49',}},
+        body={ name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}},
+        hands={ name="Floral Gauntlets", augments={'Rng.Acc.+15','Accuracy+15','"Triple Atk."+3','Magic dmg. taken -4%',}},
+        legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
+        feet={ name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}},
+        neck="Null Loop",
+        waist="Reiki Yotai",
+        left_ear="Dedition Earring",
+        right_ear="Telos Earring",
+        left_ring="Defending Ring",
+        right_ring="Lehko's Ring",
+        back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
     }
     
     sets.WeaponSkill.HighAtk["Evisceration"] = {
         ammo="Yetshila +1",
-        head={ name="Blistering Sallet +1", augments={'Path: A',}},
+        head="Blistering Sallet +1",
         body="Gleti's Cuirass",
         hands="Gleti's Gauntlets",
-        legs={ name="Gleti's Breeches", augments={'Path: A',}},
+        legs="Gleti's Breeches",
         feet="Gleti's Boots",
         neck="Fotia Gorget",
         waist="Fotia Belt",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        left_ear="Moonshade Earring",
         right_ear="Odr Earring",
         left_ring="Gere Ring",
         right_ring="Regal Ring",
@@ -646,14 +484,14 @@ function get_sets()
     }
     sets.WeaponSkill.MidAtk["Evisceration"] = {
         ammo="Yetshila +1",
-        head={ name="Blistering Sallet +1", augments={'Path: A',}},
+        head="Blistering Sallet +1",
         body="Pillager's Vest +3",
         hands="Gleti's Gauntlets",
-        legs={ name="Gleti's Breeches", augments={'Path: A',}},
+        legs="Gleti's Breeches",
         feet="Gleti's Boots",
         neck="Fotia Gorget",
         waist="Fotia Belt",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        left_ear="Moonshade Earring",
         right_ear="Odr Earring",
         left_ring="Begrudging Ring",
         right_ring="Regal Ring",
@@ -662,15 +500,15 @@ function get_sets()
     
 
     sets.WeaponSkill.MidAtk["Savage Blade"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Asn. Gorget +1",
         waist="Sailfi Belt +1",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Gere Ring",
         right_ring="Regal Ring",
@@ -678,44 +516,35 @@ function get_sets()
     }
     sets.WeaponSkill.HighAtk["Savage Blade"] = {
         ammo="Crepuscular Pebble",
-        head={ name="Nyame Helm", augments={'Path: B',}},
+        head="Nyame Helm",
         body="Gleti's Cuirass",
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Gleti's Breeches", augments={'Path: A',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-        waist={ name="Kentarch Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+        hands="Nyame Gauntlets",
+        legs="Gleti's Breeches",
+        feet="Nyame Sollerets",
+        neck="Asn. Gorget +1",
+        waist="Kentarch Belt +1",
+        left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Regal Ring",
         right_ring="Ilabrat Ring",
         back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}},
     }
 
-    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    sets.midcast = {}
-    sets.MidShot = {ranged="Exalted Crossbow +1", ammo="Gashing Bolt"}
 
 end
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function precast(spell)
 
-    attack2 = 9999
+    use_TH_Aeolian = (world.zone:contains("Henge")) or (world.zone:contains("Abyssea")) -- See https://docs.windower.net/addons/gearswap/reference/
+
     attack = player.attack
     if attack > attack2 then
-      AtkFlag = 2 -- Attack capped (>6000 Attack in TP set)
       active_ws = sets.WeaponSkill.HighAtk
     else
-      AtkFlag = 0 -- Not Attack Capped
       active_ws = sets.WeaponSkill.MidAtk
     end
     
@@ -730,30 +559,37 @@ function precast(spell)
           cancel_spell()
         end
         equip(active_ws[spell.name])
-    elseif spell.name == "Provoke" then
-        equip(sets.precast.Provoke)
-    elseif spell.type=="WeaponSkill" then
-        equip(sets.WeaponSkill["Rudra's Storm"])
+        
+    elseif spell.type == "WeaponSkill" then
+        equip(sets.WeaponSkill.MidAtk["Rudra's Storm"])
+
     elseif spell.name == "Ranged" then
-        equip(sets.status.PreShot)
-    elseif spell.type=="WeaponSkill" then
-        equip(sets.WeaponSkill.MidAtk["Rudra's Storm"]) -- Default to the Cross Reaper set.
+        equip(sets.RangedAccuracy)
+
+    elseif spell.name == "Provoke" then
+        equip(sets.Enmity)
+
     elseif spell.name == "Flee" then
-        equip({feet=gear.AF.feet})
+        equip({feet = gear.Artifact.feet})
+
     elseif spell.name == "Perfect Dodge" then
-        equip({feet=gear.Relic.hands})
+        equip({feet = gear.Relic.hands})
+
     elseif spell.name == "Steal" then
-        equip(sets.precast.Steal)
+        equip(sets.Steal)
+
     elseif spell.name == "Despoil" then
-        equip(sets.precast.Despoil)
-    elseif spell.name=="Accomplice" or spell.name=="Collaborator" then
-        equip({head=gear.Empy.head,})
+        equip(sets.Despoil)
+
+    elseif (spell.name == "Accomplice") or (spell.name == "Collaborator") then
+        equip({head = gear.Empyrean.head,})
+
     else
-        equip(sets.precast.FastCast)
+        equip(sets.FastCast)
     end
 
-    if spell.name == "Ranged" then
-        equip(sets.MidShot)
+    if (spell.name == "Aeolian Edge") and (use_TH_Aeolian) then
+        equip({feet = gear.Empyrean.feet})
     end
 
 
@@ -767,7 +603,7 @@ end
 function midcast(spell)
 
     if spell.name == "Ranged" then
-        equip(set_combine(sets.MidShot, sets.Treasure))
+        equip(set_combine(sets.RangedAccuracy, sets.Treasure))
     end
 
 end
