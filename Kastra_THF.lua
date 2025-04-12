@@ -251,11 +251,12 @@ function get_sets()
 
 
     sets.FastCast = {
-        -- 43% FC, 8% QC
+        -- 51% FC, 8% QC
         ammo="Impatiens", -- 0%
         head = gear.Herc.head.FC, -- 11%
         body="Dread Jupon", -- 7%
         hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8%
+        legs="Enif Cosciales", -- 8%
         neck="Orunmila's Torque", -- 5%
         left_ear="Etiolation Earring", -- 1%
         right_ear="Loquac. Earring", -- 3%
@@ -300,8 +301,8 @@ function get_sets()
 
     sets.RangedAccuracy = {
         -- Max Ranged Accuracy for Gashing/Sleep Bolts
-        main="Twashtar",
-        sub="Gleti's Knife",
+        -- main="Twashtar",
+        -- sub="Gleti's Knife",
         range="Exalted C.bow +1",
         ammo="Gashing Bolt",
         head="Malignance Chapeau",
