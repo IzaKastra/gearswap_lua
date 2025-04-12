@@ -41,6 +41,7 @@ function get_sets()
     send_command("bind ^!f11 gs c Toggle UtsuEnmity")
     send_command("bind ^!f12 gs c toggle toggle HybridTP")
 
+    send_command('bind ^c gs c chocobo')
 
 
     function file_unload()
@@ -60,6 +61,7 @@ function get_sets()
         send_command("unbind ^!f10")
         send_command("unbind ^!f11")
         send_command("unbind ^!f12")
+        send_command("unbind ^c")
     end
 
     function check_param()
@@ -228,6 +230,19 @@ function get_sets()
             end
         end
 
+        if command == 'chocobo' then
+            mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+            if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+                send_command('@input /echo Dismount')
+                send_command('@input /dismount')
+            elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+                mount = mounts[math.random(#mounts)]
+                send_command('@input /echo ' .. mount)
+                send_command('@input /mount '.. mount)
+            end
+        end
+    
+
     end
 
 
@@ -364,6 +379,25 @@ function get_sets()
         ring1="Gere Ring",
         ring2="Lehko's Ring",
         back="Null Shawl",
+    }
+
+    sets.test = {
+        -- Set used for in game damage testing. Only used manually with "//gs equip"
+        main="Kunai",
+        sub={ name="Kunimitsu", augments={'Path: A',}},
+        ammo="Date Shuriken",
+        head={ name="Nyame Helm", augments={'Path: B',}},
+        body={ name="Nyame Mail", augments={'Path: B',}},
+        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+        legs={ name="Nyame Flanchard", augments={'Path: B',}},
+        feet={ name="Nyame Sollerets", augments={'Path: B',}},
+        neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+        waist={ name="Kentarch Belt +1", augments={'Path: A',}},
+        left_ear="Digni. Earring",
+        right_ear="Crep. Earring",
+        left_ring="Stikini Ring +1",
+        right_ring="Chirich Ring +1",
+        back={ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10',}},
     }
 
     sets.Regain = {
@@ -811,8 +845,8 @@ function get_sets()
         waist="Sailfi Belt +1",
         ear1="Brutal Earring",
         ear2="Lugra Earring +1",
-        ring1="Sroda Ring",
-        ring2="Gere Ring",
+        ring1="Gere Ring",
+        ring2="Sroda Ring",
         back = gear.AmbuCape.WSDstr
     }
     sets.WeaponSkill.HighAtk["Blade: Kamu"] = sets.WeaponSkill.MidAtk["Blade: Kamu"]
@@ -1094,6 +1128,7 @@ function maps()
     Enfeebles = S {"Hojo: Ichi", "Hojo: Ni", "Kurayami: Ichi", "Kurayami: Ni", "Jubaku: Ichi", "Dokumori: Ichi", "Aisha: Ichi", "Yurin: Ichi"}
     Enhancing = S {"Tonko: Ichi", "Tonki: Ni", "Monomi: Ichi", "Myoshu: Ichi", "Kakka: Ichi", "Migawari: Ichi", "Gekka: Ichi", "Yain: Ichi"}
     proc_ws   = S {"Shadow of Death", "Raiden Thrust", "Freezebite", "Tachi: Jinpu", "Tachi: Koki", "Earth Crusher", "Sunburst", "Red Lotus Blade", "Seraph Blade", "Cyclone", "Energy Drain", "Seraph Strike"}
+    fastcast  = S {"Ninjutsu", "Enhancing Magic", "Elemental Magic", "Divine Magic", "Dark Magic", "(N/A)"}
 
 end
 
@@ -1160,17 +1195,12 @@ function precast(spell)
     elseif spell.name == "Holy Water" then
         equip(set_combine(sets.status.Idle.DT, sets.HolyWater))
 
-    else
+    elseif fastcast:contains(spell.skill) then -- Default to FastCast set only if casting a spell (don't equip FastCast for JA or items)
         equip(sets.precast.FastCast)
-
     end
 
     if proc_ws:contains(spell.name) and in_abyssea then
         equip(sets.midcast.MagicAccuracy)
-    end
-
-    if in_abyssea then
-        equip(sets.Treasure)
     end
 
     if (world.zone:contains("Abyssea")) or (world.zone:contains("Henge")) and spell.name == "Aeolian Edge" then
@@ -1265,7 +1295,7 @@ function midcast(spell)
             equip(sets.midcast.SpellInterruption)
         end
 
-    elseif spell.name=="Provoke" or spell.name=="Animated Flourish" or spell.name=="Flash" then
+    elseif spell.name=="Provoke" or spell.name=="Animated Flourish" or spell.name=="Flash" or spell.name=="Warcry" then
         equip(sets.Enmity)
     end
 
