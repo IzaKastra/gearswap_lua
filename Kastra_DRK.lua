@@ -28,6 +28,7 @@ function get_sets()
 
   send_command('bind ^!f12 gs c Equip Refresh')
 
+  send_command('bind ^c gs c chocobo')
 
   function file_unload()
     send_command('unbind f9')
@@ -43,6 +44,7 @@ function get_sets()
     send_command('unbind !f11')
     send_command('unbind !f12')
     send_command('unbind ^!f12')
+    send_command('unbind ^f10')
 
   end
   function self_command(command)
@@ -114,6 +116,19 @@ function get_sets()
         send_command('@input /echo Foenaria Equipped.')
         -- send_command('@input /lockstyleset 11')
       end
+
+      if command == 'chocobo' then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+            send_command('@input /echo Dismount')
+            send_command('@input /dismount')
+        elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command('@input /echo ' .. mount)
+            send_command('@input /mount '.. mount)
+        end
+    end
+
   
     if command == 'Equip Movement' then
       equip(gear.Carmine.legs)
@@ -270,20 +285,24 @@ function get_sets()
     back = gear.AmbuCape.DAstr,
   }
   sets.status.Melee.SubtleBlow = {
+    -- main={ name="Redemption", augments={'Path: A',}},
+    -- sub="Utu Grip",
     ammo="Coiste Bodhar",
-    head={ name="Sakpata's Helm", augments={'Path: A',}},
+    -- head={ name="Sakpata's Helm", augments={'Path: A',}},
+    head = gear.Empy.head,
     body="Dagon Breast.",
     hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
     legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
     feet={ name="Sakpata's Leggings", augments={'Path: A',}},
-    neck={ name="Abyssal Beads +1", augments={'Path: A',}},
-    -- neck="Bathy Choker +1",
+    -- neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+    neck="Bathy Choker",
     waist="Ioskeha Belt +1",
-    left_ear="Schere Earring",
-    right_ear="Telos Earring",
-    left_ring="Chirich Ring +1",
-    right_ring="Niqmaddu Ring",
-    back = gear.AmbuCape.STP,
+    ear1="Dignitary's Earring",
+    ear2="Schere Earring",
+    ring1="Lehko's ring",
+    ring2="Niqmaddu Ring",
+    back="Null Shawl",
+    -- back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
   }
   sets.status.Melee.Hybrid = {
     ammo="Coiste Bodhar",
@@ -293,6 +312,7 @@ function get_sets()
     legs="Sakpata's Cuisses",
     feet="Flam. Gambieras +2",
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
+    neck="Vim Torque +1",
     waist="Ioskeha Belt +1",
     ear1="Brutal Earring",
     ear2="Schere Earring",
@@ -314,12 +334,12 @@ function get_sets()
 
   sets.precast = {}
   sets.precast.FastCast = {
-    -- 78% Fast Cast
+    -- 80% Fast Cast
     ammo="Sapience Orb", -- 2%
     head = gear.Carmine.head, -- 12%
     body="Sacro Breastplate", -- 10%
     hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8%
-    legs={ name="Odyssean Cuisses", augments={'Attack+24','"Fast Cast"+6',}}, -- 6% 
+    legs="Enif Cosciales", -- 8%
     feet={ name="Odyssean Greaves", augments={'"Fast Cast"+4','MND+8','"Mag.Atk.Bns."+6',}}, -- 9%
     neck="Orunmila's Torque", -- 5%
     left_ear="Malignance Earring", -- 4%
@@ -478,9 +498,9 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     legs={ name="Nyame Flanchard", augments={'Path: B',}},
     feet = gear.Empy.feet,
     neck={ name="Abyssal Beads +1", augments={'Path: A',}},
-    waist="Fotia Belt",
-    left_ear="Thrud Earring",
-    right_ear="Schere Earring",
+    waist="Sailfi Belt +1",
+    left_ear = gear.Moonshade,
+    right_ear="Thrud Earring",
     left_ring="Sroda Ring",
     right_ring="Niqmaddu Ring",
     back = gear.AmbuCape.WSDstr,
@@ -541,12 +561,14 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Heath. Sollerets +3",
-    neck="Abyssal Beads +2",
+    neck="Abyssal Beads +1",
+    -- neck="Bathy Choker",
     waist="Sailfi Belt +1",
     ear1="Moonshade Earring",
     ear2="Thrud Earring",
     ring1="Niqmaddu Ring",
     ring2="Regal Ring",
+    -- ring2="Chirich Ring",
     back = gear.AmbuCape.WSDstr,
   }
   sets.WeaponSkill.HighAtk["Origin"] = {
@@ -556,12 +578,14 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Heath. Sollerets +3",
-    neck="Abyssal Beads +2",
+    neck="Abyssal Beads +1",
+    -- neck="Bathy Choker",
     waist="Sailfi Belt +1",
     ear1="Moonshade Earring",
     ear2="Heath. Earring +1",
     ring1="Sroda Ring",
-    ring2="Niqmaddu Ring",
+    ring2="Regal Ring",
+    -- ring2="Chirich Ring",
     back = gear.AmbuCape.WSDstr,
   }
 
@@ -771,6 +795,24 @@ sets.WeaponSkill.MidAtk["Cross Reaper"] = {
   }
   sets.WeaponSkill.HighAtk["Armor Break"] = sets.WeaponSkill.MidAtk["Armor Break"]
 
+
+  sets.Jump = {
+    -- Stack accuracy, Store TP, and multi-attack.
+    ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+    head="Flam. Zucchetto +2",
+    body="Hjarrandi Breast.",
+    hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
+    legs={ name="Odyssean Cuisses", augments={'Accuracy+28','"Store TP"+5','AGI+8','Attack+7',}},
+    feet="Flam. Gambieras +2",
+    neck={ name="Vim Torque +1", augments={'Path: A',}},
+    waist={ name="Kentarch Belt +1", augments={'Path: A',}},
+    left_ear="Crep. Earring",
+    right_ear="Dedition Earring",
+    left_ring="Chirich Ring +1",
+    right_ring="Lehko's Ring",
+    back = gear.AmbuCape.STP,
+    }
+
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -938,6 +980,8 @@ function precast(spell)
     equip(sets.precast[spell.name])
   elseif spell.name == "Holy Water" then
     equip(set_combine(sets.status.Idle.DT,sets.items.HolyWater)) -- Specific Holy Water set.
+  elseif spell.name=="Jump" or spell.name=="High Jump" then
+    equip(sets.Jump)
   else
     equip(sets.precast.FastCast) 
   end
