@@ -15,6 +15,7 @@ function get_sets()
   send_command('bind f12 gs c Equip DT')
   send_command('bind ^f9 gs c toggle Treasure Hunter')
   send_command('bind ^f12 gs c Equip Idle')
+  send_command('bind ^c gs c chocobo')
   function file_unload()
     send_command('unbind f9')
     send_command('unbind f10')
@@ -22,6 +23,7 @@ function get_sets()
     send_command('unbind f12')
     send_command('unbind ^f11')
     send_command('unbind ^f12')
+    send_command('unbind ^c')
   end
 
 
@@ -47,6 +49,19 @@ function get_sets()
   end
 
   function self_command(command)
+
+
+    if command == 'chocobo' then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+            send_command('@input /echo Dismount')
+            send_command('@input /dismount')
+        elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command('@input /echo ' .. mount)
+            send_command('@input /mount '.. mount)
+        end
+    end
 
     if command == 'toggle Magic Burst' then
       if MagicBurstFlag == 0 then
@@ -186,17 +201,16 @@ function get_sets()
   sets.status = {}
   sets.status.Idle = {}
   sets.status.Idle.DT = {
-    -- main="Malignance Pole",
-    -- sub="Khonsu",
-    main="Daybreak",
-    sub="Genmei Shield",
+    main="Malignance Pole",
+    sub="Khonsu",
+    -- main="Daybreak",
+    -- sub="Genmei Shield",
     ammo="Staunch Tathlum +1",
     head = "Null Masque",
     body = gear.Empy.body,
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
-    feet="Nyame Sollerets",
     neck="Warder's Charm +1",
     waist="Null Belt",
     left_ear="Etiolation Earring",
@@ -206,10 +220,10 @@ function get_sets()
     back="Shadow Mantle",
   }
   sets.status.Idle.Refresh = {
-    -- main="Malignance Pole",
-    -- sub="Khonsu",
-    main="Daybreak",
-    sub="Genmei Shield",
+    main="Malignance Pole",
+    sub="Khonsu",
+    -- main="Daybreak",
+    -- sub="Genmei Shield",
     ammo="Homiliary",
     head="Null Masque",
     body = gear.Empy.body,
@@ -332,12 +346,17 @@ function get_sets()
     back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
   }
 
+  sets.precast.Dispelga = set_combine(sets.precast.FastCast, {main="Daybreak"})
+  sets.precast.Impact = set_combine(sets.precast.FastCast, {head="Empty", body="Crepuscular Cloak",})
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
   sets.midcast = {}
+  sets.midcast.Dispelga = set_combine(sets.midcast.Enfeeble, {main="Daybreak"})
+  sets.midcast.Impact = set_combine(sets.midcast.Enfeeble, {head="Empty", body="Crepuscular Cloak",})
 
   sets.midcast.Cures = {
     main="Daybreak",
@@ -458,9 +477,15 @@ function get_sets()
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back = gear.AmbuCape.Nuke,
   }
-  sets.midcast.Aquaveil = {head = gear.Chironic.head}
+  sets.midcast.Aquaveil = {
+    -- main="Vadose Rod",
+    head="Chironic Hat",
+    -- hands="Regal Cuffs",
+    legs="Shedir Seraweels",
+    waist="Emphatikos Rope",
+}
 
-  sets.midcast.DrainAspir = {
+sets.midcast.DrainAspir = {
     main="Daybreak",
     sub="Ammurapi Shield",
     ammo="Pemphredo Tathlum",
