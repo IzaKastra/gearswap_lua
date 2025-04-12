@@ -18,6 +18,7 @@ function file_unload()
     send_command("unbind !^f10")
     send_command("unbind !^f11")
     send_command("unbind !^f12")
+    send_command('unbind ^c')
 end
 
 function get_sets()
@@ -35,11 +36,24 @@ function get_sets()
     send_command("bind !^f10 gs c Maxentius")
     send_command("bind !^f11 gs c Yagrush")
     send_command("bind !^f12 gs c toggle WeaponLock")
+    send_command('bind ^c gs c chocobo')
 
 end
 
 
 function self_command(command)
+
+    if command == 'chocobo' then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+            send_command('@input /echo Dismount')
+            send_command('@input /dismount')
+        elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command('@input /echo ' .. mount)
+            send_command('@input /mount '.. mount)
+        end
+    end
 
     if command == "toggle WeaponLock" then
         if WeaponLock == 0 then
@@ -338,7 +352,7 @@ end
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
         neck="Rep. Plat. Medal",
-        waist="Prosilio Belt +1",
+        waist="Grunfeld Rope",
         ear1="Moonshade Earring",
         ear2="Regal Earring",
         ring1="Shukuyu Ring",
@@ -501,7 +515,7 @@ end
         -- main="Vadose Rod",
         head="Chironic Hat",
         -- hands="Regal Cuffs",
-        -- legs="Shedir Seraweels",
+        legs="Shedir Seraweels",
         waist="Emphatikos Rope",
     }
 
