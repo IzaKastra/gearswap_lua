@@ -196,12 +196,12 @@ function get_sets()
   sets.status.Idle.DT = {
     ammo="Staunch Tathlum +1",
     head="Null Masque",
-    body="Nyame Mail",
+    body = gear.Empy.body,
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
     neck="Warder's Charm +1",
-    waist="Null Belts",
+    waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Sanare Earring",
     left_ring="Defending Ring",
@@ -210,13 +210,13 @@ function get_sets()
   }
   sets.status.Idle.Refresh = {
     ammo="Staunch Tathlum +1",
-    head="Volte Beret",
+    head="Null Masque",
     body = gear.Empy.body,
     hands="Volte Gloves",
     legs="Volte Brais",
     feet="Mallquis Clogs +2",
     neck="Loricate Torque +1",
-    waist="Fucho-no-Obi",
+    waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Lugalbanda Earring",
     left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
@@ -457,6 +457,7 @@ function get_sets()
   }
   sets.midcast.Impact = {
     ammo="Pemphredo Tathlum",
+    head="Empty",
     body="Crepuscular Cloak",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs={ name="Agwu's Slops", augments={'Path: A',}},
@@ -653,7 +654,7 @@ end
 function aftercast(spell)
   sublimation_up = buffactive['Sublimation: Activated'] or buffactive['Sublimation: Complete']
   if player.status == 'Idle' then
-    if player.mpp < 80 then
+    if player.mpp < 70 then
         equip(sets.status.Idle.DT)
     else
       equip(sets.status.Idle.DT)
