@@ -14,6 +14,7 @@ function get_sets()
     send_command('bind !^f9 gs c Equip Aegis')
     send_command('bind !^f10 gs c Equip Duban')
     send_command('bind !^f11 gs c Equip Srivatsa')
+    send_command('bind ^c gs c chocobo')
 
     function file_unload()
 		send_command('unbind ^f10')
@@ -24,6 +25,7 @@ function get_sets()
         send_command('unbind !^f9')
         send_command('unbind !^f10')
         send_command('unbind !^f11')
+		send_command('unbind ^c')
 
 	end
 
@@ -64,6 +66,19 @@ function get_sets()
         equip({sub="Srivatsa",})
         send_command('@input /echo Srivatsa equipped.')
     end
+
+    if command == 'chocobo' then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+            send_command('@input /echo Dismount')
+            send_command('@input /dismount')
+        elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command('@input /echo ' .. mount)
+            send_command('@input /mount '.. mount)
+        end
+    end
+
 
 
 end
@@ -115,16 +130,18 @@ end
         main="Burtgang",
         ammo="Staunch Tathlum +1",
         head = gear.Empy.head,
+        head="Null Masque",
         body={ name="Sakpata's Plate", augments={'Path: A',}},
         hands = gear.Empy.hands,
         legs = gear.Empy.legs,
         feet = gear.Empy.feet,
         neck={ name="Warder's Charm +1", augments={'Path: A',}},
+        neck="Rep. Plat. Medal",
         waist="Plat. Mog. Belt",
         left_ear="Sanare Earring",
         right_ear="Tuisto Earring",
         left_ring={name="Moonlight Ring",bag="wardrobe",priority=1},
-        right_ring="Shadow Ring",
+        right_ring="Warden's Ring",
         back = gear.AmbuCape.Idle,
     }
 	sets.status.Melee = {
@@ -170,7 +187,7 @@ end
         -- body="Chev. Cuirass +3", -- 20%
         hands="Chev. Gauntlets +3",
         legs={ name="Founder's Hose", augments={'MND+8','Mag. Acc.+14','Attack+13','Breath dmg. taken -3%',}}, -- 30%
-        feet="Chev. Sabatons +3",
+        -- feet="Chev. Sabatons +3",
         neck="Moonbeam Necklace", -- 10%
         waist="Audumbla Sash", -- 10%
         left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
@@ -181,8 +198,8 @@ end
         }
 
     sets.Enmity = {
-        -- +126 Enmity.
-        -- +156 with Crusade
+        -- +121 Enmity.
+        -- +151 with Crusade
         -- caps at +200
         -- Can add +30 with upgrades, but lose HP
         main="Burtgang", -- +18
@@ -190,12 +207,12 @@ end
         head={ name="Loess Barbuta +1", augments={'Path: A',}}, -- + ~22
         body = gear.Empy.body, -- +16, +4 more from escha body
         hands = gear.Relic.hands, -- +8, +6 more from Yorium
-        legs={ name="Odyssean Cuisses", augments={'Accuracy+28','"Store TP"+5','AGI+8','Attack+7',}}, -- +4, +8 more if Fern augmented
+        legs="Zoar Subligar +1", -- +6. Odyssean legs can be 4+8 if augmented
         feet="Chev. Sabatons +3", -- +15
         neck={ name="Unmoving Collar +1", augments={'Path: A',}}, -- +10
         waist="Plat. Mog. Belt", -- +5 more with Abyssea belt 
         left_ear="Cryptic Earring", -- +4
-        right_ear="Tuisto Earring",
+        right_ear="Trux Earring", -- +5
         left_ring="Eihwaz Ring", -- +5
         right_ring={name="Moonlight Ring",bag="wardrobe2",priority=1},
         back = gear.AmbuCape.Idle, -- +10
@@ -223,6 +240,12 @@ end
     sets.Sentinel = {feet = gear.Relic.feet,}
     sets.Invincible = {legs = gear.Relic.legs,}
     sets["Holy Circle"] = {feet = gear.AF.feet,}
+
+    sets.HolyWater = {
+        neck="Nicander's Necklace",
+        ring2="Purity Ring",
+    }
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- PRECAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -230,12 +253,12 @@ end
 
 	sets.precast = {}
 
-	sets.precast.FastCast = { -- 6% QC, 71% FC
+	sets.precast.FastCast = { -- 6% QC, 79% FC
         ammo="Impatiens", -- 2% QC
         head={ name="Carmine Mask", augments={'Accuracy+15','Mag. Acc.+10','"Fast Cast"+3',}}, -- 12% FC
         body = gear.AF.body, -- 10% FC
         hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8% FC
-        legs={ name="Odyssean Cuisses", augments={'Attack+24','"Fast Cast"+6',}}, -- 6% FC
+        legs="Enif Cosciales", -- 8% FC
         feet = gear.Empy.feet, -- 13% FC
         neck="Orunmila's Torque", -- 5% FC
         waist={name="Plat. Mog. Belt", priority=1},
@@ -274,6 +297,22 @@ end
         left_ring="Shiva Ring +1",
         right_ring="Shadow Ring",
         back={ name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','VIT+10','Weapon skill damage +10%','Damage taken-5%',}},
+    }
+
+    sets.precast["Knights of Round"] = {
+        ammo="Crepuscular Pebble",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Rep. Plat. Medal",
+        waist="Sailfi Belt +1",
+        ear1="Lugra Earring +1",
+        ear2="Thrud Earring",
+        ring1="Sroda Ring",
+        ring2="Regal Ring",
+        back="Null Shawl",
     }
 
 
@@ -326,6 +365,10 @@ function precast(spell)
             equip(sets.Enmity)
         end
         equip(sets.precast.FastCast)
+    
+    elseif spell.name == "Holy Water" then
+        equip(set_combine(sets.status.Idle.DT, sets.HolyWater))
+
     else
 		equip(sets.precast.FastCast)
 	end
@@ -344,13 +387,11 @@ function midcast(spell)
         equip(sets.Healing)
     elseif spell.name == "Phalanx" then
         equip(sets.midcast.Phalanx)
-    elseif spell.type == "WeaponSkill" then
-        equip(sets.precast.WS) 
     end
 
         
 
-    if SIRDFlag then -- Prioritize Spell Interruption Rate over everything else if the flag is set to True.
+    if SIRDFlag and spell.type ~= "WeaponSkill" then -- Prioritize Spell Interruption Rate over everything else if the flag is set to True.
         if Healing_Spells:contains(spell.name) then
             equip(set_combine(sets.Healing, sets.SIRD))
         else
@@ -370,10 +411,12 @@ function aftercast(spell)
 end
 
 function status_change(new,old)
---	print("Status Change:",player.status)
+	-- print("Status Change:",player.status)
 	if new == "Idle" then
         equip(sets.status.Idle.DT)
 	elseif new == "Engaged" then
         equip(sets.status.Melee)
+	elseif new == "Resting" then
+        equip(sets.midcast.Phalanx)
 	end
 end
