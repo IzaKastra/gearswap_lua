@@ -15,8 +15,8 @@ function get_sets()
     send_command('bind f11 gs c Equip Carmine')
     send_command('bind f12 gs c Equip DT')
 
-    send_command('bind ^f9 gs c Free4')
-    send_command('bind ^f10 gs c Free2')
+    send_command('bind ^f9 gs c Equip Maxentius')
+    send_command('bind ^f10 gs c Equip Crocea')
     send_command('bind ^f11 gs c Free3')
     send_command('bind ^f12 gs c Equip Refresh')
 
@@ -27,6 +27,9 @@ function get_sets()
     send_command('bind !^f11 gs c Equip Mandau')
 
     send_command('bind !^f12 gs c toggle WeaponLock')
+
+    send_command('bind ^c gs c chocobo')
+
 
     function file_unload()
         send_command('unbind f9')
@@ -45,6 +48,8 @@ function get_sets()
         send_command('unbind !^f10')
         send_command('unbind !^f11')
         send_command('unbind !^f12')
+
+        send_command('unbind ^c')
     end
 
 
@@ -96,6 +101,23 @@ function self_command(command)
         send_command('@input /echo Damage Taken set equipped.')
     end
 
+    if command == 'chocobo' then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+            send_command('@input /echo Dismount')
+            send_command('@input /dismount')
+        elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command('@input /echo ' .. mount)
+            send_command('@input /mount '.. mount)
+        end
+    end
+
+    if command == 'warp' then
+        send_command('@input /equip Ring2 "Warp Ring"')
+        send_command('@input /equip main "Warp Cudgel"')
+    end
+
     if command == 'Equip Refresh' then
         equip(sets.status.Idle.Refresh)
         send_command('@input /echo Idle Refresh set equipped.')
@@ -143,11 +165,27 @@ function self_command(command)
         equip({main="Crocea Mors"})
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
             equip({sub="Crepuscular Knife"})
+        else
+            equip({sub="Ammurapi Shield"})
         end
         if WeaponLock == 1 then
             disable("main","sub","ranged")
         end
         send_command('@input /echo Crocea Mors equipped.')
+    end
+
+    if command == 'Equip Maxentius' then
+        if WeaponLock == 1 then
+            enable("main","sub","ranged")
+        end
+        equip({main="Maxentius"})
+        if player.sub_job=="NIN" or player.sub_job=="DNC" then
+            equip({sub="Thibron"})
+        end
+        if WeaponLock == 1 then
+            disable("main","sub","ranged")
+        end
+        send_command('@input /echo Maxentius equipped.')
     end
 
     if command == 'Equip Excalibur' then
@@ -156,7 +194,7 @@ function self_command(command)
         end
         equip({main="Excalibur"})
         if player.sub_job=="NIN" or player.sub_job=="DNC" then
-            equip({sub="Crepuscular Knife"})
+            equip({sub="Gleti's Knife"})
         end
         if WeaponLock == 1 then
             disable("main","sub","ranged")
@@ -315,6 +353,40 @@ end
     }
 
 
+
+    sets.VagaryBurst = {
+        main="Maxentius",
+        ammo="Regal Gem",
+        head="Malignance Chapeau",
+        body = gear.Empy.body,
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        waist="Null Belt",
+        left_ear="Crep. Earring",
+        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
+        left_ring="Stikini Ring +1",
+        right_ring="Stikini Ring +1",
+        back="Null Shawl",
+    }
+    sets.VagaryWS = {
+        ammo="Staunch Tathlum +1",
+        head={ name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}},
+        body={ name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}},
+        hands={ name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}},
+        legs="Shedir Seraweels",
+        feet={ name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}},
+        neck="Null Loop",
+        waist="Null Belt",
+        left_ear="Crep. Earring",
+        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
+        left_ring="Defending Ring",
+        right_ring="Chirich Ring +1",
+        back="Null Shawl",
+    }
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----- PRECAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -422,6 +494,23 @@ end
         right_ring="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
+
+    -- sets.WeaponSkill["Black Halo"] = {
+    --     ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+    --     head={ name="Nyame Helm", augments={'Path: B',}},
+    --     body={ name="Nyame Mail", augments={'Path: B',}},
+    --     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    --     legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    --     feet = gear.Empy.feet,
+    --     neck="Null Loop",
+    --     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    --     left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    --     right_ear="Sherida Earring",
+    --     left_ring="Ilabrat Ring",
+    --     right_ring="Chirich Ring +1",
+    --     back = gear.AmbuCape.WSD,
+    -- }
+
 
     sets.WeaponSkill["Knights of Round"] = {
         ammo={ name="Coiste Bodhar", augments={'Path: A',}},
@@ -566,6 +655,21 @@ sets.WeaponSkill["Sanguine Blade"] = {
         -- feet="Volte Boots",
 
         }
+    -- sets.WeaponSkill["Aeolian Edge"] = {
+    --     ammo="Staunch Tathlum +1",
+    --     head="Befouled Crown",
+    --     body={ name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}},
+    --     hands={ name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}},
+    --     legs={ name="Taeon Tights", augments={'Evasion+25','Spell interruption rate down -10%','HP+50',}},
+    --     feet={ name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}},
+    --     neck={ name="Unmoving Collar +1", augments={'Path: A',}},
+    --     waist="Plat. Mog. Belt",
+    --     left_ear="Etiolation Earring",
+    --     right_ear="Sanare Earring",
+    --     left_ring="Defending Ring",
+    --     right_ring="Shadow Ring",
+    --     back="Shadow Mantle",
+    -- }
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -709,6 +813,21 @@ sets.WeaponSkill["Sanguine Blade"] = {
         right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
         back = gear.AmbuCape.INT,
     }
+    -- sets.midcast.Nuke = {
+    --     ammo="Aurgelmir Orb",
+    --     head="Malignance Chapeau",
+    --     body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+6','"Occult Acumen"+11','CHR+4',}},
+    --     hands={ name="Merlinic Dastanas", augments={'"Mag.Atk.Bns."+19','"Occult Acumen"+11','INT+5','Mag. Acc.+13',}},
+    --     legs="Perdition Slops",
+    --     feet={ name="Merlinic Crackows", augments={'"Mag.Atk.Bns."+1','"Occult Acumen"+11','Mag. Acc.+14',}},
+    --     neck="Combatant's Torque",
+    --     waist="Oneiros Rope",
+    --     left_ear="Crep. Earring",
+    --     right_ear="Dedition Earring",
+    --     left_ring="Chirich Ring +1",
+    --     right_ring="Chirich Ring +1",
+    --     back="Null Shawl",
+    -- }
 
     sets.midcast.MagicBurst = {
         main={ name="Bunzi's Rod", augments={'Path: A',}},
@@ -731,7 +850,7 @@ sets.WeaponSkill["Sanguine Blade"] = {
     sets.midcast.Aquaveil = {
         head="Chironic Hat",
         -- hands="Regal Cuffs",
-        -- legs="Shedir Seraweels",
+        legs="Shedir Seraweels",
         waist="Emphatikos Rope",
       }
 
@@ -823,9 +942,15 @@ function precast(spell)
     target = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_target('st') or self
     distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
     weather_intensity = gearswap.res.weather[world.weather_id].intensity
-  
+    in_vagary = false
+
+
     if sets.WeaponSkill[spell.name] then
         equip(sets.WeaponSkill[spell.name])
+        if in_vagary then
+            equip(sets.VagaryWS)
+        end
+
     elseif spell.skill == "Enfeebling Magic" then
         equip(set_combine(sets.precast.FastCast, sets.precast.Enfeeble))
     elseif spell.skill == "Enhancing Magic" then
@@ -892,6 +1017,9 @@ function midcast(spell)
             equip(gear.Orpheus)
         elseif world.weather_element == spell.element or world.day_element == spell.element then
             equip(gear.Obi)
+        end
+        if in_vagary then
+            equip(sets.VagaryBurst)
         end
         if spell.name == "Impact" then
             equip(sets.midcast.Impact)
