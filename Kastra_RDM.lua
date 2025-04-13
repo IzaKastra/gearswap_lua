@@ -984,7 +984,7 @@ function midcast(spell)
         end
 
     elseif spell.skill == "Enfeebling Magic" then
-        if MNDfeeble:contains(spell.english) then
+        if MNDfeeble:contains(spell.english) or spell.name == "Dia III" then
             equip(sets.midcast.MNDfeeble)
         elseif INTfeeble:contains(spell.english) then
             equip(sets.midcast.INTfeeble)
