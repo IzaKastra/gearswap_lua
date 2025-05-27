@@ -8,11 +8,12 @@ function get_sets()
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    AccFlag            = 1 -- Cycle between various accuracy levels
-    HasteFlag          = 0 -- Cycle between various haste levels
-    HybridTPFlag       = false -- Force TP set to use 50% DT
-    MagicBurstFlag     = false -- Use Magic Burst set when casting nukes.
-    UtsuEnmityFlag     = false -- Use Enmity+ set when casting Utsusemi with Yonin up
+    AccFlag        = 1 -- Cycle between various accuracy levels
+    HasteFlag      = 0 -- Cycle between various haste levels
+    HybridTPFlag   = false -- Force TP set to use 50% DT
+    MagicBurstFlag = false -- Use Magic Burst set when casting nukes.
+    UtsuEnmityFlag = false -- Use Enmity+ set when casting Utsusemi with Yonin up
+    YagyuFlag      = false -- Enable automatically equipping Yagyu Darkblade (offhand) on all Utsusemi casts. This wipes TP.
 
     -- F# commands
     -- ! == alt
@@ -37,9 +38,9 @@ function get_sets()
 
     -- Ctrl+Alt+F# commands
     send_command("bind ^!f9 gs c Hachimonji")
-    send_command("bind ^!f10 gs c Free spot")
-    send_command("bind ^!f11 gs c Toggle UtsuEnmity")
-    send_command("bind ^!f12 gs c toggle toggle HybridTP")
+    send_command("bind ^!f10 gs c toggle Yagyu")
+    send_command("bind ^!f11 gs c toggle UtsuEnmity")
+    send_command("bind ^!f12 gs c toggle HybridTP")
 
     send_command('bind ^c gs c chocobo')
 
@@ -101,6 +102,12 @@ function get_sets()
         elseif UtsuEnmityFlag == true then
             print("Utsu: Enmity:..........ON")
         end
+
+        if YagyuFlag == false then
+            print("Utsu: AoE:............OFF")
+        elseif YagyuFlag == true then
+            print("Utsu: AoE:.............ON")
+        end
         print("-------------------------")
     end
 
@@ -124,6 +131,18 @@ function get_sets()
             elseif UtsuEnmityFlag == true then
                 UtsuEnmityFlag = false
                 send_command("@input /echo Utsu Enmity: OFF")
+            end
+            check_param()
+        end
+
+
+        if command == "toggle Yagyu" then
+            if YagyuFlag == false then
+                YagyuFlag = true
+                send_command("@input /echo AoE Utsu: ON")
+            elseif YagyuFlag == true then
+                YagyuFlag = false
+                send_command("@input /echo AoE Utsu: OFF")
             end
             check_param()
         end
@@ -1259,6 +1278,9 @@ function midcast(spell)
                     windower.ffxi.cancel_buff(444)  -- Copy Image (2)
                     windower.ffxi.cancel_buff(66)   -- Copy Image
                 end
+            end
+            if YagyuFlag then
+                equip({sub="Yagyu Darkblade",})
             end
 
         elseif Nukes:contains(spell.name) then
