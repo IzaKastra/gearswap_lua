@@ -131,8 +131,9 @@ function get_sets()
 
   
     if command == 'Equip Movement' then
-      equip(gear.Carmine.legs)
-      send_command('@input /echo Carmine Cuisses +1 equipped.')
+        -- equip({legs="Carmine Cuisses +1"})
+        equip({ring2="Shneddick Ring +1"})
+        send_command('@input /echo Movement+ Equipped.')
     end
 
   end
@@ -146,10 +147,6 @@ function get_sets()
     gear.Moonshade                     = { name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}}
     gear.Obi                           = { waist="Hachirin-no-Obi"}
     gear.Orpheus                       = { waist="Orpheus's Sash"}
-
-    gear.Carmine = {}
-    gear.Carmine.head                  = { name="Carmine Mask"}
-    gear.Carmine.legs                  = { legs="Carmine Cuisses +1"}
 
     gear.Empy = {}
     gear.Empy.head                     = { name="Heath. Bur. +3"}
@@ -212,6 +209,7 @@ function get_sets()
   }
 
     sets.status.Refresh = {
+        body="Chozor. Coselete",
         neck="Bale Choker",
         left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
         right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
@@ -336,7 +334,7 @@ function get_sets()
   sets.precast.FastCast = {
     -- 80% Fast Cast
     ammo="Sapience Orb", -- 2%
-    head = gear.Carmine.head, -- 12%
+    head="Carmine Mask", -- 12%
     body="Sacro Breastplate", -- 10%
     hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, -- 8%
     legs="Enif Cosciales", -- 8%
