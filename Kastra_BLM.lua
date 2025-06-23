@@ -13,13 +13,16 @@ function get_sets()
 
   send_command('bind f9 gs c toggle Magic Burst')
   send_command('bind f10 gs c Free Space')
-  send_command('bind f11 gs c equip Criers')
+  send_command('bind f11 gs c equip movement')
   send_command('bind f12 gs c Equip DT')
   send_command('bind ^f9 gs c toggle Treasure Hunter')
   send_command('bind ^f10 gs c toggle Occult Acumen')
   send_command('bind ^f12 gs c Equip Idle')
   send_command('bind !f9 gs c Equip Bunzi')
   send_command('bind !f10 gs c Equip Marin')
+
+  send_command('bind ^c gs c chocobo')
+
   function file_unload()
     send_command('unbind f9')
     send_command('unbind f10')
@@ -29,6 +32,7 @@ function get_sets()
     send_command('unbind f12')
     send_command('unbind ^f11')
     send_command('unbind ^f12')
+    send_command('unbind ^c')
   end
 
 
@@ -87,10 +91,11 @@ function get_sets()
     end
 
 
-    if command == 'equip Criers' then
-        equip(gear.Criers)
-        send_command('@input /echo Crier\'s Gaiters Equipped.')
-      end
+    if command == "equip movement" then
+        equip({ring2="Shneddick Ring +1"})
+        -- equip({feet="Crier's Gaiters"})
+        send_command("@input /echo Movement+ Equipped.")
+    end
 
     if command == 'Equip Bunzi' then
       equip({main="Bunzi's Rod",sub="Ammurapi Shield"})
@@ -101,6 +106,18 @@ function get_sets()
         send_command('@input /echo Marin Staff +1 equipped.')
     end
           
+    if command == 'chocobo' then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target('me').status == 5 or windower.ffxi.get_mob_by_target('me').status == 85 then
+            send_command('@input /echo Dismount')
+            send_command('@input /dismount')
+        elseif windower.ffxi.get_mob_by_target('me').status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command('@input /echo ' .. mount)
+            send_command('@input /mount '.. mount)
+        end
+    end
+
 
     if command == 'toggle Treasure Hunter' then
       if TreasureHunterFlag == 0 then
@@ -123,7 +140,6 @@ function get_sets()
 
   gear.Obi                           = { waist="Hachirin-no-Obi"}
   gear.Orpheus                       = { waist="Orpheus's Sash"}
-  gear.Criers                        = { feet="Crier's Gaiters"}
 
   gear.AF = {}
   gear.AF.head                        = {}
@@ -143,12 +159,12 @@ function get_sets()
   gear.AmbuCape.FC                   = { name="Taranus's Cape", augments={'MP+60','"Fast Cast"+10',}}
   gear.AmbuCape.STP                  = { name="Taranus's Cape", augments={'"Store TP"+10',}}
 
-  gear.Empy = {}
-  gear.Empy.head                      = {}
-  gear.Empy.body                      = { name="Wicce Coat +3",}
-  gear.Empy.hands                     = {}
-  gear.Empy.legs                      = { name="Wicce Chausses +2"}
-  gear.Empy.feet                      = { name="Wicce Sabots +2"}
+  gear.Empyrean = {}
+  gear.Empyrean.head                      = {}
+  gear.Empyrean.body                      = { name="Wicce Coat +3",}
+  gear.Empyrean.hands                     = {}
+  gear.Empyrean.legs                      = { name="Wicce Chausses +2"}
+  gear.Empyrean.feet                      = { name="Wicce Sabots +2"}
 
   gear.Grio = {}
   gear.Grio.Death                    = { name="Grioavolr", augments={'Enfb.mag. skill +8','MP+96','Mag. Acc.+29','"Mag.Atk.Bns."+25',}}
@@ -179,11 +195,11 @@ function get_sets()
   gear.Relic.feet                    = { name="Arch. Sabots +3", augments={'Increases Aspir absorption amount',}}
 
   gear.Telchine = {}
-  gear.Telchine.head                 = { name="Telchine Cap", augments={'Enh. Mag. eff. dur. +9',}}
-  gear.Telchine.body                 = { name="Telchine Chas.", augments={'Enh. Mag. eff. dur. +10',}}
-  gear.Telchine.hands                = { name="Telchine Gloves", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.legs                 = { name="Telchine Braconi", augments={'Enh. Mag. eff. dur. +8',}}
-  gear.Telchine.feet                 = { name="Telchine Pigaches", augments={'Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.head  = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.body  = { name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.hands = { name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}}
+  gear.Telchine.legs  = { name="Telchine Braconi", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+  gear.Telchine.feet  = { name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -196,7 +212,7 @@ function get_sets()
   sets.status.Idle.DT = {
     ammo="Staunch Tathlum +1",
     head="Null Masque",
-    body = gear.Empy.body,
+    body = gear.Empyrean.body,
     hands="Nyame Gauntlets",
     legs="Nyame Flanchard",
     feet="Mallquis Clogs +2",
@@ -211,7 +227,7 @@ function get_sets()
   sets.status.Idle.Refresh = {
     ammo="Staunch Tathlum +1",
     head="Null Masque",
-    body = gear.Empy.body,
+    body = gear.Empyrean.body,
     hands="Volte Gloves",
     legs="Volte Brais",
     feet="Mallquis Clogs +2",
@@ -250,7 +266,7 @@ function get_sets()
   sets.precast = {}
   sets.precast.FastCast = {
   -- 83% Fast Cast, 6% Quick Cast
-    ammo="Impatiens",
+    -- ammo="Impatiens",
     head = gear.Merlinic.head.FC,
     body="Agwu's Robe",
     hands={ name="Agwu's Gages", augments={'Path: A',}},
@@ -260,7 +276,7 @@ function get_sets()
     waist="Embla Sash",
     left_ear="Loquac. Earring",
     right_ear="Malignance Earring",
-    left_ring="Weather. Ring +1",
+    -- left_ring="Weather. Ring +1",
     right_ring="Kishar Ring",
     back = gear.AmbuCape.FC
   }
@@ -274,7 +290,7 @@ function get_sets()
     feet = gear.Merlinic.feet.FC,
     neck="Orunmila's Torque",
     waist="Embla Sash",
-    left_ear="Etiolation Earring",
+    left_ear="Loquac. Earring",
     right_ear="Malignance Earring",
     left_ring="Weather. Ring +1",
     right_ring="Kishar Ring",
@@ -289,15 +305,15 @@ function get_sets()
     hands="Agwu's Gages",
     legs = gear.Amalric.legs,
     feet = gear.Amalric.feet,
-    neck="Sanctity Necklace",
-    waist="Fucho-no-Obi",
+    neck="Orunmila's Torque",
+    waist="Emphatikos Rope",
     left_ear="Etiolation Earring",
     right_ear="Evans Earring",
     left_ring="Metamorph Ring +1",
     right_ring="Lebeche Ring",
     back = gear.AmbuCape.FC,
   }
-	sets.precast.Cataclysm = {
+  sets.precast.Cataclysm = {
 	ammo="Pemphredo Tathlum",
     head="Pixie Hairpin +1",
     body={ name="Nyame Mail", augments={'Path: B',}},
@@ -312,6 +328,22 @@ function get_sets()
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back = gear.AmbuCape.Nuke,
   }
+
+  sets.precast["Spiral Hell"] = {
+    ammo="Oshasha's Treatise",
+    head="Nyame Helm",
+    body="Nyame Mail",
+    hands="Nyame Gauntlets",
+    legs="Nyame Flanchard",
+    feet="Nyame Sollerets",
+    neck="Fotia Gorget",
+    waist="Fotia Belt",
+    ear1="Moonshade Earring",
+    ear2="Brutal Earring",
+    ring1="Metamor. Ring +1",
+    ring2="Shukuyu Ring",
+    back="Null Shawl",
+      }
 
 
 
@@ -370,12 +402,12 @@ function get_sets()
     head = gear.Relic.head,
     body = gear.Relic.body,
     hands = gear.Relic.hands,
-    legs = gear.Relic.legs,
+    legs = gear.Empyrean.legs,
     feet = gear.Relic.feet,
     neck={ name="Src. Stole +1", augments={'Path: A',}},
     waist="Sacro Cord",
     left_ear="Regal Earring",
-    right_ear="Malignance Earring",
+    right_ear="Malignance Earring", 
     left_ring="Freke Ring",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back = gear.AmbuCape.Nuke,
@@ -383,7 +415,7 @@ function get_sets()
   sets.midcast.MagicBurst = {
     ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
     head="Ea Hat +1",
-    body = gear.Empy.body,
+    body = gear.Empyrean.body,
     hands={ name="Agwu's Gages", augments={'Path: A',}},
     legs="Ea Slops +1",
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
@@ -474,10 +506,12 @@ function get_sets()
   sets.midcast.DrainAspir = {
     head="Pixie Hairpin +1",
     body="Agwu's Robe",
-    hands = gear.Merlinic.hands.DrainAspir,
+    -- hands = gear.Merlinic.hands.DrainAspir,
     feet={ name="Agwu's Pigaches", augments={'Path: A',}},
     neck="Erra Pendant",
     waist="Fucho-no-Obi",
+    left_ear="Crepuscular Earring",
+    ring_ear="Malignance Earring",
     left_ring="Archon Ring",
     right_ring="Evanescence Ring",
   }
@@ -485,11 +519,17 @@ function get_sets()
     neck="Nodens Gorget",
     waist="Siegel Sash",
   }
+
+  sets.midcast.Aquaveil = {
+    legs="Shedir Seraweels",
+    waist="Emphatikos Rope",
+}
+
+
   sets.midcast.Treasure = {
     ammo="Perfect Lucky Egg", -- +1
-    head="Wh. Rarab Cap +1",  -- +1
+    head="Volte Cap",  -- +1
     hands="Volte Bracers",  -- +1
-    legs = gear.Merlinic.legs.TH,  -- +2
     feet="Volte Boots",  -- +1
     waist="Chaac Belt",  -- +1
   }
@@ -534,18 +574,24 @@ function precast(spell)
   distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
   weather_intensity = gearswap.res.weather[world.weather_id].intensity
 
-  if spell.name == "Impact" then
-    equip(sets.precast[spell.name])
-  elseif spell.name == "Manafont" then
-    equip(sets.precast.Manafont)
-  elseif spell.skill == "Healing Magic" then
-    equip(set_combine(sets.precast.FastCast, sets.precast.Cures))
-  else
-    equip(sets.precast.FastCast)
-  end
+    if spell.name == "Impact" then
+        equip(sets.precast[spell.name])
+    elseif spell.name == "Manafont" then
+        equip(sets.precast.Manafont)
+    elseif spell.skill == "Healing Magic" then
+        equip(set_combine(sets.precast.FastCast, sets.precast.Cures))
+    elseif spell.type=="WeaponSkill" and spell.name ~= "Myrkr" then
+        if sets.precast[spell.name] then
+            equip(sets.precast[spell.name])
+        else
+            equip(sets.precast["Spiral Hell"])
+        end
+    else
+        equip(sets.precast.FastCast)
+    end
 
   if spell.name == "Mana Wall" then
-    equip({feet = gear.Empy.Feet})
+    equip({feet = gear.Empyrean.Feet})
   end
 
   if spell.name == "Vidohunir" then
@@ -634,12 +680,16 @@ function midcast(spell)
   elseif spell.skill == "Enhancing Magic" then
     equip(sets.midcast.Enhancing)
     if spell.name == "Stoneskin" then
-      equip(sets.midcast.Stoneskin)
+        equip(sets.midcast.Stoneskin)
+      end
+      if spell.name == "Aquaveil" then
+        equip(sets.midcast.Aquaveil)
+      end
+  
     end
-  end
 
   if spell.name == "Mana Wall" then
-    equip({feet = gear.Empy.Feet})
+    equip({feet = gear.Empyrean.Feet})
   end
 
   if TreasureHunterFlag == 1 then
@@ -668,7 +718,7 @@ function aftercast(spell)
     --   equip(sets.status.Sublimation)
     -- end
     if spell.name == "Mana Wall" or buffactive["Mana Wall"] then
-      equip({feet = gear.Empy.feet})
+      equip({feet = gear.Empyrean.feet})
     end
   end
 end
@@ -693,6 +743,6 @@ function status_change(new,old)
 --     equip(sets.status.Sublimation)
 --   end
   if buffactive["Mana Wall"] then
-    equip({feet = gear.Empy.feet})
+    equip({feet = gear.Empyrean.feet})
   end
 end
