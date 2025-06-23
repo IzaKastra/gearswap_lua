@@ -108,7 +108,7 @@ end
 		left_ear="Etiolation Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Stikini Ring +1",
-		right_ring="Stikini Ring +1",
+		right_ring="Shneddick Ring",
         back="Shadow Mantle",
 	}
 	sets.status.Idle.DT = {
@@ -123,7 +123,7 @@ end
 		left_ear="Etiolation Earring",
 		right_ear="Odnowa Earring +1",
 		left_ring="Defending Ring",
-		right_ring="Shadow Ring",
+		right_ring="Shneddick Ring",
         back="Shadow Mantle",
 	}
 	sets.status.Melee = {
