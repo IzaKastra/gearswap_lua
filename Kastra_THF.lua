@@ -109,8 +109,9 @@ function get_sets()
         end
 
         if command == 'Equip Movement' then
-            equip({feet="Jute Boots +1"})
-            send_command('@input /echo Jute Boots +1 equipped.')
+            -- equip({feet="Jute Boots +1"})
+            equip({ring2="Shneddick Ring +1"})
+            send_command('@input /echo Movement+ equipped.')
         end
 
         if command == 'Mandau' then
@@ -233,7 +234,7 @@ function get_sets()
         neck="Asn. Gorget +1",
         waist="Reiki Yotai",
         ear1="Sherida Earring",
-        ear2="Skulk. Earring +1",
+        ear2="Skulk. Earring +2",
         ring1="Gere Ring",
         ring2="Lehko's ring",
         back = gear.AmbuCape.STP
