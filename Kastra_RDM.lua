@@ -12,7 +12,7 @@ function get_sets()
 
     send_command('bind f9 gs c toggle MagicBurst')
     send_command('bind f10 gs c Free1')
-    send_command('bind f11 gs c Equip Carmine')
+    send_command('bind f11 gs c equip movement')
     send_command('bind f12 gs c Equip DT')
 
     send_command('bind ^f9 gs c Equip Maxentius')
@@ -123,9 +123,10 @@ function self_command(command)
         send_command('@input /echo Idle Refresh set equipped.')
     end
 
-    if command == 'Equip Carmine' then
-        equip({legs = gear.Carmine})
-        send_command('@input /echo Carmine Cuisses +1 Equipped.')
+    if command == 'equip movement' then
+        -- equip({legs = gear.Carmine})
+        equip({ring2="Shneddick Ring +1"})
+        send_command('@input /echo Movement+ Equipped.')
     end
 
     if command == 'Equip Mandau' then
@@ -262,11 +263,11 @@ end
     gear.ReiveCape                     = { name="Ghostfyre Cape", augments={'Enfb.mag. skill +2','Enha.mag. skill +10','Mag. Acc.+6','Enh. Mag. eff. dur. +18',}}
 
     gear.Relic = {}
-    gear.Relic.head                    = { name="Viti. Chapeau +3", augments={'Enhances "Dia III" effect','Enhances "Slow II" effect',}}
-    gear.Relic.body                    = { name="Viti. Tabard +3", augments={'Enhances "Chainspell" effect',}}
-    gear.Relic.hands                   = { name="Viti. Gloves +3", augments={'Enhancing Magic duration',}}
+    gear.Relic.head                    = { name="Viti. Chapeau +4"}
+    gear.Relic.body                    = { name="Viti. Tabard +3"}
+    gear.Relic.hands                   = { name="Viti. Gloves +3"}
     gear.Relic.legs                    = {}
-    gear.Relic.feet                    = { name="Vitiation Boots +3", augments={'Immunobreak Chance',}}
+    gear.Relic.feet                    = { name="Vitiation Boots +4"}
 
     gear.Telchine = {}
     gear.Telchine.head                 = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
@@ -353,7 +354,6 @@ end
     }
 
 
-
     sets.VagaryBurst = {
         main="Maxentius",
         ammo="Regal Gem",
@@ -366,7 +366,7 @@ end
         waist="Null Belt",
         left_ear="Crep. Earring",
         right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
-        left_ring="Stikini Ring +1",
+        left_ring="Freke Ring",
         right_ring="Stikini Ring +1",
         back="Null Shawl",
     }
@@ -804,7 +804,7 @@ sets.WeaponSkill["Sanguine Blade"] = {
         body = gear.Empy.body,
         hands = gear.Empy.hands,
         legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
+        feet = gear.Relic.feet,
         neck="Sibyl Scarf",
         waist="Sacro Cord",
         left_ear="Malignance Earring",
@@ -833,11 +833,11 @@ sets.WeaponSkill["Sanguine Blade"] = {
         main={ name="Bunzi's Rod", augments={'Path: A',}},
         sub="Ammurapi Shield",
         ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-        head = gear.Empy.head,
+        head="Ea Hat +1",
         body="Ea Houppe. +1",
         hands="Bunzi's Gloves",
         legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
+        feet = gear.Relic.feet,
         neck="Sibyl Scarf",
         waist="Sacro Cord",
         left_ear="Malignance Earring",
@@ -984,7 +984,7 @@ function midcast(spell)
         end
 
     elseif spell.skill == "Enfeebling Magic" then
-        if MNDfeeble:contains(spell.english) or spell.name == "Dia III" then
+        if MNDfeeble:contains(spell.english) then
             equip(sets.midcast.MNDfeeble)
         elseif INTfeeble:contains(spell.english) then
             equip(sets.midcast.INTfeeble)
