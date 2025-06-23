@@ -130,13 +130,12 @@ end
         main="Burtgang",
         ammo="Staunch Tathlum +1",
         head = gear.Empy.head,
-        -- head="Null Masque",
+        head="Null Masque",
         body={ name="Sakpata's Plate", augments={'Path: A',}},
         hands = gear.Empy.hands,
         legs = gear.Empy.legs,
         feet = gear.Empy.feet,
         neck={ name="Warder's Charm +1", augments={'Path: A',}},
-        -- neck="Rep. Plat. Medal",
         waist="Plat. Mog. Belt",
         left_ear="Sanare Earring",
         right_ear="Tuisto Earring",
@@ -144,6 +143,9 @@ end
         right_ring="Warden's Ring",
         back = gear.AmbuCape.Idle,
     }
+
+    sets.status.Idle.Refresh = set_combine(sets.status.Idle.DT, {body="Chozor. Coselete", left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},})
+
 	sets.status.Melee = {
         ammo={ name="Coiste Bodhar", augments={'Path: A',}},
         head={ name="Sakpata's Helm", augments={'Path: A',}},
@@ -326,7 +328,7 @@ end
         -- Phalanx +29
         main="Sakpata's Sword", -- +5
         head={ name="Odyssean Helm", augments={'"Snapshot"+3','Weapon Skill Acc.+12','Phalanx +3','Mag. Acc.+19 "Mag.Atk.Bns."+19',}}, -- +3
-        body={ name="Odyss. Chestplate", augments={'STR+8','Mag. Acc.+16','Phalanx +3','Accuracy+18 Attack+18',}}, -- 3
+        body={ name="Odyss. Chestplate", augments={'STR+8','Mag. Acc.+16','Phalanx +3','Accuracy+18 Attack+18',}},
         hands={ name="Souv. Handschuhs", augments={'HP+80','Enmity+7','Potency of "Cure" effect received +10%',}}, -- +4
         legs={ name="Sakpata's Cuisses", augments={'Path: A',}}, -- +5
         feet={ name="Souveran Schuhs", augments={'HP+80','Enmity+7','Potency of "Cure" effect received +10%',}}, -- +4
@@ -337,7 +339,7 @@ end
 end
 
 function maps()
-    Enmity_Spells = S {"Banish", "Banish II", "Banishga", "Flash", "Geist Wall", "Bomb Toss", "Blank Gaze", "Sheep Song", "Jettatura", "Shield Bash"}
+    Enmity_Spells = S {"Banish", "Banish II", "Banishga", "Flash", "Geist Wall", "Bomb Toss", "Blank Gaze", "Sheep Song", "Jettatura"}
     Healing_Spells = S {"Cure", "Cure II", "Cure III", "Cure IV", "Pollen", "Magic Fruit", "Healing Breeze"}
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -351,6 +353,8 @@ function precast(spell)
         equip(sets.precast[spell.name])
     elseif sets[spell.name] then
         equip(sets[spell.name])
+    elseif spell.name == "Shield Bash" then
+        equip(sets.Enmity)
     elseif spell.skill == "Healing Magic" then
 		equip(set_combine(sets.precast.FastCast, sets.precast.Healing))
 	elseif spell.skill == "Enfeebling Magic" then
@@ -361,10 +365,6 @@ function precast(spell)
 		equip(set_combine(sets.precast.FastCast, sets.precast.Enhancing))
     elseif spell.name == "Aeolian Edge" then
         equip(sets.precast.Aeolian) 
-
-    elseif Enmity_Spells:contains(spell.name) then
-        equip(sets.Enmity)
-    
     elseif spell.type == "WeaponSkill" then
         if spell.name == "Atonement" then
             equip(sets.Enmity)
