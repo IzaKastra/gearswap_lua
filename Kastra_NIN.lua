@@ -28,7 +28,7 @@ function get_sets()
     send_command("bind ^f9 gs c Equip Treasure Hunter")
     send_command("bind ^f10 gs c Nagi")
     send_command("bind ^f11 gs c Free Slot")
-    send_command("bind ^f12 gs c toggle MagicBurst")
+    send_command("bind ^f12 gs c Hachimonji")
   
     -- Alt+F# commands
     send_command("bind !f9 gs c Heishi")
@@ -37,7 +37,7 @@ function get_sets()
     send_command("bind !f12 gs c Naegling")
 
     -- Ctrl+Alt+F# commands
-    send_command("bind ^!f9 gs c Hachimonji")
+    send_command("bind ^!f9 gs c toggle MagicBurst")
     send_command("bind ^!f10 gs c toggle Yagyu")
     send_command("bind ^!f11 gs c toggle UtsuEnmity")
     send_command("bind ^!f12 gs c toggle HybridTP")
@@ -242,10 +242,11 @@ function get_sets()
         if command == "Equip Movement" then
             if world.time/60. > 17 or world.time/60. < 7 then
                 equip({feet = gear.Artifact.feet})
-                send_command("@input /echo Hachiya Kyahan +3 equipped.")
+                send_command("@input /echo Hachiya Kyahan +4 equipped.")
             else
-                equip({feet="Danzo Sune-Ate"})
-                send_command("@input /echo Danzo Sune-Ate equipped.")
+                equip({ring2="Shneddick Ring +1"})
+                -- equip({feet="Danzo Sune-Ate"})
+                send_command("@input /echo Movement+ equipped.")
             end
         end
 
@@ -276,7 +277,7 @@ function get_sets()
     gear.Artifact.body  = { name="Hachiya Chainmail +3"}
     gear.Artifact.hands = {}
     gear.Artifact.legs  = {}
-    gear.Artifact.feet  = { name="Hachiya Kyahan +3" }
+    gear.Artifact.feet  = { name="Hachiya Kyahan +4" }
 
     gear.Relic = {}
     gear.Relic.head  = { name="Mochi. Hatsuburi +3"}
@@ -374,6 +375,7 @@ function get_sets()
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
+        feet = gear.Artifact.feet,
         neck="Warder's Charm +1",
         -- waist="Engraved Belt", -- Uncomment when Light/Dark resist is needed
         waist="Null Belt",
@@ -936,7 +938,7 @@ function get_sets()
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
-        neck="Baetyl Pendant",
+        neck="Sibyl Scarf",
         waist="Orpheus's Sash",
         ear1="Moonshade Earring",
         ear2="Friomisi Earring",
@@ -953,7 +955,7 @@ function get_sets()
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
-        neck="Baetyl Pendant",
+        neck="Sibyl Scarf",
         waist="Orpheus's Sash",
         ear1="Crematio Earring",
         ear2="Friomisi Earring",
@@ -970,7 +972,7 @@ function get_sets()
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
-        neck="Baetyl Pendant",
+        neck="Sibyl Scarf",
         waist="Orpheus's Sash",
         ear1="Moonshade Earring",
         ear2="Friomisi Earring",
@@ -1048,12 +1050,44 @@ function get_sets()
     sets.WeaponSkill.MidAtk["Tachi: Jinpu"] = sets.WeaponSkill.MidAtk["Blade: Chi"]
     sets.WeaponSkill.HighAtk["Tachi: Jinpu"] = sets.WeaponSkill.HighAtk["Blade: Chi"]
 
+    -- sets.WeaponSkill.MidAtk["Aeolian Edge"] = sets.precast.FastCast
+    -- sets.WeaponSkill.HighAtk["Aeolian Edge"] = sets.precast.FastCast
+
+
+
+    -- sets.WeaponSkill.MidAtk["Blade: Shun"] = sets.precast.FastCast
+    -- sets.WeaponSkill.HighAtk["Blade: Shun"] = sets.precast.FastCast
+
+    -- sets.WeaponSkill.MidAtk["Blade: Kamu"] = sets.precast.FastCast
+    -- sets.WeaponSkill.HighAtk["Blade: Kamu"] = sets.precast.FastCast
+
+    -- sets.WeaponSkill.MidAtk["Blade: Hi"] = sets.precast.FastCast
+    -- sets.WeaponSkill.HighAtk["Blade: Hi"] = sets.precast.FastCast
 
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     sets.midcast = {}
+
+    -- sets.midcast.testing = {
+    --     main="Gokotai",
+    --     sub={ name="Kunimitsu", augments={'Path: A',}},
+    --     ammo="Date Shuriken",
+    --     head={ name="Mochi. Hatsuburi +3", augments={'Enhances "Yonin" and "Innin" effect',}},
+    --     body={ name="Nyame Mail", augments={'Path: B',}},
+    --     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    --     legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    --     feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
+    --     neck="Sibyl Scarf",
+    --     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+    --     left_ear="Crematio Earring",
+    --     right_ear="Friomisi Earring",
+    --     left_ring="Shiva Ring +1",
+    --     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+    --     back={ name="Andartia's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}},
+    
+    -- }    
 
     sets.midcast.Nuke = {
         ammo="Ghastly Tathlum +1",
@@ -1343,7 +1377,8 @@ function aftercast(spell)
             if world.time/60. > 17 or world.time/60. < 7 then
                 equip({feet = gear.Artifact.feet})
             else
-                equip({feet="Danzo Sune-Ate"})
+                equip({ring2="Shneddick Ring +1"})
+                -- equip({feet="Danzo Sune-Ate"})
             end
         end
 
@@ -1421,7 +1456,8 @@ function status_change(new,old)
             if world.time/60. > 17 or world.time/60. < 7 then
                 equip({feet = gear.Artifact.feet})
             else
-                equip({feet="Danzo Sune-Ate"})
+                equip({ring2="Shneddick Ring +1"})
+                -- equip({feet="Danzo Sune-Ate"})
             end
         end
 
