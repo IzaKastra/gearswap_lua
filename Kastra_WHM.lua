@@ -27,7 +27,7 @@ function get_sets()
     
     WeaponLock = 0
 
-    send_command("bind f11 gs c equip Criers")
+    send_command("bind f11 gs c equip movement")
     send_command("bind f12 gs c Equip DT")
 
     send_command("bind ^f12 gs c Equip Refresh")
@@ -123,9 +123,10 @@ function self_command(command)
         send_command("@input /echo Refresh idle set equipped.")
     end
 
-    if command == "equip Criers" then
-        equip({feet="Crier's Gaiters"})
-        send_command("@input /echo Crier\'s Gaiters Equipped.")
+    if command == "equip movement" then
+        equip({ring2="Shneddick Ring +1"})
+        -- equip({feet="Crier's Gaiters"})
+        send_command("@input /echo Movement+ Equipped.")
     end
 
 end
