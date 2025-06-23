@@ -265,7 +265,7 @@ function get_sets()
         right_ear="Schere Earring",
         left_ring="Niqmaddu Ring",
         right_ring="Lehko's Ring",
-        back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+        back="Null Shawl",
     }
 
     sets.status.Footwork = {
@@ -288,8 +288,8 @@ function get_sets()
     -- +56% Fast Cast, +7% Quick Magic
         ammo="Impatiens",
     head = gear.Herc.head.FC,
-    -- body={ name="Samnuha Coat", augments={'Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+5','"Dual Wield"+5',}},
-    body="Dread Jupon",
+        -- body={ name="Samnuha Coat", augments={'Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+5','"Dual Wield"+5',}},
+        body="Dread Jupon",
     hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
     legs="Gyve Trousers",
     feet = gear.Relic.feet,
@@ -299,6 +299,23 @@ function get_sets()
     left_ring="Weather. Ring",
     right_ring="Lebeche Ring",
     back = gear.AmbuCape.MEva,
+    }
+
+    sets.precast.Waltz = {
+    -- +107 VIT, +110 CHR, +12% Waltz Received, +49% Waltz, +388 HP
+        ammo="Yamarang", -- +5% Waltz
+        head="Mummu Bonnet +2", -- +9% Waltz Received
+        body="Passion Jacket", -- +13% Waltz
+        hands = gear.Herc.hands.Waltz, -- +9% Waltz Potency
+        legs = gear.Herc.legs.Waltz, -- +10% Waltz Potency
+        feet = gear.Herc.feet.Waltz, -- +9% Waltz Potency
+        neck="Unmoving Collar +1",
+        waist="Engraved Belt",
+        left_ear="Odnowa Earring +1",
+      --    right_ear="Genmei Earring",  -- Removed from Wardrobe for inv+1
+        left_ring="Asklepian Ring",
+    right_ring="Valseur's Ring",
+        back="Reiki Cloak",
     }
 
     sets.precast.Provoke = {
@@ -317,34 +334,162 @@ function get_sets()
         back = gear.AmbuCape.SIRD, -- +10
     }
 
-    sets.Footwork = {
+    sets.precast.Footwork = {
         feet = "Shukuyu Sune-Ate",
     }
 
     sets.WeaponSkill = {}
     sets.WeaponSkill["Raging Fists"] = {
-    ammo="Coiste Bodhar",
+        ammo="Knobkierrie",
     head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-    body="Bhikku Cyclas +3",
+    body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
     hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
-    legs="Nyame Flanchard",
-    feet="Nyame Sollerets",
-    neck="Fotia Gorget",
-    waist="Moonbow Belt +1",
+    legs="Ken. Hakama +1",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
     left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
-    right_ear="Schere Earring",
-    left_ring="Niqmaddu Ring",
-    right_ring="Gere Ring",
-    back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
     }
+    sets.WeaponSkill["Howling Fist"] = {
+        ammo="Knobkierrie",
+    head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+    body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
+    hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+        legs="Hiza. Hizayoroi +2",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Dragon Kick"] = {
+        ammo="Knobkierrie",
+    head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+    body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
+    hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+        legs="Hiza. Hizayoroi +2",
+        feet = "Shukuyu Sune-Ate",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Asuran Fists"] = {
+        ammo="Knobkierrie",
+    head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+    body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
+    hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+    legs="Ken. Hakama +1",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Ascetic's Fury"] = {
+        ammo="Knobkierrie",
+    head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+    body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
+    hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+    legs="Ken. Hakama +1",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Tornado Kick"] = {
+        ammo="Knobkierrie",
+        head="Ken. Jinpachi +1",
+    body="Ken. Samue +1",
+    hands="Ken. Tekko +1",
+    legs="Ken. Hakama +1",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Victory Smite"] = {
+        ammo="Knobkierrie",
+        head="Ken. Jinpachi +1",
+    body="Ken. Samue +1",
+    hands="Ken. Tekko +1",
+    legs="Ken. Hakama +1",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Shijin Spiral"] = {
+        ammo="Knobkierrie",
+        head="Ken. Jinpachi +1",
+    body="Ken. Samue +1",
+    hands="Ken. Tekko +1",
+    legs="Ken. Hakama +1",
+    feet="Ken. Sune-Ate +1",
+    neck="Mnk. Nodowa +1",
+    waist="Fotia Belt",
+    left_ear={ name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}},
+    right_ear="Sherida Earring",
+    left_ring="Gere Ring",
+    right_ring="Niqmaddu Ring",
+    }
+    sets.WeaponSkill["Cataclysm"] = {
+    ammo="Knobkierrie",
+    head="Pixie Hairpin +1",
+    body={ name="Nyame Mail", augments={'Path: B',}},
+    hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+    legs={ name="Nyame Flanchard", augments={'Path: B',}},
+    feet={ name="Nyame Sollerets", augments={'Path: B',}},
+    neck="Sibyl Scarf",
+    waist="Orpheus's Sash",
+    left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
+    right_ear="Friomisi Earring",
+    left_ring="Archon Ring",
+    right_ring="Metamorph Ring +1",}
 
 
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ----- MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     sets.midcast = {}
 
+    sets.midcast.SpellInterruption = {
+    -- -95% Spell Interruption from gear (950/1024) for Utsu
+    -- -105% for non-utsu (still only 1024/1024)
+    -- -10% more from merits for capped 1030/1024
+        ammo="Impatiens",             -- -10%
+        head = gear.Taeon.head.sird,  -- -10%
+        body = gear.Taeon.body.sird,  -- -10%
+        hands={ name="Rawhide Gloves", augments={'HP+50','Accuracy+15','Evasion+20',}}, -- -15%
+        legs = gear.Taeon.legs.sird,  -- -10%
+        feet = gear.Taeon.feet.sird,  -- -10% NOT EQUIPPED DURING UTSU. EMPY FEET+1
+        neck="Moonbeam Necklace",     -- -10%
+        waist="Audumbla Sash",        -- -10%
+        right_ear="Halasz Earring",    -- -5%
+        left_ring="Defending Ring",
+        right_ring="Evanescence Ring", -- -5%
+        back = gear.AmbuCape.SIRD     -- -10%
+    }
 end
 
 
@@ -452,7 +597,6 @@ function status_change(new,old)
         if buffactive['Footwork'] then
             equip(sets.status.Footwork)
         end
-
 
     elseif sets.status[new] then
         equip(sets.status[new])
