@@ -11,7 +11,7 @@ function get_sets()
 
   send_command('bind f9 gs c toggle Magic Burst')
   send_command('bind f10 gs c toggle Magic Accuracy')
-  send_command('bind f11 gs c equip Criers')
+  send_command('bind f11 gs c equip Movement')
   send_command('bind f12 gs c Equip DT')
   send_command('bind ^f9 gs c toggle Treasure Hunter')
   send_command('bind ^f12 gs c Equip Idle')
@@ -95,9 +95,10 @@ function get_sets()
     end
 
 
-    if command == 'equip Criers' then
-      equip(gear.Criers)
-      send_command('@input /echo Crier\'s Gaiters Equipped.')
+    if command == 'equip Movement' then
+    --   equip(gear.Criers)
+      equip({ring2="Shneddick Ring +1",})
+      send_command('@input /echo Movement+ Equipped.')
     end
 
 
@@ -201,10 +202,10 @@ function get_sets()
   sets.status = {}
   sets.status.Idle = {}
   sets.status.Idle.DT = {
-    main="Malignance Pole",
-    sub="Khonsu",
-    -- main="Daybreak",
-    -- sub="Genmei Shield",
+    -- main="Malignance Pole",
+    -- sub="Khonsu",
+    main="Daybreak",
+    sub="Genmei Shield",
     ammo="Staunch Tathlum +1",
     head = "Null Masque",
     body = gear.Empy.body,
@@ -220,10 +221,10 @@ function get_sets()
     back="Shadow Mantle",
   }
   sets.status.Idle.Refresh = {
-    main="Malignance Pole",
-    sub="Khonsu",
-    -- main="Daybreak",
-    -- sub="Genmei Shield",
+    -- main="Malignance Pole",
+    -- sub="Khonsu",
+    main="Daybreak",
+    sub="Genmei Shield",
     ammo="Homiliary",
     head="Null Masque",
     body = gear.Empy.body,
