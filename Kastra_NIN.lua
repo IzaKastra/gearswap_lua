@@ -273,15 +273,15 @@ function get_sets()
 
 
     gear.Artifact = {}
-    gear.Artifact.head  = { name="Hachiya Hatsu. +3" }
+    gear.Artifact.head  = { name="Hachi. Hatsu. +4" }
     gear.Artifact.body  = { name="Hachiya Chainmail +3"}
     gear.Artifact.hands = {}
     gear.Artifact.legs  = {}
     gear.Artifact.feet  = { name="Hachiya Kyahan +4" }
 
     gear.Relic = {}
-    gear.Relic.head  = { name="Mochi. Hatsuburi +3"}
-    gear.Relic.body  = { name="Mochi. Chainmail +3"}
+    gear.Relic.head  = { name="Mochi. Hatsu. +4"}
+    gear.Relic.body  = { name="Mochi. Chainmail +4"}
     gear.Relic.hands = { name="Mochizuki Tekko +3"}
     gear.Relic.legs  = { name="Mochi. Hakama +3"}
     gear.Relic.feet  = { name="Mochi. Kyahan +3"}
@@ -381,7 +381,7 @@ function get_sets()
         waist="Null Belt",
         ear1="Etiolation Earring",
         ear2="Sanare Earring",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring2="Shadow Ring",
         back="Shadow Mantle",
     }
@@ -431,10 +431,28 @@ function get_sets()
         waist="Reiki Yotai",
         ear1="Eabani Earring",
         ear2="Suppanomimi",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring2="Shadow Ring",
         back = gear.AmbuCape.DW,
     }
+
+    sets.Crit = {
+        -- Manually equip with //gs equip sets.Crit
+        ammo="Seki Shuriken",
+        head={ name="Mpaca's Cap", augments={'Path: A',}},
+        body={ name="Mpaca's Doublet", augments={'Path: A',}},
+        hands="Malignance Gloves", -- Replace with Mpaca Gloves R25
+        legs={ name="Mpaca's Hose", augments={'Path: A',}},
+        feet="Malignance Boots", -- Replace with Mpaca Boots R25
+        neck={ name="Ninja Nodowa +2", augments={'Path: A',}},
+        waist={ name="Kentarch Belt +1", augments={'Path: A',}},
+        left_ear="Odr Earring",
+        right_ear="Crep. Earring",
+        left_ring="Gere Ring",
+        right_ring="Lehko's Ring",
+        back={ name="Andartia's Mantle", augments={'AGI+20','Accuracy+20 Attack+20','AGI+10','Crit.hit rate+10',}},    
+    }
+
 
     sets.Melee = {}
     sets.Melee.LowAccuracy = {}
@@ -452,7 +470,7 @@ function get_sets()
         waist="Reiki Yotai",
         ear1="Suppanomimi",
         ear2="Dedition Earring",
-        ring1="Defending Ring",
+        ring1="Gere Ring",
         ring2="Lehko's ring",
         back = gear.AmbuCape.DW,
     }
@@ -526,7 +544,7 @@ function get_sets()
         waist="Reiki Yotai",
         ear1="Telos Earring",
         ear2="Eabani Earring",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring2="Lehko's ring",
         back = gear.AmbuCape.DW,
     }
@@ -562,7 +580,7 @@ function get_sets()
         waist="Reiki Yotai",
         ear1="Cessance Earring",
         ear2="Telos Earring",
-        ring2="Defending Ring",
+        ring2="Murky Ring",
         ring1="Epona's Ring",
         back = gear.AmbuCape.DW,
     }
@@ -618,7 +636,7 @@ function get_sets()
         waist="Windbuffet Belt +1",
         ear1="Cessance Earring",
         ear2="Dedition Earring",
-        ring2="Defending Ring",
+        ring2="Murky Ring",
         ring1="Epona's Ring",
         back = gear.AmbuCape.STP,
     }
@@ -1157,7 +1175,7 @@ function get_sets()
         neck="Moonbeam Necklace",     -- -10%
         waist="Audumbla Sash",        -- -10%
         ear1="Halasz Earring",        -- -5%
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring2="Evanescence Ring",     -- -5%
         back = gear.AmbuCape.SIRD     -- -10%
     }
