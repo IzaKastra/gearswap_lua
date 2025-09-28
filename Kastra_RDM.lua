@@ -15,12 +15,11 @@ function get_sets()
     send_command('bind f11 gs c equip movement')
     send_command('bind f12 gs c Equip DT')
 
-    send_command('bind ^f9 gs c Equip Maxentius')
-    send_command('bind ^f10 gs c Equip Crocea')
+    send_command('bind ^f9 gs c Equip Crocea')
+    send_command('bind ^f10 gs c Equip Maxentius')
     send_command('bind ^f11 gs c Free3')
     send_command('bind ^f12 gs c Equip Refresh')
 
-    -- send_command('bind !f11 gs c Equip Crocea')
 
     send_command('bind !^f9 gs c Equip Naegling')
     send_command('bind !^f10 gs c Equip Excalibur')
@@ -124,7 +123,6 @@ function self_command(command)
     end
 
     if command == 'equip movement' then
-        -- equip({legs = gear.Carmine})
         equip({ring2="Shneddick Ring +1"})
         send_command('@input /echo Movement+ Equipped.')
     end
@@ -210,71 +208,60 @@ end
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ OSEEM-AUGMENTED/SPECIAL GEAR ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     gear = {}
 
 
-    gear.Obi                           = {waist="Hachirin-no-Obi"}
-    gear.Moonshade                     = { name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}}
-    gear.Carmine                       = { name="Carmine Cuisses +1"}
-
-    gear.AF = {}
-    gear.AF.head                       = { name="Atro. Chapeau +2"}
-    gear.AF.body                       = { name="Atrophy Tabard +2"}
-    gear.AF.hands                      = { name="Atrophy Gloves +2"}
-    gear.AF.legs                       = { name="Atrophy Tights +1"}
-    gear.AF.feet                       = {}
-
-    gear.Amalric = {}
-    gear.Amalric.body                  = { name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-    gear.Amalric.hands                 = { name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-    gear.Amalric.legs                  = { name="Amalric Slops +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-    gear.Amalric.feet                  = { name="Amalric Nails +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-
-    gear.AmbuCape = {}
-    gear.AmbuCape.MND                  = { name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10',}}
-    gear.AmbuCape.INT                  = { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10',}}
-    gear.AmbuCape.DW                   = { name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}
-    gear.AmbuCape.WSD                  = { name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
-
-    gear.Chironic = {}
-
-    gear.Chironic.head = {}
-    gear.Chironic.head.blank           = { name="Chironic hat"} -- Aquaveil +1
-
-    gear.Chironic.legs = {}
-    gear.Chironic.legs.MNDfeeble       = { name="Chironic Hose", augments={'Mag. Acc.+26','MND+10',}}
-    gear.Chironic.legs.INTfeeble       = { name="Chironic Hose", augments={'Mag. Acc.+22 "Mag.Atk.Bns."+22','"Fast Cast"+3','INT+8','Mag. Acc.+4',}}
-
-    gear.Empy = {}
-    gear.Empy.head                     = { name="Leth. Chappel +3"}
-    gear.Empy.body                     = { name="Lethargy Sayon +3"}
-    gear.Empy.hands                    = { name="Leth. Ganth. +3"}
-    gear.Empy.legs                     = { name="Leth. Fuseau +3"}
-    gear.Empy.feet                     = { name="Leth. Houseaux +3"}
-
-    gear.Merlinic = {}
-
-    gear.Merlinic.feet = {}
-    gear.Merlinic.feet.FC              = { name="Merlinic Crackows", augments={'"Fast Cast"+6','"Mag.Atk.Bns."+1',}}
-
-    gear.ReiveCape                     = { name="Ghostfyre Cape", augments={'Enfb.mag. skill +2','Enha.mag. skill +10','Mag. Acc.+6','Enh. Mag. eff. dur. +18',}}
+    gear.Artifact = {}
+    gear.Artifact.head  = { name="Atro. Chapeau +2"}
+    gear.Artifact.body  = { name="Atrophy Tabard +2"}
+    gear.Artifact.hands = { name="Atrophy Gloves +4"}
+    gear.Artifact.legs  = { name="Atrophy Tights +1"}
 
     gear.Relic = {}
-    gear.Relic.head                    = { name="Viti. Chapeau +4"}
-    gear.Relic.body                    = { name="Viti. Tabard +3"}
-    gear.Relic.hands                   = { name="Viti. Gloves +3"}
-    gear.Relic.legs                    = {}
-    gear.Relic.feet                    = { name="Vitiation Boots +4"}
+    gear.Relic.head  = { name="Viti. Chapeau +4"}
+    gear.Relic.body  = { name="Viti. Tabard +3"}
+    gear.Relic.hands = { name="Viti. Gloves +3"}
+    gear.Relic.feet  = { name="Viti. Boots +4"}
+
+    gear.Empyrean = {}
+    gear.Empyrean.head  = { name="Leth. Chappel +3"}
+    gear.Empyrean.body  = { name="Lethargy Sayon +3"}
+    gear.Empyrean.hands = { name="Leth. Ganth. +3"}
+    gear.Empyrean.legs  = { name="Leth. Fuseau +3"}
+    gear.Empyrean.feet  = { name="Leth. Houseaux +3"}
+
+    gear.Amalric = {}
+    gear.Amalric.body  = { name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.hands = { name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.legs  = { name="Amalric Slops +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Amalric.feet  = { name="Amalric Nails +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+
+    gear.AmbuCape = {}
+    gear.AmbuCape.MND = { name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10',}}
+    gear.AmbuCape.INT = { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Mag.Atk.Bns."+10',}}
+    gear.AmbuCape.DW  = { name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}
+    gear.AmbuCape.WSD = { name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
+
+    gear.ReiveCape = { name="Ghostfyre Cape", augments={'Enfb.mag. skill +2','Enha.mag. skill +10','Mag. Acc.+6','Enh. Mag. eff. dur. +18',}}
+
+    gear.Chironic = {}
+    gear.Chironic.legs = {}
+    gear.Chironic.legs.MNDfeeble = { name="Chironic Hose", augments={'Mag. Acc.+26','MND+10',}}
+    gear.Chironic.legs.INTfeeble = { name="Chironic Hose", augments={'Mag. Acc.+22 "Mag.Atk.Bns."+22','"Fast Cast"+3','INT+8','Mag. Acc.+4',}}
+
+
+    gear.Merlinic = {}
+    gear.Merlinic.feet = {}
+    gear.Merlinic.feet.FC = { name="Merlinic Crackows", augments={'"Fast Cast"+6','"Mag.Atk.Bns."+1',}}
 
     gear.Telchine = {}
-    gear.Telchine.head                 = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
-    -- gear.Telchine.body                 = { name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
-    -- gear.Telchine.hands                = { name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}}
-    gear.Telchine.legs                 = { name="Telchine Braconi", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
-    -- gear.Telchine.feet                 = { name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+    gear.Telchine.head  = { name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+    gear.Telchine.body  = { name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+    gear.Telchine.hands = { name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}}
+    gear.Telchine.legs  = { name="Telchine Braconi", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
+    gear.Telchine.feet  = { name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}}
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -287,50 +274,50 @@ end
     sets.status.Idle.DT = {
         main="Excalibur",
         sub='Sacro Bulwark',
-        -- ranged="Ullr",
         ammo="Staunch Tathlum +1",
         head = gear.Relic.head,
-        body = gear.Empy.body,
+        body = gear.Empyrean.body,
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
         neck="Warder's Charm +1",
         waist="Null Belt",
-        left_ear="Etiolation Earring",
-        right_ear="Sanare Earring",
-        left_ring="Defending Ring",
-        right_ring="Shadow Ring",
+        ear1="Etiolation Earring",
+        ear2="Sanare Earring",
+        ring1="Murky Ring",
+        ring2="Shadow Ring",
         back="Shadow Mantle",
     }
     sets.status.Idle.Refresh = {
         main="Daybreak",
         sub='Sacro Bulwark',
-        -- ranged="Ullr",
         ammo="Homiliary",
         head = gear.Relic.head,
-        body = gear.Empy.body,
-        hands="Volte Gloves",
+        body = gear.Empyrean.body,
+        hands="Nyame Gauntlets",
+        -- hands="Volte Gloves",
         legs="Volte Brais",
-        feet="Volte Gaiters",
-        neck={ name="Loricate Torque +1", augments={'Path: A',}},
+        feet="Nyame Sollerets",
+        -- feet="Volte Gaiters",
+        neck="Warder's Charm +1",
         waist="Carrier's Sash",
-        left_ear="Etiolation Earring",
-        right_ear="Loquac. Earring",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        ear1="Etiolation Earring",
+        ear2="Loquac. Earring",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back="Shadow Mantle",
     }
     sets.status.MeleeDW = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Bunzi's Hat", augments={'Path: A',}},
+        ammo="Coiste Bodhar",
+        head="Bunzi's Hat",
         body="Malignance Tabard",
         hands="Malignance Gloves",
         legs="Malignance Tights",
         feet="Malignance Boots",
         neck="Combatant's Torque",
         waist="Reiki Yotai",
-        left_ear="Suppanomimi",
-        right_ear="Eabani Earring",
+        ear1="Suppanomimi",
+        ear2="Eabani Earring",
         ring1="Hetairoi Ring",
         ring2="Lehko's ring",
         back = gear.AmbuCape.DW,
@@ -353,61 +340,58 @@ end
         back = gear.AmbuCape.DW,
     }
 
-
     sets.VagaryBurst = {
         main="Maxentius",
         ammo="Regal Gem",
         head="Malignance Chapeau",
-        body = gear.Empy.body,
+        body = gear.Empyrean.body,
         hands="Malignance Gloves",
         legs="Malignance Tights",
         feet="Malignance Boots",
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        neck="Dls. Torque +2",
         waist="Null Belt",
-        left_ear="Crep. Earring",
-        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
-        left_ring="Freke Ring",
-        right_ring="Stikini Ring +1",
+        ear1="Crep. Earring",
+        ear2="Lethargy Earring +1",
+        ring1="Freke Ring",
+        ring2="Stikini Ring +1",
         back="Null Shawl",
     }
     sets.VagaryWS = {
         ammo="Staunch Tathlum +1",
-        head={ name="Telchine Cap", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}},
-        body={ name="Telchine Chas.", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}},
-        hands={ name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}},
+        head = gear.Telchine.head,
+        body = gear.Telchine.body,
+        hands = gear.Telchine.hands,
         legs="Shedir Seraweels",
-        feet={ name="Telchine Pigaches", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +10',}},
+        feet = gear.Telchine.feet,
         neck="Null Loop",
         waist="Null Belt",
-        left_ear="Crep. Earring",
-        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+15','Mag. Acc.+15','"Dbl.Atk."+5',}},
-        left_ring="Defending Ring",
-        right_ring="Chirich Ring +1",
+        ear1="Crep. Earring",
+        ear2="Lethargy Earring +1",
+        ring1="Murky Ring",
+        ring2="Chirich Ring +1",
         back="Null Shawl",
     }
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ PRECAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
     sets.precast = {}
     sets.precast.FastCast = {
         main="Crocea Mors",
         sub='Sacro Bulwark',
         ammo="Impatiens",
-        head = gear.AF.head,
+        head = gear.Artifact.head,
         body = gear.Relic.body,
-        hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
+        hands="Leyline Gloves",
         legs="Volte Brais",
         feet = gear.Merlinic.feet.FC,
         neck="Orunmila's Torque",
         waist="Embla Sash",
-        left_ear="Loquac. Earring",
-        right_ear="Lethargy Earring +1",
-        left_ring="Weather. Ring +1",
-        right_ring="Lebeche Ring",
+        ear1="Loquac. Earring",
+        ear2="Lethargy Earring +1",
+        ring1="Weather. Ring +1",
+        ring2="Lebeche Ring",
         back = gear.AmbuCape.MND,
     }
     sets.precast.Impact = {
@@ -422,258 +406,221 @@ end
         feet = gear.Merlinic.feet.FC,
         neck="Orunmila's Torque",
         waist="Embla Sash",
-        left_ear="Loquac. Earring",
-        right_ear="Lethargy Earring +1",
-        left_ring="Weather. Ring +1",
-        right_ring="Kishar Ring",
+        ear1="Loquac. Earring",
+        ear2="Lethargy Earring +1",
+        ring1="Weather. Ring +1",
+        ring2="Kishar Ring",
         back = gear.AmbuCape.MND,
       }
 
     sets.precast.Enhancing = {waist="Siegel Sash",}
     sets.precast.Chainspell = {body = gear.Relic.body,}
-    sets.precast.Enfeeble = {head = gear.Empy.head,}
+    sets.precast.Enfeeble = {head = gear.Empyrean.head,}
     
     sets.WeaponSkill = {}
     sets.WeaponSkill["Chant du Cygne"] = {
         ammo="Yetshila +1",
-        head={ name="Blistering Sallet +1", augments={'Path: A',}},
-        body="Ayanmo Corazza +2",
+        head="Blistering Sallet +1",
+        body="Nyame Mail",
         hands="Malignance Gloves",
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet="Thereoid Greaves",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Fotia Gorget",
         waist="Fotia Belt",
-        left_ear="Mache Earring +1",
-        right_ear="Sherida Earring",
-        left_ring="Ilabrat Ring",
-        right_ring="Begrudging Ring",
+        ear1="Mache Earring +1",
+        ear2="Sherida Earring",
+        ring1="Ilabrat Ring",
+        ring2="Lehko's ring",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Requiescat"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+        ammo="Coiste Bodhar",
         head = gear.Relic.head,
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands = gear.Empy.hands,
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        body="Nyame Mail",
+        hands = gear.Empyrean.hands,
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Fotia Gorget",
         waist="Fotia Belt",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Regal Earring",
-        left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-        right_ring="Shukuyu Ring",
+        ear1="Moonshade Earring",
+        ear2="Regal Earring",
+        ring1="Metamor. Ring +1",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Savage Blade"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Sherida Earring",
-        left_ring="Sroda Ring",
-        right_ring="Shukuyu Ring",
+        waist="Sailfi Belt +1",
+        ear1="Moonshade Earring",
+        ear2="Sherida Earring",
+        ring1="Sroda Ring",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Black Halo"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Sherida Earring",
-        left_ring="Sroda Ring",
-        right_ring="Shukuyu Ring",
+        waist="Sailfi Belt +1",
+        ear1="Moonshade Earring",
+        ear2="Sherida Earring",
+        ring1="Sroda Ring",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
 
     -- sets.WeaponSkill["Black Halo"] = {
-    --     ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-    --     head={ name="Nyame Helm", augments={'Path: B',}},
-    --     body={ name="Nyame Mail", augments={'Path: B',}},
-    --     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-    --     legs={ name="Nyame Flanchard", augments={'Path: B',}},
-    --     feet = gear.Empy.feet,
+    --     ammo="Coiste Bodhar",
+    --     head="Nyame Helm",
+    --     body="Nyame Mail",
+    --     hands="Nyame Gauntlets",
+    --     legs="Nyame Flanchard",
+    --     feet = gear.Empyrean.feet,
     --     neck="Null Loop",
-    --     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    --     left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-    --     right_ear="Sherida Earring",
-    --     left_ring="Ilabrat Ring",
-    --     right_ring="Chirich Ring +1",
+    --     waist="Sailfi Belt +1",
+    --     ear1="Moonshade Earring",
+    --     ear2="Sherida Earring",
+    --     ring1="Ilabrat Ring",
+    --     ring2="Chirich Ring +1",
     --     back = gear.AmbuCape.WSD,
     -- }
 
 
     sets.WeaponSkill["Knights of Round"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Telos Earring",
-        right_ear="Sherida Earring",
-        left_ring="Sroda Ring",
-        right_ring="Shukuyu Ring",
+        waist="Sailfi Belt +1",
+        ear1="Telos Earring",
+        ear2="Sherida Earring",
+        ring1="Sroda Ring",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
 
     sets.WeaponSkill["Flat Blade"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Sherida Earring",
-        left_ring="Sroda Ring",
-        right_ring="Shukuyu Ring",
+        waist="Sailfi Belt +1",
+        ear1="Moonshade Earring",
+        ear2="Sherida Earring",
+        ring1="Sroda Ring",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Death Blossom"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Telos Earring",
-        right_ear="Sherida Earring",
-        left_ring="Sroda Ring",
-        right_ring="Shukuyu Ring",
+        waist="Sailfi Belt +1",
+        ear1="Telos Earring",
+        ear2="Sherida Earring",
+        ring1="Sroda Ring",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Mercy Stroke"] = {
-        ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        ammo="Coiste Bodhar",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-        right_ear="Sherida Earring",
-        left_ring="Sroda Ring",
-        right_ring="Shukuyu Ring",
+        waist="Sailfi Belt +1",
+        ear1="Brutal Earring",
+        ear2="Sherida Earring",
+        ring1="Sroda Ring",
+        ring2="Shukuyu Ring",
         back = gear.AmbuCape.WSD,
     }
-    -- sets.WeaponSkill["Mercy Stroke"] = {
-    --     ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-    --     head={ name="Nyame Helm", augments={'Path: B',}},
-    --     body={ name="Nyame Mail", augments={'Path: B',}},
-    --     hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-    --     legs={ name="Nyame Flanchard", augments={'Path: B',}},
-    --     feet = gear.Empy.feet,
-    --     neck="Rep. Plat. Medal",
-    --     waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-    --     left_ear={ name="Odnowa Earring +1", augments={'Path: A',}},
-    --     right_ear="Sherida Earring", -- +5 SB2
-    --     ring_ring="Chirich Ring +1", -- +10 SB
-    --     left_ring="Chirich Ring +1", -- +10 SB
-    --     back = gear.AmbuCape.WSD,
-    -- }    
-sets.WeaponSkill["Sanguine Blade"] = {
+
+    sets.WeaponSkill["Sanguine Blade"] = {
         ammo="Oshasha's Treatise",
         head="Pixie Hairpin +1",
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs = gear.Empyrean.legs,
+        feet = gear.Empyrean.feet,
         neck="Sibyl Scarf",
         waist="Orpheus's Sash",
-        left_ear="Regal Earring",
-        right_ear="Malignance Earring",
-        left_ring="Freke Ring",
-        right_ring="Archon Ring",
+        ear1="Regal Earring",
+        ear2="Malignance Earring",
+        ring1="Freke Ring",
+        ring2="Archon Ring",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Red Lotus Blade"] = {
         ammo="Oshasha's Treatise",
-        head = gear.Empy.head,
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        head = gear.Empyrean.head,
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Sibyl Scarf",
         waist="Orpheus's Sash",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Malignance Earring",
-        left_ring="Freke Ring",
-        right_ring="Shiva Ring +1",
+        ear1="Moonshade Earring",
+        ear2="Malignance Earring",
+        ring1="Freke Ring",
+        ring2="Shiva Ring +1",
         back = gear.AmbuCape.WSD,
     }
     sets.WeaponSkill["Seraph Blade"] = {
         ammo="Oshasha's Treatise",
-        head = gear.Empy.head,
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet = gear.Empy.feet,
+        head = gear.Empyrean.head,
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet = gear.Empyrean.feet,
         neck="Fotia Gorget",
         waist="Orpheus's Sash",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Malignance Earring",
-        left_ring="Freke Ring",
-        right_ring="Weather. Ring +1",
+        ear1="Moonshade Earring",
+        ear2="Malignance Earring",
+        ring1="Freke Ring",
+        ring2="Weather. Ring +1",
         back = gear.AmbuCape.WSD,
     }
 
     sets.WeaponSkill["Aeolian Edge"] = {
         ammo="Oshasha's Treatise",
-        head = gear.Empy.head,
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
+        head = gear.Empyrean.head,
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs = gear.Empyrean.legs,
+        feet = gear.Empyrean.feet,
         neck="Fotia Gorget",
         waist="Orpheus's Sash",
-        left_ear={ name="Moonshade Earring", augments={'Accuracy+4','TP Bonus +250',}},
-        right_ear="Malignance Earring",
-        left_ring="Freke Ring",
-        right_ring="Shiva Ring +1",
+        ear1="Moonshade Earring",
+        ear2="Malignance Earring",
+        ring1="Freke Ring",
+        ring2="Shiva Ring +1",
         back = gear.AmbuCape.WSD,
-        -- ammo="Perfect Lucky Egg",
-        -- head="Volte Cap",
-        -- hands="Volte Bracers",  
-        -- -- waist="Chaac Belt",
-        -- feet="Volte Boots",
-
-        }
-    -- sets.WeaponSkill["Aeolian Edge"] = {
-    --     ammo="Staunch Tathlum +1",
-    --     head="Befouled Crown",
-    --     body={ name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}},
-    --     hands={ name="Telchine Gloves", augments={'"Fast Cast"+5','Enh. Mag. eff. dur. +9',}},
-    --     legs={ name="Taeon Tights", augments={'Evasion+25','Spell interruption rate down -10%','HP+50',}},
-    --     feet={ name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}},
-    --     neck={ name="Unmoving Collar +1", augments={'Path: A',}},
-    --     waist="Plat. Mog. Belt",
-    --     left_ear="Etiolation Earring",
-    --     right_ear="Sanare Earring",
-    --     left_ring="Defending Ring",
-    --     right_ring="Shadow Ring",
-    --     back="Shadow Mantle",
-    -- }
-
+    }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -684,16 +631,16 @@ sets.WeaponSkill["Sanguine Blade"] = {
         sub="Ammurapi Shield",
         ammo="Regal Gem",
         head = gear.Relic.head,
-        body = gear.Empy.body,
-        hands = gear.Empy.hands,
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
         legs = gear.Chironic.legs.INTfeeble,
         feet = gear.Relic.feet,
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        neck="Dls. Torque +2",
         waist="Obstin. Sash",
-        left_ear="Snotra Earring",
-        right_ear="Malignance Earring",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1}, -- Equip in order of decreasing priority: https://www.ffxiah.com/forum/topic/55679/gearswap-swap-order/
-        right_ring="Kishar Ring",
+        ear1="Snotra Earring",
+        ear2="Malignance Earring",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1}, -- Equip in order of decreasing priority: https://www.ffxiah.com/forum/topic/55679/gearswap-swap-order/
+        ring2="Kishar Ring",
         back = gear.AmbuCape.INT,
     }
     sets.midcast.MNDfeeble = {
@@ -701,16 +648,16 @@ sets.WeaponSkill["Sanguine Blade"] = {
         sub="Ammurapi Shield",
         ammo="Regal Gem",
         head = gear.Relic.head,
-        body = gear.Empy.body,
-        hands = gear.Empy.hands,
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
         legs = gear.Chironic.legs.MNDfeeble,
         feet = gear.Relic.feet,
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        neck="Dls. Torque +2",
         waist="Obstin. Sash",
-        left_ear="Snotra Earring",
-        right_ear="Malignance Earring",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring="Kishar Ring",
+        ear1="Snotra Earring",
+        ear2="Malignance Earring",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2="Kishar Ring",
         back = gear.AmbuCape.MND,
     }
     sets.midcast.Frazzle2 = {
@@ -719,65 +666,66 @@ sets.WeaponSkill["Sanguine Blade"] = {
         range="Ullr",
         ammo="Empty",
         head = gear.Relic.head,
-        body = gear.Empy.body,
-        hands = gear.Empy.hands,
-        legs = gear.Empy.legs,
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
+        legs = gear.Empyrean.legs,
         feet = gear.Relic.feet,
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        neck="Dls. Torque +2",
         waist="Null Belt",
-        left_ear="Malignance Earring",
-        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        ear1="Malignance Earring",
+        ear2="Lethargy Earring +1",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back="Null Shawl",
     }
     sets.midcast.Impact = {
         main="Bunzi's Rod",
         sub="Ammurapi Shield",
-        ranged="Ullr",
+        -- ranged="Ullr",
+        ammo="Pemphredo Tathlum",
         head="Empty",
         body="Crepuscular Cloak",
-        hands = gear.Empy.hands,
-        legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        hands = gear.Empyrean.hands,
+        legs = gear.Empyrean.legs,
+        feet = gear.Empyrean.feet,
+        neck="Null Loop",
         waist="Null Belt",
-        left_ear="Malignance Earring",
-        right_ear={ name="Leth. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Dbl.Atk."+4',}},
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
-        back = gear.AmbuCape.INT,
+        ear1="Malignance Earring",
+        ear2="Lethargy Earring +1",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        back="Null Shawl",
       }
         sets.midcast.EnhancingOthers = {
-        main={ name="Colada", augments={'Enh. Mag. eff. dur. +3','INT+1','"Mag.Atk.Bns."+20','DMG:+1',}},
+        main="Colada",
         sub="Ammurapi Shield",
-        head = gear.Empy.head,
+        head = gear.Empyrean.head,
         body = gear.Relic.body,
-        hands = gear.AF.hands,
-        legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        hands = gear.Artifact.hands,
+        legs = gear.Empyrean.legs,
+        feet = gear.Empyrean.feet,
+        neck="Dls. Torque +2",
         waist="Embla Sash",
-        left_ear="Mimir Earring",
-        right_ear="Lethargy Earring +1",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        ear1="Mimir Earring",
+        ear2="Lethargy Earring +1",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back = gear.AmbuCape.MND,
     }
     sets.midcast.EnhancingSelf = {
-        main={ name="Colada", augments={'Enh. Mag. eff. dur. +3','INT+1','"Mag.Atk.Bns."+20','DMG:+1',}},
+        main="Colada",
         sub="Ammurapi Shield",
         head = gear.Telchine.head,
         body = gear.Relic.body,
-        hands = gear.AF.hands,
+        hands = gear.Artifact.hands,
         legs = gear.Telchine.legs,
-        feet = gear.Empy.feet,
-        neck={ name="Dls. Torque +2", augments={'Path: A',}},
+        feet = gear.Empyrean.feet,
+        neck="Dls. Torque +2",
         waist="Embla Sash",
-        left_ear="Mimir Earring",
-        right_ear="Leth. Earring +1",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        ear1="Mimir Earring",
+        ear2="Lethargy Earring +1",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back = gear.AmbuCape.MND,
         }
 
@@ -785,35 +733,34 @@ sets.WeaponSkill["Sanguine Blade"] = {
         head="Befouled Crown",
         body = gear.Relic.body,
         hands = gear.Relic.hands,
-        legs = gear.Carmine,
-        feet = gear.Empy.feet,
+        legs="Carmine Cuisses +1",
+        feet = gear.Empyrean.feet,
         neck="Incanter's Torque",
         waist="Cascade Belt",
-        left_ear="Mimir Earring",
-        right_ear="Leth. Earring +1",
-        left_ring={name="Stikini Ring +1",bag="wardrobe",priority=1},
-        right_ring={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        ear1="Mimir Earring",
+        ring1={name="Stikini Ring +1",bag="wardrobe",priority=1},
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
         back = gear.ReiveCape,
         }
 
     sets.midcast.Nuke = {
-        main={ name="Bunzi's Rod", augments={'Path: A',}},
+        main="Bunzi's Rod",
         sub="Ammurapi Shield",
-        ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
-        head = gear.Empy.head,
-        body = gear.Empy.body,
-        hands = gear.Empy.hands,
-        legs = gear.Empy.legs,
+        ammo="Ghastly Tathlum +1",
+        head = gear.Empyrean.head,
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
+        legs = gear.Empyrean.legs,
         feet = gear.Relic.feet,
         neck="Sibyl Scarf",
         waist="Sacro Cord",
-        left_ear="Malignance Earring",
-        right_ear="Regal Earring",
-        left_ring="Freke Ring",
-        right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+        ear1="Malignance Earring",
+        ear2="Regal Earring",
+        ring1="Freke Ring",
+        ring2="Metamor. Ring +1",
         back = gear.AmbuCape.INT,
     }
-    -- sets.midcast.Nuke = {
+    -- sets.midcast.NukeAcumen = {
     --     ammo="Aurgelmir Orb",
     --     head="Malignance Chapeau",
     --     body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+6','"Occult Acumen"+11','CHR+4',}},
@@ -822,28 +769,28 @@ sets.WeaponSkill["Sanguine Blade"] = {
     --     feet={ name="Merlinic Crackows", augments={'"Mag.Atk.Bns."+1','"Occult Acumen"+11','Mag. Acc.+14',}},
     --     neck="Combatant's Torque",
     --     waist="Oneiros Rope",
-    --     left_ear="Crep. Earring",
-    --     right_ear="Dedition Earring",
-    --     left_ring="Chirich Ring +1",
-    --     right_ring="Chirich Ring +1",
+    --     ear1="Crep. Earring",
+    --     ear2="Dedition Earring",
+    --     ring1="Chirich Ring +1",
+    --     ring2="Chirich Ring +1",
     --     back="Null Shawl",
     -- }
 
     sets.midcast.MagicBurst = {
-        main={ name="Bunzi's Rod", augments={'Path: A',}},
+        main="Bunzi's Rod",
         sub="Ammurapi Shield",
-        ammo={ name="Ghastly Tathlum +1", augments={'Path: A',}},
+        ammo="Ghastly Tathlum +1",
         head="Ea Hat +1",
         body="Ea Houppe. +1",
         hands="Bunzi's Gloves",
-        legs = gear.Empy.legs,
+        legs = gear.Empyrean.legs,
         feet = gear.Relic.feet,
         neck="Sibyl Scarf",
         waist="Sacro Cord",
-        left_ear="Malignance Earring",
-        right_ear="Regal Earring",
-        left_ring="Freke Ring",
-        right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+        ear1="Malignance Earring",
+        ear2="Regal Earring",
+        ring1="Freke Ring",
+        ring2="Metamor. Ring +1",
         back = gear.AmbuCape.INT,
     }
 
@@ -855,13 +802,12 @@ sets.WeaponSkill["Sanguine Blade"] = {
       }
 
     sets.midcast.Cursna = {
-    -- +88 Healing Magic Skill, +35 Cursna
         body = gear.Relic.head,
-        legs = gear.AF.legs,
+        legs = gear.Artifact.legs,
         feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
         neck="Incanter's Torque",
-        left_ring="Haoma's Ring",
-        right_ring="Haoma's Ring",
+        ring1="Haoma's Ring",
+        ring2="Haoma's Ring",
     }
 
     sets.midcast.Treasure = {
@@ -878,37 +824,39 @@ sets.WeaponSkill["Sanguine Blade"] = {
         -- +29% Gear Haste
         sub="Ammurapi Shield",
         ammo="Regal Gem",
-        head = gear.AF.head,
-        body = gear.Empy.body,
-        hands = gear.Empy.hands,
-        legs = gear.Empy.legs,
-        feet = gear.Empy.feet,
+        head = gear.Artifact.head,
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
+        legs = gear.Empyrean.legs,
+        feet = gear.Empyrean.feet,
         neck="Null Loop",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Malignance Earring",
-        right_ear="Lethargy Earring +1",
-        left_ring="Weather. Ring +1",
-        right_ring="Stikini Ring +1",
+        waist="Sailfi Belt +1",
+        ear1="Malignance Earring",
+        ear2="Lethargy Earring +1",
+        ring1="Weather. Ring +1",
+        ring2="Stikini Ring +1",
         back = gear.AmbuCape.FastCast,
         }
     
     sets.midcast.Cures = {
-        -- +58% Cure Potency, -25 Enmity
+        -- +49% Cure potency without main/sub
+        -- -15 Enmity
+        -- -24% DT without main/sub
         main="Daybreak",
         sub="Sacro Bulwark",
-        ammo="Regal Gem",
+        ammo="Staunch Tathlum +1",
         head={ name="Vanya Hood", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
         body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-        hands = "",
+        hands = gear.Empyrean.hands,
         legs = gear.Chironic.legs.MNDfeeble,
         feet={ name="Vanya Clogs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
         neck="Incanter's Torque",
         waist="Cascade Belt",
-        left_ear="Mendi. Earring",
-        right_ear="Halasz Earring",
-        left_ring="Sirona's Ring",
-        right_ring="Ephedra Ring",
-        back = "Solemnity Cape",
+        ear1="Mendi. Earring",
+        ear2="Regal Earring",
+        ring1="Murky Ring",
+        ring2={name="Stikini Ring +1",bag="wardrobe2",priority=2},
+        back = gear.AmbuCape.MND,
     }
     
 end
@@ -932,7 +880,6 @@ function maps()
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -942,7 +889,7 @@ function precast(spell)
     target = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_target('st') or self
     distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
     weather_intensity = gearswap.res.weather[world.weather_id].intensity
-    in_vagary = false
+    in_vagary = false -- Manually change this, or find zone name and use    in_vagary = world.zone:contains("Vagary")
 
 
     if sets.WeaponSkill[spell.name] then
@@ -977,7 +924,7 @@ function midcast(spell)
         if Cures:contains(spell.english) then
             equip(sets.midcast.Cures)
             if world.weather_element == spell.element or world.day_element == spell.element then
-                equip(gear.Obi)
+                equip({waist="Hachirin-no-Obi"})
             end
         elseif spell.name == "Cursna" then
             equip(set_combine(sets.midcast.MNDfeeble, sets.midcast.Cursna))
@@ -1012,11 +959,11 @@ function midcast(spell)
             equip(sets.midcast.MagicBurst)
         end
         if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
-            equip(gear.Obi)
+            equip({waist="Hachirin-no-Obi"})
         elseif distance < 7 then
-            equip(gear.Orpheus)
+            equip({waist="Orpheus's Sash"})
         elseif world.weather_element == spell.element or world.day_element == spell.element then
-            equip(gear.Obi)
+            equip({waist="Hachirin-no-Obi"})
         end
         if in_vagary then
             equip(sets.VagaryBurst)
@@ -1032,7 +979,7 @@ function midcast(spell)
 
     end
 
-    if spell.name == "Dia II" or spell.name == "Sleepga II" then
+    if spell.name == "Dia II" or spell.name == "Dia" or spell.name == "Diaga" or spell.name == "Sleepga" then
         equip(sets.midcast.Treasure)
     end
 
@@ -1040,7 +987,7 @@ end
 
 function aftercast(spell)
     if player.status == 'Idle' then
-        if player.mpp < 70 then
+        if player.mpp < 30 then
             equip(sets.status.Idle.Refresh)
         else
             equip(sets.status.Idle.DT)
@@ -1056,7 +1003,7 @@ end
 
 function status_change(new,old)
     if new == "Idle" then
-        if player.mpp < 70 then
+        if player.mpp < 30 then
             equip(sets.status.Idle.Refresh)
         else
             equip(sets.status.Idle.DT)
