@@ -203,7 +203,7 @@ function get_sets()
     waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Sanare Earring",
-    left_ring="Defending Ring",
+    left_ring="Murky Ring",
     right_ring="Shadow Ring",
     back="Shadow Mantle"
   }
