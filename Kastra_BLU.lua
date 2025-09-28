@@ -122,7 +122,7 @@ end
 		waist="Carrier's Sash",
 		left_ear="Etiolation Earring",
 		right_ear="Odnowa Earring +1",
-		left_ring="Defending Ring",
+		left_ring="Murky Ring",
 		right_ring="Shneddick Ring",
         back="Shadow Mantle",
 	}
