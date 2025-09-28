@@ -202,7 +202,7 @@ function get_sets()
         waist="Null Belt",
         left_ear="Etiolation Earring",
         right_ear="Sanare Earring",
-        left_ring="Defending Ring",
+        left_ring="Murky Ring",
         right_ring="Shadow Ring",
         back="Shadow Mantle",
       }
@@ -217,7 +217,7 @@ function get_sets()
         waist="Svelt. Gouriz +1",
         left_ear="Infused Earring",
         right_ear="Eabani Earring",
-        left_ring="Defending Ring",
+        left_ring="Murky Ring",
         right_ring="Vengeful Ring",
         back="Shadow Mantle",
       }
@@ -449,7 +449,7 @@ function get_sets()
         waist="Reiki Yotai",
         left_ear="Dedition Earring",
         right_ear="Telos Earring",
-        left_ring="Defending Ring",
+        left_ring="Murky Ring",
         right_ring="Lehko's Ring",
         back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
     }
@@ -464,7 +464,7 @@ function get_sets()
         waist="Reiki Yotai",
         left_ear="Dedition Earring",
         right_ear="Telos Earring",
-        left_ring="Defending Ring",
+        left_ring="Murky Ring",
         right_ring="Lehko's Ring",
         back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
     }
@@ -571,6 +571,10 @@ function precast(spell)
     elseif spell.name == "Provoke" then
         equip(sets.Enmity)
 
+    elseif (spell.name == "Defender") or (spell.name == "Warcry") or (spell.name == "Berserk") or (spell.name == "Aggressor") or (spell.name == "Mug") or (spell.name == "Despoil") then
+        equip(sets.status.Idle.DT)
+
+        
     elseif spell.name == "Flee" then
         equip({feet = gear.Artifact.feet})
 
