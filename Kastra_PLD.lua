@@ -234,7 +234,7 @@ end
         waist="Plat. Mog. Belt",
         left_ear="Nourish. Earring +1", -- +7%, +0%
         right_ear={ name="Chev. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+8','Mag. Acc.+8',}}, -- +10%, +0%
-        left_ring="Defending Ring",
+        left_ring="Murky Ring",
         right_ring="Lebeche Ring",
         back = gear.AmbuCape.FastCast,
     }
