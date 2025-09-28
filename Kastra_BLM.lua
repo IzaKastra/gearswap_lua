@@ -143,7 +143,7 @@ function get_sets()
 
   gear.AF = {}
   gear.AF.head                        = {}
-  gear.AF.body                        = { name="Spaekona's Coat +3"}
+  gear.AF.body                        = { name="Spae. Coat +4"}
   gear.AF.hands                       = {}
   gear.AF.legs                        = {}
   gear.AF.feet                        = { name="Spae. Sabots +3"}
@@ -220,7 +220,7 @@ function get_sets()
     waist="Null Belt",
     left_ear="Etiolation Earring",
     right_ear="Sanare Earring",
-    left_ring="Defending Ring",
+    left_ring="Murky Ring",
     right_ring="Shadow Ring",
     back = gear.AmbuCape.Nuke,
   }
@@ -498,7 +498,7 @@ function get_sets()
     waist="Sacro Cord",
     left_ear="Regal Earring",
     right_ear="Malignance Earring",
-    left_ring="Weather. Ring +1",
+    left_ring="Stikini Ring +1",
     right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
     back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
   }
@@ -632,9 +632,9 @@ function midcast(spell)
     elseif world.weather_element == spell.element or world.day_element == spell.element then
       equip(gear.Obi)
     end
-    if spell.element == "Earth" then
-      equip({neck="Quanpur Necklace"})
-    end
+    -- if spell.element == "Earth" then
+    --   equip({neck="Quanpur Necklace"})
+    -- end
 
     if OccultAcumenFlag == 1 then
       if OccultAcumen:contains(spell.name) then
