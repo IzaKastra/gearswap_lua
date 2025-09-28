@@ -152,8 +152,8 @@ end
     gear.Relic.feet  = { name="Piety Duckbills +3", augments={'Enhances "Afflatus Solace" effect',}}
 
     gear.Empyrean = {}
-    gear.Empyrean.head  = { name="Ebers Cap +2"}
-    gear.Empyrean.body  = { name="Ebers Bliaut +2"}
+    gear.Empyrean.head  = { name="Ebers Cap +3"}
+    gear.Empyrean.body  = { name="Ebers Bliaut +3"}
     gear.Empyrean.hands = { name="Ebers Mitts +2"}
     gear.Empyrean.legs  = { name="Ebers Pant. +3"}
     gear.Empyrean.feet  = { name="Ebers Duckbills +3"}
@@ -192,7 +192,7 @@ end
         waist="Null Belt",
         ear1="Etiolation Earring",
         ear2="Ebers Earring +1",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring2="Shadow Ring",
         back=gear.AmbuCape.Idle,
     }
@@ -421,7 +421,7 @@ end
         waist="Emphatikos Rope",
         ear1="Glorious Earring",
         ear2="Ebers Earring +1",
-        ring1="Defending Ring",
+        ring1="Murky Ring",
         ring2="Lebeche Ring",
         back = gear.AmbuCape.Idle,
     }
@@ -436,7 +436,7 @@ end
         legs={ name="Chironic Hose", augments={'Mag. Acc.+26','MND+10',}},
         feet = gear.Artifact.feet,
         neck="Null Loop",
-        waist="Null Belt",
+        waist="Obstin. Sash",
         ear1="Malignance Earring",
         ear2="Regal Earring",
         ring1="Stikini Ring +1",
@@ -476,7 +476,7 @@ end
         -- 33% Fast Cast, 29% Haste, +75 Cursna, +122 Healing Skill
         main="Yagrush",
         ammo="Sapience Orb",
-        head="Ebers Cap +2",
+        head="Ebers Cap +3",
         body="Ebers Bliaut +2",
         hands={ name="Fanatic Gloves", augments={'MP+50','Healing magic skill +10','"Conserve MP"+7','"Fast Cast"+7',}},
         legs={ name="Piety Pantaln. +3", augments={'Enhances "Afflatus Misery" effect',}},
