@@ -110,9 +110,9 @@ function get_sets()
     gear.Artifact = {}
     gear.Artifact.head  = {}
     gear.Artifact.body  = { name="Foire Tobe"}
-    gear.Artifact.hands = { name="Pup. Dastanas"}
+    gear.Artifact.hands = { name="Foire Dastanas +3"}
     gear.Artifact.legs  = {}
-    gear.Artifact.feet  = { name="Pup. Babouches"}
+    gear.Artifact.feet  = { name="Foire Babouches +2"}
 
     gear.Relic = {}
     gear.Relic.head  = {}
@@ -167,8 +167,8 @@ function get_sets()
         waist="Null Belt",
         ear1="Enmerkar Earring",
         ear2="Karagoz Earring +2",
-        ring1="Defending Ring",
-        ring2="Shneddick Ring +1",
+        ring1="Murky Ring",
+        ring2="Shadow Ring",
         back="Visucius's Mantle", -- Pet DT
     }
 
@@ -349,6 +349,24 @@ function get_sets()
     sets["Overdrive"] = {body = gear.Relic.body}
     sets["Ventriloquy"] = {legs = gear.Relic.legs}
     sets["Role Reversal"] = {feet = gear.Relic.feet}
+
+    sets.test={
+        main={ name="Ohtas", augments={'Accuracy+70','Pet: Accuracy+70','Pet: Haste+10%',}},
+        range="Animator P +1",
+        ammo="Automat. Oil +3",
+        head="Kara. Cappello +3",
+        body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
+        hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},
+        legs={ name="Mpaca's Hose", augments={'Path: A',}},
+        feet="Karagoz Scarpe +3",
+        neck="Shulmanu Collar",
+        waist="Isa Belt",
+        left_ear="Enmerkar Earring",
+        right_ear={ name="Kara. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+20','Mag. Acc.+20','"Store TP"+8','STR+15 DEX+15',}},
+        left_ring="Murky Ring",
+        right_ring="Shneddick Ring +1",
+        back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','"Store TP"+10','Pet: Damage taken -5%',}},
+    }
 
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
