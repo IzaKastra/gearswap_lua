@@ -189,7 +189,7 @@ function get_sets()
     waist="Isa Belt",
     left_ear="Etiolation Earring",
     right_ear="Sanare Earring",
-    left_ring="Defending Ring",
+    left_ring="Murky Ring",
     right_ring="Shadow Ring",
     back = gear.AmbuCape.PetDT,
   }
@@ -206,7 +206,7 @@ function get_sets()
     waist="Fucho-no-Obi",
     left_ear="Etiolation Earring",
     right_ear="Sanare Earring",
-    left_ring="Defending Ring",
+    left_ring="Murky Ring",
     right_ring="Shadow Ring",
     back = gear.AmbuCape.PetDT,
   }
