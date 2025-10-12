@@ -608,7 +608,7 @@ function get_sets()
         -- -35% DT requirement
         -- Assumes Sublime Sushi food
         -- Assuming you have a BRD using HM+VM+Madrigal+Minuet5+Minuet4
-        sub="Kunimitsu", -- This High Accuracy set requires the use of Kunimitsu for the Acc+ and RAcc+
+        -- sub="Kunimitsu", -- This High Accuracy set requires the use of Kunimitsu for the Acc+ and RAcc+
         ammo="Seki Shuriken",
         head="Malignance Chapeau",
         body="Mpaca's Doublet",
@@ -1274,9 +1274,9 @@ function precast(spell)
         equip(sets.midcast.MagicAccuracy)
     end
 
-    if (world.zone:contains("Abyssea")) or (world.zone:contains("Henge")) and spell.name == "Aeolian Edge" then
-        equip(sets.Treasure)
-    end
+    -- if (world.zone:contains("Abyssea")) or (world.zone:contains("Henge")) and spell.name == "Aeolian Edge" then
+    --     equip(sets.Treasure)
+    -- end
 end
 
 
