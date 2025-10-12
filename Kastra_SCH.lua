@@ -356,7 +356,7 @@ function get_sets()
 
 
   sets.midcast = {}
-  sets.midcast.Dispelga = set_combine(sets.midcast.Enfeeble, {main="Daybreak"})
+  sets.midcast.Dispelga = set_combine({main="Daybreak"}, sets.midcast.Enfeeble)
   sets.midcast.Impact = set_combine(sets.midcast.Enfeeble, {head="Empty", body="Crepuscular Cloak",})
 
   sets.midcast.Cures = {
