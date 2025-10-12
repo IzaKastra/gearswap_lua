@@ -18,7 +18,9 @@ function get_sets()
     send_command('bind !f10 gs c Verethragna')
 
     send_command('bind ^c gs c chocobo')
-    send_command('bind ^f9 gs c equip automaton magic')
+    send_command('bind ^f9 gs c equip automaton enmity')
+    send_command('bind ^f10 gs c equip automaton magic')
+    send_command('bind ^f12 gs c equip TP')
 
     function file_unload()
         send_command('unbind f9')
@@ -28,6 +30,8 @@ function get_sets()
         
         send_command('unbind !f9')
         send_command('unbind !f10')
+        send_command('unbind !f11')
+        send_command('unbind !f12')
 
         send_command('unbind ^c')
         send_command('unbind ^cf9')
@@ -71,6 +75,13 @@ function get_sets()
         if command == 'equip automaton magic' then
             equip(sets.Automaton.Magic)
             send_command('@input /echo Automaton Magic Attack equipped.')
+          end
+          if command == 'equip automaton enmity' then
+            equip(sets.Automaton.Enmity)
+            send_command('@input /echo Automaton enmity equipped.')
+          end
+          if command == 'equip TP' then
+            equip(sets.Melee.Hybrid)
           end
   
 
@@ -124,12 +135,17 @@ function get_sets()
     gear.Empyrean = {}
     gear.Empyrean.head   = { name="Kara. Cappello +3"}
     gear.Empyrean.body   = {}
-    gear.Empyrean.hands  = { name="Karagoz Guanti +1"}
+    gear.Empyrean.hands  = { name="Karagoz Guanti +3"}
     gear.Empyrean.legs   = {}
     gear.Empyrean.feet   = { name="Karagoz Scarpe +3"}
 
     gear.AmbuCape = {}
-    gear.AmbuCape.TP = {}
+    gear.AmbuCape.TP = { name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','"Store TP"+10','Pet: Damage taken -5%',}}
+    gear.AmbuCape.PetNuke = { name="Visucius's Mantle", augments={'Pet: M.Acc.+20 Pet: M.Dmg.+20','Accuracy+20 Attack+20','Pet: Magic Damage+10','"Fast Cast"+10',}}
+    gear.AmbuCape.CritSTR = { name="Visucius's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10',}}
+    
+    gear.ReiveCape = { name="Dispersal Mantle", augments={'STR+3','DEX+1','Pet: TP Bonus+500',}}
+
 
     gear.Herculean = {}
     gear.Herculean.head = {}
@@ -140,16 +156,11 @@ function get_sets()
 
 
     gear.Taeon = {}
-    gear.Taeon.head = {}
-    gear.Taeon.body = {}
-    gear.Taeon.hands = {}
-    gear.Taeon.legs = {}
-    gear.Taeon.feet = {}
-
-    gear.Taeon.head.sird = { name="Taeon Chapeau", augments={'Evasion+25','Spell interruption rate down -10%','HP+49',}}
-    gear.Taeon.body.sird = { name="Taeon Tabard", augments={'Evasion+25','Spell interruption rate down -10%','HP+47',}}
-    gear.Taeon.legs.sird = { name="Taeon Tights", augments={'Evasion+25','Spell interruption rate down -10%','HP+50',}}
-    gear.Taeon.feet.sird = { name="Taeon Boots", augments={'Evasion+24','Spell interruption rate down -10%','HP+45',}}
+    gear.Taeon.head = { name="Taeon Chapeau", augments={'Pet: Accuracy+24 Pet: Rng. Acc.+24','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}}
+    gear.Taeon.body = { name="Taeon Tabard", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}}
+    gear.Taeon.hands = { name="Taeon Gloves", augments={'Pet: Accuracy+25 Pet: Rng. Acc.+25','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}}
+    gear.Taeon.legs = { name="Taeon Tights", augments={'Pet: Accuracy+23 Pet: Rng. Acc.+23','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}}
+    gear.Taeon.feet = { name="Taeon Boots", augments={'Pet: Accuracy+24 Pet: Rng. Acc.+24','Pet: "Dbl. Atk."+5','Pet: Damage taken -4%',}}
 
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -169,13 +180,27 @@ function get_sets()
         ear2="Karagoz Earring +2",
         ring1="Murky Ring",
         ring2="Shadow Ring",
-        back="Visucius's Mantle", -- Pet DT
+        back = gear.AmbuCape.TP
     }
 
     sets.Melee = {}
     sets.Melee.Hybrid = {
-        head="Ryuo Somen +1",
         head="Malignance Chapeau",
+        body="Mpaca's Doublet",
+        hands="Malignance Gloves",
+        legs="Malignance Tights",
+        feet="Malignance Boots",
+        neck="Shulmanu Collar",
+        waist="Moonbow Belt +1",
+        ear1="Schere Earring",
+        ear2="Kara. Earring +2",
+        ring1="Lehko's ring",
+        ring2="Gere Ring",
+        back = gear.AmbuCape.TP
+    }
+
+    sets.Melee.Glass = {
+        head="Ryuo Somen +1",
         body="Mpaca's Doublet",
         hands="Malignance Gloves",
         legs="Samnuha Tights",
@@ -186,7 +211,7 @@ function get_sets()
         ear2="Kara. Earring +2",
         ring1="Lehko's ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- DEX STP
+        back = gear.AmbuCape.TP
     }
 
     sets.Treasure = {
@@ -217,7 +242,7 @@ function get_sets()
         ear2="Kara. Earring +2",
         ring1="Lehko's ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- STR Crit
+        back = gear.AmbuCape.CritSTR
     }
 
     sets.WeaponSkill["Howling Fist"] = {
@@ -232,7 +257,7 @@ function get_sets()
         ear2="Schere Earring",
         ring1="Niqmaddu Ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- VIT WSD
+        back = gear.AmbuCape.CritSTR
     }
 
     sets.WeaponSkill["Shijin Spiral"] = {
@@ -247,7 +272,7 @@ function get_sets()
         ear2="Kara. Earring +2",
         ring1="Niqmaddu Ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- DEX WSD
+        back = gear.AmbuCape.CritSTR
     }
 
 
@@ -263,7 +288,7 @@ function get_sets()
         ear2="Kara. Earring +2",
         ring1="Lehko's ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- STR Crit
+        back = gear.AmbuCape.CritSTR
     }
 
     sets.WeaponSkill["Raging Fists"] = {
@@ -278,7 +303,7 @@ function get_sets()
         ear2="Kara. Earring +2",
         ring1="Niqmaddu Ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- STR DA
+        back = gear.AmbuCape.CritSTR
     }
 
     sets.WeaponSkill["Combo"] = sets.WeaponSkill["Raging Fists"]
@@ -296,7 +321,7 @@ function get_sets()
         ear2="Kara. Earring +2",
         ring1="Niqmaddu Ring",
         ring2="Gere Ring",
-        back="Visucius's Mantle", -- STR WSD
+        back = gear.AmbuCape.CritSTR
     }
 
 
@@ -312,8 +337,18 @@ function get_sets()
         ear1="Burana Earring",
         ear2="Kara. Earring +2",
         ring1="C. Palug Ring",
-        back="Visucius's Mantle",
+        back = gear.AmbuCape.PetNuke
     }
+
+    sets.Automaton.Enmity = {
+        head="Heyoka Cap",
+        body="Heyoka Harness",
+        hands="Heyoka Mittens",
+        legs="Heyoka Subligar",
+        feet="Heyoka Leggings",
+        left_ear="Rimeice Earring",
+        right_ear="Domes. Earring",
+        }
 
     sets.FastCast = {
         head = gear.Herculean.head.FC,
@@ -324,6 +359,7 @@ function get_sets()
         ear2="Etiolation Earring",
         ring1="Weather. Ring",
         ring2="Lebeche Ring",
+        back = gear.AmbuCape.PetNuke,
     }
 
     sets.Enmity = {
@@ -350,22 +386,22 @@ function get_sets()
     sets["Ventriloquy"] = {legs = gear.Relic.legs}
     sets["Role Reversal"] = {feet = gear.Relic.feet}
 
-    sets.test={
+    sets.PetTP={
         main={ name="Ohtas", augments={'Accuracy+70','Pet: Accuracy+70','Pet: Haste+10%',}},
         range="Animator P +1",
         ammo="Automat. Oil +3",
-        head="Kara. Cappello +3",
-        body={ name="Pitre Tobe +3", augments={'Enhances "Overdrive" effect',}},
-        hands={ name="Pitre Dastanas +3", augments={'Enhances "Fine-Tuning" effect',}},
-        legs={ name="Mpaca's Hose", augments={'Path: A',}},
-        feet="Karagoz Scarpe +3",
+        head = gear.Taeon.head,
+        body = gear.Taeon.body,
+        hands = gear.Taeon.hands,
+        legs = gear.Taeon.legs,
+        feet = gear.Taeon.feet,
         neck="Shulmanu Collar",
-        waist="Isa Belt",
+        waist="Incarnation Sash",
         left_ear="Enmerkar Earring",
         right_ear={ name="Kara. Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+20','Mag. Acc.+20','"Store TP"+8','STR+15 DEX+15',}},
         left_ring="Murky Ring",
-        right_ring="Shneddick Ring +1",
-        back={ name="Visucius's Mantle", augments={'Pet: Acc.+20 Pet: R.Acc.+20 Pet: Atk.+20 Pet: R.Atk.+20','Accuracy+20 Attack+20','Pet: Accuracy+10 Pet: Rng. Acc.+10','"Store TP"+10','Pet: Damage taken -5%',}},
+        right_ring="C. Palug Ring",
+        back = gear.AmbuCape.TP
     }
 
     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -402,9 +438,10 @@ function precast(spell)
 
     elseif spell.name:contains("Maneuver") then
         equip(sets.Maneuvers)
-
-    elseif fastcast:contains(spell.skill) then
+    elseif fastcast:contains(spell.skill) then -- Default to FastCast set only if casting a spell (don't equip FastCast for JA or items)
         equip(sets.FastCast)
+    else
+        equip(sets.status.Idle.DT)
     end
 
 end
