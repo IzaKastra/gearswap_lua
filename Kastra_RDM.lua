@@ -956,7 +956,7 @@ function midcast(spell)
             if spell.name == "Aquaveil" then
                 equip(sets.midcast.Aquaveil)
             end
-            if spell.name == "Phalanx" then
+            if spell.name == "Phalanx" or spell.name == "Phalanx II" then
                 equip(sets.midcast.Phalanx)
             end
         end
