@@ -838,6 +838,11 @@ end
         back = gear.AmbuCape.FastCast,
         }
     
+    sets.midcast.Phalanx = {
+        main="Sakpata's Sword", -- +5
+        head="Chironic Hat", -- +4
+    }
+
     sets.midcast.Cures = {
         -- +49% Cure potency without main/sub
         -- -15 Enmity
@@ -950,6 +955,9 @@ function midcast(spell)
             end
             if spell.name == "Aquaveil" then
                 equip(sets.midcast.Aquaveil)
+            end
+            if spell.name == "Phalanx" then
+                equip(sets.midcast.Phalanx)
             end
         end
 
