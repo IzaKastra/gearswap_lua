@@ -1,342 +1,498 @@
-include('organizer-lib')
+include("organizer-lib")
 
 function get_sets()
 
-	maps()
+    maps()
 
-	MagicBurstFlag     = 0
-	MagicAccuracyFlag  = 0
-	TreasureHunterFlag = 0
-	MeleeFlag          = 1
+    MagicBurstFlag     = 1
+    WeaponLock         = 0
+    -- ! == alt
+    -- ^ == ctrl
 
-	send_command('bind f11 gs c equip Crimson')
-	send_command('bind f12 gs c Equip DT')
-	send_command('bind ^f12 gs c Equip Refresh')
-	send_command('bind ^f10 gs c toggle Treasure Hunter')
-	function file_unload()
-		send_command('unbind ^f10')
-		send_command('unbind f11')
-		send_command('unbind f12')
-		send_command('unbind ^f12')
-	end
+    -- send_command("bind f9 gs c free1")
+    -- send_command("bind f10 gs c free2")
+    send_command("bind f11 gs c equip movement")
+    send_command("bind f12 gs c equip DT")
 
+    send_command("bind ^f9 gs c equip warp")
+    -- send_command("bind ^f10 gs c free4")
+    -- send_command("bind ^f11 gs c free5")
+    send_command("bind ^f12 gs c equip refresh")
 
-	function self_command(command)
-	if command == 'Equip DT' then
-		equip(sets.status.Idle.DT)
-		send_command('@input /echo Damage Taken set equipped.')
-	end
-	if command == 'Equip Refresh' then
-		equip(sets.status.Idle.Refresh)
-		send_command('@input /echo Idle Refresh set equipped.')
-	end
-	if command == 'equip Crimson' then
-		equip(gear.CrimsonToggle)
-		send_command('@input /echo Carmine Cuisses +1 Equipped.')
-	end
+    send_command("bind !^f9 gs c equip AoE")
+    send_command("bind !^f10 gs c equip Maxentius")
+    send_command("bind !^f11 gs c equip Naegling")
+    -- send_command("bind !^f12 gs c equip Tizona")
+
+    send_command("bind ^c gs c chocobo")
+
+    function file_unload()
+        send_command("unbind f9")
+        send_command("unbind f10")
+        send_command("unbind f11")
+        send_command("unbind f12")
+        send_command("unbind ^f9")
+        send_command("unbind ^f10")
+        send_command("unbind ^f11")
+        send_command("unbind ^f12")
+        send_command("unbind !f9")
+        send_command("unbind !f10")
+        send_command("unbind !f11")
+        send_command("unbind !f12")
+        send_command("unbind !^f9")
+        send_command("unbind !^f10")
+        send_command("unbind !^f11")
+        send_command("unbind !^f12")
+
+        send_command("unbind ^c")
+    end
+
+function self_command(command)
+
+    -- player = windower.ffxi.get_player()
+
+    if command == "equip DT" then
+        equip(sets.status.DT)
+        send_command("@input /echo Damage Taken set equipped.")
+    end
+
+    if command == "chocobo" then
+        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+        if windower.ffxi.get_mob_by_target("me").status == 5 or windower.ffxi.get_mob_by_target("me").status == 85 then
+            send_command("@input /echo Dismount")
+            send_command("@input /dismount")
+        elseif windower.ffxi.get_mob_by_target("me").status == 0 then
+            mount = mounts[math.random(#mounts)]
+            send_command("@input /echo " .. mount)
+            send_command("@input /mount ".. mount)
+        end
+    end
+
+    if command == "equip warp" then
+        send_command("@input /equip ring2 \"Warp Ring\"")
+        send_command("@input /equip main \"Warp Cudgel\"")
+    end
+
+    if command == "equip refresh" then
+        equip(sets.status.Refresh)
+        send_command("@input /echo Refresh set equipped.")
+    end
+
+    if command == "equip movement" then
+        equip({ring2="Shneddick Ring +1"})
+        send_command("@input /echo Movement+ Equipped.")
+    end
+
+    if command == "equip AoE" then
+        equip({main="Naegling", sub="Bunzi's Rod"})
+        send_command("@input /echo Naegling + Bunzi's Rod equipped.")
+        send_command("@input /lockstyleset 34")
+    end
+
+    if command == "equip Naegling" then
+        equip({main="Naegling", sub="Thibron"})
+        send_command("@input /echo Naegling + Thibron equipped.")
+        send_command("@input /lockstyleset 14")
+    end
+
+    if command == "equip Tizona" then
+        equip({main="Tizona", sub="Thibron"})
+        send_command("@input /echo Tizona + Thibron equipped.")
+        send_command("@input /lockstyleset 14")
+    end
+
+    if command == "equip Maxentius" then
+        equip({main="Maxentius", sub="Thibron"})
+        send_command("@input /echo Maxentius + Thibron equipped.")
+        send_command("@input /lockstyleset 36")
+    end
 
 end
 
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ OSEEM-AUGMENTED/SPECIAL GEAR ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	gear = {}
 
 	gear.AF = {}
-	gear.AF.head                       = {}
-	gear.AF.body                       = {}
-	gear.AF.hands                      = {}
-	gear.AF.legs                       = {}
-	gear.AF.feet                       = {}
+	gear.AF.head  = {}
+	gear.AF.body  = {}
+	gear.AF.hands = {}
+	gear.AF.legs  = {}
+	gear.AF.feet  = {}
 
-	gear.Amalric = {}
-	gear.Amalric.body = {}
-	gear.Amalric.body.Nuke             = { name="Amalric Doublet +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Relic = {}
+	gear.Relic.head  = {}
+	gear.Relic.body  = {}
+	gear.Relic.hands = {name="Luh. Bazubands +1"} -- Azure Lore
+	gear.Relic.legs  = {}
+	gear.Relic.feet  = {name="Luhlaza Charuqs +1"} -- Diffusion
 
-	gear.Amalric.hands = {}
-	gear.Amalric.hands.Nuke            = { name="Amalric Gages +1", augments={'INT+12','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-
-	gear.Amalric.legs = {}
-	gear.Amalric.legs.Nuke             = { name="Amalric Slops +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
-
-	gear.Amalric.feet ={}
-	gear.Amalric.feet.Nuke             = { name="Amalric Nails +1", augments={'MP+80','Mag. Acc.+20','"Mag.Atk.Bns."+20',}}
+    gear.Empyrean = {}
+	gear.Empyrean.head  = {name="Hashishin Kavuk +3"}
+	gear.Empyrean.body  = {name="Hashishin Mintan +3"}
+	gear.Empyrean.hands = {name="Hashi. Bazu. +3"}
+	gear.Empyrean.legs  = {name="Hashishin Tayt +3"}
+	gear.Empyrean.feet  = {}
 
 	gear.AmbuCape = {}
-	gear.AmbuCape.Nuke                 = { name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
-
-	gear.Crimson                       = { name="Carmine Cuisses +1"}
-	gear.CrimsonToggle                 = { legs="Carmine Cuisses +1"}
-
-	gear.Empy = {}
-	gear.Empy.head                     = {}
-	gear.Empy.body                     = {}
-	gear.Empy.hands                    = {}
-	gear.Empy.legs                     = {}
-	gear.Empy.feet                     = {}
-
-	gear.Moonshade                     = { name="Moonshade Earring", augments={'Attack+4','TP Bonus +250',}}
-
-	gear.Relic = {}
-	gear.Relic.head                    = {}
-	gear.Relic.body                    = {}
-	gear.Relic.hands                   = {}
-	gear.Relic.legs                    = {}
-	gear.Relic.feet                    = {}
-
-	gear.Obi                           = {waist="Hachirin-no-Obi"}
+    gear.AmbuCape.Nuke = { name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
+    gear.AmbuCape.WSD  = { name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ STATUS SETS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 	sets.status = {}
-	sets.status.Idle = {}
-	sets.status.Idle.Refresh = {
-		head="Rawhide Mask",
-		head="Malignance Chapeau",
-		body=gear.Amalric.body.Nuke,
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-		neck="Loricate Torque +1",
-		waist="Carrier's Sash",
-		left_ear="Etiolation Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Stikini Ring +1",
-		right_ring="Shneddick Ring",
-        back="Shadow Mantle",
-	}
-	sets.status.Idle.DT = {
+
+	sets.status.Refresh = {
         ammo="Staunch Tathlum +1",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-        hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
-		neck="Loricate Torque +1",
-		waist="Carrier's Sash",
-		left_ear="Etiolation Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Murky Ring",
-		right_ring="Shneddick Ring",
+        head="Null Masque",
+		body=gear.Empyrean.body,
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Warder's Charm +1",
+        waist="Null Belt",
+        ear1="Etiolation Earring",
+        ear2="Sanare Earring",
+        ring1={name="Stikini Ring +1", bag="wardrobe", priority=1},
+        ring2={name="Stikini Ring +1", bag="wardrobe2", priority=2},
         back="Shadow Mantle",
 	}
-	sets.status.Melee = {
-        ammo="Aurgelmir Orb",
-        head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-        body={ name="Adhemar Jacket +1", augments={'STR+12','DEX+12','Attack+20',}},
-        hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
-        legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
-        feet="Malignance Boots",
-        neck="Combatant's Torque",
-        waist="Reiki Yotai",
-        left_ear="Telos Earring",
-        right_ear="Suppanomimi",
-        left_ring="Epona's Ring",
-        right_ring="Ilabrat Ring",
-        back="Shadow Mantle",
-	}
-
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ PRECAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-	sets.precast = {}
-	sets.precast.FastCast = {
-	-- 54% Fast Cast, 8% Quick Cast
-		ammo="Impatiens",
-		head={ name="Herculean Helm", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+4',}},
-		body={ name="Samnuha Coat", augments={'Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+5','"Dual Wield"+5',}},
-		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-		legs={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}},
-		neck="Orunmila's Torque",
-		waist="Witful Belt",
-		left_ear="Etiolation Earring",
-		right_ear="Loquac. Earring",
-		left_ring="Weather. Ring",
-		right_ring="Kishar Ring",
-	}
-	sets.precast["Azure Lore"] = {	body = gear.Relic.body,}
-	sets.precast["Chant du Cygne"] = {
-		ammo="Yetshila",
-        head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-        body="Abnoba Kaftan",
-        hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-        legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}},
-        feet="Thereoid Greaves",
-        neck="Fotia Gorget",
-        waist="Fotia Belt",
-        left_ear="Mache Earring +1",
-        right_ear="Mache Earring +1",
-        left_ring="Epona's Ring",
-        right_ring="Begrudging Ring",
-        back="Shadow Mantle",
-	}
-	sets.precast.Requiescat = {
-		ammo="Ginsen",
-		head="Jhakri Coronal +2",
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +1",
-		legs="Jhakri Slops +1",
-		feet="Jhakri Pigaches +2",
-		neck="Fotia Gorget",
-		waist="Fotia Belt",
-		left_ear = gear.Moonshade,
-		right_ear="Regal Earring",
-		left_ring="Ilabrat Ring",
-		right_ring="Rajas Ring",
-		back = gear.AmbuCape.MeleeTP,
-	}
-	sets.precast["Savage Blade"] = {
-        ammo="Aurgelmir Orb",
-        head={ name="Nyame Helm", augments={'Path: B',}},
-        body={ name="Nyame Mail", augments={'Path: B',}},
-        hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-        legs={ name="Nyame Flanchard", augments={'Path: B',}},
-        feet={ name="Nyame Sollerets", augments={'Path: B',}},
-        neck="Rep. Plat. Medal",
-        waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-        left_ear="Regal Earring",
-        right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
-        left_ring="Sroda Ring",
-        right_ring="Ilabrat Ring",
+    sets.status.DT = {
+        ammo="Staunch Tathlum +1",
+        head = "Null Masque",
+		body=gear.Empyrean.body,
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Warder's Charm +1",
+        waist="Null Belt",
+        ear1="Etiolation Earring",
+        ear2="Sanare Earring",
+        ring1="Murky Ring",
+        -- ring2="Shadow Ring",
+        ring2="Shneddick Ring +1",
         back="Shadow Mantle",
     }
+
+    sets.status.Melee = {
+        ammo="Coiste Bodhar",
+        head="Malignance Chapeau",
+        body="Malignance Tabard",
+        hands={ name="Adhemar Wrist. +1", augments={'STR+12','DEX+12','Attack+20',}},
+        legs="Gleti's Breeches",
+        feet="Malignance Boots",
+        neck="Null Loop",
+        waist="Reiki Yotai",
+        ear1="Cessance Earring",
+        ear2="Eabani Earring",
+        ring1="Lehko's Ring",
+        ring2="Epona's Ring",
+        back="Null Shawl",
+    }
+
+
+    sets.precast = {}
+    sets.midcast = {}
+
+    -- Nyzul farming /ra
+    sets.precast["Ranged Attack"] = {
+        ranged="Chakram",
+        ammo="Empty",
+    }
+    sets.midcast["Ranged Attack"] = {
+        ranged="Chakram",
+        ammo="Empty",
+    }
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+	sets.precast.FastCast = {
+        -- 47% Fast Cast
+        -- 4% Quick Magic
+        -- -16% Blue Magic casting time
+        -- Erratic Flutter gives "Fast Cast III" for +20% Fast Cast
+        ammo="Impatiens",
+        head="Carmine Mask",
+        body=gear.Empyrean.body,
+        hands="Leyline Gloves",
+        legs="Enif Cosciales",
+        feet="Amalric Nails +1",
+        neck="Orunmila's Torque",
+        waist="Witful Belt",
+        ear1="Etiolation Earring",
+        ear2="Loquac. Earring",
+        ring1="Lebeche Ring",
+        ring2="Kishar Ring",
+        back="Shadow Mantle",
+    }
+
+	sets.precast["Savage Blade"] = {
+        ammo="Coiste Bodhar",
+        head=gear.Empyrean.head,
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Rep. Plat. Medal",
+        waist="Sailfi Belt +1",
+        ear1="Moonshade Earring",
+        ear2="Brutal Earring",
+        ring1="Sroda Ring",
+        ring2="Rufescent Ring",
+        back = gear.AmbuCape.WSD,
+    }
+
+    sets.precast["Black Halo"] = sets.precast["Savage Blade"]
+    sets.precast["Expiacion"] = sets.precast["Savage Blade"]
+    sets.precast["Chant du Cygne"] = sets.precast["Savage Blade"]
+    sets.precast["Requiescat"] = sets.precast["Savage Blade"]
+
+    sets.precast["Azure Lore"] = {hands = gear.Relic.hands,}
+
 	sets.precast["Sanguine Blade"] = {
 		ammo="Pemphredo Tathlum",
 		head="Pixie Hairpin +1",
-		body = gear.Amalric.body.Nuke,
-		hands = gear.Amalric.hands.Nuke,
-		legs = gear.Amalric.legs.Nuke,
-		feet = gear.Amalric.feet.Nuke,
-		neck="Baetyl Pendant",
-		waist="Sacro Cord",
-		left_ear="Regal Earring",
-		right_ear="Friomisi Earring",
-		left_ring="Shiva Ring +1",
-		right_ring="Archon Ring",
-		back = gear.AmbuCape.Nuke,
+		body="Amalric Doublet +1",
+		hands="Amalric Gages +1",
+		legs="Amalric Slops +1",
+		feet="Amalric Nails +1",
+		neck="Sibyl Scarf",
+		waist="Orpheus's Sash",
+		ear1="Regal Earring",
+		ear2="Friomisi Earring",
+		ring1="Shiva Ring +1",
+		ring2="Archon Ring",
+		back="Null Shawl",
 	}
 
+    sets.precast["Holy Water"] = {
+        neck="Nicander's Necklace",
+        ring2="Purity Ring",
+    }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ MIDCAST SETS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-	sets.midcast = {}
-	sets.midcast.AoE = {
+	sets.midcast.Nuke = {
 		ammo="Pemphredo Tathlum",
-		head="Nyame Helm",
-		body = gear.Amalric.body.Nuke,
-		hands = gear.Amalric.hands.Nuke,
-		legs = gear.Amalric.legs.Nuke,
-		feet = gear.Amalric.feet.Nuke,
-		neck="Baetyl Pendant",
+		head=gear.Empyrean.head,
+		-- body="Amalric Doublet +1",
+		-- hands="Amalric Gages +1",
+		-- legs="Amalric Slops +1",
+		-- feet="Amalric Nails +1",
+		body = gear.Empyrean.body,
+		hands = gear.Empyrean.hands,
+		legs = gear.Empyrean.legs,
+		feet="Amalric Nails +1",
+		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
-		left_ear="Regal Earring",
-		right_ear="Friomisi Earring",
-		left_ring="Shiva Ring +1",
-		right_ring="Shiva Ring +1",
-		back = gear.AmbuCape.Nuke,
+		ear1="Regal Earring",
+		ear2="Friomisi Earring",
+        ring1="Metamor. Ring +1",
+		ring2="Shiva Ring +1",
+		back="Null Shawl",
 	}
 	sets.midcast.DarkAffinity = {
-		left_ring="Archon Ring",
+		ring1="Archon Ring",
 		head="Pixie Hairpin +1",
 	}
 	sets.midcast.LightAffinity = {
-		left_ring="Weatherspoon Ring",
+		ring1="Weather. Ring +1",
+	}
+	sets.midcast.EarthAffinity = {
+		neck = "Quanpur Necklace",
 	}
 
+    sets.midcast.Healing = {
+        ammo="Crepuscular Pebble",
+        head="Null Masque",
+        body="Hashishin Mintan +3",
+        hands="Nyame Gauntlets",
+        legs="Gyve Trousers",
+        feet="Nyame Sollerets",
+        neck="Orunmila's Torque",
+        waist="Sacro Cord",
+        ear1="Regal Earring",
+        ear2="Loquac. Earring",
+        ring1={name="Stikini Ring +1", bag="wardrobe", priority=1},
+        ring2={name="Stikini Ring +1", bag="wardrobe2", priority=2},
+        back="Shadow Mantle",
+    }
+
+    sets.midcast.MagicAccuracy = {
+        ammo="Pemphredo Tathlum",
+        head = gear.Empyrean.head,
+        body = gear.Empyrean.body,
+        hands="Malignance Gloves",
+        legs="Amalric Slops +1",
+        feet="Malignance Boots",
+        neck="Null Loop",
+        waist="Null Belt",
+        ear1="Digni. Earring",
+        ear2="Crep. Earring",
+        ring1={name="Stikini Ring +1", bag="wardrobe", priority=1},
+        ring2={name="Stikini Ring +1", bag="wardrobe2", priority=2},
+        back="Null Shawl",
+    }
+
+    sets.midcast.BlueSkill = {
+        -- +67 Blue Magic skill
+        legs = gear.Empyrean.legs,
+        feet = gear.Relic.feet,
+        neck="Incanter's Torque",
+        ring1={name="Stikini Ring +1", bag="wardrobe", priority=1},
+        ring2={name="Stikini Ring +1", bag="wardrobe2", priority=2},
+    }
+
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ SPELL/ABILITY LISTS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function maps() -- For some reason this is required if you want to use List:contains(spell.english). You have to have this "function maps()" and "end" lines surrounding your lists.
--- You also need the maps() line in your get_sets() function if you want these to work.
--- Otherwise you will get an error for all lines that use the "contains(spell.english)" function that says something along the lines of "attempt to index global 'TreasureHunter' (a Nil value)"
--- In addition to the above 3 lines, you'll also need to have the random S infront of your lists
+function maps()
 
-	Cures          = S {"Cure", "Cure II", "Cure III", "Cure IV"}
-	EraseNas       = S {"Paralyna", "Stona", "Poisona", "Blindna", "Viruna", "Silena", "Cursna", "Erase"}
-	HighCost       = S {"Raise", "Raise II", "Reraise", "Protect V", "Shell V"}
-	BarSpells      = S {"Barfire", "Barwater", "Barthunder", "Barstone", "Baraero", "Barblizzard", "Barparalyze", "Barpetrify", "Barpoison", "Barblind", "Barvirus", "Barsilence", "Barsleep", "Baramnesia"}
-	DrainSpells    = S {"Drain", "Aspir"}
-	Gains          = S {"Gain-STR", "Gain-DEX", "Gain-VIT", "Gain-AGI", "Gain-INT", "Gain-MND", "Gain_CHR"}
-	Enspells       = S {"Enstone", "Enstone II", "Enwater", "Enwater II", "Enaero", "Enaero II", "Enfire", "Enfire II", "Enblizzard", "Enblizzard II", "Enthunder", "Enthunder II"}
-	MNDfeeble      = S {"Addle", "Addle II", "Inundation", "Paralyze", "Paralyze II", "Silence", "Slow", "Slow II"}
-	INTfeeble      = S {"Bind", "Blind", "Blind II", "Distract", "Distract II", "Distract III", "Frazzle", "Frazzle II", "Frazzle III", "Gravity", "Gravity II", "Sleep", "Sleep II", "Poison", "Poison II", "Break", "Dispel"}
-	DoTs           = S {"Dia", "Dia II", "Dia III", "Bio", "Bio II", "Bio III"}
-	EnhSkill       = S {"Blink", "Ice Spikes", "Shock Spikes", "Blaze Spikes", "Temper", "Temper II",
-											"Gain-STR", "Gain-DEX", "Gain-VIT", "Gain-AGI", "Gain-INT", "Gain-MND", "Gain_CHR",
-											"Enstone", "Enstone II", "Enwater", "Enwater II", "Enaero"}
-	EnhDuration    = S {"Haste", "Haste II", "Flurry", "Flurry II", "Refresh", "Refresh II", "Refresh III", "Regen", "Regen II", "Klimaform"}
-	Storms         = S {"Sandstorm", "Windstorm", "Hailstorm", "Firestorm", "Rainstorm", "Thunderstorm", "Aurorastorm", "Voidstorm"}
-	Ninjutsu       = S {"Utsusemi: Ichi", "Utsusemi: Ni"}
-	Treasure       = S {"Dia", "Dia II", "Dia III", "Diaga", "Bio", "Bio II", "Bio III"}
+    -- Monster correlation effects: +25% damage/effect against strength, -25% against weakness
+    -- Not always present
+    -- Beast > Lizard > Vermin > Plantoid > Beast
+    -- Bird > Aquan > Amorph > Bird
+    -- Demon > Dragon > Demon
+    -- Undead > Arcana > Undead
+
+    Healing = S {"Cure", "Cure II", "Cure III", "Cure IV", "Magic Fruit", "Wild Carrot", "Pollen", "White Wind", "Healing Breeze", "Restoral", "Plenilune Embrace",}
+    Enfeebles = S {
+        "Sudden Lunge", "Blitzstrahl", "Whirl of Rage", "Tail Slap", "Frypan", "Head Butt", "Thunderbolt", -- Stun
+        "Cruel Joke", "Mortal Ray", -- Doom
+        "Dream Flower", "Sheep Song", "Soporific", "Yawn", -- Sleep
+        "Enervation", "Benthic Typhoon", -- Defense and Magic Defense down
+        "Corrosive Ooze", -- Attack and Defense down
+        "Maelstrom", "Awful Eye", -- STR down
+        "Stinking Gas", "Wild Oats", -- VIT down
+        "Cold Wave", -- AGI down
+        "Battle Dance", -- DEX down
+        "Sound Blast", -- INT down
+        "Geist Wall", "Blank Gaze", "Rending Deluge", "Droning Whirlwind", -- Dispel
+        "Actinic Burst", "Sandspray", "Sandspin", "Barbed Crescent", "Spiral Spin", -- Accuracy Down 
+        "Retinal Glare", -- Flash
+        "Water Bomb", "Silent Storm", "Chaotic Eye", -- Silence
+        "Acrid Scream", "Tearing Gust", -- Magic Defense down
+        "Frightful Roar", "Sweeping Gouge", "Seedspray", "Tourbillion", -- Defense Down
+        "Magic Hammer", -- MP Steal
+        "Demoralizing Roar", "Saurian Slide", "Terror Touch", -- Attack down
+        "Infrasonics", -- Evasion down
+        "Regurgitation", "Ice Break", "Blast Bomb", "Polar Roar", -- Bind
+        "Bilgestorm", -- Attack, Defense, and Accuracy down
+        "Mind Blast", "Frost Breath", "Paralyzing Triad", "Sub-zero Smash", -- Paralyze
+        "Temporal Shift", -- Stop, Terror, or Petrify
+        "Absolute Terror", -- Terror
+        "Embalming Earth", "Cimicine Discharge", "Filimented Hold", "Sprout Smack", -- Slow
+        "Magnetite Cloud", "Mysterious Light", -- Gravity
+        "Bad Breath", -- Everything
+        "Radiant Breath", -- Slow and Silence
+        "Auroral Drape", -- Silence and Blind
+        "Thermal Pulse", "Hecatomb Wave", -- Blind
+        "Lowing", -- Disease
+        "Delta Thrust", "Cesspool", -- Plague
+        "Voracious Trunk", -- Steal buff / dispel
+        "Hydro Shot", -- Enmity down
+        "Light of Penance", "Feather Tickle", "Reaving Wind", -- Reduce TP
+        "Palling Salvo", -- Bio
+    }
+
+    FastCast = S {"Exuviation", "Winds of Promyvion"}
+
+    Enhancing = S {
+        "Erratic Flutter", "Battery Charge", "Barrier Tusk", "Diamondhide", "Cocoon",
+        "Mighty Guard", "Uproot", "Harden Shell", "Carcharian Verve",
+        "Saline Coat", "Regeneration", "Amplification", "Plasma Charge",
+        "Warm-Up", "Metallic Body", "Animating Wail", "Zephyr Mantle", "Feather Barrier",
+        "Refueling", "Reactor Cool", "Memento Mori", "Nat. Meditation", "O. Counterstance", 
+        "Fantod", "Exuviation", "Triumphant Roar", 
+    }
+
+    BlueSkill = S {
+        "Magic Barrier", "Occultation", "Pinecone Bomb", "Blood Drain", "Digest", "MP Drainkiss",
+        "Blood Saber", "Osmosis", "Atra. Libations",
+    }
 
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ PRECAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 function precast(spell)
-
+    
 	if sets.precast[spell.name] then
         equip(sets.precast[spell.name])
-	elseif spell.skill == "Healing Magic" then
-		equip(set_combine(sets.precast.FastCast, sets.precast.Healing))
-	elseif spell.skill == "Enfeebling Magic" then
-		equip(set_combine(sets.precast.FastCast, sets.precast.Enfeeble))
-	elseif spell.name == "Stoneskin" then
-		equip(set_combine(sets.precast.FastCast, sets.precast.SS))
-	elseif spell.skill == "Enhancing Magic" then
-		equip(set_combine(sets.precast.FastCast, sets.precast.Enhancing))
-	else
-		equip(sets.precast.FastCast)
-	end
+    elseif spell.type:contains("Magic") or spell.type=="Trust" or spell.type=="Ninjutsu" then
+        equip(sets.precast.FastCast)
+    elseif spell.type=="WeaponSkill" then
+        equip(sets.precast["Savage Blade"])
+    end
 
 end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------ MIDCAST FUNCTION ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 function midcast(spell)
 
+    weather_intensity = gearswap.res.weather[world.weather_id].intensity
 
-	if spell.skill == "Blue Magic" or spell.skill=="Elemental Magic" then
-		equip(sets.midcast.AoE)
-		if world.weather_element == spell.element or world.day_element == spell.element then
-			equip(gear.Obi)
-		end
-		if spell.name == "Tenebral Crush" then
+    if sets.midcast[spell.name] then
+        equip(set_combine(sets.status.DT, sets.midcast[spell.name]))
+
+    elseif spell.type=="Trust" then
+        equip(sets.status.DT)
+    
+    elseif Healing:contains(spell.name) then
+        equip(sets.midcast.Healing)
+
+	elseif Enfeebles:contains(spell.name) then
+		equip(sets.midcast.MagicAccuracy)
+
+    elseif BlueSkill:contains(spell.name) then
+        equip(set_combine(sets.status.DT, sets.midcast.BlueSkill))
+
+    elseif spell.skill=="Blue Magic" or spell.skill=="Elemental Magic" then
+		equip(sets.midcast.Nuke)
+
+		if spell.element == "Dark" then
 			equip(sets.midcast.DarkAffinity)
-		end
-		if spell.name == "Blinding Fulgor" then
+        elseif spell.element == "Light" then
 			equip(sets.midcast.LightAffinity)
+        elseif spell.element == "Earth" then
+			equip(sets.midcast.EarthAffinity)
 		end
-	end
+
+        if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
+            equip({waist="Hachirin-no-Obi"})
+        end
+
+	elseif spell.type ~= "WeaponSkill" then
+        equip(sets.status.DT)
+    end
+
+    if buffactive["Diffusion"] and spell.skill=="Blue Magic" then
+        equip({feet = gear.Relic.feet})
+    end
+
 end
 
 function aftercast(spell)
---	print("Aftercast:",player.status)
-	if player.status == 'Idle' then
-        equip(sets.status.Idle.DT)
-        if player.mpp < 70 then
-           equip(sets.status.Idle.Refresh)
+
+    if player.status == "Idle" then
+        equip(sets.status.DT)
+        if player.mpp < 50 then
+           equip(sets.status.Refresh)
         end
     elseif player.status == "Engaged" then
         equip(sets.status.Melee)
@@ -344,9 +500,8 @@ function aftercast(spell)
 end
 
 function status_change(new,old)
---	print("Status Change:",player.status)
 	if new == "Idle" then
-        equip(sets.status.Idle.DT)
+        equip(sets.status.DT)
 	elseif new == "Engaged" then
         equip(sets.status.Melee)
 	end
