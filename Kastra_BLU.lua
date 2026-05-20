@@ -4,8 +4,6 @@ function get_sets()
 
     maps()
 
-    MagicBurstFlag     = 1
-    WeaponLock         = 0
     -- ! == alt
     -- ^ == ctrl
 
@@ -47,109 +45,109 @@ function get_sets()
         send_command("unbind ^c")
     end
 
-function self_command(command)
+    function self_command(command)
 
-    -- player = windower.ffxi.get_player()
+        -- player = windower.ffxi.get_player()
 
-    if command == "equip DT" then
-        equip(sets.status.DT)
-        send_command("@input /echo Damage Taken set equipped.")
-    end
-
-    if command == "chocobo" then
-        mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
-        if windower.ffxi.get_mob_by_target("me").status == 5 or windower.ffxi.get_mob_by_target("me").status == 85 then
-            send_command("@input /echo Dismount")
-            send_command("@input /dismount")
-        elseif windower.ffxi.get_mob_by_target("me").status == 0 then
-            mount = mounts[math.random(#mounts)]
-            send_command("@input /echo " .. mount)
-            send_command("@input /mount ".. mount)
+        if command == "equip DT" then
+            equip(sets.status.DT)
+            send_command("@input /echo Damage Taken set equipped.")
         end
-    end
 
-    if command == "equip warp" then
-        send_command("@input /equip ring2 \"Warp Ring\"")
-        send_command("@input /equip main \"Warp Cudgel\"")
-    end
+        if command == "chocobo" then
+            mounts = {"Chocobo", "Chocobo", "Chocobo", "'Noble Chocobo'", "Phuabo", "Phuabo", "Xzomit", "Warmachine", "'Spectral Chair'", "Fenrir"}
+            if windower.ffxi.get_mob_by_target("me").status == 5 or windower.ffxi.get_mob_by_target("me").status == 85 then
+                send_command("@input /echo Dismount")
+                send_command("@input /dismount")
+            elseif windower.ffxi.get_mob_by_target("me").status == 0 then
+                mount = mounts[math.random(#mounts)]
+                send_command("@input /echo " .. mount)
+                send_command("@input /mount ".. mount)
+            end
+        end
 
-    if command == "equip refresh" then
-        equip(sets.status.Refresh)
-        send_command("@input /echo Refresh set equipped.")
-    end
+        if command == "equip warp" then
+            send_command("@input /equip ring2 \"Warp Ring\"")
+            send_command("@input /equip main \"Warp Cudgel\"")
+        end
 
-    if command == "equip movement" then
-        equip({ring2="Shneddick Ring +1"})
-        send_command("@input /echo Movement+ Equipped.")
-    end
+        if command == "equip refresh" then
+            equip(sets.status.Refresh)
+            send_command("@input /echo Refresh set equipped.")
+        end
 
-    if command == "equip AoE" then
-        equip({main="Naegling", sub="Bunzi's Rod"})
-        send_command("@input /echo Naegling + Bunzi's Rod equipped.")
-        send_command("@input /lockstyleset 34")
-    end
+        if command == "equip movement" then
+            equip({ring2="Shneddick Ring +1"})
+            send_command("@input /echo Movement+ Equipped.")
+        end
 
-    if command == "equip Naegling" then
-        equip({main="Naegling", sub="Thibron"})
-        send_command("@input /echo Naegling + Thibron equipped.")
-        send_command("@input /lockstyleset 14")
-    end
+        if command == "equip AoE" then
+            equip({main="Naegling", sub="Bunzi's Rod"})
+            send_command("@input /echo Naegling + Bunzi's Rod equipped.")
+            send_command("@input /lockstyleset 34")
+        end
 
-    if command == "equip Tizona" then
-        equip({main="Tizona", sub="Thibron"})
-        send_command("@input /echo Tizona + Thibron equipped.")
-        send_command("@input /lockstyleset 14")
-    end
+        if command == "equip Naegling" then
+            equip({main="Naegling", sub="Thibron"})
+            send_command("@input /echo Naegling + Thibron equipped.")
+            send_command("@input /lockstyleset 14")
+        end
 
-    if command == "equip Maxentius" then
-        equip({main="Maxentius", sub="Thibron"})
-        send_command("@input /echo Maxentius + Thibron equipped.")
-        send_command("@input /lockstyleset 36")
-    end
+        if command == "equip Tizona" then
+            equip({main="Tizona", sub="Thibron"})
+            send_command("@input /echo Tizona + Thibron equipped.")
+            send_command("@input /lockstyleset 14")
+        end
 
-end
+        if command == "equip Maxentius" then
+            equip({main="Maxentius", sub="Thibron"})
+            send_command("@input /echo Maxentius + Thibron equipped.")
+            send_command("@input /lockstyleset 36")
+        end
+
+    end
 
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	gear = {}
+    gear = {}
 
-	gear.AF = {}
-	gear.AF.head  = {}
-	gear.AF.body  = {}
-	gear.AF.hands = {}
-	gear.AF.legs  = {}
-	gear.AF.feet  = {}
+    gear.AF = {}
+    gear.AF.head  = {}
+    gear.AF.body  = {}
+    gear.AF.hands = {}
+    gear.AF.legs  = {}
+    gear.AF.feet  = {}
 
     gear.Relic = {}
-	gear.Relic.head  = {}
-	gear.Relic.body  = {}
-	gear.Relic.hands = {name="Luh. Bazubands +1"} -- Azure Lore
-	gear.Relic.legs  = {}
-	gear.Relic.feet  = {name="Luhlaza Charuqs +1"} -- Diffusion
+    gear.Relic.head  = {}
+    gear.Relic.body  = {}
+    gear.Relic.hands = {name="Luh. Bazubands +1"} -- Azure Lore
+    gear.Relic.legs  = {}
+    gear.Relic.feet  = {name="Luhlaza Charuqs +1"} -- Diffusion
 
     gear.Empyrean = {}
-	gear.Empyrean.head  = {name="Hashishin Kavuk +3"}
-	gear.Empyrean.body  = {name="Hashishin Mintan +3"}
-	gear.Empyrean.hands = {name="Hashi. Bazu. +3"}
-	gear.Empyrean.legs  = {name="Hashishin Tayt +3"}
-	gear.Empyrean.feet  = {}
+    gear.Empyrean.head  = {name="Hashishin Kavuk +3"}
+    gear.Empyrean.body  = {name="Hashishin Mintan +3"}
+    gear.Empyrean.hands = {name="Hashi. Bazu. +3"}
+    gear.Empyrean.legs  = {name="Hashishin Tayt +3"}
+    gear.Empyrean.feet  = {}
 
-	gear.AmbuCape = {}
+    gear.AmbuCape = {}
     gear.AmbuCape.Nuke = { name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
     gear.AmbuCape.WSD  = { name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	sets.status = {}
+    sets.status = {}
 
-	sets.status.Refresh = {
+    sets.status.Refresh = {
         ammo="Staunch Tathlum +1",
         head="Null Masque",
-		body=gear.Empyrean.body,
+        body=gear.Empyrean.body,
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
@@ -160,11 +158,11 @@ end
         ring1={name="Stikini Ring +1", bag="wardrobe", priority=1},
         ring2={name="Stikini Ring +1", bag="wardrobe2", priority=2},
         back="Shadow Mantle",
-	}
+    }
     sets.status.DT = {
         ammo="Staunch Tathlum +1",
         head = "Null Masque",
-		body=gear.Empyrean.body,
+        body=gear.Empyrean.body,
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
@@ -214,7 +212,7 @@ end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-	sets.precast.FastCast = {
+    sets.precast.FastCast = {
         -- 47% Fast Cast
         -- 4% Quick Magic
         -- -16% Blue Magic casting time
@@ -234,7 +232,7 @@ end
         back="Shadow Mantle",
     }
 
-	sets.precast["Savage Blade"] = {
+    sets.precast["Savage Blade"] = {
         ammo="Coiste Bodhar",
         head=gear.Empyrean.head,
         body="Nyame Mail",
@@ -257,21 +255,21 @@ end
 
     sets.precast["Azure Lore"] = {hands = gear.Relic.hands,}
 
-	sets.precast["Sanguine Blade"] = {
-		ammo="Pemphredo Tathlum",
-		head="Pixie Hairpin +1",
-		body="Amalric Doublet +1",
-		hands="Amalric Gages +1",
-		legs="Amalric Slops +1",
-		feet="Amalric Nails +1",
-		neck="Sibyl Scarf",
-		waist="Orpheus's Sash",
-		ear1="Regal Earring",
-		ear2="Friomisi Earring",
-		ring1="Shiva Ring +1",
-		ring2="Archon Ring",
-		back="Null Shawl",
-	}
+    sets.precast["Sanguine Blade"] = {
+        ammo="Pemphredo Tathlum",
+        head="Pixie Hairpin +1",
+        body="Amalric Doublet +1",
+        hands="Amalric Gages +1",
+        legs="Amalric Slops +1",
+        feet="Amalric Nails +1",
+        neck="Sibyl Scarf",
+        waist="Orpheus's Sash",
+        ear1="Regal Earring",
+        ear2="Friomisi Earring",
+        ring1="Shiva Ring +1",
+        ring2="Archon Ring",
+        back="Null Shawl",
+    }
 
     sets.precast["Holy Water"] = {
         neck="Nicander's Necklace",
@@ -281,35 +279,51 @@ end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	sets.midcast.Nuke = {
-		ammo="Pemphredo Tathlum",
-		head=gear.Empyrean.head,
-		-- body="Amalric Doublet +1",
-		-- hands="Amalric Gages +1",
-		-- legs="Amalric Slops +1",
-		-- feet="Amalric Nails +1",
-		body = gear.Empyrean.body,
-		hands = gear.Empyrean.hands,
-		legs = gear.Empyrean.legs,
-		feet="Amalric Nails +1",
-		neck="Sibyl Scarf",
-		waist="Orpheus's Sash",
-		ear1="Regal Earring",
-		ear2="Friomisi Earring",
+    sets.midcast.Nuke = {
+        ammo="Pemphredo Tathlum",
+        head=gear.Empyrean.head,
+        -- body="Amalric Doublet +1",
+        -- hands="Amalric Gages +1",
+        -- legs="Amalric Slops +1",
+        -- feet="Amalric Nails +1",
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
+        legs = gear.Empyrean.legs,
+        feet="Amalric Nails +1",
+        neck="Sibyl Scarf",
+        waist="Sacro Cord",
+        ear1="Regal Earring",
+        ear2="Friomisi Earring",
         ring1="Metamor. Ring +1",
-		ring2="Shiva Ring +1",
-		back="Null Shawl",
-	}
-	sets.midcast.DarkAffinity = {
-		ring1="Archon Ring",
-		head="Pixie Hairpin +1",
-	}
-	sets.midcast.LightAffinity = {
-		ring1="Weather. Ring +1",
-	}
-	sets.midcast.EarthAffinity = {
-		neck = "Quanpur Necklace",
-	}
+        ring2="Shiva Ring +1",
+        back="Null Shawl",
+    }
+
+    sets.midcast["Bludgeon"] = {
+        ammo="Coiste Bodhar",
+        head=gear.Empyrean.head,
+        body = gear.Empyrean.body,
+        hands = gear.Empyrean.hands,
+        legs = gear.Empyrean.legs,
+        feet="Nyame Sollerets",
+        neck="Rep. Plat. Medal",
+        waist="Sailfi Belt +1",
+        ear1="Regal Earring",
+        ear2="Digni. Earring",
+        ring1="Metamor. Ring +1",
+        ring2="Ilabrat Ring",
+        back="Null Shawl",
+    }
+    sets.midcast.DarkAffinity = {
+        ring1="Archon Ring",
+        head="Pixie Hairpin +1",
+    }
+    sets.midcast.LightAffinity = {
+        ring1="Weather. Ring +1",
+    }
+    sets.midcast.EarthAffinity = {
+        neck = "Quanpur Necklace",
+    }
 
     sets.midcast.Healing = {
         ammo="Crepuscular Pebble",
@@ -379,7 +393,6 @@ function maps()
         "Battle Dance", -- DEX down
         "Sound Blast", -- INT down
         "Geist Wall", "Blank Gaze", "Rending Deluge", "Droning Whirlwind", -- Dispel
-        "Actinic Burst", "Sandspray", "Sandspin", "Barbed Crescent", "Spiral Spin", -- Accuracy Down 
         "Retinal Glare", -- Flash
         "Water Bomb", "Silent Storm", "Chaotic Eye", -- Silence
         "Acrid Scream", "Tearing Gust", -- Magic Defense down
@@ -394,10 +407,11 @@ function maps()
         "Absolute Terror", -- Terror
         "Embalming Earth", "Cimicine Discharge", "Filimented Hold", "Sprout Smack", -- Slow
         "Magnetite Cloud", "Mysterious Light", -- Gravity
-        "Bad Breath", -- Everything
+        "Bad Breath", -- Everything, but only for 30~45 seconds.
         "Radiant Breath", -- Slow and Silence
         "Auroral Drape", -- Silence and Blind
         "Thermal Pulse", "Hecatomb Wave", -- Blind
+        "Actinic Burst", "Sandspray", "Sandspin", "Barbed Crescent", "Spiral Spin", -- Accuracy Down 
         "Lowing", -- Disease
         "Delta Thrust", "Cesspool", -- Plague
         "Voracious Trunk", -- Steal buff / dispel
@@ -428,8 +442,13 @@ end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function precast(spell)
-    
-	if sets.precast[spell.name] then
+
+    self = windower.ffxi.get_mob_by_target('me')
+    target = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_target('st') or self
+    distance = math.sqrt((self.x - target.x)^2 + (self.y - target.y)^2)
+    weather_intensity = gearswap.res.weather[world.weather_id].intensity
+
+    if sets.precast[spell.name] then
         equip(sets.precast[spell.name])
     elseif spell.type:contains("Magic") or spell.type=="Trust" or spell.type=="Ninjutsu" then
         equip(sets.precast.FastCast)
@@ -456,28 +475,36 @@ function midcast(spell)
     elseif Healing:contains(spell.name) then
         equip(sets.midcast.Healing)
 
-	elseif Enfeebles:contains(spell.name) then
-		equip(sets.midcast.MagicAccuracy)
+    elseif Enfeebles:contains(spell.name) then
+        equip(sets.midcast.MagicAccuracy)
 
     elseif BlueSkill:contains(spell.name) then
         equip(set_combine(sets.status.DT, sets.midcast.BlueSkill))
 
     elseif spell.skill=="Blue Magic" or spell.skill=="Elemental Magic" then
-		equip(sets.midcast.Nuke)
+        equip(sets.midcast.Nuke)
 
-		if spell.element == "Dark" then
-			equip(sets.midcast.DarkAffinity)
+        if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
+            equip({waist="Hachirin-no-Obi"})
+        elseif distance < 7 then
+            equip({waist="Orpheus's Sash"})
+        elseif world.weather_element == spell.element or world.day_element == spell.element then
+            equip({waist="Hachirin-no-Obi"})
+        end
+
+        if spell.element == "Dark" then
+            equip(sets.midcast.DarkAffinity)
         elseif spell.element == "Light" then
-			equip(sets.midcast.LightAffinity)
+            equip(sets.midcast.LightAffinity)
         elseif spell.element == "Earth" then
-			equip(sets.midcast.EarthAffinity)
-		end
+            equip(sets.midcast.EarthAffinity)
+        end
 
         if (world.weather_element == spell.element and world.day_element == spell.element) or (world.weather_element == spell.element and weather_intensity == 2) then
             equip({waist="Hachirin-no-Obi"})
         end
 
-	elseif spell.type ~= "WeaponSkill" then
+    elseif spell.type ~= "WeaponSkill" then
         equip(sets.status.DT)
     end
 
@@ -496,13 +523,13 @@ function aftercast(spell)
         end
     elseif player.status == "Engaged" then
         equip(sets.status.Melee)
-	end
+    end
 end
 
 function status_change(new,old)
-	if new == "Idle" then
+    if new == "Idle" then
         equip(sets.status.DT)
-	elseif new == "Engaged" then
+    elseif new == "Engaged" then
         equip(sets.status.Melee)
-	end
+    end
 end
